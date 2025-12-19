@@ -1,36 +1,59 @@
-document.addEventListener('DOMContentLoaded', () => {
+const db = new Dexie('HealthTracker');
+db.version(1).stores({
+  journals: 'date'
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await requestPersistentStorage();
+  registerServiceWorker();
   initTabs();
   initMeasurementsForm();
   initWorkoutForm();
-  loadTodayData();
+  initExportButton();
+  await loadTodayData();
 });
 
-function getTodayKey() {
-  return `journal-${new Date().toISOString().split('T')[0]}`;
+async function requestPersistentStorage() {
+  if (navigator.storage && navigator.storage.persist) {
+    const persistent = await navigator.storage.persist();
+    console.log('Persistent storage:', persistent ? 'granted' : 'denied');
+  }
 }
 
-function getTodayJournal() {
-  const key = getTodayKey();
-  const stored = localStorage.getItem(key);
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch((err) => {
+      console.log('Service worker registration failed:', err);
+    });
+  }
+}
+
+function getTodayDate() {
+  return new Date().toISOString().split('T')[0];
+}
+
+async function getTodayJournal() {
+  const date = getTodayDate();
+  const stored = await db.journals.get(date);
   if (stored) {
-    return JSON.parse(stored);
+    return stored;
   }
   return {
-    date: new Date().toISOString().split('T')[0],
+    date: date,
     lastModified: new Date().toISOString(),
     measurements: null,
     workout: null
   };
 }
 
-function saveTodayJournal(journal) {
+async function saveTodayJournal(journal) {
   journal.lastModified = new Date().toISOString();
-  localStorage.setItem(getTodayKey(), JSON.stringify(journal));
-  downloadJournal(journal);
+  await db.journals.put(journal);
+  showToast('Saved');
 }
 
-function loadTodayData() {
-  const journal = getTodayJournal();
+async function loadTodayData() {
+  const journal = await getTodayJournal();
 
   if (journal.measurements) {
     const fields = [
@@ -74,7 +97,7 @@ function initTabs() {
 function initMeasurementsForm() {
   const form = document.getElementById('measurements-form');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
@@ -93,9 +116,9 @@ function initMeasurementsForm() {
       }
     });
 
-    const journal = getTodayJournal();
+    const journal = await getTodayJournal();
     journal.measurements = data;
-    saveTodayJournal(journal);
+    await saveTodayJournal(journal);
   });
 }
 
@@ -108,7 +131,7 @@ function initWorkoutForm() {
     addExerciseCard(container);
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const exercises = [];
@@ -133,9 +156,9 @@ function initWorkoutForm() {
       }
     });
 
-    const journal = getTodayJournal();
+    const journal = await getTodayJournal();
     journal.workout = { exercises };
-    saveTodayJournal(journal);
+    await saveTodayJournal(journal);
   });
 }
 
@@ -185,7 +208,16 @@ function addExerciseCard(container, existingData = null) {
   container.appendChild(card);
 }
 
-function downloadJournal(journal) {
+function initExportButton() {
+  const exportBtn = document.getElementById('export-btn');
+
+  exportBtn.addEventListener('click', async () => {
+    const journal = await getTodayJournal();
+    downloadJSON(journal);
+  });
+}
+
+function downloadJSON(journal) {
   const filename = `journal-${journal.date}.json`;
 
   const blob = new Blob([JSON.stringify(journal, null, 2)], { type: 'application/json' });
@@ -198,4 +230,20 @@ function downloadJournal(journal) {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+function showToast(message) {
+  let toast = document.querySelector('.status-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'status-toast';
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add('visible');
+
+  setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 2000);
 }

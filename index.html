@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
   <title>Health Tracker</title>
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -85,8 +87,13 @@
         <button type="submit" class="save-btn">Save Workout</button>
       </form>
     </section>
+
+    <div class="export-section">
+      <button type="button" id="export-btn" class="export-btn">Export Journal</button>
+    </div>
   </main>
 
+  <script src="dexie.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
