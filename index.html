@@ -1,99 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#2563eb">
-  <title>Health Tracker</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <nav class="tabs">
-      <button class="tab active" data-tab="measurements">Measurements</button>
-      <button class="tab" data-tab="workout">Workout</button>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <title>Health Tracker</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="tabs">
+        <button class="tab active" data-tab="measurements">Measurements</button>
+        <button class="tab" data-tab="workout">Workout</button>
+        <button class="tab" data-tab="programs">Programs</button>
+      </nav>
+    </header>
 
-  <main>
-    <section id="measurements" class="page active">
-      <form id="measurements-form">
-        <div class="form-group">
-          <label for="weight">Weight</label>
-          <input type="number" id="weight" name="weight" inputmode="decimal" step="0.1">
+    <main>
+      <section id="measurements" class="page active">
+        <form id="measurements-form">
+          <div class="form-group">
+            <label for="weight">Weight</label>
+            <input
+              type="number"
+              id="weight"
+              name="weight"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="neck">Neck</label>
+            <input
+              type="number"
+              id="neck"
+              name="neck"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="chest">Chest</label>
+            <input
+              type="number"
+              id="chest"
+              name="chest"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="leftBiceps">Left Biceps</label>
+            <input
+              type="number"
+              id="leftBiceps"
+              name="leftBiceps"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rightBiceps">Right Biceps</label>
+            <input
+              type="number"
+              id="rightBiceps"
+              name="rightBiceps"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="waist">Waist</label>
+            <input
+              type="number"
+              id="waist"
+              name="waist"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="hips">Hips</label>
+            <input
+              type="number"
+              id="hips"
+              name="hips"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="leftQuadriceps">Left Quadriceps</label>
+            <input
+              type="number"
+              id="leftQuadriceps"
+              name="leftQuadriceps"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rightQuadriceps">Right Quadriceps</label>
+            <input
+              type="number"
+              id="rightQuadriceps"
+              name="rightQuadriceps"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="leftCalf">Left Calf</label>
+            <input
+              type="number"
+              id="leftCalf"
+              name="leftCalf"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rightCalf">Right Calf</label>
+            <input
+              type="number"
+              id="rightCalf"
+              name="rightCalf"
+              inputmode="decimal"
+              step="0.1"
+            />
+          </div>
+
+          <button type="submit" class="save-btn">Save Measurements</button>
+        </form>
+      </section>
+
+      <section id="workout" class="page">
+        <div class="program-selector">
+          <div class="form-group">
+            <label for="current-program">Program</label>
+            <select id="current-program">
+              <option value="">Freestyle</option>
+            </select>
+          </div>
+          <div class="form-group" id="day-selector-group">
+            <label>Day</label>
+            <div class="day-selector">
+              <span id="suggested-day">Day 1</span>
+              <button type="button" id="change-day-btn" class="change-btn">
+                Change
+              </button>
+            </div>
+            <select id="current-day" class="hidden"></select>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="neck">Neck</label>
-          <input type="number" id="neck" name="neck" inputmode="decimal" step="0.1">
+        <form id="workout-form">
+          <div class="workout-actions">
+            <button type="button" id="copy-previous" class="secondary-btn">
+              Copy Previous Workout
+            </button>
+          </div>
+          <div id="exercises-container"></div>
+
+          <button type="button" id="add-exercise" class="add-btn">
+            + Add Exercise
+          </button>
+
+          <button type="submit" class="save-btn">Save Workout</button>
+        </form>
+      </section>
+
+      <section id="programs" class="page">
+        <div id="programs-list"></div>
+
+        <div class="add-program-form">
+          <h3>Add Program</h3>
+          <div class="form-group">
+            <label for="new-program-name">Program Name</label>
+            <input
+              type="text"
+              id="new-program-name"
+              placeholder="e.g., Push Pull Legs"
+            />
+          </div>
+
+          <div class="program-days-builder">
+            <label>Days</label>
+            <div id="program-days-container"></div>
+            <button type="button" id="add-program-day-btn" class="add-btn">
+              + Add Day
+            </button>
+          </div>
+
+          <div class="form-buttons">
+            <button type="button" id="create-program-btn" class="save-btn">
+              Create Program
+            </button>
+            <button
+              type="button"
+              id="cancel-edit-btn"
+              class="secondary-btn hidden"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
+      </section>
 
-        <div class="form-group">
-          <label for="chest">Chest</label>
-          <input type="number" id="chest" name="chest" inputmode="decimal" step="0.1">
-        </div>
+      <div class="export-section">
+        <button type="button" id="export-btn" class="export-btn">
+          Export Journal
+        </button>
+      </div>
+    </main>
 
-        <div class="form-group">
-          <label for="leftBiceps">Left Biceps</label>
-          <input type="number" id="leftBiceps" name="leftBiceps" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="rightBiceps">Right Biceps</label>
-          <input type="number" id="rightBiceps" name="rightBiceps" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="waist">Waist</label>
-          <input type="number" id="waist" name="waist" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="hips">Hips</label>
-          <input type="number" id="hips" name="hips" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="leftQuadriceps">Left Quadriceps</label>
-          <input type="number" id="leftQuadriceps" name="leftQuadriceps" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="rightQuadriceps">Right Quadriceps</label>
-          <input type="number" id="rightQuadriceps" name="rightQuadriceps" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="leftCalf">Left Calf</label>
-          <input type="number" id="leftCalf" name="leftCalf" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="form-group">
-          <label for="rightCalf">Right Calf</label>
-          <input type="number" id="rightCalf" name="rightCalf" inputmode="decimal" step="0.1">
-        </div>
-
-        <button type="submit" class="save-btn">Save Measurements</button>
-      </form>
-    </section>
-
-    <section id="workout" class="page">
-      <form id="workout-form">
-        <div id="exercises-container"></div>
-
-        <button type="button" id="add-exercise" class="add-btn">+ Add Exercise</button>
-
-        <button type="submit" class="save-btn">Save Workout</button>
-      </form>
-    </section>
-
-    <div class="export-section">
-      <button type="button" id="export-btn" class="export-btn">Export Journal</button>
-    </div>
-  </main>
-
-  <script src="dexie.min.js"></script>
-  <script src="app.js"></script>
-</body>
+    <script src="dexie.min.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
