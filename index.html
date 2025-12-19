@@ -13,6 +13,7 @@
     <nav class="tabs">
       <button class="tab active" data-tab="measurements">Measurements</button>
       <button class="tab" data-tab="workout">Workout</button>
+      <button class="tab" data-tab="programs">Programs</button>
     </nav>
   </header>
 
@@ -79,13 +80,56 @@
     </section>
 
     <section id="workout" class="page">
+      <div class="program-selector">
+        <div class="form-group">
+          <label for="current-program">Program</label>
+          <select id="current-program">
+            <option value="">Freestyle</option>
+          </select>
+        </div>
+        <div class="form-group" id="day-selector-group">
+          <label>Day</label>
+          <div class="day-selector">
+            <span id="suggested-day">Day 1</span>
+            <button type="button" id="change-day-btn" class="change-btn">Change</button>
+          </div>
+          <select id="current-day" class="hidden"></select>
+        </div>
+      </div>
+
       <form id="workout-form">
+        <div class="workout-actions">
+          <button type="button" id="copy-previous" class="secondary-btn">Copy Previous Workout</button>
+        </div>
         <div id="exercises-container"></div>
 
         <button type="button" id="add-exercise" class="add-btn">+ Add Exercise</button>
 
         <button type="submit" class="save-btn">Save Workout</button>
       </form>
+    </section>
+
+    <section id="programs" class="page">
+      <div id="programs-list"></div>
+
+      <div class="add-program-form">
+        <h3>Add Program</h3>
+        <div class="form-group">
+          <label for="new-program-name">Program Name</label>
+          <input type="text" id="new-program-name" placeholder="e.g., Push Pull Legs">
+        </div>
+
+        <div class="program-days-builder">
+          <label>Days</label>
+          <div id="program-days-container"></div>
+          <button type="button" id="add-program-day-btn" class="add-btn">+ Add Day</button>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" id="create-program-btn" class="save-btn">Create Program</button>
+          <button type="button" id="cancel-edit-btn" class="secondary-btn hidden">Cancel</button>
+        </div>
+      </div>
     </section>
 
     <div class="export-section">

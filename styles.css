@@ -160,6 +160,28 @@ input:focus {
   background: var(--color-bg);
 }
 
+.workout-actions {
+  margin-bottom: 16px;
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.secondary-btn:hover {
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+}
+
 .exercise-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -249,4 +271,310 @@ input:focus {
 
 .status-toast.visible {
   opacity: 1;
+}
+
+/* Program selector on workout page */
+.program-selector {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.program-selector select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.day-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#suggested-day {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.change-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.change-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Programs page */
+#programs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.program-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.program-card.active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.program-card .program-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.program-card .program-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.program-card .program-days {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.program-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.program-actions button {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.activate-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.activate-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.activate-btn:disabled {
+  background: var(--color-text-muted);
+  cursor: default;
+}
+
+.delete-btn {
+  background: transparent;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.delete-btn:hover {
+  background: var(--color-danger);
+  color: white;
+}
+
+.edit-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.edit-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.form-buttons .save-btn {
+  flex: 1;
+}
+
+.form-buttons .secondary-btn {
+  flex: 0 0 auto;
+}
+
+.add-program-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.add-program-form h3 {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.add-program-form .form-group {
+  margin-bottom: 12px;
+}
+
+.empty-message {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 24px;
+}
+
+/* Program days builder */
+.program-days-builder {
+  margin-bottom: 16px;
+}
+
+.program-days-builder > label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+#program-days-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.program-day-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.program-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.program-day-label {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.remove-day-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.remove-day-btn:hover {
+  background: var(--color-danger);
+  color: white;
+}
+
+.program-day-exercises {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  min-height: 24px;
+}
+
+.exercise-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-primary);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.remove-exercise-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.remove-exercise-btn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.add-exercise-row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-exercise-row input {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.add-exercise-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.add-exercise-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Program days preview in program cards */
+.program-days-preview {
+  margin: 12px 0;
+  padding: 8px;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.program-day-preview {
+  margin-bottom: 4px;
+  color: var(--color-text-muted);
+}
+
+.program-day-preview:last-child {
+  margin-bottom: 0;
+}
+
+.program-day-preview strong {
+  color: var(--color-text);
 }
