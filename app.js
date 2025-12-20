@@ -1559,14 +1559,14 @@ function renderArticles(articles) {
   container.innerHTML = articles.map(article => `
     <div class="article-card">
       <h3 class="article-title">
-        ${article.doi
-          ? `<a href="https://doi.org/${article.doi}" target="_blank" rel="noopener">${article.title}</a>`
+        ${article.doi || article.url
+          ? `<a href="${article.doi ? `https://doi.org/${article.doi}` : article.url}" target="_blank" rel="noopener">${article.title}</a>`
           : article.title}
       </h3>
       <div class="article-meta">
         ${article.authors.join(', ')} · ${article.journal} (${article.year})
       </div>
-      <p class="article-summary">${article.summary}</p>
+      <p class="article-summary">${article.summary || ''}</p>
       <div class="article-takeaways">
         <div class="article-takeaways-label">Key takeaways</div>
         <ul>
