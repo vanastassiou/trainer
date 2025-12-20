@@ -1,0 +1,585 @@
+{
+  "articles": [
+    {
+      "id": "cureton-1988-hypertrophy-sex",
+      "title": "Muscle hypertrophy in men and women",
+      "authors": ["Cureton KJ", "Collins MA", "Hill DW", "McElhannon FM Jr"],
+      "journal": "Medicine & Science in Sports & Exercise",
+      "year": 1988,
+      "pmid": "3173042",
+      "doi": "10.1249/00005768-198810001-00004",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3173042/",
+      "category": "hypertrophy",
+      "tags": ["adaptations", "body-composition"],
+      "question": "Do men and women experience similar muscle hypertrophy from resistance training?",
+      "methodology": {
+        "studyType": "intervention study",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult"],
+          "trainingStatus": ["untrained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 23,
+        "duration": "16 weeks",
+        "limitations": ["small sample size", "single age group"]
+      },
+      "takeaways": [
+        "Women and men show similar relative hypertrophy from training",
+        "Upper arm muscle increased ~16-23% in both sexes after 16 weeks",
+        "Strength gains were significant in both groups",
+        "Absolute gains differ, but percentage gains are comparable"
+      ]
+    },
+    {
+      "id": "roberts-2020-sex-differences",
+      "title": "Sex Differences in Resistance Training: A Systematic Review and Meta-Analysis",
+      "authors": ["Roberts BM", "Nuckols G", "Krieger JW"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2020,
+      "pmid": "32218059",
+      "doi": "10.1519/JSC.0000000000003521",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32218059/",
+      "category": "hypertrophy",
+      "tags": ["adaptations", "body-composition", "sex-differences"],
+      "question": "Are there sex differences in hypertrophy and strength adaptations to resistance training?",
+      "methodology": {
+        "studyType": "systematic review with meta-analysis",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult"],
+          "trainingStatus": null,
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["heterogeneity in training protocols across studies"]
+      },
+      "takeaways": [
+        "No significant sex difference in hypertrophy (effect size = 0.07)",
+        "Females showed larger relative gains in upper-body strength",
+        "No significant sex difference in lower-body strength gains",
+        "Males and females can follow similar resistance training programs"
+      ]
+    },
+    {
+      "id": "mcnulty-2020-menstrual-cycle",
+      "title": "The Effects of Menstrual Cycle Phase on Exercise Performance in Eumenorrheic Women: A Systematic Review and Meta-Analysis",
+      "authors": ["McNulty KL", "Elliott-Sale KJ", "Dolan E", "Swinton PA", "Ansdell P", "Goodall S", "Thomas K", "Hicks KM"],
+      "journal": "Sports Medicine",
+      "year": 2020,
+      "pmid": "32661839",
+      "doi": "10.1007/s40279-020-01319-3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32661839/",
+      "category": "hormones",
+      "tags": ["menstrual-cycle", "performance", "programming"],
+      "question": "Does menstrual cycle phase affect exercise performance in eumenorrheic women?",
+      "methodology": {
+        "studyType": "systematic review with meta-analysis",
+        "population": {
+          "sex": ["female"],
+          "ageGroup": null,
+          "trainingStatus": null,
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["evidence quality rated as low", "inconsistent phase verification methods across studies"]
+      },
+      "takeaways": [
+        "Exercise performance may be trivially reduced in early follicular phase",
+        "Effect sizes are small and likely not practically significant",
+        "Individual response varies; personalized approach recommended",
+        "No strong evidence for periodizing training around menstrual cycle"
+      ]
+    },
+    {
+      "id": "craig-1989-hormonal-responses",
+      "title": "Effects of progressive resistance training on growth hormone and testosterone levels in young and elderly subjects",
+      "authors": ["Craig BW", "Brown R", "Everhart J"],
+      "journal": "Mechanisms of Ageing and Development",
+      "year": 1989,
+      "pmid": "2796409",
+      "doi": "10.1016/0047-6374(89)90099-7",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2796409/",
+      "category": "hormones",
+      "tags": ["adaptations", "testosterone", "growth-hormone", "aging"],
+      "question": "How do growth hormone and testosterone respond to resistance training in young vs elderly men?",
+      "methodology": {
+        "studyType": "intervention study",
+        "population": {
+          "sex": ["male"],
+          "ageGroup": ["young-adult", "older-adult"],
+          "trainingStatus": null,
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": "12 weeks",
+        "limitations": ["male subjects only", "sample size not specified in abstract"]
+      },
+      "takeaways": [
+        "Resistance training induces GH and testosterone release regardless of age",
+        "Young subjects show greater hormonal response than elderly",
+        "Both acute exercise and chronic training affect hormone levels",
+        "Strength gains of 37-39% achieved in both age groups"
+      ]
+    },
+    {
+      "id": "stone-1990-muscle-conditioning",
+      "title": "Muscle conditioning and muscle injuries",
+      "authors": ["Stone MH"],
+      "journal": "Medicine & Science in Sports & Exercise",
+      "year": 1990,
+      "pmid": "2205781",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2205781/",
+      "category": "safety",
+      "tags": ["injury-prevention", "periodization", "conditioning"],
+      "question": "How does muscle conditioning affect injury rates in athletes?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": null,
+          "trainingStatus": ["trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "summary": "Reviews how muscle and connective tissue adapt to resistance training, resulting in greater tissue mass and increased tensile strength. Proposes periodization as a training model to increase performance while reducing overtraining and injury.",
+      "takeaways": [
+        "Pre-conditioning and in-season muscle conditioning reduce injuries among athletes",
+        "Periodization (varying volume, intensity, and exercises) reduces overtraining and injury risk",
+        "Muscle and connective tissue adaptations from resistance training increase tensile strength",
+        "Load-bearing and resistive training produce protective tissue adaptations"
+      ]
+    },
+    {
+      "id": "zemper-1990-weightroom-injuries",
+      "title": "Four-year study of weightroom injuries in a national sample of college football teams",
+      "authors": ["Zemper ED"],
+      "journal": "National Strength and Conditioning Association Journal",
+      "year": 1990,
+      "url": "https://www.exra.org/WtRm.htm",
+      "category": "safety",
+      "tags": ["injury-rates", "football", "epidemiology"],
+      "question": "How do weight room injury rates compare to injuries during sport participation?",
+      "methodology": {
+        "studyType": "prospective cohort study",
+        "population": {
+          "sex": ["male"],
+          "ageGroup": ["young-adult"],
+          "trainingStatus": ["trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": "4 years",
+        "limitations": ["college football players only", "male subjects only", "not indexed in PubMed"]
+      },
+      "summary": "Four-year prospective study using the Athletic Injury Monitoring System (AIMS) to track weight room injuries in college football teams compared to on-field injuries.",
+      "takeaways": [
+        "Weight room injuries accounted for only 1% of time lost compared to football practice injuries",
+        "Weight training is substantially safer than contact sport participation",
+        "Injury rates from resistance training are very low in supervised settings",
+        "Strength training should not be avoided due to injury concerns"
+      ]
+    },
+    {
+      "id": "mccartney-1998-resistance-heart-disease",
+      "title": "Role of resistance training in heart disease",
+      "authors": ["McCartney N"],
+      "journal": "Medicine & Science in Sports & Exercise",
+      "year": 1998,
+      "pmid": "9789866",
+      "doi": "10.1097/00005768-199810001-00008",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9789866/",
+      "category": "safety",
+      "tags": ["cardiac-rehab", "special-populations", "cardiovascular"],
+      "question": "Is resistance training safe and beneficial for cardiac rehabilitation patients?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adult", "middle-aged", "older-adult"],
+          "trainingStatus": null,
+          "healthStatus": ["cardiac-condition"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "summary": "Reviews evidence supporting resistance training as part of cardiac rehabilitation programs, demonstrating safety and benefits for patients with heart disease.",
+      "takeaways": [
+        "Resistance training is an accepted part of cardiac rehabilitation since mid-1980s",
+        "Studies show safety in Phase II, III, and IV cardiac rehab programs",
+        "Resistance training had fewer cardiovascular complications than aerobic training alone",
+        "Benefits include improved strength and functional capacity in cardiac patients"
+      ]
+    },
+    {
+      "id": "faigenbaum-2009-youth-resistance",
+      "title": "Youth resistance training: Updated position statement paper from the National Strength and Conditioning Association",
+      "authors": ["Faigenbaum AD", "Kraemer WJ", "Blimkie CJR", "Jeffreys I", "Micheli LJ", "Nitka M", "Rowland TW"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2009,
+      "pmid": "19620931",
+      "doi": "10.1519/JSC.0b013e31819df407",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19620931/",
+      "category": "safety",
+      "tags": ["youth", "special-populations", "position-statement"],
+      "question": "Is resistance training safe and effective for children and adolescents?",
+      "methodology": {
+        "studyType": "position statement with literature review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["child", "adolescent"],
+          "trainingStatus": ["untrained", "recreational"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["position statement format rather than systematic review"]
+      },
+      "summary": "NSCA position statement updating 1996 recommendations on youth resistance training, addressing risks, benefits, and program design for children and adolescents.",
+      "takeaways": [
+        "Youth resistance training is safe and effective with proper supervision and age-appropriate guidelines",
+        "Benefits include increased strength, improved motor skills, and enhanced sports performance",
+        "Injury risk is low when qualified professionals supervise and proper technique is emphasized",
+        "The NSCA supports resistance training for healthy children and adolescents"
+      ]
+    },
+    {
+      "id": "kerr-2010-weight-training-injuries",
+      "title": "Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007",
+      "authors": ["Kerr ZY", "Collins CL", "Comstock RD"],
+      "journal": "American Journal of Sports Medicine",
+      "year": 2010,
+      "pmid": "20139328",
+      "doi": "10.1177/0363546509351560",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20139328/",
+      "category": "safety",
+      "tags": ["injury-rates", "epidemiology", "emergency-medicine"],
+      "question": "What are the epidemiological patterns of weight training injuries in the US?",
+      "methodology": {
+        "studyType": "retrospective epidemiological study",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adolescent", "young-adult", "adult", "middle-aged", "older-adult"],
+          "trainingStatus": null,
+          "healthStatus": null
+        },
+        "sampleSize": null,
+        "duration": "18 years (1990-2007)",
+        "limitations": ["emergency department data only", "may underestimate minor injuries"]
+      },
+      "takeaways": [
+        "90.4% of injuries occurred with free weights",
+        "65.5% of injuries resulted from weights dropping on the person",
+        "Low back and shoulders are most common injury sites",
+        "Strains account for 46.1% of injuries",
+        "Males, adolescents, and older persons have highest injury rates"
+      ]
+    },
+    {
+      "id": "kolber-2010-shoulder-injuries",
+      "title": "Shoulder injuries attributed to resistance training: a brief review",
+      "authors": ["Kolber MJ", "Beekhuizen KS", "Cheng MS", "Hellman MA"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2010,
+      "pmid": "20508476",
+      "doi": "10.1519/JSC.0b013e3181dc4330",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20508476/",
+      "category": "safety",
+      "tags": ["shoulder", "injury-prevention", "exercise-selection"],
+      "question": "What are the mechanisms and risk factors for shoulder injuries in resistance training?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": null,
+          "trainingStatus": ["recreational", "trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "takeaways": [
+        "Up to 36% of resistance training injuries occur at the shoulder complex",
+        "Biased exercise selection creates joint and muscle imbalances",
+        "Rotator cuff and scapular muscles are often neglected",
+        "Unfavorable positioning during exercises increases injury risk",
+        "Balance pushing and pulling movements to reduce shoulder injury risk"
+      ]
+    },
+    {
+      "id": "keogh-2017-injury-epidemiology",
+      "title": "The epidemiology of injuries across the weight-training sports",
+      "authors": ["Keogh JWL", "Winwood PW"],
+      "journal": "Sports Medicine",
+      "year": 2017,
+      "pmid": "27328853",
+      "doi": "10.1007/s40279-016-0575-0",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27328853/",
+      "category": "safety",
+      "tags": ["injury-rates", "epidemiology", "powerlifting", "weightlifting", "crossfit"],
+      "question": "What is the injury epidemiology across different weight-training sports?",
+      "methodology": {
+        "studyType": "systematic review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": null,
+          "trainingStatus": ["recreational", "trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["heterogeneity in injury definitions across studies"]
+      },
+      "takeaways": [
+        "Weight-training sports have relatively low injury rates compared to team sports",
+        "Shoulder (6-36%), low back, and knee are most common injury sites",
+        "Proper technique and progressive loading reduce injury risk",
+        "No significant differences in injury rates by age, sex, or bodyweight class"
+      ]
+    },
+    {
+      "id": "schoenfeld-2010-squat-biomechanics",
+      "title": "Squatting kinematics and kinetics and their application to exercise performance",
+      "authors": ["Schoenfeld BJ"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2010,
+      "pmid": "20182386",
+      "doi": "10.1519/JSC.0b013e3181bac2d7",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20182386/",
+      "category": "training-myths",
+      "tags": ["squat", "biomechanics", "technique"],
+      "question": "What does biomechanical research tell us about squat depth and safety?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": null,
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "takeaways": [
+        "Deep squats are safe when performed with proper technique",
+        "Quadriceps development is maximized at parallel depth",
+        "Hip extensor activation increases with squat depth",
+        "No evidence that posterior pelvic tilt (butt wink) increases lumbar injury risk",
+        "Knees extending beyond toes is safe and often necessary for proper form"
+      ]
+    },
+    {
+      "id": "hass-2000-single-vs-multiple-sets",
+      "title": "Single versus multiple sets in long-term recreational weightlifters",
+      "authors": ["Hass CJ", "Garzarella L", "De Hoyos D", "Pollock ML"],
+      "journal": "Medicine & Science in Sports & Exercise",
+      "year": 2000,
+      "pmid": "10647555",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10647555/",
+      "category": "training-myths",
+      "tags": ["training-volume", "sets", "hypertrophy", "strength"],
+      "question": "Are multiple sets more effective than single sets for recreational weightlifters?",
+      "methodology": {
+        "studyType": "randomized controlled trial",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adult"],
+          "trainingStatus": ["recreational"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": "13 weeks",
+        "limitations": ["recreational lifters only", "relatively short duration"]
+      },
+      "takeaways": [
+        "One set is nearly as effective as three sets for strength gains",
+        "No significant difference in body composition changes between groups",
+        "One-set programs remain effective even after a year of training",
+        "Recreational lifters can achieve good results with lower training volume"
+      ]
+    },
+    {
+      "id": "malina-2006-youth-weight-training",
+      "title": "Weight training in youth-growth, maturation, and safety: an evidence-based review",
+      "authors": ["Malina RM"],
+      "journal": "Clinical Journal of Sport Medicine",
+      "year": 2006,
+      "pmid": "17119361",
+      "doi": "10.1097/01.jsm.0000248843.31874.be",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17119361/",
+      "category": "safety",
+      "tags": ["youth", "growth", "maturation", "special-populations"],
+      "question": "Does resistance training affect growth and maturation in youth?",
+      "methodology": {
+        "studyType": "systematic review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["child", "adolescent"],
+          "trainingStatus": ["untrained", "recreational"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["limited long-term follow-up data"]
+      },
+      "takeaways": [
+        "Supervised resistance training is safe for pre- and early-pubertal youth",
+        "No negative impact on growth or maturation with proper supervision",
+        "Growth plate injuries are rare with appropriate technique and loads",
+        "Low instructor-to-participant ratios are essential for safety"
+      ]
+    },
+    {
+      "id": "ratel-2011-youth-high-intensity",
+      "title": "High-intensity and resistance training and elite young athletes",
+      "authors": ["Ratel S"],
+      "journal": "Medicine and Sport Science",
+      "year": 2011,
+      "pmid": "21178368",
+      "doi": "10.1159/000320635",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21178368/",
+      "category": "safety",
+      "tags": ["youth", "elite", "high-intensity", "special-populations"],
+      "question": "Is high-intensity resistance training safe for elite young athletes?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["child", "adolescent"],
+          "trainingStatus": ["trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "takeaways": [
+        "Resistance training is safe and effective for developing youth strength",
+        "No adverse effects when properly supervised with appropriate precautions",
+        "Benefits include improved maximal strength, power, and athletic performance",
+        "Age-appropriate program design is essential"
+      ]
+    },
+    {
+      "id": "risser-1990-injury-guidelines",
+      "title": "Musculoskeletal injuries caused by weight training: Guidelines for prevention",
+      "authors": ["Risser WL"],
+      "journal": "Clinical Pediatrics",
+      "year": 1990,
+      "pmid": "2193768",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2193768/",
+      "category": "safety",
+      "tags": ["injury-prevention", "guidelines", "youth"],
+      "question": "What guidelines prevent weight training injuries in youth?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["child", "adolescent", "young-adult"],
+          "trainingStatus": null,
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "takeaways": [
+        "Adequate warm-up reduces injury risk",
+        "Loss of form when lifting heavy weights increases injury risk",
+        "Proper supervision is essential for injury prevention",
+        "Progressive loading helps prevent overuse injuries"
+      ]
+    },
+    {
+      "id": "risser-1990-adolescent-injuries",
+      "title": "Weight-training injuries in adolescents",
+      "authors": ["Risser WL", "Risser JM", "Preston D"],
+      "journal": "American Journal of Diseases of Children",
+      "year": 1990,
+      "pmid": "2396614",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2396614/",
+      "category": "safety",
+      "tags": ["youth", "injury-rates", "epidemiology", "football"],
+      "question": "What is the incidence and pattern of weight training injuries in adolescent athletes?",
+      "methodology": {
+        "studyType": "prospective cohort study",
+        "population": {
+          "sex": ["male"],
+          "ageGroup": ["adolescent"],
+          "trainingStatus": ["trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["male football players only"]
+      },
+      "takeaways": [
+        "Strains are the most common injury type (74.1%)",
+        "Back is the most common injury site (59.3%)",
+        "Proper technique and supervision reduce injury incidence",
+        "Most injuries are minor and resolve quickly"
+      ]
+    },
+    {
+      "id": "faigenbaum-2004-youth-injury-prevention",
+      "title": "Can resistance training reduce injuries in youth sports?",
+      "authors": ["Faigenbaum AD", "Schram J"],
+      "journal": "Strength and Conditioning Journal",
+      "year": 2004,
+      "url": "https://journals.lww.com/nsca-scj/Abstract/2004/06000/Can_Resistance_Training_Reduce_Injuries_in_Youth.4.aspx",
+      "category": "safety",
+      "tags": ["youth", "injury-prevention", "sports"],
+      "question": "Can resistance training programs reduce sports injuries in youth athletes?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["child", "adolescent"],
+          "trainingStatus": ["untrained", "recreational", "trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology", "not indexed in PubMed"]
+      },
+      "takeaways": [
+        "Resistance training can significantly reduce sports-related injuries in adolescents",
+        "Preparatory conditioning improves tissue resilience",
+        "Proper program design is essential for injury prevention benefits",
+        "Additional research needed on optimal protocols"
+      ]
+    },
+    {
+      "id": "butragueno-2014-strength-training-injuries",
+      "title": "Injuries in strength training: review and practical application",
+      "authors": ["Butragueño J", "Benito PJ", "Maffulli N"],
+      "journal": "European Journal of Human Movement",
+      "year": 2014,
+      "url": "https://www.researchgate.net/publication/264122818_Injuries_in_strength_training_review_and_practical_application",
+      "category": "safety",
+      "tags": ["injury-rates", "epidemiology", "powerlifting", "weightlifting", "crossfit"],
+      "question": "What is known about injuries across different strength training modalities?",
+      "methodology": {
+        "studyType": "systematic review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": null,
+          "trainingStatus": ["recreational", "trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["conflicting injury definitions across studies", "not indexed in PubMed"]
+      },
+      "takeaways": [
+        "Injury incidence ranges from 0.0017-0.0035 per 100 hours to 1.1-7.0 per 1000 hours",
+        "Lower back, shoulder, and knee are most frequently injured areas",
+        "Strength training is generally safe across modalities",
+        "Most weightlifting injuries result in less than 1 day of missed training"
+      ]
+    }
+  ]
+}

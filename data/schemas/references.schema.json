@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "References Database",
+  "description": "Authoritative sources for exercise and fitness information",
+  "type": "object",
+  "required": ["references"],
+  "properties": {
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "organization", "type", "country", "url", "categories", "content_type", "free_access"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier in slug format",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the resource"
+          },
+          "organization": {
+            "type": "string",
+            "description": "Publishing organization"
+          },
+          "type": {
+            "type": "string",
+            "description": "Organization type",
+            "enum": ["government", "nonprofit", "academic", "military"]
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO country code or INT for international",
+            "pattern": "^[A-Z]{2,3}$"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to the resource",
+            "format": "uri"
+          },
+          "categories": {
+            "type": "array",
+            "description": "Exercise categories covered",
+            "items": {
+              "type": "string",
+              "enum": ["bodyweight", "free_weight", "machine", "mobility"]
+            }
+          },
+          "content_type": {
+            "type": "string",
+            "description": "Type of content",
+            "enum": ["guidelines", "exercise_library", "research", "pdf", "video"]
+          },
+          "free_access": {
+            "type": "boolean",
+            "description": "Whether the resource is freely accessible"
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of the resource"
+          }
+        }
+      }
+    }
+  }
+}

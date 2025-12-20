@@ -14,6 +14,7 @@
       <button class="tab" data-tab="measurements">Measurements</button>
       <button class="tab active" data-tab="workout">Workout</button>
       <button class="tab" data-tab="programs">Programs</button>
+      <button class="tab" data-tab="learn">Learn</button>
     </nav>
   </header>
 
@@ -105,7 +106,7 @@
         <div class="form-group" id="day-selector-group">
           <label>Day</label>
           <div class="day-selector">
-            <span id="suggested-day">Day 1</span>
+            <span id="suggested-day" data-day="1">Day 1</span>
             <button type="button" id="change-day-btn" class="btn ghost">Change</button>
           </div>
           <select id="current-day" class="hidden"></select>
@@ -146,9 +147,20 @@
 
         <div class="form-buttons">
           <button type="button" id="create-program-btn" class="btn accent">Create program</button>
-          <button type="button" id="cancel-edit-btn" class="btn hidden">Cancel</button>
         </div>
       </div>
+    </section>
+
+    <section id="learn" class="page">
+      <div class="article-filters">
+        <select id="article-category-filter">
+          <option value="">All categories</option>
+        </select>
+      </div>
+      <div id="articles-container"></div>
+      <p id="no-articles-message" class="empty-message hidden">
+        No articles yet.
+      </p>
     </section>
 
     <div class="export-section">
@@ -157,6 +169,86 @@
       <input type="file" id="import-file" accept=".json" class="hidden">
     </div>
   </main>
+
+  <!-- Exercise Info Modal -->
+  <div id="exercise-info-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="exercise-info-name">Exercise Name</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <div id="exercise-info-content" class="exercise-info-content"></div>
+    </div>
+  </div>
+
+  <!-- Edit Program Modal -->
+  <div id="edit-program-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit program</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <div class="edit-program-form">
+        <div class="form-group">
+          <label for="edit-program-name">Program name</label>
+          <input type="text" id="edit-program-name" placeholder="e.g., Push Pull Legs">
+        </div>
+        <div class="program-days-builder">
+          <label>Days</label>
+          <div id="edit-program-days-container"></div>
+          <button type="button" id="edit-add-day-btn" class="btn outline-accent full">+ Add day</button>
+        </div>
+        <div class="form-buttons">
+          <button type="button" id="save-program-btn" class="btn accent">Save program</button>
+          <button type="button" id="delete-program-btn" class="btn danger">Delete program</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workout Switch Dialog -->
+  <div id="workout-switch-dialog" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content dialog-content">
+      <div class="modal-header">
+        <h3>Unsaved workout</h3>
+      </div>
+      <p class="dialog-message">You have unsaved workout data. What would you like to do?</p>
+      <div class="dialog-actions">
+        <button type="button" class="btn accent dialog-save-btn">Save & switch</button>
+        <button type="button" class="btn dialog-discard-btn">Discard</button>
+        <button type="button" class="btn ghost dialog-cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise Picker Modal -->
+  <div id="exercise-picker-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Select exercise</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-filters">
+        <select id="filter-muscle-group">
+          <option value="">All muscle groups</option>
+        </select>
+        <select id="filter-movement">
+          <option value="">All movements</option>
+        </select>
+        <select id="filter-equipment">
+          <option value="">All equipment</option>
+        </select>
+      </div>
+      <div class="modal-search">
+        <input type="text" id="exercise-search" placeholder="Search exercises...">
+      </div>
+      <div id="exercise-picker-list" class="exercise-picker-list"></div>
+    </div>
+  </div>
 
   <script src="dexie.min.js"></script>
   <script src="app.js"></script>

@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Articles Database",
+  "description": "Scientific article summaries for fitness education",
+  "type": "object",
+  "required": ["articles"],
+  "properties": {
+    "articles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "authors", "journal", "year", "url", "category", "question", "methodology", "takeaways"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier in slug format",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "title": {
+            "type": "string",
+            "description": "Article title"
+          },
+          "authors": {
+            "type": "array",
+            "description": "Author names",
+            "items": {
+              "type": "string"
+            }
+          },
+          "journal": {
+            "type": "string",
+            "description": "Publication journal name"
+          },
+          "year": {
+            "type": "integer",
+            "description": "Publication year",
+            "minimum": 1900
+          },
+          "pmid": {
+            "type": "string",
+            "description": "PubMed ID",
+            "pattern": "^[0-9]+$"
+          },
+          "doi": {
+            "type": "string",
+            "description": "Digital Object Identifier"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to the article (typically PubMed)",
+            "format": "uri"
+          },
+          "category": {
+            "type": "string",
+            "description": "Primary topic category",
+            "enum": ["hypertrophy", "strength", "fat-loss", "maintenance", "nutrition", "recovery", "mobility", "hormones", "training-myths", "safety"]
+          },
+          "tags": {
+            "type": "array",
+            "description": "Additional topic tags",
+            "items": {
+              "type": "string"
+            }
+          },
+          "question": {
+            "type": "string",
+            "description": "The research question the study was trying to answer"
+          },
+          "methodology": {
+            "type": "object",
+            "description": "Study methodology details",
+            "required": ["studyType", "limitations"],
+            "properties": {
+              "studyType": {
+                "type": "string",
+                "description": "Type of study (e.g., RCT, cohort, narrative review, systematic review, meta-analysis)"
+              },
+              "population": {
+                "type": ["object", "null"],
+                "description": "Population characteristics of study participants",
+                "properties": {
+                  "sex": {
+                    "type": ["array", "null"],
+                    "description": "Biological sex of participants",
+                    "items": {
+                      "type": "string",
+                      "enum": ["male", "female", "mixed"]
+                    }
+                  },
+                  "ageGroup": {
+                    "type": ["array", "null"],
+                    "description": "Age groups studied",
+                    "items": {
+                      "type": "string",
+                      "enum": ["child", "adolescent", "young-adult", "adult", "middle-aged", "older-adult"]
+                    }
+                  },
+                  "trainingStatus": {
+                    "type": ["array", "null"],
+                    "description": "Training experience level",
+                    "items": {
+                      "type": "string",
+                      "enum": ["untrained", "recreational", "trained", "elite"]
+                    }
+                  },
+                  "healthStatus": {
+                    "type": ["array", "null"],
+                    "description": "Health conditions or status",
+                    "items": {
+                      "type": "string",
+                      "enum": ["healthy", "diabetic", "obese", "metabolic-syndrome", "postmenopausal", "hypogonadal", "pregnant", "injured", "post-surgical", "osteoporotic", "hypertensive", "cardiac-condition"]
+                    }
+                  }
+                }
+              },
+              "sampleSize": {
+                "type": ["integer", "null"],
+                "description": "Number of participants (null for reviews)"
+              },
+              "duration": {
+                "type": ["string", "null"],
+                "description": "Study duration (null for reviews)"
+              },
+              "limitations": {
+                "type": "array",
+                "description": "Red flags or methodological limitations",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "takeaways": {
+            "type": "array",
+            "description": "Key actionable points",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

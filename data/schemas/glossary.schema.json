@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Glossary Database",
+  "description": "Fitness and kinesiology terminology definitions",
+  "type": "object",
+  "required": ["glossary"],
+  "properties": {
+    "glossary": {
+      "type": "object",
+      "required": ["categories", "terms"],
+      "properties": {
+        "categories": {
+          "type": "object",
+          "description": "Category definitions",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["term", "category", "definition"],
+            "properties": {
+              "term": {
+                "type": "string",
+                "description": "Primary term name"
+              },
+              "aliases": {
+                "type": "array",
+                "description": "Alternative names or abbreviations",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "category": {
+                "type": "string",
+                "description": "Term category",
+                "enum": ["basic", "anatomy", "movement", "programming", "technique", "kinesiology", "direction"]
+              },
+              "definition": {
+                "type": "string",
+                "description": "Plain-language definition"
+              },
+              "references": {
+                "type": "array",
+                "description": "Source references",
+                "items": {
+                  "$ref": "#/definitions/reference"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "reference": {
+      "type": "object",
+      "required": ["source", "url"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Source identifier"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to source",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}

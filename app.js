@@ -42,9 +42,32 @@ const MEASUREMENT_LABELS = {
   rightCalf: 'R Calf'
 };
 
+// Exercise database
+let exercisesDB = [];
+
+async function loadExercisesDB() {
+  try {
+    const response = await fetch('data/exercises.json');
+    const data = await response.json();
+    exercisesDB = data.exercises || [];
+  } catch (err) {
+    console.error('Failed to load exercises database:', err);
+  }
+}
+
+function getUniqueValues(field) {
+  const values = new Set();
+  exercisesDB.forEach(ex => {
+    if (ex[field]) values.add(ex[field]);
+  });
+  return Array.from(values).sort();
+}
+
 // =============================================================================
 // PROGRAM CRUD
 // =============================================================================
+
+let isInitializing = false;
 async function createProgram(name, days) {
   const program = {
     id: Date.now().toString(),
@@ -125,10 +148,13 @@ async function getNextDayNumber(programId) {
 document.addEventListener('DOMContentLoaded', async () => {
   await requestPersistentStorage();
   registerServiceWorker();
+  await loadExercisesDB();
   initTabs();
   initMeasurementsForm();
   initWorkoutForm();
   initProgramsPage();
+  initExercisePicker();
+  initExerciseInfoModal();
   initExportButton();
   await loadTodayData();
 });
@@ -227,7 +253,7 @@ async function loadTemplate() {
   const dayNumber = getCurrentDayNumber();
   const container = document.getElementById('exercises-container');
 
-  if (!programId) {
+  if (!programId || !dayNumber) {
     return;
   }
 
@@ -291,6 +317,7 @@ async function displayPreviousMeasurements() {
 }
 
 async function loadTodayData() {
+  isInitializing = true;
   const journal = await getTodayJournal();
 
   if (journal.measurements) {
@@ -309,15 +336,31 @@ async function loadTodayData() {
   // If today's workout has a program/day, restore that state
   if (journal.workout?.programId) {
     const programSelect = document.getElementById('current-program');
-    programSelect.value = journal.workout.programId;
-    await updateDaySelector();
+    const programName = document.getElementById('current-program-name');
 
-    if (journal.workout.dayNumber) {
-      const suggestedDay = document.getElementById('suggested-day');
-      const daySelect = document.getElementById('current-day');
-      suggestedDay.textContent = `Day ${journal.workout.dayNumber}`;
-      suggestedDay.dataset.day = journal.workout.dayNumber;
-      daySelect.value = journal.workout.dayNumber;
+    // Check if the saved program still exists
+    const savedProgramExists = Array.from(programSelect.options).some(
+      opt => opt.value === journal.workout.programId
+    );
+
+    if (savedProgramExists) {
+      programSelect.value = journal.workout.programId;
+
+      // Update displayed program name
+      const selectedOption = programSelect.options[programSelect.selectedIndex];
+      if (selectedOption) {
+        programName.textContent = selectedOption.text;
+      }
+
+      await updateDaySelector();
+
+      if (journal.workout.dayNumber) {
+        const suggestedDay = document.getElementById('suggested-day');
+        const daySelect = document.getElementById('current-day');
+        suggestedDay.textContent = `Day ${journal.workout.dayNumber}`;
+        suggestedDay.dataset.day = journal.workout.dayNumber;
+        daySelect.value = journal.workout.dayNumber;
+      }
     }
   }
 
@@ -337,11 +380,27 @@ async function loadTodayData() {
 
   // Display previous measurements
   await displayPreviousMeasurements();
+
+  // Final sync to ensure UI consistency
+  const programSelect = document.getElementById('current-program');
+  const programName = document.getElementById('current-program-name');
+  const suggestedDay = document.getElementById('suggested-day');
+
+  if (programSelect.value && programSelect.selectedIndex >= 0) {
+    const selectedOption = programSelect.options[programSelect.selectedIndex];
+    if (selectedOption) {
+      programName.textContent = selectedOption.text;
+    }
+  }
+
+  isInitializing = false;
 }
 
 // =============================================================================
 // UI COMPONENTS
 // =============================================================================
+
+let learnPageInitialized = false;
 
 function initTabs() {
   const tabs = document.querySelectorAll('.tab');
@@ -358,6 +417,12 @@ function initTabs() {
       tab.classList.add('active');
       page.classList.add('active');
     }
+
+    // Initialize Learn page if it was the saved tab
+    if (savedTab === 'learn' && !learnPageInitialized) {
+      learnPageInitialized = true;
+      initLearnPage();
+    }
   }
 
   tabs.forEach(tab => {
@@ -371,6 +436,12 @@ function initTabs() {
       document.getElementById(targetId).classList.add('active');
 
       localStorage.setItem('activeTab', targetId);
+
+      // Initialize Learn page on first visit
+      if (targetId === 'learn' && !learnPageInitialized) {
+        learnPageInitialized = true;
+        initLearnPage();
+      }
     });
   });
 }
@@ -401,6 +472,47 @@ function initMeasurementsForm() {
 // WORKOUT MANAGEMENT
 // =============================================================================
 
+function hasUnsavedWorkoutData() {
+  const container = document.getElementById('exercises-container');
+  const cards = container.querySelectorAll('.exercise-card');
+
+  for (const card of cards) {
+    const inputs = card.querySelectorAll('.reps-input, .weight-input, .rpe-input');
+    for (const input of inputs) {
+      if (input.value.trim() !== '') {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function showWorkoutSwitchDialog() {
+  return new Promise((resolve) => {
+    const dialog = document.getElementById('workout-switch-dialog');
+    dialog.classList.remove('hidden');
+
+    const saveBtn = dialog.querySelector('.dialog-save-btn');
+    const discardBtn = dialog.querySelector('.dialog-discard-btn');
+    const cancelBtn = dialog.querySelector('.dialog-cancel-btn');
+
+    const cleanup = () => {
+      dialog.classList.add('hidden');
+      saveBtn.removeEventListener('click', onSave);
+      discardBtn.removeEventListener('click', onDiscard);
+      cancelBtn.removeEventListener('click', onCancel);
+    };
+
+    const onSave = () => { cleanup(); resolve('save'); };
+    const onDiscard = () => { cleanup(); resolve('discard'); };
+    const onCancel = () => { cleanup(); resolve('cancel'); };
+
+    saveBtn.addEventListener('click', onSave);
+    discardBtn.addEventListener('click', onDiscard);
+    cancelBtn.addEventListener('click', onCancel);
+  });
+}
+
 function initWorkoutForm() {
   const form = document.getElementById('workout-form');
   const container = document.getElementById('exercises-container');
@@ -426,13 +538,26 @@ function initWorkoutForm() {
   });
 
   programSelect.addEventListener('change', () => {
+    if (isInitializing) return;
     confirmProgramChange();
   });
 
   async function confirmProgramChange() {
-    // Auto-save if exercises exist
-    if (container.children.length > 0) {
-      form.requestSubmit();
+    const previousProgramId = localStorage.getItem('activeProgramId');
+
+    // Check for unsaved workout data
+    if (hasUnsavedWorkoutData()) {
+      const result = await showWorkoutSwitchDialog();
+      if (result === 'cancel') {
+        // Restore previous program selection
+        programSelect.value = previousProgramId || '';
+        programSelect.classList.add('hidden');
+        programName.parentElement.classList.remove('hidden');
+        return;
+      }
+      if (result === 'save') {
+        form.requestSubmit();
+      }
     }
 
     // Update UI
@@ -462,15 +587,26 @@ function initWorkoutForm() {
   });
 
   daySelect.addEventListener('change', () => {
+    if (isInitializing) return;
     confirmDayChange();
   });
 
   async function confirmDayChange() {
     const newDay = daySelect.value;
 
-    // Auto-save if exercises exist
-    if (container.children.length > 0) {
-      form.requestSubmit();
+    // Check for unsaved workout data
+    if (hasUnsavedWorkoutData()) {
+      const result = await showWorkoutSwitchDialog();
+      if (result === 'cancel') {
+        // Restore previous day selection
+        daySelect.value = suggestedDay.dataset.day;
+        daySelect.classList.add('hidden');
+        suggestedDay.parentElement.classList.remove('hidden');
+        return;
+      }
+      if (result === 'save') {
+        form.requestSubmit();
+      }
     }
 
     // Update UI
@@ -499,10 +635,12 @@ function initWorkoutForm() {
       card.querySelectorAll('.set-row').forEach(row => {
         const reps = row.querySelector('.reps-input').value;
         const weight = row.querySelector('.weight-input').value;
+        const rpe = row.querySelector('.rpe-input').value;
 
         sets.push({
           reps: reps !== '' ? parseInt(reps, 10) : null,
-          weight: weight !== '' ? parseFloat(weight) : null
+          weight: weight !== '' ? parseFloat(weight) : null,
+          rpe: rpe !== '' ? parseFloat(rpe) : null
         });
       });
 
@@ -560,20 +698,15 @@ function switchToSubTab(tabId) {
 
 function initProgramsPage() {
   initSubTabs();
+  initEditProgramModal();
 
   const createBtn = document.getElementById('create-program-btn');
   const nameInput = document.getElementById('new-program-name');
   const addDayBtn = document.getElementById('add-program-day-btn');
   const daysContainer = document.getElementById('program-days-container');
-  const formTitle = document.querySelector('#create-program h3');
-  const cancelBtn = document.getElementById('cancel-edit-btn');
 
   addDayBtn.addEventListener('click', () => {
     addProgramDayCard(daysContainer);
-  });
-
-  cancelBtn.addEventListener('click', () => {
-    clearProgramForm();
   });
 
   createBtn.addEventListener('click', async () => {
@@ -597,14 +730,8 @@ function initProgramsPage() {
       return;
     }
 
-    if (editingProgramId) {
-      await updateProgram(editingProgramId, name, days);
-      showToast('Program updated');
-    } else {
-      await createProgram(name, days);
-      showToast('Program created');
-    }
-
+    await createProgram(name, days);
+    showToast('Program created');
     clearProgramForm();
     await refreshProgramUI();
   });
@@ -615,42 +742,87 @@ function initProgramsPage() {
 function clearProgramForm() {
   const nameInput = document.getElementById('new-program-name');
   const daysContainer = document.getElementById('program-days-container');
-  const formTitle = document.querySelector('#create-program h3');
-  const createBtn = document.getElementById('create-program-btn');
-  const cancelBtn = document.getElementById('cancel-edit-btn');
 
-  editingProgramId = null;
   nameInput.value = '';
   daysContainer.innerHTML = '';
-  formTitle.textContent = 'Add program';
-  createBtn.textContent = 'Create program';
-  cancelBtn.classList.add('hidden');
   switchToSubTab('list-programs');
 }
 
-function editProgram(program) {
-  const nameInput = document.getElementById('new-program-name');
-  const daysContainer = document.getElementById('program-days-container');
-  const formTitle = document.querySelector('#create-program h3');
-  const createBtn = document.getElementById('create-program-btn');
-  const cancelBtn = document.getElementById('cancel-edit-btn');
-
+function openEditProgramModal(program) {
   editingProgramId = program.id;
-  nameInput.value = program.name;
-  formTitle.textContent = 'Edit program';
-  createBtn.textContent = 'Save program';
-  cancelBtn.classList.remove('hidden');
+  const modal = document.getElementById('edit-program-modal');
+  const nameInput = document.getElementById('edit-program-name');
+  const daysContainer = document.getElementById('edit-program-days-container');
 
-  // Clear and populate days
+  nameInput.value = program.name;
   daysContainer.innerHTML = '';
+
   if (program.days) {
     program.days.forEach(day => {
       addProgramDayCard(daysContainer, day.exercises);
     });
   }
 
-  // Switch to create tab
-  switchToSubTab('create-program');
+  modal.classList.remove('hidden');
+}
+
+function closeEditProgramModal() {
+  const modal = document.getElementById('edit-program-modal');
+  modal.classList.add('hidden');
+  editingProgramId = null;
+}
+
+function initEditProgramModal() {
+  const modal = document.getElementById('edit-program-modal');
+  const backdrop = modal.querySelector('.modal-backdrop');
+  const closeBtn = modal.querySelector('.modal-close');
+  const addDayBtn = document.getElementById('edit-add-day-btn');
+  const saveBtn = document.getElementById('save-program-btn');
+  const deleteBtn = document.getElementById('delete-program-btn');
+  const daysContainer = document.getElementById('edit-program-days-container');
+
+  backdrop.addEventListener('click', closeEditProgramModal);
+  closeBtn.addEventListener('click', closeEditProgramModal);
+
+  addDayBtn.addEventListener('click', () => {
+    addProgramDayCard(daysContainer);
+  });
+
+  saveBtn.addEventListener('click', async () => {
+    const name = document.getElementById('edit-program-name').value.trim();
+
+    if (!name) {
+      showToast('Please enter a program name');
+      return;
+    }
+
+    const days = collectProgramDays(daysContainer);
+
+    if (days.length === 0) {
+      showToast('Please add at least one day');
+      return;
+    }
+
+    const hasEmptyDay = days.some(day => day.exercises.length === 0);
+    if (hasEmptyDay) {
+      showToast('Each day must have at least one exercise');
+      return;
+    }
+
+    await updateProgram(editingProgramId, name, days);
+    showToast('Program updated');
+    closeEditProgramModal();
+    await refreshProgramUI();
+  });
+
+  deleteBtn.addEventListener('click', async () => {
+    if (confirm('Delete this program?')) {
+      await deleteProgram(editingProgramId);
+      showToast('Program deleted');
+      closeEditProgramModal();
+      await refreshProgramUI();
+    }
+  });
 }
 
 function addProgramDayCard(container, existingExercises = null) {
@@ -664,46 +836,41 @@ function addProgramDayCard(container, existingExercises = null) {
       <button type="button" class="btn danger sm">Remove</button>
     </div>
     <div class="program-day-exercises"></div>
-    <div class="add-exercise-row">
-      <input type="text" class="new-exercise-input" placeholder="Exercise name">
-      <button type="button" class="btn ghost">Add</button>
-    </div>
+    <button type="button" class="btn outline-accent full add-exercise-btn">+ Add exercise</button>
   `;
 
   const exercisesContainer = card.querySelector('.program-day-exercises');
-  const exerciseInput = card.querySelector('.new-exercise-input');
-  const addExerciseBtn = card.querySelector('.btn.ghost');
+  const addExerciseBtn = card.querySelector('.add-exercise-btn');
 
   const addExerciseTag = (exerciseName) => {
+    // Check for duplicates
+    const currentExercises = Array.from(exercisesContainer.querySelectorAll('.exercise-tag span'))
+      .map(span => span.textContent.toLowerCase());
+    if (currentExercises.includes(exerciseName.toLowerCase())) {
+      showToast('Exercise already added');
+      return false;
+    }
+
     const exerciseTag = document.createElement('div');
-    exerciseTag.className = 'exercise-tag';
+    exerciseTag.className = 'exercise-tag tappable';
     exerciseTag.innerHTML = `
       <span>${exerciseName}</span>
       <button type="button" class="remove-exercise-btn">&times;</button>
     `;
+
+    // Tap exercise name to show info
+    const nameSpan = exerciseTag.querySelector('span');
+    nameSpan.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showExerciseInfo(exerciseName);
+    });
 
     exerciseTag.querySelector('.remove-exercise-btn').addEventListener('click', () => {
       exerciseTag.remove();
     });
 
     exercisesContainer.appendChild(exerciseTag);
-  };
-
-  const addExercise = () => {
-    const exerciseName = exerciseInput.value.trim();
-    if (!exerciseName) return;
-
-    // Check for duplicates
-    const existingExercises = Array.from(exercisesContainer.querySelectorAll('.exercise-tag span'))
-      .map(span => span.textContent.toLowerCase());
-    if (existingExercises.includes(exerciseName.toLowerCase())) {
-      showToast('Exercise already added');
-      return;
-    }
-
-    addExerciseTag(exerciseName);
-    exerciseInput.value = '';
-    exerciseInput.focus();
+    return true;
   };
 
   // Pre-populate existing exercises
@@ -711,12 +878,10 @@ function addProgramDayCard(container, existingExercises = null) {
     existingExercises.forEach(name => addExerciseTag(name));
   }
 
-  addExerciseBtn.addEventListener('click', addExercise);
-  exerciseInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      addExercise();
-    }
+  addExerciseBtn.addEventListener('click', () => {
+    openExercisePicker((name) => {
+      addExerciseTag(name);
+    });
   });
 
   card.querySelector('.btn.danger').addEventListener('click', () => {
@@ -766,15 +931,17 @@ async function populateProgramSelector() {
   workoutForm.classList.remove('hidden');
 
   select.innerHTML = programs.map(p =>
-    `<option value="${p.id}" ${activeProgram?.id === p.id ? 'selected' : ''}>${p.name}</option>`
+    `<option value="${p.id}">${p.name}</option>`
   ).join('');
 
   // If no active program, select the first one
   if (!activeProgram && programs.length > 0) {
     await setActiveProgram(programs[0].id);
     activeProgram = programs[0];
-    select.value = programs[0].id;
   }
+
+  // Always explicitly set the select value and display name
+  select.value = activeProgram.id;
   programName.textContent = activeProgram.name;
 }
 
@@ -824,9 +991,9 @@ function getCurrentDayNumber() {
   const suggestedDay = document.getElementById('suggested-day');
 
   if (!daySelect.classList.contains('hidden')) {
-    return parseInt(daySelect.value, 10);
+    return parseInt(daySelect.value, 10) || 1;
   }
-  return parseInt(suggestedDay.dataset.day, 10);
+  return parseInt(suggestedDay.dataset.day, 10) || 1;
 }
 
 async function renderProgramsList() {
@@ -862,7 +1029,6 @@ async function renderProgramsList() {
               ${isActive ? 'Active' : 'Set active'}
             </button>
             <button class="btn edit-btn">Edit</button>
-            <button class="btn danger delete-btn">Delete</button>
           </div>
         </div>
       </div>
@@ -878,8 +1044,24 @@ async function renderProgramsList() {
 
     card.querySelector('.activate-btn').addEventListener('click', async (e) => {
       e.stopPropagation();
+
+      // Check for unsaved workout data
+      if (hasUnsavedWorkoutData()) {
+        const result = await showWorkoutSwitchDialog();
+        if (result === 'cancel') return;
+        if (result === 'save') {
+          document.getElementById('workout-form').requestSubmit();
+        }
+      }
+
       await setActiveProgram(id);
       await refreshProgramUI();
+
+      // Load the new program's workout template
+      const container = document.getElementById('exercises-container');
+      container.innerHTML = '';
+      await loadTemplate();
+
       showToast('Program activated');
     });
 
@@ -887,16 +1069,7 @@ async function renderProgramsList() {
       e.stopPropagation();
       const program = await db.programs.get(id);
       if (program) {
-        editProgram(program);
-      }
-    });
-
-    card.querySelector('.delete-btn').addEventListener('click', async (e) => {
-      e.stopPropagation();
-      if (confirm('Delete this program?')) {
-        await deleteProgram(id);
-        await refreshProgramUI();
-        showToast('Program deleted');
+        openEditProgramModal(program);
       }
     });
   });
@@ -910,31 +1083,48 @@ function addExerciseCard(container, existingData = null, options = {}) {
 
   // Build placeholder text from previous data
   const getPlaceholder = (setIndex, field) => {
-    if (!placeholderData?.sets?.[setIndex]) return field === 'reps' ? 'Reps' : 'Weight';
+    if (!placeholderData?.sets?.[setIndex]) {
+      if (field === 'reps') return 'Reps';
+      if (field === 'weight') return 'Weight';
+      return 'RPE';
+    }
     const value = placeholderData.sets[setIndex][field];
-    return value !== null && value !== undefined ? value : (field === 'reps' ? 'Reps' : 'Weight');
+    if (value !== null && value !== undefined) return value;
+    if (field === 'reps') return 'Reps';
+    if (field === 'weight') return 'Weight';
+    return 'RPE';
   };
 
   card.innerHTML = `
     <div class="exercise-header">
-      <input type="text" class="exercise-name" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
+      <input type="text" class="exercise-name ${fromProgram ? 'tappable' : ''}" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
+      <button type="button" class="exercise-info-btn" title="Exercise info">?</button>
       ${fromProgram ? '' : '<button type="button" class="btn danger remove-btn">Remove</button>'}
     </div>
     <div class="sets-container">
+      <div class="set-row set-header">
+        <span class="set-label"></span>
+        <span class="col-label">Reps</span>
+        <span class="col-label">Weight</span>
+        <span class="col-label col-label-rpe">RPE</span>
+      </div>
       <div class="set-row">
         <span class="set-label">Set 1</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(0, 'reps')}" inputmode="numeric">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(0, 'weight')}" inputmode="decimal" step="0.1">
+        <input type="number" class="rpe-input" placeholder="${getPlaceholder(0, 'rpe')}" inputmode="decimal" step="0.5" min="1" max="10">
       </div>
       <div class="set-row">
         <span class="set-label">Set 2</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(1, 'reps')}" inputmode="numeric">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(1, 'weight')}" inputmode="decimal" step="0.1">
+        <input type="number" class="rpe-input" placeholder="${getPlaceholder(1, 'rpe')}" inputmode="decimal" step="0.5" min="1" max="10">
       </div>
       <div class="set-row">
         <span class="set-label">Set 3</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(2, 'reps')}" inputmode="numeric">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(2, 'weight')}" inputmode="decimal" step="0.1">
+        <input type="number" class="rpe-input" placeholder="${getPlaceholder(2, 'rpe')}" inputmode="decimal" step="0.5" min="1" max="10">
       </div>
     </div>
   `;
@@ -947,10 +1137,33 @@ function addExerciseCard(container, existingData = null, options = {}) {
         if (setRows[i]) {
           if (set.reps !== null) setRows[i].querySelector('.reps-input').value = set.reps;
           if (set.weight !== null) setRows[i].querySelector('.weight-input').value = set.weight;
+          if (set.rpe !== null) setRows[i].querySelector('.rpe-input').value = set.rpe;
         }
       });
     }
   }
+
+  // Make exercise name tappable for info (only for program exercises)
+  const nameInput = card.querySelector('.exercise-name');
+  if (fromProgram) {
+    nameInput.addEventListener('click', () => {
+      const name = nameInput.value.trim();
+      if (name) {
+        showExerciseInfo(name);
+      }
+    });
+  }
+
+  // Info button to show exercise details
+  const infoBtn = card.querySelector('.exercise-info-btn');
+  infoBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    if (name) {
+      showExerciseInfo(name);
+    } else {
+      showToast('Enter an exercise name first');
+    }
+  });
 
   const removeBtn = card.querySelector('.remove-btn');
   if (removeBtn) {
@@ -1034,6 +1247,262 @@ async function importData(file) {
   location.reload();
 }
 
+// =============================================================================
+// EXERCISE PICKER
+// =============================================================================
+
+let exercisePickerCallback = null;
+
+function initExercisePicker() {
+  const modal = document.getElementById('exercise-picker-modal');
+  const backdrop = modal.querySelector('.modal-backdrop');
+  const closeBtn = modal.querySelector('.modal-close');
+  const searchInput = document.getElementById('exercise-search');
+  const muscleFilter = document.getElementById('filter-muscle-group');
+  const movementFilter = document.getElementById('filter-movement');
+  const equipmentFilter = document.getElementById('filter-equipment');
+
+  // Close modal handlers
+  backdrop.addEventListener('click', closeExercisePicker);
+  closeBtn.addEventListener('click', closeExercisePicker);
+
+  // Filter handlers - update both the list and other filter options
+  searchInput.addEventListener('input', updateExercisePicker);
+  muscleFilter.addEventListener('change', updateExercisePicker);
+  movementFilter.addEventListener('change', updateExercisePicker);
+  equipmentFilter.addEventListener('change', updateExercisePicker);
+}
+
+function getFilteredExercises() {
+  const searchTerm = document.getElementById('exercise-search').value.toLowerCase();
+  const muscleValue = document.getElementById('filter-muscle-group').value;
+  const movementValue = document.getElementById('filter-movement').value;
+  const equipmentValue = document.getElementById('filter-equipment').value;
+
+  return exercisesDB.filter(ex => {
+    if (searchTerm && !ex.name.toLowerCase().includes(searchTerm)) return false;
+    if (muscleValue && ex.muscle_group !== muscleValue) return false;
+    if (movementValue && ex.movement_pattern !== movementValue) return false;
+    if (equipmentValue && ex.equipment !== equipmentValue) return false;
+    return true;
+  });
+}
+
+function getAvailableOptions(field, filtered) {
+  const values = new Set();
+  filtered.forEach(ex => {
+    if (ex[field]) values.add(ex[field]);
+  });
+  return Array.from(values).sort();
+}
+
+function updateFilterDropdown(selectId, field, currentFilters) {
+  const select = document.getElementById(selectId);
+  const currentValue = select.value;
+
+  // Get exercises matching OTHER filters (not this one)
+  const otherFilters = { ...currentFilters };
+  delete otherFilters[field];
+
+  const matchingExercises = exercisesDB.filter(ex => {
+    if (otherFilters.searchTerm && !ex.name.toLowerCase().includes(otherFilters.searchTerm)) return false;
+    if (otherFilters.muscle_group && ex.muscle_group !== otherFilters.muscle_group) return false;
+    if (otherFilters.movement_pattern && ex.movement_pattern !== otherFilters.movement_pattern) return false;
+    if (otherFilters.equipment && ex.equipment !== otherFilters.equipment) return false;
+    return true;
+  });
+
+  const availableValues = getAvailableOptions(field, matchingExercises);
+
+  // Rebuild options
+  const defaultLabel = {
+    'muscle_group': 'All muscle groups',
+    'movement_pattern': 'All movements',
+    'equipment': 'All equipment'
+  }[field];
+
+  select.innerHTML = `<option value="">${defaultLabel}</option>`;
+  availableValues.forEach(value => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = formatLabel(value);
+    if (value === currentValue) option.selected = true;
+    select.appendChild(option);
+  });
+
+  // If current value is no longer available, reset it
+  if (currentValue && !availableValues.includes(currentValue)) {
+    select.value = '';
+  }
+}
+
+function updateExercisePicker() {
+  const searchTerm = document.getElementById('exercise-search').value.toLowerCase();
+  const muscleValue = document.getElementById('filter-muscle-group').value;
+  const movementValue = document.getElementById('filter-movement').value;
+  const equipmentValue = document.getElementById('filter-equipment').value;
+
+  const currentFilters = {
+    searchTerm: searchTerm || null,
+    muscle_group: muscleValue || null,
+    movement_pattern: movementValue || null,
+    equipment: equipmentValue || null
+  };
+
+  // Update each dropdown based on other filters
+  updateFilterDropdown('filter-muscle-group', 'muscle_group', currentFilters);
+  updateFilterDropdown('filter-movement', 'movement_pattern', currentFilters);
+  updateFilterDropdown('filter-equipment', 'equipment', currentFilters);
+
+  // Render the exercise list
+  renderExerciseList();
+}
+
+function formatLabel(value) {
+  return value
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function openExercisePicker(callback) {
+  exercisePickerCallback = callback;
+  const modal = document.getElementById('exercise-picker-modal');
+
+  // Reset filters
+  document.getElementById('exercise-search').value = '';
+  document.getElementById('filter-muscle-group').value = '';
+  document.getElementById('filter-movement').value = '';
+  document.getElementById('filter-equipment').value = '';
+
+  updateExercisePicker();
+  modal.classList.remove('hidden');
+}
+
+function closeExercisePicker() {
+  const modal = document.getElementById('exercise-picker-modal');
+  modal.classList.add('hidden');
+  exercisePickerCallback = null;
+}
+
+function renderExerciseList() {
+  const list = document.getElementById('exercise-picker-list');
+  const searchTerm = document.getElementById('exercise-search').value.toLowerCase();
+  const muscleFilter = document.getElementById('filter-muscle-group').value;
+  const movementFilter = document.getElementById('filter-movement').value;
+  const equipmentFilter = document.getElementById('filter-equipment').value;
+
+  const filtered = exercisesDB.filter(ex => {
+    if (searchTerm && !ex.name.toLowerCase().includes(searchTerm)) return false;
+    if (muscleFilter && ex.muscle_group !== muscleFilter) return false;
+    if (movementFilter && ex.movement_pattern !== movementFilter) return false;
+    if (equipmentFilter && ex.equipment !== equipmentFilter) return false;
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="exercise-picker-empty">No exercises found</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(ex => `
+    <div class="exercise-picker-item" data-name="${ex.name}">
+      <span class="exercise-picker-name">${ex.name}</span>
+      <div class="exercise-picker-meta">
+        <span class="exercise-picker-tag muscle">${formatLabel(ex.muscle_group)}</span>
+        <span class="exercise-picker-tag movement">${formatLabel(ex.movement_pattern)}</span>
+        <span class="exercise-picker-tag equipment">${formatLabel(ex.equipment)}</span>
+      </div>
+    </div>
+  `).join('');
+
+  // Add click handlers
+  list.querySelectorAll('.exercise-picker-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const name = item.dataset.name;
+      if (exercisePickerCallback) {
+        exercisePickerCallback(name);
+      }
+      closeExercisePicker();
+    });
+  });
+}
+
+// =============================================================================
+// EXERCISE INFO MODAL
+// =============================================================================
+
+function getExerciseByName(name) {
+  return exercisesDB.find(ex =>
+    ex.name.toLowerCase() === name.toLowerCase()
+  );
+}
+
+function initExerciseInfoModal() {
+  const modal = document.getElementById('exercise-info-modal');
+  const backdrop = modal.querySelector('.modal-backdrop');
+  const closeBtn = modal.querySelector('.modal-close');
+
+  backdrop.addEventListener('click', closeExerciseInfo);
+  closeBtn.addEventListener('click', closeExerciseInfo);
+}
+
+function showExerciseInfo(exerciseName) {
+  const exercise = getExerciseByName(exerciseName);
+  if (!exercise) {
+    showToast('Exercise info not found');
+    return;
+  }
+
+  const modal = document.getElementById('exercise-info-modal');
+  const nameEl = document.getElementById('exercise-info-name');
+  const contentEl = document.getElementById('exercise-info-content');
+
+  nameEl.textContent = exercise.name;
+
+  let html = '';
+
+  if (exercise.instructions?.length) {
+    html += `
+      <div class="exercise-info-section instructions">
+        <h4>Instructions</h4>
+        <ol>
+          ${exercise.instructions.map(step => `<li>${step}</li>`).join('')}
+        </ol>
+      </div>
+    `;
+  }
+
+  if (exercise.tips?.length) {
+    html += `
+      <div class="exercise-info-section tips">
+        <h4>Tips</h4>
+        <ul>
+          ${exercise.tips.map(tip => `<li>${tip}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  if (exercise.avoid?.length) {
+    html += `
+      <div class="exercise-info-section mistakes">
+        <h4>Avoid</h4>
+        <ul>
+          ${exercise.avoid.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  contentEl.innerHTML = html;
+  modal.classList.remove('hidden');
+}
+
+function closeExerciseInfo() {
+  const modal = document.getElementById('exercise-info-modal');
+  modal.classList.add('hidden');
+}
+
 function showToast(message) {
   let toast = document.querySelector('.status-toast');
   if (!toast) {
@@ -1048,4 +1517,84 @@ function showToast(message) {
   setTimeout(() => {
     toast.classList.remove('visible');
   }, 2000);
+}
+
+// =============================================================================
+// LEARN / ARTICLES
+// =============================================================================
+
+let articlesData = null;
+
+async function loadArticles() {
+  if (articlesData) return articlesData;
+  try {
+    const response = await fetch('data/articles.json');
+    articlesData = await response.json();
+    return articlesData;
+  } catch (err) {
+    console.error('Failed to load articles:', err);
+    return { articles: [] };
+  }
+}
+
+function populateCategoryFilter(articles) {
+  const filter = document.getElementById('article-category-filter');
+  const categories = [...new Set(articles.map(a => a.category))].filter(Boolean).sort();
+
+  filter.innerHTML = '<option value="">All categories</option>' +
+    categories.map(c => `<option value="${c}">${formatLabel(c)}</option>`).join('');
+}
+
+function renderArticles(articles) {
+  const container = document.getElementById('articles-container');
+  const emptyMessage = document.getElementById('no-articles-message');
+
+  if (articles.length === 0) {
+    container.innerHTML = '';
+    emptyMessage.classList.remove('hidden');
+    return;
+  }
+
+  emptyMessage.classList.add('hidden');
+  container.innerHTML = articles.map(article => `
+    <div class="article-card">
+      <h3 class="article-title">
+        ${article.doi
+          ? `<a href="https://doi.org/${article.doi}" target="_blank" rel="noopener">${article.title}</a>`
+          : article.title}
+      </h3>
+      <div class="article-meta">
+        ${article.authors.join(', ')} · ${article.journal} (${article.year})
+      </div>
+      <p class="article-summary">${article.summary}</p>
+      <div class="article-takeaways">
+        <div class="article-takeaways-label">Key takeaways</div>
+        <ul>
+          ${article.takeaways.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      </div>
+      <span class="article-category">${formatLabel(article.category)}</span>
+    </div>
+  `).join('');
+}
+
+function filterArticles() {
+  if (!articlesData) return;
+
+  const category = document.getElementById('article-category-filter').value;
+  let filtered = articlesData.articles;
+
+  if (category) {
+    filtered = filtered.filter(a => a.category === category);
+  }
+
+  renderArticles(filtered);
+}
+
+async function initLearnPage() {
+  const data = await loadArticles();
+  populateCategoryFilter(data.articles);
+  renderArticles(data.articles);
+
+  document.getElementById('article-category-filter').addEventListener('change', filterArticles);
 }

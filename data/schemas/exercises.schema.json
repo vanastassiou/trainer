@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Exercise Database",
+  "description": "A comprehensive database of exercises for fitness training",
+  "type": "object",
+  "required": ["exercises"],
+  "properties": {
+    "general_advice": {
+      "type": "object",
+      "description": "Universal best practices that apply to all exercises",
+      "properties": {
+        "tempo": { "type": "string" },
+        "range_of_motion": { "type": "string" },
+        "breathing": { "type": "string" },
+        "progression": { "type": "string" },
+        "warmup": { "type": "string" }
+      }
+    },
+    "exercises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "muscle_group", "equipment", "difficulty"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier in slug format",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the exercise"
+          },
+          "muscle_group": {
+            "type": "string",
+            "description": "Primary muscle group targeted (colloquial name)",
+            "enum": [
+              "chest",
+              "back",
+              "shoulders",
+              "biceps",
+              "triceps",
+              "quadriceps",
+              "hamstrings",
+              "glutes",
+              "calves",
+              "core"
+            ]
+          },
+          "primary_muscles": {
+            "type": "array",
+            "description": "Primary muscles worked using anatomical terminology",
+            "items": {
+              "type": "string",
+              "enum": [
+                "pectoralis major",
+                "latissimus dorsi",
+                "trapezius",
+                "rhomboideus",
+                "erector spinae",
+                "deltoideus",
+                "deltoideus anterior",
+                "deltoideus lateralis",
+                "deltoideus posterior",
+                "biceps brachii",
+                "brachialis",
+                "triceps brachii",
+                "quadriceps femoris",
+                "biceps femoris",
+                "semitendinosus",
+                "semimembranosus",
+                "gluteus maximus",
+                "gluteus medius",
+                "gastrocnemius",
+                "soleus",
+                "rectus abdominis",
+                "obliquus externus abdominis",
+                "transversus abdominis"
+              ]
+            }
+          },
+          "secondary_muscles": {
+            "type": "array",
+            "description": "Secondary muscles engaged during the exercise (anatomical terminology)",
+            "items": {
+              "type": "string",
+              "enum": [
+                "pectoralis major",
+                "latissimus dorsi",
+                "trapezius",
+                "rhomboideus",
+                "erector spinae",
+                "deltoideus",
+                "deltoideus anterior",
+                "deltoideus lateralis",
+                "deltoideus posterior",
+                "biceps brachii",
+                "brachialis",
+                "brachioradialis",
+                "triceps brachii",
+                "quadriceps femoris",
+                "biceps femoris",
+                "semitendinosus",
+                "semimembranosus",
+                "gluteus maximus",
+                "gluteus medius",
+                "tensor fasciae latae",
+                "gastrocnemius",
+                "soleus",
+                "rectus abdominis",
+                "obliquus externus abdominis",
+                "transversus abdominis",
+                "iliopsoas",
+                "adductor magnus"
+              ]
+            }
+          },
+          "equipment": {
+            "type": "string",
+            "description": "Equipment required for the exercise",
+            "enum": [
+              "bodyweight",
+              "resistance_band",
+              "dumbbell",
+              "barbell",
+              "machine"
+            ]
+          },
+          "difficulty": {
+            "type": "string",
+            "description": "Skill level required",
+            "enum": ["beginner", "intermediate", "advanced"]
+          },
+          "movement_pattern": {
+            "type": "string",
+            "description": "Fundamental movement classification",
+            "enum": [
+              "push",
+              "pull",
+              "hinge",
+              "squat",
+              "lunge",
+              "carry",
+              "rotation",
+              "isolation"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief overview of the exercise"
+          },
+          "instructions": {
+            "type": "array",
+            "description": "Step-by-step execution instructions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tips": {
+            "type": "array",
+            "description": "Form and technique tips",
+            "items": {
+              "type": "string"
+            }
+          },
+          "avoid": {
+            "type": "array",
+            "description": "Common errors to avoid",
+            "items": {
+              "type": "string"
+            }
+          },
+          "image_url": {
+            "type": "string",
+            "description": "URL to exercise demonstration image",
+            "format": "uri"
+          },
+          "video_url": {
+            "type": "string",
+            "description": "URL to exercise demonstration video",
+            "format": "uri"
+          }
+        }
+      }
+    }
+  }
+}
