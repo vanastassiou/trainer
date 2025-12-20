@@ -422,6 +422,27 @@ input::placeholder {
   box-shadow: none;
 }
 
+.exercise-info-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  flex-shrink: 0;
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercise-info-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
 .sets-container {
   display: flex;
   flex-direction: column;
@@ -435,14 +456,39 @@ input::placeholder {
 }
 
 .set-label {
-  width: 60px;
-  font-size: 15px;
+  width: 44px;
+  flex-shrink: 0;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-label);
 }
 
 .set-row input {
   flex: 1;
+}
+
+.set-row .rpe-input {
+  max-width: 60px;
+  flex: 0 0 60px;
+}
+
+.set-row.set-header {
+  margin-bottom: 2px;
+}
+
+.col-label {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.col-label-rpe {
+  max-width: 60px;
+  flex: 0 0 60px;
 }
 
 #exercises-container {
@@ -655,7 +701,7 @@ input::placeholder {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: var(--color-bg);
   padding: 4px 10px;
   border-radius: 4px;
@@ -677,13 +723,8 @@ input::placeholder {
   opacity: 1;
 }
 
-.add-exercise-row {
-  display: flex;
-  gap: 6px;
-}
-
-.add-exercise-row input {
-  flex: 1;
+.program-day-card .add-exercise-btn {
+  margin-top: 4px;
 }
 
 /* Program preview */
@@ -741,16 +782,428 @@ input::placeholder {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-text);
-  color: white;
-  padding: 10px 20px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-secondary);
+  padding: 12px 24px;
   border-radius: var(--radius);
   font-size: 14px;
+  font-weight: 500;
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .status-toast.visible {
   opacity: 1;
+}
+
+/* =============================================================================
+   EXERCISE PICKER MODAL
+   ============================================================================= */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius) var(--radius) 0 0;
+  width: 100%;
+  max-width: 500px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 24px;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--color-text);
+}
+
+.modal-filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.modal-filters select {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.modal-search {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-search input {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.exercise-picker-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.exercise-picker-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.exercise-picker-item:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary-light);
+}
+
+.exercise-picker-item:last-child {
+  margin-bottom: 0;
+}
+
+.exercise-picker-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.exercise-picker-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exercise-picker-tag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: capitalize;
+}
+
+.exercise-picker-tag.muscle {
+  background: var(--color-tertiary-light);
+  color: var(--color-tertiary);
+}
+
+.exercise-picker-tag.movement {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.exercise-picker-tag.equipment {
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+}
+
+.exercise-picker-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* =============================================================================
+   DIALOG
+   ============================================================================= */
+
+.dialog-content {
+  max-height: none;
+  border-radius: var(--radius);
+  margin: auto;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dialog-message {
+  padding: 16px;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+
+.dialog-actions .btn {
+  width: 100%;
+}
+
+/* =============================================================================
+   EDIT PROGRAM MODAL
+   ============================================================================= */
+
+.edit-program-form {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: calc(85vh - 60px);
+}
+
+.edit-program-form .form-group {
+  margin-bottom: 16px;
+}
+
+.edit-program-form .program-days-builder {
+  margin-bottom: 16px;
+}
+
+.edit-program-form .form-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-program-form .form-buttons .btn {
+  flex: 1;
+}
+
+/* =============================================================================
+   EXERCISE INFO MODAL
+   ============================================================================= */
+
+.exercise-info-content {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: calc(85vh - 60px);
+}
+
+.exercise-info-section {
+  margin-bottom: 20px;
+}
+
+.exercise-info-section:last-child {
+  margin-bottom: 0;
+}
+
+.exercise-info-section h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.exercise-info-section.instructions h4 {
+  color: var(--color-primary);
+}
+
+.exercise-info-section.tips h4 {
+  color: var(--color-secondary);
+}
+
+.exercise-info-section.mistakes h4 {
+  color: var(--color-danger);
+}
+
+.exercise-info-section ol,
+.exercise-info-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.exercise-info-section li {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.exercise-info-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* Tappable exercise names */
+.exercise-name.tappable {
+  cursor: pointer;
+}
+
+.exercise-tag.tappable span {
+  cursor: pointer;
+}
+
+.exercise-tag.tappable span:hover {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+   LEARN / ARTICLES
+   ============================================================================= */
+
+.article-filters {
+  margin-bottom: 16px;
+}
+
+.article-filters select {
+  width: 100%;
+}
+
+#articles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#articles-container:empty {
+  display: none;
+}
+
+.article-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.article-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 6px;
+}
+
+.article-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  text-decoration: underline;
+}
+
+.article-meta {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.article-summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.article-takeaways {
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.article-takeaways-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.article-takeaways ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.article-takeaways li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.article-takeaways li:last-child {
+  margin-bottom: 0;
+}
+
+.article-category {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--color-tertiary-light);
+  color: var(--color-tertiary);
+  text-transform: capitalize;
+  margin-top: 12px;
 }
