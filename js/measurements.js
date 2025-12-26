@@ -59,14 +59,19 @@ export const DAILY_LABELS = {
 
 // Form field configurations for HTML generation
 export const DAILY_FIELD_CONFIG = [
-  { id: 'calories', label: 'Calories', unit: 'kcal', inputmode: 'numeric' },
-  { id: 'fiber', label: 'Fiber', unit: 'g', inputmode: 'decimal', step: '0.1' },
-  { id: 'protein', label: 'Protein', unit: 'g', inputmode: 'decimal', step: '0.1' },
-  { id: 'water', label: 'Water', unit: 'L', inputmode: 'decimal', step: '0.1' },
-  { id: 'steps', label: 'Steps', unit: '', inputmode: 'numeric' },
-  { id: 'sleep', label: 'Sleep', unit: 'hrs', inputmode: 'decimal', step: '0.25', max: '24' },
-  { id: 'recovery', label: 'Recovery', unit: '/10', inputmode: 'numeric', min: '1', max: '10' }
+  { id: 'calories', label: 'Calories', unit: 'kcal', inputmode: 'numeric', group: 'nutrition' },
+  { id: 'protein', label: 'Protein', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
+  { id: 'fiber', label: 'Fiber', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
+  { id: 'water', label: 'Water', unit: 'L', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
+  { id: 'steps', label: 'Steps', unit: '', inputmode: 'numeric', group: 'activity' },
+  { id: 'sleep', label: 'Sleep', unit: 'hrs', inputmode: 'decimal', step: '0.25', max: '24', group: 'activity' },
+  { id: 'recovery', label: 'Recovery', unit: '/10', inputmode: 'numeric', min: '1', max: '10', group: 'activity' }
 ];
+
+const DAILY_GROUP_LABELS = {
+  nutrition: 'Nutrition',
+  activity: 'Activity & recovery'
+};
 
 export const MEASUREMENT_FIELD_CONFIG = [
   { id: 'weight', label: 'Weight', type: 'full', inputmode: 'decimal', step: '0.1' },
@@ -208,18 +213,33 @@ function createInputAttrs(field) {
   return attrs.join(' ');
 }
 
-// Generate daily/nutrition form rows
+// Generate daily/nutrition form rows with grouping
 export function generateDailyFormRows(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  const html = DAILY_FIELD_CONFIG.map(field => `
-    <div class="data-row row row--gap-md">
-      <label for="${field.id}">${field.label}</label>
-      <input ${createInputAttrs(field)}>
-      <span class="unit">${field.unit}</span>
-    </div>
-  `).join('');
+  // Group fields by their group property
+  const groups = {};
+  for (const field of DAILY_FIELD_CONFIG) {
+    const group = field.group || 'other';
+    if (!groups[group]) groups[group] = [];
+    groups[group].push(field);
+  }
+
+  let html = '';
+  for (const [groupId, fields] of Object.entries(groups)) {
+    const label = DAILY_GROUP_LABELS[groupId] || groupId;
+    html += `<div class="field-group-label">${label}</div>`;
+    html += `<div class="field-group">`;
+    html += fields.map(field => `
+      <div class="data-row row row--gap-md">
+        <label for="${field.id}">${field.label}</label>
+        <input ${createInputAttrs(field)}>
+        <span class="unit">${field.unit}</span>
+      </div>
+    `).join('');
+    html += `</div>`;
+  }
 
   container.insertAdjacentHTML('afterbegin', html);
 }
@@ -233,6 +253,8 @@ export function generateMeasurementFormRows(containerId) {
   const processedPairs = new Set();
 
   for (const field of MEASUREMENT_FIELD_CONFIG) {
+    const unit = METRIC_UNITS[field.id] || '';
+
     if (field.pair) {
       if (processedPairs.has(field.pair)) continue;
       processedPairs.add(field.pair);
@@ -245,6 +267,7 @@ export function generateMeasurementFormRows(containerId) {
             <div class="data-row row">
               <label for="${f.id}">${f.label}</label>
               <input ${createInputAttrs(f)}>
+              <span class="unit">${METRIC_UNITS[f.id] || ''}</span>
             </div>
           `).join('')}
         </div>
@@ -254,6 +277,7 @@ export function generateMeasurementFormRows(containerId) {
         <div class="data-row row full">
           <label for="${field.id}">${field.label}</label>
           <input ${createInputAttrs(field)}>
+          <span class="unit">${unit}</span>
         </div>
       `;
     }

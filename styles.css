@@ -391,8 +391,30 @@ input::placeholder {
    MEASUREMENTS
    ============================================================================= */
 
-.measurements-form {
-  gap: 8px;
+#measurement-fields-container,
+#daily-fields-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.field-group-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: var(--spacing-sm);
+}
+
+.field-group-label:first-child {
+  margin-top: 0;
 }
 
 /* Measurement row (uses .data-row base) */
@@ -411,7 +433,7 @@ input::placeholder {
 }
 
 .measurements-form .btn {
-  margin-top: 8px;
+  margin-top: var(--spacing-md);
 }
 
 .previous-measurements {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'health-tracker-v57';
+const CACHE_NAME = 'health-tracker-v59';
 const ASSETS = [
   '/',
   '/index.html',

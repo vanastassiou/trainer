@@ -2,7 +2,7 @@
   "sources": [
     {
       "id": "who-pa-guidelines",
-      "name": "WHO Guidelines on Physical Activity and Sedentary Behaviour",
+      "name": "WHO guidelines on physical activity and sedentary behaviour",
       "organization": "World Health Organization",
       "type": "government",
       "country": "INT",
@@ -14,7 +14,7 @@
     },
     {
       "id": "who-pa-guidelines-pdf",
-      "name": "WHO Physical Activity Guidelines (PDF)",
+      "name": "WHO physical activity guidelines (PDF)",
       "organization": "World Health Organization",
       "type": "government",
       "country": "INT",
@@ -26,7 +26,7 @@
     },
     {
       "id": "hhs-pa-guidelines",
-      "name": "Physical Activity Guidelines for Americans (2nd edition)",
+      "name": "Physical activity guidelines for Americans (2nd edition)",
       "organization": "U.S. Department of Health and Human Services",
       "type": "government",
       "country": "US",
@@ -38,7 +38,7 @@
     },
     {
       "id": "hhs-pa-guidelines-pdf",
-      "name": "Physical Activity Guidelines for Americans (PDF)",
+      "name": "Physical activity guidelines for Americans (PDF)",
       "organization": "U.S. Department of Health and Human Services",
       "type": "government",
       "country": "US",
@@ -50,7 +50,7 @@
     },
     {
       "id": "nia-exercise-types",
-      "name": "Three Types of Exercise (NIA)",
+      "name": "Three types of exercise (NIA)",
       "organization": "National Institute on Aging",
       "type": "government",
       "country": "US",
@@ -62,7 +62,7 @@
     },
     {
       "id": "nia-strength-training",
-      "name": "Strength Training for Healthy Aging",
+      "name": "Strength training for healthy aging",
       "organization": "National Institute on Aging",
       "type": "government",
       "country": "US",
@@ -74,7 +74,7 @@
     },
     {
       "id": "cdc-pa-guidelines",
-      "name": "CDC Physical Activity Guidelines",
+      "name": "CDC physical activity guidelines",
       "organization": "Centers for Disease Control and Prevention",
       "type": "government",
       "country": "US",
@@ -86,7 +86,7 @@
     },
     {
       "id": "va-move-program",
-      "name": "VA MOVE! Weight Management Program",
+      "name": "VA MOVE! weight management program",
       "organization": "U.S. Department of Veterans Affairs",
       "type": "government",
       "country": "US",
@@ -98,7 +98,7 @@
     },
     {
       "id": "va-move-materials",
-      "name": "VA MOVE! Veteran Workbook & Materials",
+      "name": "VA MOVE! veteran workbook & materials",
       "organization": "U.S. Department of Veterans Affairs",
       "type": "government",
       "country": "US",
@@ -110,7 +110,7 @@
     },
     {
       "id": "va-gerofit",
-      "name": "VA Gerofit Program",
+      "name": "VA Gerofit program",
       "organization": "U.S. Department of Veterans Affairs",
       "type": "government",
       "country": "US",
@@ -122,7 +122,7 @@
     },
     {
       "id": "army-fm7-22",
-      "name": "Army FM 7-22 Holistic Health and Fitness",
+      "name": "Army FM 7-22 holistic health and fitness",
       "organization": "U.S. Army",
       "type": "military",
       "country": "US",
@@ -134,7 +134,7 @@
     },
     {
       "id": "ace-exercise-library",
-      "name": "ACE Exercise Library",
+      "name": "ACE exercise library",
       "organization": "American Council on Exercise",
       "type": "nonprofit",
       "country": "US",
@@ -146,7 +146,7 @@
     },
     {
       "id": "acsm-resource-library",
-      "name": "ACSM Resource Library",
+      "name": "ACSM resource library",
       "organization": "American College of Sports Medicine",
       "type": "nonprofit",
       "country": "US",
@@ -158,7 +158,7 @@
     },
     {
       "id": "nsca-articles",
-      "name": "NSCA Education Articles",
+      "name": "NSCA education articles",
       "organization": "National Strength and Conditioning Association",
       "type": "nonprofit",
       "country": "US",
@@ -170,7 +170,7 @@
     },
     {
       "id": "nsca-tools",
-      "name": "NSCA Tools & Resources",
+      "name": "NSCA tools & resources",
       "organization": "National Strength and Conditioning Association",
       "type": "nonprofit",
       "country": "US",
@@ -182,7 +182,7 @@
     },
     {
       "id": "exrx-directory",
-      "name": "ExRx.net Exercise Directory",
+      "name": "ExRx.net exercise directory",
       "organization": "ExRx.net",
       "type": "nonprofit",
       "country": "US",
@@ -194,7 +194,7 @@
     },
     {
       "id": "exrx-exercises",
-      "name": "ExRx.net Exercise Library",
+      "name": "ExRx.net exercise library",
       "organization": "ExRx.net",
       "type": "nonprofit",
       "country": "US",
@@ -206,7 +206,7 @@
     },
     {
       "id": "crossfit-dumbbell-guide",
-      "name": "CrossFit Dumbbell Training Guide",
+      "name": "CrossFit dumbbell training guide",
       "organization": "CrossFit",
       "type": "nonprofit",
       "country": "US",
@@ -218,7 +218,7 @@
     },
     {
       "id": "nhs-fitness-studio",
-      "name": "NHS Fitness Studio",
+      "name": "NHS fitness studio",
       "organization": "National Health Service",
       "type": "government",
       "country": "GB",
@@ -230,7 +230,7 @@
     },
     {
       "id": "nhs-strength-flex",
-      "name": "NHS Strength and Flex Videos",
+      "name": "NHS strength and flex videos",
       "organization": "National Health Service",
       "type": "government",
       "country": "GB",
@@ -242,7 +242,7 @@
     },
     {
       "id": "nhs-flexibility",
-      "name": "NHS Flexibility Exercises",
+      "name": "NHS flexibility exercises",
       "organization": "National Health Service",
       "type": "government",
       "country": "GB",
@@ -254,7 +254,7 @@
     },
     {
       "id": "nhs-exercise-hub",
-      "name": "NHS Exercise Hub",
+      "name": "NHS exercise hub",
       "organization": "National Health Service",
       "type": "government",
       "country": "GB",
@@ -266,7 +266,7 @@
     },
     {
       "id": "sport-england-join",
-      "name": "Sport England Join the Movement",
+      "name": "Sport England join the movement",
       "organization": "Sport England",
       "type": "government",
       "country": "GB",
@@ -278,7 +278,7 @@
     },
     {
       "id": "eu-pa-guidelines-pdf",
-      "name": "EU Physical Activity Guidelines (PDF)",
+      "name": "EU physical activity guidelines (PDF)",
       "organization": "European Commission",
       "type": "government",
       "country": "EU",
@@ -290,7 +290,7 @@
     },
     {
       "id": "eu-sport-portal",
-      "name": "EU Sport: Physical Activity and Health",
+      "name": "EU sport: physical activity and health",
       "organization": "European Commission",
       "type": "government",
       "country": "EU",
@@ -302,7 +302,7 @@
     },
     {
       "id": "eu-knowledge-policy",
-      "name": "EU Knowledge for Policy: Physical Activity",
+      "name": "EU knowledge for policy: physical activity",
       "organization": "European Commission",
       "type": "government",
       "country": "EU",
@@ -314,7 +314,7 @@
     },
     {
       "id": "aus-pa-guidelines",
-      "name": "Australian Physical Activity Guidelines",
+      "name": "Australian physical activity guidelines",
       "organization": "Australian Government Department of Health",
       "type": "government",
       "country": "AU",
@@ -326,7 +326,7 @@
     },
     {
       "id": "aus-healthdirect",
-      "name": "healthdirect: Physical Activity for Older Adults",
+      "name": "healthdirect: physical activity for older adults",
       "organization": "healthdirect Australia",
       "type": "government",
       "country": "AU",
@@ -338,7 +338,7 @@
     },
     {
       "id": "csep-guidelines",
-      "name": "CSEP 24-Hour Movement Guidelines",
+      "name": "CSEP 24-hour movement guidelines",
       "organization": "Canadian Society for Exercise Physiology",
       "type": "nonprofit",
       "country": "CA",
@@ -350,7 +350,7 @@
     },
     {
       "id": "canada-pa-tips",
-      "name": "Canada.ca Physical Activity Tips for Adults",
+      "name": "Canada.ca physical activity tips for adults",
       "organization": "Public Health Agency of Canada",
       "type": "government",
       "country": "CA",
@@ -374,7 +374,7 @@
     },
     {
       "id": "pmc-stretching-concepts",
-      "name": "Current Concepts in Muscle Stretching for Exercise and Rehabilitation",
+      "name": "Current concepts in muscle stretching for exercise and rehabilitation",
       "organization": "PubMed Central",
       "type": "academic",
       "country": "US",
@@ -386,7 +386,7 @@
     },
     {
       "id": "pmc-strength-vs-stretching",
-      "name": "Strength Training versus Stretching for Improving Range of Motion",
+      "name": "Strength training versus stretching for improving range of motion",
       "organization": "PubMed Central",
       "type": "academic",
       "country": "US",
@@ -398,7 +398,7 @@
     },
     {
       "id": "pmc-alternative-flexibility",
-      "name": "Alternative Flexibility Training",
+      "name": "Alternative flexibility training",
       "organization": "PubMed Central",
       "type": "academic",
       "country": "US",
@@ -410,7 +410,7 @@
     },
     {
       "id": "pmc-exercise-biomechanics",
-      "name": "Exercise Biomechanics for Health",
+      "name": "Exercise biomechanics for health",
       "organization": "PubMed Central",
       "type": "academic",
       "country": "US",
@@ -422,7 +422,7 @@
     },
     {
       "id": "pubmed-pnf-stretching",
-      "name": "PNF Stretching: Mechanisms and Clinical Implications",
+      "name": "PNF stretching: mechanisms and clinical implications",
       "organization": "PubMed",
       "type": "academic",
       "country": "US",
@@ -434,7 +434,7 @@
     },
     {
       "id": "pmc-bodyweight-training",
-      "name": "Simple Bodyweight Training Improves Cardiorespiratory Fitness",
+      "name": "Simple bodyweight training improves cardiorespiratory fitness",
       "organization": "PubMed Central",
       "type": "academic",
       "country": "US",
@@ -446,7 +446,7 @@
     },
     {
       "id": "pubmed-resistance-guidelines",
-      "name": "ACSM Position Stand: Progression Models in Resistance Training",
+      "name": "ACSM position stand: progression models in resistance training",
       "organization": "PubMed",
       "type": "academic",
       "country": "US",
@@ -458,7 +458,7 @@
     },
     {
       "id": "mdpi-stretching-biomechanics",
-      "name": "Biomechanical, Healing and Therapeutic Effects of Stretching",
+      "name": "Biomechanical, healing and therapeutic effects of stretching",
       "organization": "MDPI Applied Sciences",
       "type": "academic",
       "country": "INT",

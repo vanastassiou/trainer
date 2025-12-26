@@ -48,7 +48,7 @@
     },
     {
       "id": "diamond-push-up",
-      "name": "Diamond Push-up",
+      "name": "Diamond push-up",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -84,7 +84,7 @@
     },
     {
       "id": "resistance-band-chest-press",
-      "name": "Resistance Band Chest Press",
+      "name": "Resistance band chest press",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -121,7 +121,7 @@
     },
     {
       "id": "resistance-band-fly",
-      "name": "Resistance Band Fly",
+      "name": "Resistance band fly",
       "muscle_group": "chest",
       "secondary_muscles": [
         "deltoideus anterior"
@@ -157,7 +157,7 @@
     },
     {
       "id": "dumbbell-bench-press",
-      "name": "Dumbbell Bench Press",
+      "name": "Dumbbell bench press",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -194,7 +194,7 @@
     },
     {
       "id": "dumbbell-fly",
-      "name": "Dumbbell Fly",
+      "name": "Dumbbell fly",
       "muscle_group": "chest",
       "secondary_muscles": [
         "deltoideus anterior"
@@ -230,7 +230,7 @@
     },
     {
       "id": "incline-dumbbell-press",
-      "name": "Incline Dumbbell Press",
+      "name": "Incline dumbbell press",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -267,7 +267,7 @@
     },
     {
       "id": "barbell-bench-press",
-      "name": "Barbell Bench Press",
+      "name": "Barbell bench press",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -304,7 +304,7 @@
     },
     {
       "id": "incline-barbell-press",
-      "name": "Incline Barbell Press",
+      "name": "Incline barbell press",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -341,7 +341,7 @@
     },
     {
       "id": "machine-chest-press",
-      "name": "Machine Chest Press",
+      "name": "Machine chest press",
       "muscle_group": "chest",
       "secondary_muscles": [
         "triceps brachii",
@@ -378,7 +378,7 @@
     },
     {
       "id": "cable-fly",
-      "name": "Cable Fly",
+      "name": "Cable fly",
       "muscle_group": "chest",
       "secondary_muscles": [
         "deltoideus anterior"
@@ -488,7 +488,7 @@
     },
     {
       "id": "inverted-row",
-      "name": "Inverted Row",
+      "name": "Inverted row",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -527,7 +527,7 @@
     },
     {
       "id": "resistance-band-row",
-      "name": "Resistance Band Row",
+      "name": "Resistance band row",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -565,7 +565,7 @@
     },
     {
       "id": "resistance-band-lat-pulldown",
-      "name": "Resistance Band Lat Pulldown",
+      "name": "Resistance band lat pulldown",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -601,7 +601,7 @@
     },
     {
       "id": "dumbbell-row",
-      "name": "Dumbbell Row",
+      "name": "Dumbbell row",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -640,7 +640,7 @@
     },
     {
       "id": "dumbbell-pullover",
-      "name": "Dumbbell Pullover",
+      "name": "Dumbbell pullover",
       "muscle_group": "back",
       "secondary_muscles": [
         "pectoralis major",
@@ -678,7 +678,7 @@
     },
     {
       "id": "barbell-row",
-      "name": "Barbell Row",
+      "name": "Barbell row",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -761,7 +761,7 @@
     },
     {
       "id": "lat-pulldown",
-      "name": "Lat Pulldown",
+      "name": "Lat pulldown",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -798,7 +798,7 @@
     },
     {
       "id": "seated-cable-row",
-      "name": "Seated Cable Row",
+      "name": "Seated cable row",
       "muscle_group": "back",
       "secondary_muscles": [
         "biceps brachii",
@@ -838,7 +838,7 @@
     },
     {
       "id": "pike-push-up",
-      "name": "Pike Push-up",
+      "name": "Pike push-up",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "triceps brachii",
@@ -874,7 +874,7 @@
     },
     {
       "id": "handstand-push-up",
-      "name": "Handstand Push-up",
+      "name": "Handstand push-up",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "triceps brachii",
@@ -911,7 +911,7 @@
     },
     {
       "id": "resistance-band-shoulder-press",
-      "name": "Resistance Band Shoulder Press",
+      "name": "Resistance band shoulder press",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "triceps brachii",
@@ -947,7 +947,7 @@
     },
     {
       "id": "resistance-band-lateral-raise",
-      "name": "Resistance Band Lateral Raise",
+      "name": "Resistance band lateral raise",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "deltoideus lateralis",
@@ -983,7 +983,7 @@
     },
     {
       "id": "dumbbell-shoulder-press",
-      "name": "Dumbbell Shoulder Press",
+      "name": "Dumbbell shoulder press",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "triceps brachii",
@@ -1019,7 +1019,7 @@
     },
     {
       "id": "dumbbell-lateral-raise",
-      "name": "Dumbbell Lateral Raise",
+      "name": "Dumbbell lateral raise",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "deltoideus lateralis",
@@ -1055,7 +1055,7 @@
     },
     {
       "id": "dumbbell-front-raise",
-      "name": "Dumbbell Front Raise",
+      "name": "Dumbbell front raise",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "deltoideus anterior"
@@ -1090,7 +1090,7 @@
     },
     {
       "id": "dumbbell-rear-delt-fly",
-      "name": "Dumbbell Rear Delt Fly",
+      "name": "Dumbbell rear delt fly",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "deltoideus posterior",
@@ -1128,7 +1128,7 @@
     },
     {
       "id": "barbell-overhead-press",
-      "name": "Barbell Overhead Press",
+      "name": "Barbell overhead press",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "triceps brachii",
@@ -1166,7 +1166,7 @@
     },
     {
       "id": "barbell-upright-row",
-      "name": "Barbell Upright Row",
+      "name": "Barbell upright row",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "trapezius",
@@ -1203,7 +1203,7 @@
     },
     {
       "id": "machine-shoulder-press",
-      "name": "Machine Shoulder Press",
+      "name": "Machine shoulder press",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "triceps brachii",
@@ -1239,7 +1239,7 @@
     },
     {
       "id": "cable-lateral-raise",
-      "name": "Cable Lateral Raise",
+      "name": "Cable lateral raise",
       "muscle_group": "shoulders",
       "secondary_muscles": [
         "deltoideus lateralis",
@@ -1276,7 +1276,7 @@
     },
     {
       "id": "bodyweight-bicep-curl",
-      "name": "Bodyweight Bicep Curl",
+      "name": "Bodyweight bicep curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1311,7 +1311,7 @@
     },
     {
       "id": "resistance-band-bicep-curl",
-      "name": "Resistance Band Bicep Curl",
+      "name": "Resistance band bicep curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1346,7 +1346,7 @@
     },
     {
       "id": "resistance-band-hammer-curl",
-      "name": "Resistance Band Hammer Curl",
+      "name": "Resistance band hammer curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1381,7 +1381,7 @@
     },
     {
       "id": "dumbbell-bicep-curl",
-      "name": "Dumbbell Bicep Curl",
+      "name": "Dumbbell bicep curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1416,7 +1416,7 @@
     },
     {
       "id": "dumbbell-hammer-curl",
-      "name": "Dumbbell Hammer Curl",
+      "name": "Dumbbell hammer curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1451,7 +1451,7 @@
     },
     {
       "id": "dumbbell-concentration-curl",
-      "name": "Dumbbell Concentration Curl",
+      "name": "Dumbbell concentration curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1486,7 +1486,7 @@
     },
     {
       "id": "barbell-curl",
-      "name": "Barbell Curl",
+      "name": "Barbell curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1521,7 +1521,7 @@
     },
     {
       "id": "barbell-preacher-curl",
-      "name": "Barbell Preacher Curl",
+      "name": "Barbell preacher curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1557,7 +1557,7 @@
     },
     {
       "id": "cable-bicep-curl",
-      "name": "Cable Bicep Curl",
+      "name": "Cable bicep curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1592,7 +1592,7 @@
     },
     {
       "id": "machine-preacher-curl",
-      "name": "Machine Preacher Curl",
+      "name": "Machine preacher curl",
       "muscle_group": "biceps",
       "secondary_muscles": [
         "brachioradialis"
@@ -1628,7 +1628,7 @@
     },
     {
       "id": "tricep-dip",
-      "name": "Tricep Dip",
+      "name": "Tricep dip",
       "muscle_group": "triceps",
       "secondary_muscles": [
         "pectoralis major",
@@ -1664,7 +1664,7 @@
     },
     {
       "id": "bench-dip",
-      "name": "Bench Dip",
+      "name": "Bench dip",
       "muscle_group": "triceps",
       "secondary_muscles": [
         "deltoideus anterior",
@@ -1700,7 +1700,7 @@
     },
     {
       "id": "diamond-push-up-tricep",
-      "name": "Close-Grip Push-up",
+      "name": "Close-grip push-up",
       "muscle_group": "triceps",
       "secondary_muscles": [
         "pectoralis major",
@@ -1736,7 +1736,7 @@
     },
     {
       "id": "resistance-band-tricep-pushdown",
-      "name": "Resistance Band Tricep Pushdown",
+      "name": "Resistance band tricep pushdown",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "resistance_band",
@@ -1769,7 +1769,7 @@
     },
     {
       "id": "resistance-band-overhead-tricep-extension",
-      "name": "Resistance Band Overhead Tricep Extension",
+      "name": "Resistance band overhead tricep extension",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "resistance_band",
@@ -1802,7 +1802,7 @@
     },
     {
       "id": "dumbbell-tricep-kickback",
-      "name": "Dumbbell Tricep Kickback",
+      "name": "Dumbbell tricep kickback",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "dumbbell",
@@ -1835,7 +1835,7 @@
     },
     {
       "id": "dumbbell-overhead-tricep-extension",
-      "name": "Dumbbell Overhead Tricep Extension",
+      "name": "Dumbbell overhead tricep extension",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "dumbbell",
@@ -1868,7 +1868,7 @@
     },
     {
       "id": "dumbbell-skull-crusher",
-      "name": "Dumbbell Skull Crusher",
+      "name": "Dumbbell skull crusher",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "dumbbell",
@@ -1901,7 +1901,7 @@
     },
     {
       "id": "barbell-skull-crusher",
-      "name": "Barbell Skull Crusher",
+      "name": "Barbell skull crusher",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "barbell",
@@ -1934,7 +1934,7 @@
     },
     {
       "id": "close-grip-bench-press",
-      "name": "Close-Grip Bench Press",
+      "name": "Close-grip bench press",
       "muscle_group": "triceps",
       "secondary_muscles": [
         "pectoralis major",
@@ -1970,7 +1970,7 @@
     },
     {
       "id": "cable-tricep-pushdown",
-      "name": "Cable Tricep Pushdown",
+      "name": "Cable tricep pushdown",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -2003,7 +2003,7 @@
     },
     {
       "id": "cable-overhead-tricep-extension",
-      "name": "Cable Overhead Tricep Extension",
+      "name": "Cable overhead tricep extension",
       "muscle_group": "triceps",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -2036,7 +2036,7 @@
     },
     {
       "id": "bodyweight-squat",
-      "name": "Bodyweight Squat",
+      "name": "Bodyweight squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2075,7 +2075,7 @@
     },
     {
       "id": "pistol-squat",
-      "name": "Pistol Squat",
+      "name": "Pistol squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2115,7 +2115,7 @@
     },
     {
       "id": "jump-squat",
-      "name": "Jump Squat",
+      "name": "Jump squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2154,7 +2154,7 @@
     },
     {
       "id": "resistance-band-squat",
-      "name": "Resistance Band Squat",
+      "name": "Resistance band squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2192,7 +2192,7 @@
     },
     {
       "id": "resistance-band-leg-extension",
-      "name": "Resistance Band Leg Extension",
+      "name": "Resistance band leg extension",
       "muscle_group": "quadriceps",
       "secondary_muscles": [],
       "equipment": "resistance_band",
@@ -2227,7 +2227,7 @@
     },
     {
       "id": "dumbbell-goblet-squat",
-      "name": "Dumbbell Goblet Squat",
+      "name": "Dumbbell goblet squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2266,7 +2266,7 @@
     },
     {
       "id": "dumbbell-lunge",
-      "name": "Dumbbell Lunge",
+      "name": "Dumbbell lunge",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2304,7 +2304,7 @@
     },
     {
       "id": "dumbbell-step-up",
-      "name": "Dumbbell Step-up",
+      "name": "Dumbbell step-up",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2342,7 +2342,7 @@
     },
     {
       "id": "barbell-back-squat",
-      "name": "Barbell Back Squat",
+      "name": "Barbell back squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2382,7 +2382,7 @@
     },
     {
       "id": "barbell-front-squat",
-      "name": "Barbell Front Squat",
+      "name": "Barbell front squat",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2420,7 +2420,7 @@
     },
     {
       "id": "leg-press",
-      "name": "Leg Press",
+      "name": "Leg press",
       "muscle_group": "quadriceps",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2458,7 +2458,7 @@
     },
     {
       "id": "leg-extension",
-      "name": "Leg Extension",
+      "name": "Leg extension",
       "muscle_group": "quadriceps",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -2493,7 +2493,7 @@
     },
     {
       "id": "nordic-curl",
-      "name": "Nordic Curl",
+      "name": "Nordic curl",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2533,7 +2533,7 @@
     },
     {
       "id": "glute-ham-raise-bodyweight",
-      "name": "Glute-Ham Raise",
+      "name": "Glute-ham raise",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2573,7 +2573,7 @@
     },
     {
       "id": "resistance-band-leg-curl",
-      "name": "Resistance Band Leg Curl",
+      "name": "Resistance band leg curl",
       "muscle_group": "hamstrings",
       "secondary_muscles": [],
       "equipment": "resistance_band",
@@ -2610,7 +2610,7 @@
     },
     {
       "id": "resistance-band-good-morning",
-      "name": "Resistance Band Good Morning",
+      "name": "Resistance band good morning",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2650,7 +2650,7 @@
     },
     {
       "id": "dumbbell-romanian-deadlift",
-      "name": "Dumbbell Romanian Deadlift",
+      "name": "Dumbbell Romanian deadlift",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2690,7 +2690,7 @@
     },
     {
       "id": "dumbbell-single-leg-rdl",
-      "name": "Dumbbell Single-Leg Romanian Deadlift",
+      "name": "Dumbbell single-leg Romanian deadlift",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2731,7 +2731,7 @@
     },
     {
       "id": "barbell-romanian-deadlift",
-      "name": "Barbell Romanian Deadlift",
+      "name": "Barbell Romanian deadlift",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2772,7 +2772,7 @@
     },
     {
       "id": "barbell-good-morning",
-      "name": "Barbell Good Morning",
+      "name": "Barbell good morning",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gluteus maximus",
@@ -2812,7 +2812,7 @@
     },
     {
       "id": "lying-leg-curl",
-      "name": "Lying Leg Curl",
+      "name": "Lying leg curl",
       "muscle_group": "hamstrings",
       "secondary_muscles": [
         "gastrocnemius"
@@ -2851,7 +2851,7 @@
     },
     {
       "id": "seated-leg-curl",
-      "name": "Seated Leg Curl",
+      "name": "Seated leg curl",
       "muscle_group": "hamstrings",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -2888,7 +2888,7 @@
     },
     {
       "id": "glute-bridge",
-      "name": "Glute Bridge",
+      "name": "Glute bridge",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "biceps femoris",
@@ -2926,7 +2926,7 @@
     },
     {
       "id": "single-leg-glute-bridge",
-      "name": "Single-Leg Glute Bridge",
+      "name": "Single-leg glute bridge",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "biceps femoris",
@@ -2964,7 +2964,7 @@
     },
     {
       "id": "fire-hydrant",
-      "name": "Fire Hydrant",
+      "name": "Fire hydrant",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "gluteus medius",
@@ -3002,7 +3002,7 @@
     },
     {
       "id": "resistance-band-glute-bridge",
-      "name": "Resistance Band Glute Bridge",
+      "name": "Resistance band glute bridge",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "biceps femoris",
@@ -3040,7 +3040,7 @@
     },
     {
       "id": "resistance-band-clamshell",
-      "name": "Resistance Band Clamshell",
+      "name": "Resistance band clamshell",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "gluteus medius"
@@ -3077,7 +3077,7 @@
     },
     {
       "id": "dumbbell-hip-thrust",
-      "name": "Dumbbell Hip Thrust",
+      "name": "Dumbbell hip thrust",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "biceps femoris"
@@ -3114,7 +3114,7 @@
     },
     {
       "id": "dumbbell-sumo-squat",
-      "name": "Dumbbell Sumo Squat",
+      "name": "Dumbbell sumo squat",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "quadriceps femoris",
@@ -3153,7 +3153,7 @@
     },
     {
       "id": "barbell-hip-thrust",
-      "name": "Barbell Hip Thrust",
+      "name": "Barbell hip thrust",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "biceps femoris"
@@ -3190,7 +3190,7 @@
     },
     {
       "id": "barbell-sumo-deadlift",
-      "name": "Barbell Sumo Deadlift",
+      "name": "Barbell sumo deadlift",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "quadriceps femoris",
@@ -3230,7 +3230,7 @@
     },
     {
       "id": "hip-abduction-machine",
-      "name": "Hip Abduction Machine",
+      "name": "Hip abduction machine",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "gluteus medius"
@@ -3267,7 +3267,7 @@
     },
     {
       "id": "cable-kickback",
-      "name": "Cable Kickback",
+      "name": "Cable kickback",
       "muscle_group": "glutes",
       "secondary_muscles": [
         "biceps femoris"
@@ -3304,7 +3304,7 @@
     },
     {
       "id": "standing-calf-raise-bodyweight",
-      "name": "Standing Calf Raise",
+      "name": "Standing calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "bodyweight",
@@ -3340,7 +3340,7 @@
     },
     {
       "id": "single-leg-calf-raise",
-      "name": "Single-Leg Calf Raise",
+      "name": "Single-leg calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "bodyweight",
@@ -3376,7 +3376,7 @@
     },
     {
       "id": "resistance-band-calf-raise",
-      "name": "Resistance Band Calf Raise",
+      "name": "Resistance band calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "resistance_band",
@@ -3412,7 +3412,7 @@
     },
     {
       "id": "seated-resistance-band-calf-raise",
-      "name": "Seated Resistance Band Calf Raise",
+      "name": "Seated resistance band calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "resistance_band",
@@ -3448,7 +3448,7 @@
     },
     {
       "id": "dumbbell-calf-raise",
-      "name": "Dumbbell Calf Raise",
+      "name": "Dumbbell calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "dumbbell",
@@ -3484,7 +3484,7 @@
     },
     {
       "id": "dumbbell-seated-calf-raise",
-      "name": "Dumbbell Seated Calf Raise",
+      "name": "Dumbbell seated calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "dumbbell",
@@ -3520,7 +3520,7 @@
     },
     {
       "id": "barbell-calf-raise",
-      "name": "Barbell Calf Raise",
+      "name": "Barbell calf raise",
       "muscle_group": "calves",
       "secondary_muscles": [
         "rectus abdominis"
@@ -3558,7 +3558,7 @@
     },
     {
       "id": "standing-calf-raise-machine",
-      "name": "Standing Calf Raise Machine",
+      "name": "Standing calf raise machine",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -3594,7 +3594,7 @@
     },
     {
       "id": "seated-calf-raise-machine",
-      "name": "Seated Calf Raise Machine",
+      "name": "Seated calf raise machine",
       "muscle_group": "calves",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -3668,7 +3668,7 @@
     },
     {
       "id": "dead-bug",
-      "name": "Dead Bug",
+      "name": "Dead bug",
       "muscle_group": "core",
       "secondary_muscles": [
         "iliopsoas"
@@ -3705,7 +3705,7 @@
     },
     {
       "id": "bicycle-crunch",
-      "name": "Bicycle Crunch",
+      "name": "Bicycle crunch",
       "muscle_group": "core",
       "secondary_muscles": [
         "obliquus externus abdominis",
@@ -3743,7 +3743,7 @@
     },
     {
       "id": "mountain-climber",
-      "name": "Mountain Climber",
+      "name": "Mountain climber",
       "muscle_group": "core",
       "secondary_muscles": [
         "iliopsoas",
@@ -3782,7 +3782,7 @@
     },
     {
       "id": "hanging-leg-raise",
-      "name": "Hanging Leg Raise",
+      "name": "Hanging leg raise",
       "muscle_group": "core",
       "secondary_muscles": [
         "iliopsoas",
@@ -3820,7 +3820,7 @@
     },
     {
       "id": "resistance-band-pallof-press",
-      "name": "Resistance Band Pallof Press",
+      "name": "Resistance band Pallof press",
       "muscle_group": "core",
       "secondary_muscles": [
         "obliquus externus abdominis"
@@ -3857,7 +3857,7 @@
     },
     {
       "id": "resistance-band-woodchop",
-      "name": "Resistance Band Woodchop",
+      "name": "Resistance band woodchop",
       "muscle_group": "core",
       "secondary_muscles": [
         "obliquus externus abdominis",
@@ -3895,7 +3895,7 @@
     },
     {
       "id": "dumbbell-side-bend",
-      "name": "Dumbbell Side Bend",
+      "name": "Dumbbell side bend",
       "muscle_group": "core",
       "secondary_muscles": [
         "obliquus externus abdominis"
@@ -3932,7 +3932,7 @@
     },
     {
       "id": "dumbbell-russian-twist",
-      "name": "Dumbbell Russian Twist",
+      "name": "Dumbbell Russian twist",
       "muscle_group": "core",
       "secondary_muscles": [
         "obliquus externus abdominis",
@@ -3970,7 +3970,7 @@
     },
     {
       "id": "barbell-rollout",
-      "name": "Barbell Rollout",
+      "name": "Barbell rollout",
       "muscle_group": "core",
       "secondary_muscles": [
         "deltoideus",
@@ -4008,7 +4008,7 @@
     },
     {
       "id": "cable-crunch",
-      "name": "Cable Crunch",
+      "name": "Cable crunch",
       "muscle_group": "core",
       "secondary_muscles": [],
       "equipment": "machine",
@@ -4043,7 +4043,7 @@
     },
     {
       "id": "cable-woodchop",
-      "name": "Cable Woodchop",
+      "name": "Cable woodchop",
       "muscle_group": "core",
       "secondary_muscles": [
         "obliquus externus abdominis",
