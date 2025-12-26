@@ -26,7 +26,7 @@
   <header>
     <nav class="tabs">
       <button class="tab" data-tab="metrics">Metrics</button>
-      <button class="tab active" data-tab="exercise">Exercise</button>
+      <button class="tab active" data-tab="workouts">Workouts</button>
       <button class="tab" data-tab="profile">Profile</button>
     </nav>
     <div id="profile-stats" class="stats-bar">
@@ -75,7 +75,7 @@
       <div id="daily" class="sub-page active">
         <div class="chart-section" id="daily-chart">
           <div class="chart-header">
-            <span class="chart-label">Last 30 days</span>
+            <span class="label-muted">Last 30 days</span>
             <select class="chart-metric-select" id="daily-metric-select">
               <option value="weight">Weight</option>
               <option value="restingHR">Resting HR</option>
@@ -107,7 +107,7 @@
       <div id="measurements" class="sub-page">
         <div class="chart-section" id="measurements-chart">
           <div class="chart-header">
-            <span class="chart-label">Last 30 days</span>
+            <span class="label-muted">Last 30 days</span>
             <select class="chart-metric-select" id="measurements-metric-select">
               <option value="bodyFat">Body fat</option>
               <option value="waist">Waist</option>
@@ -141,7 +141,7 @@
       </div>
     </section>
 
-    <section id="exercise" class="page active">
+    <section id="workouts" class="page active">
       <div class="date-header">
         <button type="button" class="nav-button date-nav prev" aria-label="Previous day">&lt;</button>
         <button type="button" class="date-display">
@@ -150,24 +150,18 @@
         <button type="button" class="nav-button date-nav next" aria-label="Next day" disabled>&gt;</button>
       </div>
 
-      <nav class="sub-tabs">
-        <button class="sub-tab active" data-subtab="workouts">Workouts</button>
-        <button class="sub-tab" data-subtab="programs">Programs</button>
-      </nav>
-
-      <div id="workouts" class="sub-page active">
-        <div class="chart-section" id="workouts-chart">
-          <div class="chart-header">
-            <span class="chart-label">Last 30 days</span>
-            <span class="chart-metric-label">Volume<button type="button" class="term-info-btn" data-term="volume">?</button></span>
-          </div>
-          <canvas class="chart-canvas"></canvas>
-          <div class="chart-summary"></div>
+      <div class="chart-section" id="workouts-chart">
+        <div class="chart-header">
+          <span class="label-muted">Last 30 days</span>
+          <select class="chart-metric-select" id="workouts-metric-select">
+            <option value="volume">Volume</option>
+          </select>
         </div>
+        <canvas class="chart-canvas"></canvas>
+        <div class="chart-summary"></div>
+      </div>
 
-        <div id="workout-volume-guidance" class="volume-guidance"></div>
-
-      <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the programs tab.</p>
+      <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the Profile tab.</p>
       <div class="program-selector">
         <div class="form-group" id="program-selector-group">
           <label>Program</label>
@@ -195,82 +189,6 @@
 
         <button type="submit" class="btn accent full">Save workout</button>
       </form>
-      </div>
-
-      <div id="programs" class="sub-page">
-        <nav class="sub-tabs">
-          <button class="sub-tab active" data-subtab="list-programs">List programs</button>
-          <button class="sub-tab" data-subtab="create-program">Create new</button>
-        </nav>
-
-        <div id="list-programs" class="sub-page active">
-          <div id="programs-list"></div>
-        </div>
-
-        <div id="create-program" class="sub-page">
-          <h3>Generate program</h3>
-
-          <div class="form-group">
-            <label for="program-days-per-week">Days per week</label>
-            <select id="program-days-per-week">
-              <option value="1">1 day (full body)</option>
-              <option value="2">2 days (full body)</option>
-              <option value="3" selected>3 days (push/pull/legs)</option>
-              <option value="4">4 days (upper/lower)</option>
-              <option value="5">5 days (PPL + upper/lower)</option>
-              <option value="6">6 days (push/pull/legs x2)</option>
-            </select>
-          </div>
-
-          <fieldset class="form-group">
-            <legend>Equipment available</legend>
-            <div class="checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" name="equipment" value="bodyweight" checked>
-                Bodyweight
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="equipment" value="resistance_band">
-                Resistance bands
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="equipment" value="dumbbell">
-                Dumbbells
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="equipment" value="barbell">
-                Barbells
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="equipment" value="machine">
-                Machines
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset class="form-group">
-            <legend>Difficulty</legend>
-            <div class="radio-group">
-              <label class="radio-label">
-                <input type="radio" name="difficulty" value="beginner" checked>
-                Beginner
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="difficulty" value="intermediate">
-                Intermediate
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="difficulty" value="advanced">
-                Advanced
-              </label>
-            </div>
-          </fieldset>
-
-          <div class="form-buttons">
-            <button type="button" id="generate-program-btn" class="btn accent">Generate program</button>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section id="profile" class="page">
@@ -329,8 +247,6 @@
 
           <button type="submit" class="btn accent">Save profile</button>
         </form>
-
-        <div id="volume-guidance" class="volume-guidance card"></div>
       </div>
 
       <div class="profile-section">
@@ -378,6 +294,96 @@
         <div id="completed-goals-section" class="completed-goals">
           <h4>Completed</h4>
           <div id="completed-goals-list"></div>
+        </div>
+      </div>
+
+      <div id="programs" class="profile-section">
+        <h3>Programs</h3>
+        <nav class="sub-tabs">
+          <button class="sub-tab active" data-subtab="list-programs">List</button>
+          <button class="sub-tab" data-subtab="create-program">Create new</button>
+        </nav>
+
+        <div id="list-programs" class="sub-page active">
+          <div id="programs-list"></div>
+        </div>
+
+        <div id="create-program" class="sub-page">
+          <h4>Generate program</h4>
+
+          <div class="form-group">
+            <label for="program-days-per-week">Days per week</label>
+            <select id="program-days-per-week">
+              <option value="1">1 day (full body)</option>
+              <option value="2">2 days (full body)</option>
+              <option value="3" selected>3 days (push/pull/legs)</option>
+              <option value="4">4 days (upper/lower)</option>
+              <option value="5">5 days (PPL + upper/lower)</option>
+              <option value="6">6 days (push/pull/legs x2)</option>
+            </select>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Equipment available</legend>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="bodyweight" checked>
+                Bodyweight
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="resistance_band">
+                Resistance bands
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="dumbbell">
+                Dumbbells
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="barbell">
+                Barbells
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="machine">
+                Machines
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Difficulty</legend>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="difficulty" value="beginner" checked>
+                Beginner
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="difficulty" value="intermediate">
+                Intermediate
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="difficulty" value="advanced">
+                Advanced
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Goal</legend>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="goal" value="maintenance">
+                Maintenance
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="goal" value="growth" checked>
+                Growth
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-buttons">
+            <button type="button" id="generate-program-btn" class="btn accent">Generate program</button>
+          </div>
         </div>
       </div>
     </section>

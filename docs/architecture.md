@@ -88,7 +88,7 @@ Daily log entries keyed by date (YYYY-MM-DD). Each entry contains:
     dayNumber: 3,
     exercises: [{
       exerciseId: "bench-press",    // Reference to exercise definition
-      sets: [{ reps: 8, weight: 100, rpe: 8 }]
+      sets: [{ reps: 8, weight: 100, rir: 2 }]
     }]
   },
 
@@ -212,6 +212,7 @@ export async function getJournalForDate(date) {
 - Program editor modal
 - Day builder UI
 - Program selector population
+- Program generation with volume-based exercise selection (see `volume-guidelines.md`)
 
 **goals.js** - Goal tracking:
 - Goal creation form
@@ -250,7 +251,7 @@ export async function getJournalForDate(date) {
 - `getExerciseFilterValues()` - Current filter state
 
 **validation.js** - Business rules:
-- `validateProgram(name, days)` - Program structure validation
+- `validateProgram(name, days)` - Program structure validation (3-6 exercises/day)
 - `hasUnsavedWorkoutData(container)` - Dirty form detection
 - `collectWorkoutData(container)` - Extract workout from form
 - `collectProgramDays(container)` - Extract program days from form
@@ -499,6 +500,11 @@ Benefits:
 - Automatically handles dynamically added items
 - Better memory usage
 
+### Exercise count per session
+
+Programs require 3-6 exercises per training day. See `docs/volume-guidelines.md`
+for the research basis and generation algorithm.
+
 ## Design patterns
 
 ### Centralized state
@@ -621,5 +627,5 @@ iPhone 5). This is the narrowest device that can run a modern mobile browser.
 Design guidelines:
 - All UI elements must be usable at 320px
 - Prefer vertical stacking over horizontal layouts at narrow widths
-- Exercise cards use flexible column widths (Reps, Weight, RPE)
+- Exercise cards use flexible column widths (Reps, Weight, RIR)
 - Touch targets should be minimum 44x44px per Apple HIG

@@ -4,9 +4,8 @@
 // Handles workout logging, exercise cards, and exercise picker.
 
 import { state } from './state.js';
-import { fetchJSON, formatLabel, renderListItems, swapVisibility, toImperial, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
+import { fetchJSON, formatLabel, renderListItems, swapVisibility, toImperial } from './utils.js';
 import { createModalController, showConfirmDialog, showToast } from './ui.js';
-import { getProfile } from './db.js';
 import { filterExercises, getExerciseFilterValues, resetExerciseFilters, getUniqueValues } from './filters.js';
 import { hasUnsavedWorkoutData, collectWorkoutData } from './validation.js';
 import {
@@ -34,6 +33,20 @@ export function getExerciseByName(name) {
   return state.exercisesDB.find(ex =>
     ex.name.toLowerCase() === name.toLowerCase()
   );
+}
+
+function isBodyweightExercise(name) {
+  const exercise = getExerciseByName(name);
+  return exercise?.equipment === 'bodyweight';
+}
+
+function updateWeightVisibility(card) {
+  const name = card.querySelector('.exercise-name').value.trim();
+  if (name && isBodyweightExercise(name)) {
+    card.classList.add('bodyweight');
+  } else {
+    card.classList.remove('bodyweight');
+  }
 }
 
 // =============================================================================
@@ -219,25 +232,25 @@ export function addExerciseCard(container, existingData = null, options = {}) {
         <span class="set-label"></span>
         <span class="col-label">Reps<button type="button" class="term-info-btn" data-term="repetition">?</button></span>
         <span class="col-label">Weight (${weightUnit})<button type="button" class="term-info-btn" data-term="intensity">?</button></span>
-        <span class="col-label col-label-rpe">RPE<button type="button" class="term-info-btn" data-term="RPE">?</button></span>
+        <span class="col-label col-label-rir">RIR<button type="button" class="term-info-btn" data-term="reps in reserve">?</button></span>
       </div>
       <div class="set-row">
         <span class="set-label">Set 1</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(0, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(0, 'weight')}" inputmode="decimal" step="0.1" min="0">
-        <input type="number" class="rpe-input" placeholder="${getPlaceholder(0, 'rpe')}" inputmode="decimal" step="0.5" min="1" max="10">
+        <input type="number" class="rir-input" placeholder="${getPlaceholder(0, 'rir')}" inputmode="numeric" min="0" max="5">
       </div>
       <div class="set-row">
         <span class="set-label">Set 2</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(1, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(1, 'weight')}" inputmode="decimal" step="0.1" min="0">
-        <input type="number" class="rpe-input" placeholder="${getPlaceholder(1, 'rpe')}" inputmode="decimal" step="0.5" min="1" max="10">
+        <input type="number" class="rir-input" placeholder="${getPlaceholder(1, 'rir')}" inputmode="numeric" min="0" max="5">
       </div>
       <div class="set-row">
         <span class="set-label">Set 3</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(2, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(2, 'weight')}" inputmode="decimal" step="0.1" min="0">
-        <input type="number" class="rpe-input" placeholder="${getPlaceholder(2, 'rpe')}" inputmode="decimal" step="0.5" min="1" max="10">
+        <input type="number" class="rir-input" placeholder="${getPlaceholder(2, 'rir')}" inputmode="numeric" min="0" max="5">
       </div>
     </div>
   `;
@@ -256,13 +269,17 @@ export function addExerciseCard(container, existingData = null, options = {}) {
             }
             setRows[i].querySelector('.weight-input').value = displayWeight;
           }
-          if (set.rpe !== null) setRows[i].querySelector('.rpe-input').value = set.rpe;
+          if (set.rir !== null) setRows[i].querySelector('.rir-input').value = set.rir;
         }
       });
     }
   }
 
   const nameInput = card.querySelector('.exercise-name');
+
+  // Update weight visibility based on exercise type
+  updateWeightVisibility(card);
+
   if (fromProgram) {
     nameInput.addEventListener('click', () => {
       const name = nameInput.value.trim();
@@ -270,6 +287,9 @@ export function addExerciseCard(container, existingData = null, options = {}) {
         showExerciseInfo(name);
       }
     });
+  } else {
+    // Update weight visibility when name changes for non-program cards
+    nameInput.addEventListener('blur', () => updateWeightVisibility(card));
   }
 
   const infoBtn = card.querySelector('.exercise-info-btn');
@@ -471,6 +491,22 @@ export function showExerciseInfo(exerciseName) {
 
   let html = '';
 
+  // Metadata section
+  html += '<div class="exercise-info-meta">';
+  if (exercise.role) {
+    html += `<span class="exercise-meta-tag">${formatLabel(exercise.role)}</span>`;
+  }
+  if (exercise.movement_pattern) {
+    html += `<span class="exercise-meta-tag">${formatLabel(exercise.movement_pattern)}</span>`;
+  }
+  if (exercise.difficulty) {
+    html += `<span class="exercise-meta-tag">${formatLabel(exercise.difficulty)}</span>`;
+  }
+  if (exercise.muscle_group) {
+    html += `<span class="exercise-meta-tag">${formatLabel(exercise.muscle_group)}</span>`;
+  }
+  html += '</div>';
+
   if (exercise.instructions?.length) {
     html += `
       <div class="exercise-info-section instructions">
@@ -502,34 +538,3 @@ export function showExerciseInfo(exerciseName) {
   state.exerciseInfoDialog.open();
 }
 
-// =============================================================================
-// WORKOUT VOLUME GUIDANCE
-// =============================================================================
-
-/**
- * Render personalized volume guidance banner in workout section.
- */
-export async function renderWorkoutVolumeGuidance() {
-  const container = document.getElementById('workout-volume-guidance');
-  if (!container) return;
-
-  const profile = await getProfile();
-  const age = getAgeFromBirthDate(profile.birthDate);
-  const recs = getVolumeRecommendations(age);
-
-  const ageText = recs.ageGroup === 'older-adult'
-    ? 'Based on your age, aim for higher frequency (2-3× per week per muscle).'
-    : '';
-
-  container.innerHTML = `
-    <details class="volume-guidance-details">
-      <summary>Volume guidelines</summary>
-      <p>
-        <strong>Maintenance:</strong> ${recs.maintenance.description}<br>
-        <strong>Growth:</strong> ${recs.growth.description}<br>
-        <strong>Per session:</strong> ${recs.perSession.description}
-      </p>
-      ${ageText ? `<p class="volume-note">${ageText}</p>` : ''}
-    </details>
-  `;
-}

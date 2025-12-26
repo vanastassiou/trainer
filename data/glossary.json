@@ -65,10 +65,17 @@
         "aliases": [],
         "category": "basic",
         "description": "The total amount of work performed, typically calculated as sets × reps × weight.",
+        "details": "General guidelines per muscle group per week: Maintenance requires 3-6 sets (6-10 for adults 60+). Growth requires 10-20 sets. Limit each session to ~10-11 sets per muscle. Distribute volume across 1-2 sessions per week (2-3 for adults 60+).",
         "references": [
           {
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Volume"
+          },
+          {
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass"
           }
         ]
       },

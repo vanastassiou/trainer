@@ -106,9 +106,10 @@ const PROGRAM_TEMPLATES = {
  * @param {number} daysPerWeek - Number of workout days (1-6)
  * @param {string[]} equipment - Array of available equipment types
  * @param {string} difficulty - User's difficulty level
+ * @param {string} goal - Training goal ('maintenance' or 'growth')
  * @returns {Object} Generated program object (not yet saved)
  */
-export function generateProgram(daysPerWeek, equipment, difficulty) {
+export function generateProgram(daysPerWeek, equipment, difficulty, goal = 'growth') {
   const template = PROGRAM_TEMPLATES[daysPerWeek];
   if (!template) {
     throw new Error(`Invalid days per week: ${daysPerWeek}`);
@@ -125,8 +126,16 @@ export function generateProgram(daysPerWeek, equipment, difficulty) {
       (a, b) => MUSCLE_ORDER.indexOf(a) - MUSCLE_ORDER.indexOf(b)
     );
 
+    // Target based on goal and muscle count (see docs/volume-guidelines.md)
+    const muscleCount = dayTemplate.muscles.length;
+    const targetExercises = goal === 'maintenance'
+      ? Math.max(3, muscleCount)
+      : Math.min(6, muscleCount + 2);
+    const maxExercises = 6;
+
+    // First pass: select compound/basic exercises for each muscle group
     for (const muscle of sortedMuscles) {
-      if (dayExercises.length >= 5) break;
+      if (dayExercises.length >= maxExercises) break;
 
       const exercise = selectExercise(
         exercises,
@@ -140,6 +149,28 @@ export function generateProgram(daysPerWeek, equipment, difficulty) {
         dayExercises.push(exercise.name);
         usedExercises.add(exercise.id);
       }
+    }
+
+    // Second pass: fill to target with auxiliary/isolation exercises
+    let muscleIndex = 0;
+    while (dayExercises.length < targetExercises && dayExercises.length < maxExercises) {
+      const muscle = sortedMuscles[muscleIndex % sortedMuscles.length];
+      const exercise = selectAuxiliaryExercise(
+        exercises,
+        muscle,
+        equipment,
+        difficulty,
+        usedExercises
+      );
+
+      if (exercise) {
+        dayExercises.push(exercise.name);
+        usedExercises.add(exercise.id);
+      }
+      muscleIndex++;
+
+      // Prevent infinite loop if no more exercises available
+      if (muscleIndex >= sortedMuscles.length * 3) break;
     }
 
     return { name: dayTemplate.name, exercises: dayExercises };
@@ -188,6 +219,40 @@ function selectExercise(exercises, muscleGroup, equipment, difficulty, usedExerc
 }
 
 /**
+ * Select an auxiliary/isolation exercise for a muscle group.
+ * Prefers isolation movements over compound, and auxiliary role over basic.
+ */
+function selectAuxiliaryExercise(exercises, muscleGroup, equipment, difficulty, usedExercises) {
+  let candidates = exercises.filter(ex =>
+    ex.muscle_group === muscleGroup &&
+    equipment.includes(ex.equipment) &&
+    !usedExercises.has(ex.id)
+  );
+
+  if (candidates.length === 0) return null;
+
+  const difficultyLevels = getDifficultyLevels(difficulty);
+  candidates = candidates.filter(ex => difficultyLevels.includes(ex.difficulty));
+
+  if (candidates.length === 0) return null;
+
+  // Sort: isolation first, then auxiliary over basic, then alphabetically
+  candidates.sort((a, b) => {
+    const aIsolation = COMPOUND_PATTERNS.includes(a.movement_pattern) ? 1 : 0;
+    const bIsolation = COMPOUND_PATTERNS.includes(b.movement_pattern) ? 1 : 0;
+    if (aIsolation !== bIsolation) return aIsolation - bIsolation;
+
+    const aAux = a.role === 'auxiliary' ? 0 : 1;
+    const bAux = b.role === 'auxiliary' ? 0 : 1;
+    if (aAux !== bAux) return aAux - bAux;
+
+    return a.name.localeCompare(b.name);
+  });
+
+  return candidates[0];
+}
+
+/**
  * Get allowed difficulty levels based on user selection.
  */
 function getDifficultyLevels(difficulty) {
@@ -215,7 +280,10 @@ function getGeneratorFormValues() {
   const difficultyRadio = document.querySelector('input[name="difficulty"]:checked');
   const difficulty = difficultyRadio ? difficultyRadio.value : 'beginner';
 
-  return { daysPerWeek, equipment, difficulty };
+  const goalRadio = document.querySelector('input[name="goal"]:checked');
+  const goal = goalRadio ? goalRadio.value : 'growth';
+
+  return { daysPerWeek, equipment, difficulty, goal };
 }
 
 // =============================================================================
@@ -237,7 +305,7 @@ export function initProgramsPage(callbacks) {
   // Wire up generate program button
   const generateBtn = document.getElementById('generate-program-btn');
   generateBtn.addEventListener('click', () => {
-    const { daysPerWeek, equipment, difficulty } = getGeneratorFormValues();
+    const { daysPerWeek, equipment, difficulty, goal } = getGeneratorFormValues();
 
     if (equipment.length === 0) {
       showToast('Select at least one equipment type');
@@ -245,10 +313,10 @@ export function initProgramsPage(callbacks) {
     }
 
     // Store settings for regeneration
-    generatorSettings = { daysPerWeek, equipment, difficulty };
+    generatorSettings = { daysPerWeek, equipment, difficulty, goal };
 
     try {
-      const program = generateProgram(daysPerWeek, equipment, difficulty);
+      const program = generateProgram(daysPerWeek, equipment, difficulty, goal);
       openEditProgramModalWithGenerated(program);
     } catch (err) {
       showToast(err.message);
@@ -422,18 +490,46 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
       return false;
     }
 
+    // Look up exercise details
+    const exerciseData = state.exercisesDB.find(
+      ex => ex.name.toLowerCase() === exerciseName.toLowerCase()
+    );
+
     const exerciseTag = document.createElement('div');
-    exerciseTag.className = 'exercise-tag tappable';
+    exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
     if (locked) exerciseTag.classList.add('locked');
 
     const lockButton = showLockButtons
       ? `<button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>`
       : '';
 
+    // Build detail rows if exercise data found
+    let detailsHtml = '';
+    if (exerciseData) {
+      const muscleGroup = exerciseData.muscle_group || '';
+      const primaryMuscles = (exerciseData.primary_muscles || []).join(', ');
+      const secondaryMuscles = (exerciseData.secondary_muscles || []).join(', ');
+      const movementPattern = exerciseData.movement_pattern || '';
+      const role = exerciseData.role || '';
+      const typeLabel = [movementPattern, role].filter(Boolean).join(', ');
+
+      detailsHtml = `
+        <div class="exercise-details">
+          <div class="exercise-detail"><span class="detail-label">Group:</span> ${muscleGroup}</div>
+          <div class="exercise-detail"><span class="detail-label">Primary:</span> ${primaryMuscles}</div>
+          ${secondaryMuscles ? `<div class="exercise-detail"><span class="detail-label">Secondary:</span> ${secondaryMuscles}</div>` : ''}
+          <div class="exercise-detail"><span class="detail-label">Type:</span> ${typeLabel}</div>
+        </div>
+      `;
+    }
+
     exerciseTag.innerHTML = `
-      ${lockButton}
-      <span class="exercise-name">${exerciseName}</span>
-      <button type="button" class="remove-exercise-btn">&times;</button>
+      <div class="exercise-tag-header">
+        ${lockButton}
+        <span class="exercise-name">${exerciseName}</span>
+        <button type="button" class="remove-exercise-btn">&times;</button>
+      </div>
+      ${detailsHtml}
     `;
 
     const nameSpan = exerciseTag.querySelector('.exercise-name');
@@ -504,14 +600,42 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
   const addExerciseBtn = card.querySelector('.add-exercise-btn');
 
   const addExerciseTag = (exerciseName, locked) => {
+    // Look up exercise details
+    const exerciseData = state.exercisesDB.find(
+      ex => ex.name.toLowerCase() === exerciseName.toLowerCase()
+    );
+
     const exerciseTag = document.createElement('div');
-    exerciseTag.className = 'exercise-tag tappable';
+    exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
     if (locked) exerciseTag.classList.add('locked');
 
+    // Build detail rows if exercise data found
+    let detailsHtml = '';
+    if (exerciseData) {
+      const muscleGroup = exerciseData.muscle_group || '';
+      const primaryMuscles = (exerciseData.primary_muscles || []).join(', ');
+      const secondaryMuscles = (exerciseData.secondary_muscles || []).join(', ');
+      const movementPattern = exerciseData.movement_pattern || '';
+      const role = exerciseData.role || '';
+      const typeLabel = [movementPattern, role].filter(Boolean).join(', ');
+
+      detailsHtml = `
+        <div class="exercise-details">
+          <div class="exercise-detail"><span class="detail-label">Group:</span> ${muscleGroup}</div>
+          <div class="exercise-detail"><span class="detail-label">Primary:</span> ${primaryMuscles}</div>
+          ${secondaryMuscles ? `<div class="exercise-detail"><span class="detail-label">Secondary:</span> ${secondaryMuscles}</div>` : ''}
+          <div class="exercise-detail"><span class="detail-label">Type:</span> ${typeLabel}</div>
+        </div>
+      `;
+    }
+
     exerciseTag.innerHTML = `
-      <button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>
-      <span class="exercise-name">${exerciseName}</span>
-      <button type="button" class="remove-exercise-btn">&times;</button>
+      <div class="exercise-tag-header">
+        <button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>
+        <span class="exercise-name">${exerciseName}</span>
+        <button type="button" class="remove-exercise-btn">&times;</button>
+      </div>
+      ${detailsHtml}
     `;
 
     const nameSpan = exerciseTag.querySelector('.exercise-name');
@@ -575,7 +699,7 @@ function collectLockedExercises(container) {
  * Regenerate program keeping locked exercises in place.
  */
 function regenerateWithLocks(settings, lockedDays) {
-  const { daysPerWeek, equipment, difficulty } = settings;
+  const { daysPerWeek, equipment, difficulty, goal = 'growth' } = settings;
   const template = PROGRAM_TEMPLATES[daysPerWeek];
   if (!template) {
     throw new Error(`Invalid days per week: ${daysPerWeek}`);
@@ -612,9 +736,17 @@ function regenerateWithLocks(settings, lockedDays) {
       (a, b) => MUSCLE_ORDER.indexOf(a) - MUSCLE_ORDER.indexOf(b)
     );
 
+    // Target based on goal and muscle count (see docs/volume-guidelines.md)
+    const muscleCount = dayTemplate.muscles.length;
+    const targetExercises = goal === 'maintenance'
+      ? Math.max(3, muscleCount)
+      : Math.min(6, muscleCount + 2);
+    const maxExercises = 6;
+
+    // First pass: select compound/basic exercises for each muscle group
     let positionIndex = 0;
     for (const muscle of sortedMuscles) {
-      if (dayExercises.length >= 5) break;
+      if (dayExercises.length >= maxExercises) break;
 
       // Check if this position has a locked exercise
       if (lockedPositions.has(positionIndex)) {
@@ -638,6 +770,29 @@ function regenerateWithLocks(settings, lockedDays) {
         usedExercises.add(exercise.id);
       }
       positionIndex++;
+    }
+
+    // Second pass: fill to target with auxiliary/isolation exercises
+    let muscleIndex = 0;
+    while (dayExercises.length < targetExercises && dayExercises.length < maxExercises) {
+      const muscle = sortedMuscles[muscleIndex % sortedMuscles.length];
+      const exercise = selectAuxiliaryExercise(
+        exercises,
+        muscle,
+        equipment,
+        difficulty,
+        usedExercises
+      );
+
+      if (exercise) {
+        dayExercises.push(exercise.name);
+        dayLocked.push(false);
+        usedExercises.add(exercise.id);
+      }
+      muscleIndex++;
+
+      // Prevent infinite loop if no more exercises available
+      if (muscleIndex >= sortedMuscles.length * 3) break;
     }
 
     return { name: dayTemplate.name, exercises: dayExercises, locked: dayLocked };

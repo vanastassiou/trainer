@@ -20,9 +20,15 @@ export function validateProgram(name, days) {
     return { isValid: false, error: 'Please add at least one day' };
   }
 
-  const hasEmptyDay = days.some(day => !day.exercises || day.exercises.length === 0);
-  if (hasEmptyDay) {
-    return { isValid: false, error: 'Each day must have at least one exercise' };
+  // Validate exercise count per day (3-6 range based on volume research)
+  const hasTooFew = days.some(day => !day.exercises || day.exercises.length < 3);
+  const hasTooMany = days.some(day => day.exercises.length > 6);
+
+  if (hasTooFew) {
+    return { isValid: false, error: 'Each day must have 3-6 exercises' };
+  }
+  if (hasTooMany) {
+    return { isValid: false, error: 'Each day must have 3-6 exercises' };
   }
 
   return { isValid: true, error: null };
@@ -66,7 +72,7 @@ export function hasUnsavedWorkoutData(container) {
   const cards = container.querySelectorAll('.exercise-card');
 
   for (const card of cards) {
-    const inputs = card.querySelectorAll('.reps-input, .weight-input, .rpe-input');
+    const inputs = card.querySelectorAll('.reps-input, .weight-input, .rir-input');
     for (const input of inputs) {
       if (input.value.trim() !== '') {
         return true;
@@ -93,7 +99,7 @@ export function collectWorkoutData(container) {
     card.querySelectorAll('.set-row:not(.set-header)').forEach(row => {
       const reps = row.querySelector('.reps-input')?.value;
       const weightStr = row.querySelector('.weight-input')?.value;
-      const rpe = row.querySelector('.rpe-input')?.value;
+      const rir = row.querySelector('.rir-input')?.value;
 
       let weight = weightStr !== '' ? parseFloat(weightStr) : null;
 
@@ -105,7 +111,7 @@ export function collectWorkoutData(container) {
       sets.push({
         reps: reps !== '' ? parseInt(reps, 10) : null,
         weight,
-        rpe: rpe !== '' ? parseFloat(rpe) : null
+        rir: rir !== '' ? parseInt(rir, 10) : null
       });
     });
 

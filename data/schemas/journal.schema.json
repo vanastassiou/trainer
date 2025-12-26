@@ -137,11 +137,11 @@
                       "description": "Weight used in kg",
                       "minimum": 0
                     },
-                    "rpe": {
-                      "type": ["number", "null"],
-                      "description": "Rate of Perceived Exertion (1-10)",
-                      "minimum": 1,
-                      "maximum": 10
+                    "rir": {
+                      "type": ["integer", "null"],
+                      "description": "Reps in Reserve (0-5)",
+                      "minimum": 0,
+                      "maximum": 5
                     }
                   }
                 }

@@ -109,6 +109,56 @@ export async function getWorkoutVolumeData(days = 30) {
 }
 
 /**
+ * Get unique exercise names from workouts in a time period
+ * @param {number} days - Number of days to look back
+ * @returns {Promise<Array>} Sorted array of exercise names
+ */
+export async function getExercisesInPeriod(days = 30) {
+  const endDate = getTodayDate();
+  const startDate = subtractDays(endDate, days);
+
+  const allJournals = await getRecentJournals(true);
+  const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+
+  const exerciseNames = new Set();
+  for (const journal of journals) {
+    if (journal.workout?.exercises) {
+      for (const ex of journal.workout.exercises) {
+        if (ex.name) exerciseNames.add(ex.name);
+      }
+    }
+  }
+
+  return [...exerciseNames].sort((a, b) => a.localeCompare(b));
+}
+
+/**
+ * Get volume data for a specific exercise over time
+ * @param {string} exerciseName - Name of the exercise
+ * @param {number} days - Number of days to look back
+ * @returns {Promise<Array>} Array of {date, value} objects
+ */
+export async function getExerciseVolumeData(exerciseName, days = 30) {
+  const endDate = getTodayDate();
+  const startDate = subtractDays(endDate, days);
+
+  const allJournals = await getRecentJournals(true);
+  const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+
+  return journals
+    .filter(j => j.workout?.exercises?.some(ex => ex.name === exerciseName))
+    .map(j => {
+      const exercise = j.workout.exercises.find(ex => ex.name === exerciseName);
+      const volume = exercise.sets.reduce((total, set) => {
+        return total + (set.reps || 0) * (set.weight || 0);
+      }, 0);
+      return { date: j.date, value: volume };
+    })
+    .filter(d => d.value > 0)
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+/**
  * Calculate total workout volume (reps x weight)
  * @param {Object} workout - Workout object with exercises
  * @returns {number} Total volume

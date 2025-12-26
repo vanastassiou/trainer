@@ -6,7 +6,7 @@
 import { state } from './state.js';
 import { getTodayDate } from './utils.js';
 import { createTabController, createModalController } from './ui.js';
-import { getChartData, getWorkoutVolumeData, renderLineChart, renderBarChart, getChartSummary, formatSummaryHTML } from './charts.js';
+import { getChartData, getWorkoutVolumeData, getExercisesInPeriod, getExerciseVolumeData, renderLineChart, renderBarChart, getChartSummary, formatSummaryHTML } from './charts.js';
 
 // Domain modules
 import {
@@ -36,8 +36,7 @@ import {
   initExercisePicker,
   initExerciseInfoModal,
   addExerciseCard,
-  loadTemplate,
-  renderWorkoutVolumeGuidance
+  loadTemplate
 } from './workout.js';
 
 import {
@@ -96,9 +95,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     initProfile()
   ]);
   initGlossaryModal();
-  renderWorkoutVolumeGuidance();
 
   await loadDataForDate(getTodayDate());
+  await populateWorkoutsSelect();
   await refreshAllCharts();
 });
 
@@ -122,7 +121,7 @@ function registerServiceWorker() {
 // =============================================================================
 
 function initTabs() {
-  // Main tabs: metrics, exercise, profile
+  // Main tabs: metrics, workouts, profile
   createTabController('.tabs > .tab', 'main > section.page', {
     storageKey: 'activeTab',
     tabAttr: 'data-tab'
@@ -132,12 +131,6 @@ function initTabs() {
   createTabController(
     '#metrics > .sub-tabs > .sub-tab',
     '#metrics > .sub-page',
-    { tabAttr: 'data-subtab' }
-  );
-
-  createTabController(
-    '#exercise > .sub-tabs > .sub-tab',
-    '#exercise > .sub-page',
     { tabAttr: 'data-subtab' }
   );
 }
@@ -375,6 +368,7 @@ function updateDateHeaders(date) {
 function initCharts() {
   const dailySelect = document.getElementById('daily-metric-select');
   const measurementsSelect = document.getElementById('measurements-metric-select');
+  const workoutsSelect = document.getElementById('workouts-metric-select');
 
   if (dailySelect) {
     dailySelect.addEventListener('change', () => updateDailyChart());
@@ -382,6 +376,26 @@ function initCharts() {
 
   if (measurementsSelect) {
     measurementsSelect.addEventListener('change', () => updateMeasurementsChart());
+  }
+
+  if (workoutsSelect) {
+    workoutsSelect.addEventListener('change', () => updateWorkoutsChart());
+  }
+}
+
+async function populateWorkoutsSelect() {
+  const select = document.getElementById('workouts-metric-select');
+  if (!select) return;
+
+  const exercises = await getExercisesInPeriod(30);
+
+  // Keep volume as first option, add exercises
+  select.innerHTML = '<option value="volume">Volume</option>';
+  for (const name of exercises) {
+    const option = document.createElement('option');
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
   }
 }
 
@@ -425,8 +439,16 @@ async function updateWorkoutsChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
+  const select = document.getElementById('workouts-metric-select');
+  const metric = select?.value || 'volume';
 
-  const data = await getWorkoutVolumeData(30);
+  let data;
+  if (metric === 'volume') {
+    data = await getWorkoutVolumeData(30);
+  } else {
+    data = await getExerciseVolumeData(metric, 30);
+  }
+
   renderBarChart(canvas, data);
 
   const summary = getChartSummary(data);

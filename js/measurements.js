@@ -238,7 +238,7 @@ export function generateDailyFormRows(containerId) {
   let html = '';
   for (const [groupId, fields] of Object.entries(groups)) {
     const label = DAILY_GROUP_LABELS[groupId] || groupId;
-    html += `<div class="field-group-label">${label}</div>`;
+    html += `<div class="label-muted field-group-label">${label}</div>`;
     html += `<div class="field-group">`;
     html += fields.map(field => {
       const unitDisplay = field.unit ? ` (${field.unit})` : '';

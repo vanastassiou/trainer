@@ -147,6 +147,14 @@ main {
   color: var(--color-text-muted);
 }
 
+/* Muted uppercase label utility */
+.label-muted {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* =============================================================================
    CARDS (shared)
    ============================================================================= */
@@ -430,11 +438,7 @@ input::placeholder {
 }
 
 .field-group-label {
-  font-size: 12px;
   font-weight: 500;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   margin-top: var(--spacing-sm);
 }
 
@@ -625,6 +629,12 @@ input::placeholder {
 }
 
 #exercises-container:empty {
+  display: none;
+}
+
+/* Hide weight column for bodyweight exercises */
+.exercise-card.bodyweight .weight-input,
+.exercise-card.bodyweight .set-header .col-label:nth-child(3) {
   display: none;
 }
 
@@ -863,7 +873,7 @@ input::placeholder {
 
 .program-day-exercises {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 6px;
   margin-bottom: 10px;
   min-height: 22px;
@@ -906,6 +916,44 @@ input::placeholder {
 
 .remove-exercise-btn:hover {
   opacity: 1;
+}
+
+/* Detailed exercise tags (generate program view) */
+.exercise-tag--detailed {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.exercise-tag--detailed .exercise-tag-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exercise-tag--detailed .exercise-name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.exercise-tag--detailed .exercise-details {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exercise-tag--detailed .exercise-detail {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.exercise-tag--detailed .detail-label {
+  opacity: 0.7;
 }
 
 .program-day-card .add-exercise-btn {
@@ -997,7 +1045,7 @@ input::placeholder {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
 }
 
@@ -1012,21 +1060,24 @@ input::placeholder {
 .modal-content {
   position: relative;
   background: var(--color-surface);
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: var(--radius);
   width: 100%;
   max-width: 500px;
+  margin: 16px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.2s ease-out;
+  animation: modalIn 0.2s ease-out;
 }
 
-@keyframes slideUp {
+@keyframes modalIn {
   from {
-    transform: translateY(100%);
+    opacity: 0;
+    transform: scale(0.95);
   }
   to {
-    transform: translateY(0);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -1251,6 +1302,26 @@ input::placeholder {
   padding: 16px;
   overflow-y: auto;
   max-height: calc(85vh - 60px);
+}
+
+.exercise-info-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.exercise-meta-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
 }
 
 .exercise-info-section {
@@ -2220,13 +2291,6 @@ input::placeholder {
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-md);
-}
-
-.chart-label {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .chart-metric-label {
