@@ -80,12 +80,12 @@ const DAILY_GROUP_LABELS = {
 
 export const MEASUREMENT_FIELD_CONFIG = [
   { id: 'bodyFat', label: 'Body fat', type: 'full', inputmode: 'decimal', step: '0.1', max: '100' },
-  { id: 'neck', label: 'Neck', type: 'full', inputmode: 'decimal', step: '0.1' },
-  { id: 'chest', label: 'Chest', type: 'full', inputmode: 'decimal', step: '0.1' },
+  { id: 'neck', label: 'Neck', pair: 'torso-upper', inputmode: 'decimal', step: '0.1' },
+  { id: 'chest', label: 'Chest', pair: 'torso-upper', inputmode: 'decimal', step: '0.1' },
   { id: 'leftBiceps', label: 'L Biceps', pair: 'biceps', inputmode: 'decimal', step: '0.1' },
   { id: 'rightBiceps', label: 'R Biceps', pair: 'biceps', inputmode: 'decimal', step: '0.1' },
-  { id: 'waist', label: 'Waist', type: 'full', inputmode: 'decimal', step: '0.1' },
-  { id: 'hips', label: 'Hips', type: 'full', inputmode: 'decimal', step: '0.1' },
+  { id: 'hips', label: 'Hips', pair: 'torso-lower', inputmode: 'decimal', step: '0.1' },
+  { id: 'waist', label: 'Waist', pair: 'torso-lower', inputmode: 'decimal', step: '0.1' },
   { id: 'leftQuadriceps', label: 'L Quad', pair: 'quads', inputmode: 'decimal', step: '0.1' },
   { id: 'rightQuadriceps', label: 'R Quad', pair: 'quads', inputmode: 'decimal', step: '0.1' },
   { id: 'leftCalf', label: 'L Calf', pair: 'calves', inputmode: 'decimal', step: '0.1' },
@@ -289,10 +289,11 @@ export function generateMeasurementFormRows(containerId) {
       `;
     } else {
       html += `
-        <div class="data-row row full">
+        <div class="data-row row">
           <label for="${field.id}">${field.label}${unitDisplay}</label>
           <input ${createInputAttrs(field)}>
         </div>
+        <div class="grid-spacer"></div>
       `;
     }
   }

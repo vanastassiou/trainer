@@ -442,19 +442,40 @@ input::placeholder {
   margin-top: 0;
 }
 
-/* Measurement row (uses .data-row base) */
-.measurement-row label,
-.data-row.measurement-row label {
-  width: 60px;
+.measurements-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+#measurement-fields-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm) 12px;
+}
+
+#measurement-fields-container .data-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+#measurement-fields-container .data-row label {
+  width: auto;
+  text-align: left;
+}
+
+#measurement-fields-container .data-row input {
+  width: 70px;
+}
+
+.grid-spacer {
+  display: block;
 }
 
 .measurement-pair {
-  display: flex;
-  gap: 12px;
-}
-
-.measurement-pair .measurement-row {
-  flex: 1;
+  display: contents;
 }
 
 .measurements-form .btn {
