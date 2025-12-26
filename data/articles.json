@@ -3,6 +3,7 @@
     {
       "id": "cureton-1988-hypertrophy-sex",
       "title": "Muscle hypertrophy in men and women",
+      "author": "Cureton et al.",
       "authors": ["Cureton KJ", "Collins MA", "Hill DW", "McElhannon FM Jr"],
       "journal": "Medicine & Science in Sports & Exercise",
       "year": 1988,
@@ -33,7 +34,8 @@
     },
     {
       "id": "roberts-2020-sex-differences",
-      "title": "Sex Differences in Resistance Training: A Systematic Review and Meta-Analysis",
+      "title": "Sex differences in resistance training: a systematic review and meta-analysis",
+      "author": "Roberts et al.",
       "authors": ["Roberts BM", "Nuckols G", "Krieger JW"],
       "journal": "Journal of Strength and Conditioning Research",
       "year": 2020,
@@ -64,7 +66,8 @@
     },
     {
       "id": "mcnulty-2020-menstrual-cycle",
-      "title": "The Effects of Menstrual Cycle Phase on Exercise Performance in Eumenorrheic Women: A Systematic Review and Meta-Analysis",
+      "title": "The effects of menstrual cycle phase on exercise performance in eumenorrheic women: a systematic review and meta-analysis",
+      "author": "McNulty et al.",
       "authors": ["McNulty KL", "Elliott-Sale KJ", "Dolan E", "Swinton PA", "Ansdell P", "Goodall S", "Thomas K", "Hicks KM"],
       "journal": "Sports Medicine",
       "year": 2020,
@@ -96,6 +99,7 @@
     {
       "id": "craig-1989-hormonal-responses",
       "title": "Effects of progressive resistance training on growth hormone and testosterone levels in young and elderly subjects",
+      "author": "Craig et al.",
       "authors": ["Craig BW", "Brown R", "Everhart J"],
       "journal": "Mechanisms of Ageing and Development",
       "year": 1989,
@@ -127,6 +131,7 @@
     {
       "id": "stone-1990-muscle-conditioning",
       "title": "Muscle conditioning and muscle injuries",
+      "author": "Stone",
       "authors": ["Stone MH"],
       "journal": "Medicine & Science in Sports & Exercise",
       "year": 1990,
@@ -158,6 +163,7 @@
     {
       "id": "zemper-1990-weightroom-injuries",
       "title": "Four-year study of weightroom injuries in a national sample of college football teams",
+      "author": "Zemper",
       "authors": ["Zemper ED"],
       "journal": "National Strength and Conditioning Association Journal",
       "year": 1990,
@@ -188,6 +194,7 @@
     {
       "id": "mccartney-1998-resistance-heart-disease",
       "title": "Role of resistance training in heart disease",
+      "author": "McCartney",
       "authors": ["McCartney N"],
       "journal": "Medicine & Science in Sports & Exercise",
       "year": 1998,
@@ -220,6 +227,7 @@
     {
       "id": "faigenbaum-2009-youth-resistance",
       "title": "Youth resistance training: Updated position statement paper from the National Strength and Conditioning Association",
+      "author": "Faigenbaum et al.",
       "authors": ["Faigenbaum AD", "Kraemer WJ", "Blimkie CJR", "Jeffreys I", "Micheli LJ", "Nitka M", "Rowland TW"],
       "journal": "Journal of Strength and Conditioning Research",
       "year": 2009,
@@ -252,6 +260,7 @@
     {
       "id": "kerr-2010-weight-training-injuries",
       "title": "Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007",
+      "author": "Kerr et al.",
       "authors": ["Kerr ZY", "Collins CL", "Comstock RD"],
       "journal": "American Journal of Sports Medicine",
       "year": 2010,
@@ -284,6 +293,7 @@
     {
       "id": "kolber-2010-shoulder-injuries",
       "title": "Shoulder injuries attributed to resistance training: a brief review",
+      "author": "Kolber et al.",
       "authors": ["Kolber MJ", "Beekhuizen KS", "Cheng MS", "Hellman MA"],
       "journal": "Journal of Strength and Conditioning Research",
       "year": 2010,
@@ -316,6 +326,7 @@
     {
       "id": "keogh-2017-injury-epidemiology",
       "title": "The epidemiology of injuries across the weight-training sports",
+      "author": "Keogh and Winwood",
       "authors": ["Keogh JWL", "Winwood PW"],
       "journal": "Sports Medicine",
       "year": 2017,
@@ -347,6 +358,7 @@
     {
       "id": "schoenfeld-2010-squat-biomechanics",
       "title": "Squatting kinematics and kinetics and their application to exercise performance",
+      "author": "Schoenfeld",
       "authors": ["Schoenfeld BJ"],
       "journal": "Journal of Strength and Conditioning Research",
       "year": 2010,
@@ -375,6 +387,7 @@
     {
       "id": "hass-2000-single-vs-multiple-sets",
       "title": "Single versus multiple sets in long-term recreational weightlifters",
+      "author": "Hass et al.",
       "authors": ["Hass CJ", "Garzarella L", "De Hoyos D", "Pollock ML"],
       "journal": "Medicine & Science in Sports & Exercise",
       "year": 2000,
@@ -405,6 +418,7 @@
     {
       "id": "malina-2006-youth-weight-training",
       "title": "Weight training in youth-growth, maturation, and safety: an evidence-based review",
+      "author": "Malina",
       "authors": ["Malina RM"],
       "journal": "Clinical Journal of Sport Medicine",
       "year": 2006,
@@ -436,6 +450,7 @@
     {
       "id": "ratel-2011-youth-high-intensity",
       "title": "High-intensity and resistance training and elite young athletes",
+      "author": "Ratel",
       "authors": ["Ratel S"],
       "journal": "Medicine and Sport Science",
       "year": 2011,
@@ -466,7 +481,8 @@
     },
     {
       "id": "risser-1990-injury-guidelines",
-      "title": "Musculoskeletal injuries caused by weight training: Guidelines for prevention",
+      "title": "Musculoskeletal injuries caused by weight training: guidelines for prevention",
+      "author": "Risser",
       "authors": ["Risser WL"],
       "journal": "Clinical Pediatrics",
       "year": 1990,
@@ -497,6 +513,7 @@
     {
       "id": "risser-1990-adolescent-injuries",
       "title": "Weight-training injuries in adolescents",
+      "author": "Risser et al.",
       "authors": ["Risser WL", "Risser JM", "Preston D"],
       "journal": "American Journal of Diseases of Children",
       "year": 1990,
@@ -527,6 +544,7 @@
     {
       "id": "faigenbaum-2004-youth-injury-prevention",
       "title": "Can resistance training reduce injuries in youth sports?",
+      "author": "Faigenbaum and Schram",
       "authors": ["Faigenbaum AD", "Schram J"],
       "journal": "Strength and Conditioning Journal",
       "year": 2004,
@@ -556,6 +574,7 @@
     {
       "id": "butragueno-2014-strength-training-injuries",
       "title": "Injuries in strength training: review and practical application",
+      "author": "Butragueño et al.",
       "authors": ["Butragueño J", "Benito PJ", "Maffulli N"],
       "journal": "European Journal of Human Movement",
       "year": 2014,
@@ -580,6 +599,418 @@
         "Lower back, shoulder, and knee are most frequently injured areas",
         "Strength training is generally safe across modalities",
         "Most weightlifting injuries result in less than 1 day of missed training"
+      ]
+    },
+    {
+      "id": "statuta-2024-lea-reds",
+      "title": "Low energy availability and relative energy deficiency in sport: a systematic review and meta-analysis",
+      "author": "Statuta et al.",
+      "authors": ["Statuta SM", "Asif IM", "Drezner JA"],
+      "journal": "Sports Medicine",
+      "year": 2024,
+      "pmid": "39485653",
+      "doi": "10.1007/s40279-024-02130-0",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39485653/",
+      "category": "nutrition",
+      "tags": ["energy-availability", "RED-S", "performance"],
+      "question": "How prevalent is low energy availability in athletes and what are its effects?",
+      "methodology": {
+        "studyType": "systematic review with meta-analysis",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adolescent", "young-adult", "adult"],
+          "trainingStatus": ["trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 6118,
+        "duration": null,
+        "limitations": ["heterogeneity in LEA definitions", "cross-sectional designs"]
+      },
+      "takeaways": [
+        "44.7% of athletes studied had low energy availability",
+        "LEA impairs endurance performance, coordination, and concentration",
+        "Athletes with LEA have higher risk of bone stress injuries",
+        "Both male (49.4%) and female (44.2%) athletes affected"
+      ]
+    },
+    {
+      "id": "morton-2018-protein-rct",
+      "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+      "author": "Morton et al.",
+      "authors": ["Morton RW", "Murphy KT", "McKellar SR", "Schoenfeld BJ", "Henselmans M", "Helms E", "Aragon AA", "Devries MC", "Banfield L", "Krieger JW", "Phillips SM"],
+      "journal": "British Journal of Sports Medicine",
+      "year": 2018,
+      "pmid": "28698222",
+      "doi": "10.1136/bjsports-2017-097608",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/",
+      "category": "nutrition",
+      "tags": ["protein", "hypertrophy", "strength", "supplementation"],
+      "question": "Does protein supplementation enhance resistance training adaptations?",
+      "methodology": {
+        "studyType": "systematic review with meta-analysis and meta-regression",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult", "older-adult"],
+          "trainingStatus": ["untrained", "trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 1863,
+        "duration": "6+ weeks",
+        "limitations": ["heterogeneity in protein sources and timing"]
+      },
+      "takeaways": [
+        "Protein supplementation increases 1RM strength by 2.49 kg",
+        "Fat-free mass gains augmented by 0.30 kg with protein",
+        "Benefits plateau at total intake of 1.62 g/kg/day",
+        "Increasing age reduces efficacy; training experience increases it"
+      ]
+    },
+    {
+      "id": "veronese-2018-fibre-umbrella",
+      "title": "Dietary fibre and health outcomes: an umbrella review of systematic reviews and meta-analyses",
+      "author": "Veronese et al.",
+      "authors": ["Veronese N", "Solmi M", "Caruso MG", "Giannelli G", "Osella AR", "Evangelou E", "Maggi S", "Fontana L", "Stubbs B", "Tzoulaki I"],
+      "journal": "American Journal of Clinical Nutrition",
+      "year": 2018,
+      "pmid": "29566200",
+      "doi": "10.1093/ajcn/nqx082",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29566200/",
+      "category": "nutrition",
+      "tags": ["fibre", "mortality", "cardiovascular", "cancer"],
+      "question": "What health outcomes are convincingly associated with dietary fibre intake?",
+      "methodology": {
+        "studyType": "umbrella review of meta-analyses",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adult", "older-adult"],
+          "trainingStatus": null,
+          "healthStatus": ["healthy", "clinical"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["observational data", "confounding factors"]
+      },
+      "takeaways": [
+        "Convincing evidence for reduced pancreatic cancer and CVD mortality",
+        "Highly suggestive evidence for reduced all-cause mortality and coronary disease",
+        "18 meta-analyses covering 298 prospective studies reviewed",
+        "Supports recommendations for higher fibre intake"
+      ]
+    },
+    {
+      "id": "mccarthy-2017-rehydration",
+      "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis",
+      "author": "McCartney et al.",
+      "authors": ["McCartney D", "Desbrow B", "Irwin C"],
+      "journal": "Sports Medicine - Open",
+      "year": 2017,
+      "pmid": "28275997",
+      "doi": "10.1186/s40798-017-0079-y",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28275997/",
+      "category": "nutrition",
+      "tags": ["hydration", "dehydration", "performance", "cognition"],
+      "question": "Does rehydration after fluid loss improve subsequent performance?",
+      "methodology": {
+        "studyType": "systematic review with meta-analysis",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult"],
+          "trainingStatus": ["trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["heterogeneity in dehydration protocols", "varied performance measures"]
+      },
+      "takeaways": [
+        "Fluid intake benefits strongest for continuous exercise tasks",
+        "Greater improvement at elevated environmental temperatures",
+        "Benefits increase with longer exercise duration",
+        "Dehydration of 2%+ body mass impairs endurance performance"
+      ]
+    },
+    {
+      "id": "paluch-2022-steps-mortality",
+      "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+      "author": "Paluch et al.",
+      "authors": ["Paluch AE", "Bajpai S", "Bassett DR", "Carnethon MR", "Ekelund U", "Evenson KR", "Galuska DA", "Jefferis BJ", "Kraus WE", "Lee IM", "Matthews CE", "Omura JD", "Patel AV", "Piber D", "Rees-Punia E", "Dallmeier D", "Klenk J", "Whincup PH", "Dooley EE", "Pettee Gabriel K", "Palta P", "Pompeii LA", "Chernofsky A", "Larson MG", "Vasan RS", "Spartano NL", "Ballin M", "Nordström P", "Nordström A", "Anderssen SA", "Hansen BH", "Cochrane JA", "Dwyer T", "Wang J", "Ferrucci L", "Liu F", "Schrack JA", "Urbanek JK", "Saint-Maurice PF", "Silva SGD", "Nessa A", "Freedson P", "de Lacey B", "Turakhia M"],
+      "journal": "Lancet Public Health",
+      "year": 2022,
+      "pmid": "35247352",
+      "doi": "10.1016/S2468-2667(21)00302-9",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35247352/",
+      "category": "recovery",
+      "tags": ["steps", "physical-activity", "mortality", "longevity"],
+      "question": "How many daily steps are associated with reduced mortality risk?",
+      "methodology": {
+        "studyType": "meta-analysis of prospective cohorts",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adult", "older-adult"],
+          "trainingStatus": null,
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 47471,
+        "duration": "7.1 years median follow-up",
+        "limitations": ["observational design", "accelerometer heterogeneity"]
+      },
+      "takeaways": [
+        "More steps progressively lower mortality risk up to age-specific thresholds",
+        "Adults 60+: benefits plateau at 6,000-8,000 steps/day",
+        "Adults under 60: benefits continue to 8,000-10,000 steps/day",
+        "Highest quartile (10,900 steps) had 40-53% lower mortality vs lowest"
+      ]
+    },
+    {
+      "id": "cunha-2023-sleep-interventions",
+      "title": "The impact of sleep interventions on athletic performance: a systematic review",
+      "author": "Cunha et al.",
+      "authors": ["Cunha LA", "Costa JA", "Marques EA", "Brito J", "Lastella M", "Figueiredo P"],
+      "journal": "Sports Medicine - Open",
+      "year": 2023,
+      "pmid": "37462808",
+      "doi": "10.1186/s40798-023-00599-z",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37462808/",
+      "category": "recovery",
+      "tags": ["sleep", "performance", "recovery", "sleep-extension"],
+      "question": "Do sleep interventions improve athletic performance?",
+      "methodology": {
+        "studyType": "systematic review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["adolescent", "young-adult", "adult"],
+          "trainingStatus": ["trained", "elite"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["low quality evidence", "risk of bias in included studies"]
+      },
+      "takeaways": [
+        "Sleep extension and napping most promising interventions",
+        "All sleep extension studies showed positive performance impact",
+        "Improved reaction time, sprint performance, and sport-specific skills",
+        "Sleep extension to 10 hours improved basketball shooting accuracy 9%"
+      ]
+    },
+    {
+      "id": "sikorski-2013-prs-validation",
+      "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise",
+      "author": "Sikorski et al.",
+      "authors": ["Sikorski EM", "Wilson JM", "Lowery RP", "Joy JM", "Laurent CM", "Wilson SM", "Heber D", "Naimo MA", "Averbuch B", "Gilchrist P"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2013,
+      "pmid": "23287827",
+      "doi": "10.1519/JSC.0b013e31827dcf41",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23287827/",
+      "category": "recovery",
+      "tags": ["recovery", "perceived-recovery", "muscle-damage", "monitoring"],
+      "question": "Does perceived recovery status correlate with physiological markers of recovery?",
+      "methodology": {
+        "studyType": "intervention study",
+        "population": {
+          "sex": ["male"],
+          "ageGroup": ["young-adult"],
+          "trainingStatus": ["trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 10,
+        "duration": "72 hours",
+        "limitations": ["small sample size", "male-only", "single exercise protocol"]
+      },
+      "takeaways": [
+        "PRS declined from 8.6 to 4.2 following high-volume resistance exercise",
+        "Inverse relationship between creatine kinase and PRS (r = 0.58)",
+        "PRS reflects physiological muscle damage markers",
+        "Can be used as practical tool for monitoring recovery status"
+      ]
+    },
+    {
+      "id": "bickel-2011-maintenance-volume",
+      "title": "Exercise dosing to retain resistance training adaptations in young and older adults",
+      "author": "Bickel et al.",
+      "authors": ["Bickel CS", "Cross JM", "Bamman MM"],
+      "journal": "Medicine & Science in Sports & Exercise",
+      "year": 2011,
+      "pmid": "21131862",
+      "doi": "10.1249/MSS.0b013e3181fb3d14",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21131862/",
+      "category": "maintenance",
+      "tags": ["volume", "aging", "detraining", "muscle-preservation"],
+      "question": "What is the minimum training dose required to maintain resistance training adaptations?",
+      "methodology": {
+        "studyType": "randomized controlled trial",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "older-adult"],
+          "trainingStatus": ["untrained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 70,
+        "duration": "48 weeks (16 weeks training + 32 weeks maintenance)",
+        "limitations": ["untrained subjects only", "leg training only"]
+      },
+      "takeaways": [
+        "Young adults maintained muscle size with 1/9 of original training volume (3 sets/week)",
+        "Older adults (60-75) required 1/3 of original volume to maintain gains",
+        "Strength was largely preserved even with 1/9 volume in both age groups",
+        "Intensity (load) is more critical than volume for maintaining adaptations"
+      ]
+    },
+    {
+      "id": "spiering-2021-minimal-dose",
+      "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time",
+      "author": "Spiering et al.",
+      "authors": ["Spiering BA", "Mujika I", "Sharp MA", "Foulis SA"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2021,
+      "pmid": "33629972",
+      "doi": "10.1519/JSC.0000000000003964",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33629972/",
+      "category": "maintenance",
+      "tags": ["volume", "frequency", "minimal-dose", "aging"],
+      "question": "What is the minimal exercise dose needed to preserve strength and muscle over time?",
+      "methodology": {
+        "studyType": "narrative review",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult", "older-adult"],
+          "trainingStatus": null,
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["narrative review without systematic methodology"]
+      },
+      "takeaways": [
+        "Young adults can maintain strength for 32 weeks with 1 session/week and 1 set/exercise",
+        "Older adults need 2 sessions/week and 2-3 sets/exercise to maintain muscle size",
+        "Exercise intensity (relative load) is the key variable for maintenance",
+        "Large reductions in frequency and volume are tolerable if intensity is preserved"
+      ]
+    },
+    {
+      "id": "schoenfeld-2017-volume-dose-response",
+      "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis",
+      "author": "Schoenfeld et al.",
+      "authors": ["Schoenfeld BJ", "Ogborn D", "Krieger JW"],
+      "journal": "Journal of Sports Sciences",
+      "year": 2017,
+      "pmid": "27433992",
+      "doi": "10.1080/02640414.2016.1210197",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27433992/",
+      "category": "hypertrophy",
+      "tags": ["volume", "dose-response", "sets", "meta-analysis"],
+      "question": "What is the dose-response relationship between weekly training volume and muscle hypertrophy?",
+      "methodology": {
+        "studyType": "systematic review with meta-analysis",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult"],
+          "trainingStatus": ["untrained", "trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["heterogeneity in training protocols", "limited studies at high volumes"]
+      },
+      "takeaways": [
+        "Graded dose-response: more weekly sets produce greater hypertrophy gains",
+        "10+ sets per muscle per week significantly outperforms <5 sets",
+        "Each additional set increases effect size by 0.023",
+        "Higher volumes benefit both trained and untrained individuals"
+      ]
+    },
+    {
+      "id": "pelland-2025-volume-frequency",
+      "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains",
+      "author": "Pelland et al.",
+      "authors": ["Pelland JC", "Robinson ZP", "Remmert JF", "Hinson SK", "Zourdos MC"],
+      "journal": "Sports Medicine",
+      "year": 2025,
+      "pmid": "41343037",
+      "doi": "10.1007/s40279-025-02344-w",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41343037/",
+      "category": "hypertrophy",
+      "tags": ["volume", "frequency", "dose-response", "meta-analysis"],
+      "question": "How do weekly volume and frequency affect hypertrophy and strength gains?",
+      "methodology": {
+        "studyType": "systematic review with meta-regression",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult"],
+          "trainingStatus": ["untrained", "trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["heterogeneity in set counting methods", "indirect volume estimation"]
+      },
+      "takeaways": [
+        "Volume shows diminishing returns for both hypertrophy and strength",
+        "Diminishing returns are more pronounced for strength than hypertrophy",
+        "Frequency has weak effects on hypertrophy but clear benefits for strength",
+        "Direct vs indirect set quantification affects dose-response estimates"
+      ]
+    },
+    {
+      "id": "remmert-2025-per-session-volume",
+      "title": "Is there too much of a good thing? Meta-regressions of the effect of per-session volume on hypertrophy and strength",
+      "author": "Remmert et al.",
+      "authors": ["Remmert JF", "Pelland JC", "Robinson ZP", "Hinson SK", "Zourdos MC"],
+      "journal": "SportRxiv",
+      "year": 2025,
+      "url": "https://sportrxiv.org/index.php/server/preprint/view/537",
+      "category": "hypertrophy",
+      "tags": ["volume", "per-session", "dose-response", "meta-analysis"],
+      "question": "What is the optimal per-session training volume for hypertrophy and strength?",
+      "methodology": {
+        "studyType": "systematic review with meta-regression",
+        "population": {
+          "sex": ["male", "female"],
+          "ageGroup": ["young-adult", "adult"],
+          "trainingStatus": ["untrained", "trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": null,
+        "duration": null,
+        "limitations": ["preprint awaiting peer review", "indirect volume estimation"]
+      },
+      "takeaways": [
+        "Point of diminishing returns at ~11 sets per session for hypertrophy",
+        "Point of diminishing returns at ~2 direct sets per session for strength",
+        "Distributing volume across 2-3 weekly sessions may be more efficient",
+        "More than 15 sets per muscle per session provides minimal additional benefit"
+      ]
+    },
+    {
+      "id": "ostrowski-1997-volume-maintenance",
+      "title": "The effect of weight training volume on hormonal output and muscular size and function",
+      "author": "Ostrowski et al.",
+      "authors": ["Ostrowski KJ", "Wilson GJ", "Weatherby R", "Murphy PW", "Lyttle AD"],
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 1997,
+      "url": "https://journals.lww.com/nsca-jscr/abstract/1997/08000/the_effect_of_weight_training_volume_on_hormonal.6.aspx",
+      "category": "maintenance",
+      "tags": ["volume", "trained-individuals", "hormones"],
+      "question": "How does training volume affect muscular adaptations in trained individuals?",
+      "methodology": {
+        "studyType": "randomized controlled trial",
+        "population": {
+          "sex": ["male"],
+          "ageGroup": ["young-adult"],
+          "trainingStatus": ["trained"],
+          "healthStatus": ["healthy"]
+        },
+        "sampleSize": 35,
+        "duration": "10 weeks",
+        "limitations": ["male subjects only", "not indexed in PubMed"]
+      },
+      "takeaways": [
+        "Trained individuals maintained muscle with 3 sets per muscle group per week",
+        "Intensity and frequency must be preserved when reducing volume",
+        "No significant difference in hormonal response between volume conditions",
+        "Low volume sufficient for maintenance but higher volume may optimize growth"
       ]
     }
   ]

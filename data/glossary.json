@@ -7,14 +7,16 @@
       "programming": "Workout structure and planning terms",
       "technique": "Advanced training methods",
       "kinesiology": "Biomechanics and movement science terms",
-      "direction": "Anatomical position and directional terminology"
+      "direction": "Anatomical position and directional terminology",
+      "nutrition": "Dietary intake and hydration concepts",
+      "recovery": "Rest, sleep, and adaptation terminology"
     },
     "terms": [
       {
         "term": "repetition",
         "aliases": ["rep", "reps"],
         "category": "basic",
-        "definition": "One complete movement of an exercise, consisting of a concentric (lifting) and eccentric (lowering) phase.",
+        "description": "One complete movement of an exercise, consisting of a concentric (lifting) and eccentric (lowering) phase.",
         "references": [
           {
             "source": "exrx",
@@ -26,7 +28,7 @@
         "term": "set",
         "aliases": [],
         "category": "basic",
-        "definition": "A group of consecutive repetitions performed without rest.",
+        "description": "A group of consecutive repetitions performed without rest.",
         "references": [
           {
             "source": "exrx",
@@ -38,7 +40,7 @@
         "term": "one repetition maximum",
         "aliases": ["1RM", "one-rep max"],
         "category": "basic",
-        "definition": "The maximum weight that can be lifted for a single repetition with proper form. Used as a benchmark for calculating training loads.",
+        "description": "The maximum weight that can be lifted for a single repetition with proper form. Used as a benchmark for calculating training loads.",
         "references": [
           {
             "source": "exrx",
@@ -50,7 +52,7 @@
         "term": "intensity",
         "aliases": [],
         "category": "basic",
-        "definition": "The amount of weight used, percentage of one repetition maximum, or the effort used during the exercise.",
+        "description": "The amount of weight used, percentage of one repetition maximum, or the effort used during the exercise.",
         "references": [
           {
             "source": "exrx",
@@ -62,11 +64,18 @@
         "term": "volume",
         "aliases": [],
         "category": "basic",
-        "definition": "The total amount of work performed, typically calculated as sets × reps × weight.",
+        "description": "The total amount of work performed, typically calculated as sets × reps × weight.",
+        "details": "General guidelines per muscle group per week: Maintenance requires 3-6 sets (6-10 for adults 60+). Growth requires 10-20 sets. Limit each session to ~10-11 sets per muscle. Distribute volume across 1-2 sessions per week (2-3 for adults 60+).",
         "references": [
           {
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Volume"
+          },
+          {
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass"
           }
         ]
       },
@@ -74,7 +83,7 @@
         "term": "frequency",
         "aliases": [],
         "category": "basic",
-        "definition": "The number of workouts per week or number of times a muscle group is trained per unit of time.",
+        "description": "The number of workouts per week or number of times a muscle group is trained per unit of time.",
         "references": [
           {
             "source": "exrx",
@@ -86,7 +95,7 @@
         "term": "range of motion",
         "aliases": ["ROM"],
         "category": "basic",
-        "definition": "The degree of rotation available at a joint. Full range of motion in exercise means moving through the complete path of motion the joint allows.",
+        "description": "The degree of rotation available at a joint. Full range of motion in exercise means moving through the complete path of motion the joint allows.",
         "references": [
           {
             "source": "exrx",
@@ -98,7 +107,7 @@
         "term": "tempo",
         "aliases": [],
         "category": "basic",
-        "definition": "The speed at which repetitions are performed, often expressed as a 4-point notation (e.g., 3/0/2/1) representing eccentric/stretched/concentric/contracted phases.",
+        "description": "The speed at which repetitions are performed, often expressed as a 4-point notation (e.g., 3/0/2/1) representing eccentric/stretched/concentric/contracted phases.",
         "references": [
           {
             "source": "exrx",
@@ -110,7 +119,7 @@
         "term": "warm-up set",
         "aliases": [],
         "category": "programming",
-        "definition": "A set performed with lighter resistance (typically 50% of working weight) for 12-15 reps before working sets to prepare muscles and joints for heavier loads.",
+        "description": "A set performed with lighter resistance (typically 50% of working weight) for 12-15 reps before working sets to prepare muscles and joints for heavier loads.",
         "references": [
           {
             "source": "exrx",
@@ -122,7 +131,7 @@
         "term": "working set",
         "aliases": ["work set"],
         "category": "programming",
-        "definition": "A set performed at the target training intensity, as opposed to warm-up or acclimation sets.",
+        "description": "A set performed at the target training intensity, as opposed to warm-up or acclimation sets.",
         "references": [
           {
             "source": "exrx",
@@ -134,7 +143,7 @@
         "term": "compound exercise",
         "aliases": ["multi-joint exercise"],
         "category": "movement",
-        "definition": "An exercise that involves two or more simultaneous joint movements. Examples include squats, deadlifts, and bench press.",
+        "description": "An exercise that involves two or more simultaneous joint movements. Examples include squats, deadlifts, and bench press.",
         "references": [
           {
             "source": "exrx",
@@ -146,7 +155,7 @@
         "term": "isolation exercise",
         "aliases": ["single-joint exercise"],
         "category": "movement",
-        "definition": "An exercise that involves just one discernible joint movement. Examples include bicep curls, leg extensions, and lateral raises.",
+        "description": "An exercise that involves just one discernible joint movement. Examples include biceps curls, leg extensions, and lateral raises.",
         "references": [
           {
             "source": "exrx",
@@ -158,7 +167,7 @@
         "term": "basic exercise",
         "aliases": [],
         "category": "movement",
-        "definition": "A principal exercise that places greater absolute intensity on muscles exercised relative to auxiliary exercises. Typically compound movements.",
+        "description": "A principal exercise that places greater absolute intensity on muscles exercised relative to auxiliary exercises. Typically compound movements.",
         "references": [
           {
             "source": "exrx",
@@ -170,7 +179,7 @@
         "term": "auxiliary exercise",
         "aliases": ["accessory exercise"],
         "category": "movement",
-        "definition": "An optional exercise that supplements a basic exercise, often placing greater relative intensity on a specific muscle or muscle head.",
+        "description": "An optional exercise that supplements a basic exercise, often placing greater relative intensity on a specific muscle or muscle head.",
         "references": [
           {
             "source": "exrx",
@@ -182,7 +191,7 @@
         "term": "closed-chain exercise",
         "aliases": [],
         "category": "movement",
-        "definition": "An exercise in which the end segment of the exercised limb is fixed or supporting the weight. Most compound exercises are closed-chain movements. Example: squat.",
+        "description": "An exercise in which the end segment of the exercised limb is fixed or supporting the weight. Most compound exercises are closed-chain movements. Example: squat.",
         "references": [
           {
             "source": "exrx",
@@ -194,7 +203,7 @@
         "term": "open-chain exercise",
         "aliases": [],
         "category": "movement",
-        "definition": "An exercise in which the end segment of the exercised limb is not fixed or not supporting the weight. Example: leg extension.",
+        "description": "An exercise in which the end segment of the exercised limb is not fixed or not supporting the weight. Example: leg extension.",
         "references": [
           {
             "source": "exrx",
@@ -206,7 +215,7 @@
         "term": "concentric",
         "aliases": ["concentric contraction", "positive"],
         "category": "movement",
-        "definition": "The phase of movement where the muscle shortens while generating force, typically the lifting or exertion phase.",
+        "description": "The phase of movement where the muscle shortens while generating force, typically the lifting or exertion phase.",
         "references": [
           {
             "source": "exrx",
@@ -218,7 +227,7 @@
         "term": "eccentric",
         "aliases": ["eccentric contraction", "negative"],
         "category": "movement",
-        "definition": "The phase of movement where the muscle lengthens while under tension, typically the lowering or return phase.",
+        "description": "The phase of movement where the muscle lengthens while under tension, typically the lowering or return phase.",
         "references": [
           {
             "source": "exrx",
@@ -230,7 +239,7 @@
         "term": "isometric",
         "aliases": ["isometric contraction", "static hold"],
         "category": "movement",
-        "definition": "A muscle contraction where the muscle generates force without changing length. The joint angle remains constant.",
+        "description": "A muscle contraction where the muscle generates force without changing length. The joint angle remains constant.",
         "references": [
           {
             "source": "exrx",
@@ -242,7 +251,7 @@
         "term": "agonist",
         "aliases": ["prime mover"],
         "category": "anatomy",
-        "definition": "A muscle that causes motion by contracting. The primary muscle responsible for a movement.",
+        "description": "A muscle that causes motion by contracting. The primary muscle responsible for a movement.",
         "references": [
           {
             "source": "exrx",
@@ -254,7 +263,7 @@
         "term": "antagonist",
         "aliases": [],
         "category": "anatomy",
-        "definition": "A muscle that can move the joint opposite to the movement produced by the agonist. Relaxes or lengthens while the agonist contracts.",
+        "description": "A muscle that can move the joint opposite to the movement produced by the agonist. Relaxes or lengthens while the agonist contracts.",
         "references": [
           {
             "source": "exrx",
@@ -266,7 +275,7 @@
         "term": "synergist",
         "aliases": [],
         "category": "anatomy",
-        "definition": "A muscle that assists another muscle to accomplish a movement.",
+        "description": "A muscle that assists another muscle to accomplish a movement.",
         "references": [
           {
             "source": "exrx",
@@ -278,7 +287,7 @@
         "term": "stabilizer",
         "aliases": [],
         "category": "anatomy",
-        "definition": "A muscle that contracts with no significant movement to maintain a posture or fixate a joint during an exercise.",
+        "description": "A muscle that contracts with no significant movement to maintain a posture or fixate a joint during an exercise.",
         "references": [
           {
             "source": "exrx",
@@ -290,7 +299,7 @@
         "term": "dynamic stabilizer",
         "aliases": ["fixator"],
         "category": "anatomy",
-        "definition": "A biarticulate muscle that simultaneously moves through two joints with little change in length, shortening through the target joint while lengthening through an adjacent joint.",
+        "description": "A biarticulate muscle that simultaneously moves through two joints with little change in length, shortening through the target joint while lengthening through an adjacent joint.",
         "references": [
           {
             "source": "exrx",
@@ -302,7 +311,7 @@
         "term": "flexion",
         "aliases": [],
         "category": "movement",
-        "definition": "Bending a joint, resulting in a decrease of angle between two body segments.",
+        "description": "Bending a joint, resulting in a decrease of angle between two body segments.",
         "references": [
           {
             "source": "exrx",
@@ -314,7 +323,7 @@
         "term": "extension",
         "aliases": [],
         "category": "movement",
-        "definition": "Straightening a joint, resulting in an increase of angle between two body segments.",
+        "description": "Straightening a joint, resulting in an increase of angle between two body segments.",
         "references": [
           {
             "source": "exrx",
@@ -326,7 +335,7 @@
         "term": "pronation",
         "aliases": [],
         "category": "movement",
-        "definition": "Rotation of the forearm so the palm faces downward, or inward rolling of the foot.",
+        "description": "Rotation of the forearm so the palm faces downward, or inward rolling of the foot.",
         "references": [
           {
             "source": "exrx",
@@ -338,7 +347,7 @@
         "term": "supination",
         "aliases": [],
         "category": "movement",
-        "definition": "Rotation of the forearm so the palm faces upward, or outward rolling of the foot.",
+        "description": "Rotation of the forearm so the palm faces upward, or outward rolling of the foot.",
         "references": [
           {
             "source": "exrx",
@@ -350,7 +359,7 @@
         "term": "abduction",
         "aliases": [],
         "category": "movement",
-        "definition": "Movement of a limb away from the midline of the body.",
+        "description": "Movement of a limb away from the midline of the body.",
         "references": [
           {
             "source": "exrx",
@@ -362,7 +371,7 @@
         "term": "adduction",
         "aliases": [],
         "category": "movement",
-        "definition": "Movement of a limb toward the midline of the body.",
+        "description": "Movement of a limb toward the midline of the body.",
         "references": [
           {
             "source": "exrx",
@@ -374,7 +383,7 @@
         "term": "hypertrophy",
         "aliases": ["muscle growth"],
         "category": "anatomy",
-        "definition": "The increase in muscle size resulting from training, primarily through enlargement of existing muscle fibers.",
+        "description": "The increase in muscle size resulting from training, primarily through enlargement of existing muscle fibres.",
         "references": [
           {
             "source": "exrx",
@@ -386,7 +395,7 @@
         "term": "atrophy",
         "aliases": ["muscle loss"],
         "category": "anatomy",
-        "definition": "The decrease in muscle size due to disuse, aging, or other factors.",
+        "description": "The decrease in muscle size due to disuse, aging, or other factors.",
         "references": [
           {
             "source": "exrx",
@@ -398,7 +407,7 @@
         "term": "DOMS",
         "aliases": ["delayed onset muscle soreness"],
         "category": "anatomy",
-        "definition": "Muscle soreness that develops 24-48 hours after exercise, caused by microscopic injury to muscle fibers leading to inflammation. Most common after eccentric exercise or unfamiliar movements.",
+        "description": "Muscle soreness that develops 24-48 hours after exercise, caused by microscopic injury to muscle fibres leading to inflammation. Most common after eccentric exercise or unfamiliar movements.",
         "references": [
           {
             "source": "exrx",
@@ -410,7 +419,7 @@
         "term": "progressive overload",
         "aliases": [],
         "category": "programming",
-        "definition": "The gradual increase of stress placed on the body during training, achieved by increasing weight, reps, sets, or decreasing rest periods over time.",
+        "description": "The gradual increase of stress placed on the body during training, achieved by increasing weight, reps, sets, or decreasing rest periods over time.",
         "references": [
           {
             "source": "exrx",
@@ -419,10 +428,49 @@
         ]
       },
       {
+        "term": "beginner exercise",
+        "aliases": [],
+        "category": "programming",
+        "description": "An exercise with low technical demands suitable for those new to training. Characterized by a stable base of support, simple movement pattern, and minimal balance or coordination requirements.",
+        "details": "Examples include push-ups, goblet squats, and machine-based exercises. These movements allow trainees to focus on developing basic motor patterns and building foundational strength without excessive injury risk.",
+        "references": [
+          {
+            "source": "pubmed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+          }
+        ]
+      },
+      {
+        "term": "intermediate exercise",
+        "aliases": [],
+        "category": "programming",
+        "description": "An exercise requiring moderate skill and body awareness. Characterized by free weight loading, multi-joint coordination, and moderate balance demands.",
+        "details": "Examples include barbell squats, dumbbell rows, and lunges. These movements build on foundational patterns and introduce greater stability challenges and loading potential.",
+        "references": [
+          {
+            "source": "pubmed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+          }
+        ]
+      },
+      {
+        "term": "advanced exercise",
+        "aliases": [],
+        "category": "programming",
+        "description": "An exercise demanding high levels of strength, stability, or coordination. Characterized by significant balance challenges, complex motor patterns, or high strength-to-bodyweight ratios.",
+        "details": "Examples include pistol squats, handstand push-ups, and Olympic lifts. These movements require substantial training experience and should only be attempted after mastering foundational and intermediate progressions.",
+        "references": [
+          {
+            "source": "pubmed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+          }
+        ]
+      },
+      {
         "term": "failure",
         "aliases": ["muscular failure", "training to failure"],
         "category": "technique",
-        "definition": "The point at which no additional repetitions can be completed with proper form. Technical failure occurs when form breaks down.",
+        "description": "The point at which no additional repetitions can be completed with proper form. Technical failure occurs when form breaks down.",
         "references": [
           {
             "source": "exrx",
@@ -434,7 +482,7 @@
         "term": "superset",
         "aliases": [],
         "category": "technique",
-        "definition": "Performing two exercises back-to-back with minimal rest between them. Often used with opposing muscle groups (e.g., chest and back).",
+        "description": "Performing two exercises back-to-back with minimal rest between them. Often used with opposing muscle groups (e.g., chest and back).",
         "references": [
           {
             "source": "exrx",
@@ -446,7 +494,7 @@
         "term": "drop set",
         "aliases": ["descending set", "strip set"],
         "category": "technique",
-        "definition": "A technique using progressively decreasing resistance after reaching failure. The exerciser reduces weight and continues reps with minimal rest.",
+        "description": "A technique using progressively decreasing resistance after reaching failure. The exerciser reduces weight and continues reps with minimal rest.",
         "references": [
           {
             "source": "exrx",
@@ -458,7 +506,7 @@
         "term": "forced repetitions",
         "aliases": ["assisted reps"],
         "category": "technique",
-        "definition": "Repetitions assisted by a training partner or spotter, typically performed after reaching failure to extend the set.",
+        "description": "Repetitions assisted by a training partner or spotter, typically performed after reaching failure to extend the set.",
         "references": [
           {
             "source": "exrx",
@@ -470,7 +518,7 @@
         "term": "pre-exhaustion",
         "aliases": [],
         "category": "technique",
-        "definition": "Performing an isolation exercise immediately before a compound exercise for the same muscle group (e.g., chest fly before chest press).",
+        "description": "Performing an isolation exercise immediately before a compound exercise for the same muscle group (e.g., chest fly before chest press).",
         "references": [
           {
             "source": "exrx",
@@ -482,7 +530,7 @@
         "term": "time under tension",
         "aliases": ["TUT"],
         "category": "technique",
-        "definition": "The total time a muscle is under load during a set. Manipulated by controlling tempo or increasing rep count.",
+        "description": "The total time a muscle is under load during a set. Manipulated by controlling tempo or increasing rep count.",
         "references": [
           {
             "source": "exrx",
@@ -491,31 +539,38 @@
         ]
       },
       {
+        "term": "rate of perceived exertion",
+        "aliases": ["RPE"],
+        "category": "technique",
+        "description": "A subjective scale (typically 1-10) measuring exercise intensity based on how hard the effort feels. RPE 10 means maximum effort with no reps left in reserve.",
+        "references": []
+      },
+      {
         "term": "push",
         "aliases": ["pushing movement"],
         "category": "movement",
-        "definition": "A movement pattern where resistance is pushed away from the body. Includes exercises like bench press, overhead press, and push-ups.",
+        "description": "A movement pattern where resistance is pushed away from the body. Includes exercises like bench press, overhead press, and push-ups.",
         "references": []
       },
       {
         "term": "pull",
         "aliases": ["pulling movement"],
         "category": "movement",
-        "definition": "A movement pattern where resistance is pulled toward the body. Includes exercises like rows, pull-ups, and curls.",
+        "description": "A movement pattern where resistance is pulled toward the body. Includes exercises like rows, pull-ups, and curls.",
         "references": []
       },
       {
         "term": "hinge",
         "aliases": ["hip hinge"],
         "category": "movement",
-        "definition": "A movement pattern involving flexion and extension at the hip while maintaining a neutral spine. Key pattern in deadlifts, Romanian deadlifts, and good mornings.",
+        "description": "A movement pattern involving flexion and extension at the hip while maintaining a neutral spine. Key pattern in deadlifts, Romanian deadlifts, and good mornings.",
         "references": []
       },
       {
         "term": "squat pattern",
         "aliases": [],
         "category": "movement",
-        "definition": "A fundamental movement pattern involving simultaneous flexion at the hip, knee, and ankle while maintaining an upright torso.",
+        "description": "A fundamental movement pattern involving simultaneous flexion at the hip, knee, and ankle while maintaining an upright torso.",
         "references": [
           {
             "source": "exrx",
@@ -527,7 +582,7 @@
         "term": "resistance curve",
         "aliases": [],
         "category": "movement",
-        "definition": "An exercise's characteristic change of force throughout its range of motion. May be ascending, descending, or bell-shaped.",
+        "description": "An exercise's characteristic change of force throughout its range of motion. May be ascending, descending, or bell-shaped.",
         "references": [
           {
             "source": "exrx",
@@ -539,14 +594,14 @@
         "term": "leg drive",
         "aliases": [],
         "category": "technique",
-        "definition": "Using the legs to generate force and stability during upper body exercises like bench press, achieved by driving feet firmly into the floor.",
+        "description": "Using the legs to generate force and stability during upper body exercises like bench press, achieved by driving feet firmly into the floor.",
         "references": []
       },
       {
         "term": "lockout",
         "aliases": [],
         "category": "movement",
-        "definition": "The end position of an exercise where the joints are fully extended. Example: top of a squat or bench press.",
+        "description": "The end position of an exercise where the joints are fully extended. Example: top of a squat or bench press.",
         "references": [
           {
             "source": "exrx",
@@ -558,7 +613,7 @@
         "term": "sticking point",
         "aliases": [],
         "category": "movement",
-        "definition": "The most difficult portion of an exercise's range of motion, typically where leverage is least favorable.",
+        "description": "The most difficult portion of an exercise's range of motion, typically where leverage is least favorable.",
         "references": [
           {
             "source": "exrx",
@@ -570,7 +625,7 @@
         "term": "spotter",
         "aliases": [],
         "category": "basic",
-        "definition": "A training partner who provides safety assistance during heavy or challenging lifts, ready to help if the lifter cannot complete a rep.",
+        "description": "A training partner who provides safety assistance during heavy or challenging lifts, ready to help if the lifter cannot complete a rep.",
         "references": [
           {
             "source": "exrx",
@@ -582,14 +637,14 @@
         "term": "form",
         "aliases": ["technique", "proper form"],
         "category": "basic",
-        "definition": "The correct body positioning and movement execution during an exercise to maximize effectiveness and minimize injury risk.",
+        "description": "The correct body positioning and movement execution during an exercise to maximize effectiveness and minimize injury risk.",
         "references": []
       },
       {
         "term": "target",
         "aliases": ["target muscle"],
         "category": "anatomy",
-        "definition": "The primary muscle intended for exercise. The muscle group being specifically trained by a given movement.",
+        "description": "The primary muscle intended for exercise. The muscle group being specifically trained by a given movement.",
         "references": [
           {
             "source": "exrx",
@@ -601,7 +656,7 @@
         "term": "origin",
         "aliases": ["muscle origin"],
         "category": "anatomy",
-        "definition": "The muscle attachment point that moves least during contraction, generally more proximal (closer to the body's center).",
+        "description": "The muscle attachment point that moves least during contraction, generally more proximal (closer to the body's center).",
         "references": [
           {
             "source": "exrx",
@@ -613,7 +668,7 @@
         "term": "insertion",
         "aliases": ["muscle insertion"],
         "category": "anatomy",
-        "definition": "The muscle attachment point that moves most during contraction, generally more distal (farther from the body's center).",
+        "description": "The muscle attachment point that moves most during contraction, generally more distal (farther from the body's center).",
         "references": [
           {
             "source": "exrx",
@@ -625,7 +680,7 @@
         "term": "biarticulate",
         "aliases": ["biarticular", "two-joint muscle"],
         "category": "anatomy",
-        "definition": "A muscle that crosses two joints and can produce movement at both. Examples include hamstrings, rectus femoris, and gastrocnemius.",
+        "description": "A muscle that crosses two joints and can produce movement at both. Examples include hamstrings, rectus femoris, and gastrocnemius.",
         "references": [
           {
             "source": "exrx",
@@ -637,7 +692,7 @@
         "term": "active insufficiency",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "The inability of a biarticulate muscle to exert enough tension to shorten sufficiently to complete full range of motion in both joints simultaneously.",
+        "description": "The inability of a biarticulate muscle to exert enough tension to shorten sufficiently to complete full range of motion in both joints simultaneously.",
         "references": [
           {
             "source": "exrx",
@@ -649,7 +704,7 @@
         "term": "passive insufficiency",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "The inability of a biarticulate muscle to stretch enough to complete full range of motion in both joints simultaneously.",
+        "description": "The inability of a biarticulate muscle to stretch enough to complete full range of motion in both joints simultaneously.",
         "references": [
           {
             "source": "exrx",
@@ -661,7 +716,7 @@
         "term": "isotonic",
         "aliases": ["isotonic contraction", "dynamic contraction"],
         "category": "movement",
-        "definition": "A muscle contraction with movement against resistance. Despite the name meaning 'same tension,' resistance varies through the range of motion due to changing leverage.",
+        "description": "A muscle contraction with movement against resistance. Despite the name meaning 'same tension,' resistance varies through the range of motion due to changing leverage.",
         "references": [
           {
             "source": "exrx",
@@ -673,7 +728,7 @@
         "term": "isokinetic",
         "aliases": ["isokinetic contraction"],
         "category": "movement",
-        "definition": "A muscle contraction against force at a constant speed throughout the range of motion. Requires specialized equipment that adjusts resistance to match applied force.",
+        "description": "A muscle contraction against force at a constant speed throughout the range of motion. Requires specialized equipment that adjusts resistance to match applied force.",
         "references": [
           {
             "source": "exrx",
@@ -685,7 +740,7 @@
         "term": "sagittal plane",
         "aliases": ["anterior-posterior plane"],
         "category": "direction",
-        "definition": "An anatomical plane that divides the body into left and right portions. Movements in this plane include flexion and extension.",
+        "description": "An anatomical plane that divides the body into left and right portions. Movements in this plane include flexion and extension.",
         "references": [
           {
             "source": "exrx",
@@ -697,7 +752,7 @@
         "term": "frontal plane",
         "aliases": ["coronal plane"],
         "category": "direction",
-        "definition": "An anatomical plane that divides the body into front and back portions. Movements in this plane include abduction and adduction.",
+        "description": "An anatomical plane that divides the body into front and back portions. Movements in this plane include abduction and adduction.",
         "references": [
           {
             "source": "exrx",
@@ -709,7 +764,7 @@
         "term": "transverse plane",
         "aliases": ["horizontal plane", "xy plane"],
         "category": "direction",
-        "definition": "An anatomical plane that divides the body into upper and lower portions. Movements in this plane include rotation.",
+        "description": "An anatomical plane that divides the body into upper and lower portions. Movements in this plane include rotation.",
         "references": [
           {
             "source": "exrx",
@@ -721,7 +776,7 @@
         "term": "anterior",
         "aliases": ["ventral"],
         "category": "direction",
-        "definition": "Toward the front of the body.",
+        "description": "Toward the front of the body.",
         "references": [
           {
             "source": "exrx",
@@ -733,7 +788,7 @@
         "term": "posterior",
         "aliases": ["dorsal"],
         "category": "direction",
-        "definition": "Toward the back of the body.",
+        "description": "Toward the back of the body.",
         "references": [
           {
             "source": "exrx",
@@ -745,7 +800,7 @@
         "term": "medial",
         "aliases": [],
         "category": "direction",
-        "definition": "Toward the midline (center) of the body.",
+        "description": "Toward the midline (center) of the body.",
         "references": [
           {
             "source": "exrx",
@@ -757,7 +812,7 @@
         "term": "lateral",
         "aliases": [],
         "category": "direction",
-        "definition": "Away from the midline (center) of the body.",
+        "description": "Away from the midline (center) of the body.",
         "references": [
           {
             "source": "exrx",
@@ -769,7 +824,7 @@
         "term": "proximal",
         "aliases": [],
         "category": "direction",
-        "definition": "Closer to the reference point or attachment to the trunk. For limbs, closer to the body's center.",
+        "description": "Closer to the reference point or attachment to the trunk. For limbs, closer to the body's center.",
         "references": [
           {
             "source": "exrx",
@@ -781,7 +836,7 @@
         "term": "distal",
         "aliases": [],
         "category": "direction",
-        "definition": "Farther from the reference point or attachment to the trunk. For limbs, farther from the body's center.",
+        "description": "Farther from the reference point or attachment to the trunk. For limbs, farther from the body's center.",
         "references": [
           {
             "source": "exrx",
@@ -793,7 +848,7 @@
         "term": "superior",
         "aliases": ["cranial"],
         "category": "direction",
-        "definition": "Toward the head or upper part of the body.",
+        "description": "Toward the head or upper part of the body.",
         "references": [
           {
             "source": "exrx",
@@ -805,7 +860,7 @@
         "term": "inferior",
         "aliases": ["caudal"],
         "category": "direction",
-        "definition": "Away from the head or toward the lower part of the body.",
+        "description": "Away from the head or toward the lower part of the body.",
         "references": [
           {
             "source": "exrx",
@@ -817,7 +872,7 @@
         "term": "internal rotation",
         "aliases": ["medial rotation"],
         "category": "movement",
-        "definition": "Rotary movement around the longitudinal axis of a bone toward the center of the body.",
+        "description": "Rotary movement around the longitudinal axis of a bone toward the center of the body.",
         "references": [
           {
             "source": "exrx",
@@ -829,7 +884,7 @@
         "term": "external rotation",
         "aliases": ["lateral rotation"],
         "category": "movement",
-        "definition": "Rotary movement around the longitudinal axis of a bone away from the center of the body.",
+        "description": "Rotary movement around the longitudinal axis of a bone away from the center of the body.",
         "references": [
           {
             "source": "exrx",
@@ -841,7 +896,7 @@
         "term": "circumduction",
         "aliases": [],
         "category": "movement",
-        "definition": "Circular movement combining flexion, extension, abduction, and adduction without shaft rotation. The limb traces a cone shape.",
+        "description": "Circular movement combining flexion, extension, abduction, and adduction without shaft rotation. The limb traces a cone shape.",
         "references": [
           {
             "source": "exrx",
@@ -853,7 +908,7 @@
         "term": "dorsiflexion",
         "aliases": [],
         "category": "movement",
-        "definition": "Movement of the foot upward, decreasing the angle between the foot and shin.",
+        "description": "Movement of the foot upward, decreasing the angle between the foot and shin.",
         "references": [
           {
             "source": "exrx",
@@ -865,7 +920,7 @@
         "term": "plantarflexion",
         "aliases": ["plantar flexion"],
         "category": "movement",
-        "definition": "Movement of the foot downward, increasing the angle between the foot and shin. Pointing the toes.",
+        "description": "Movement of the foot downward, increasing the angle between the foot and shin. Pointing the toes.",
         "references": [
           {
             "source": "exrx",
@@ -877,7 +932,7 @@
         "term": "inversion",
         "aliases": [],
         "category": "movement",
-        "definition": "Movement of the sole of the foot toward the midline (turning the foot inward).",
+        "description": "Movement of the sole of the foot toward the midline (turning the foot inward).",
         "references": [
           {
             "source": "exrx",
@@ -889,7 +944,7 @@
         "term": "eversion",
         "aliases": [],
         "category": "movement",
-        "definition": "Movement of the sole of the foot away from the midline (turning the foot outward).",
+        "description": "Movement of the sole of the foot away from the midline (turning the foot outward).",
         "references": [
           {
             "source": "exrx",
@@ -901,7 +956,7 @@
         "term": "torque",
         "aliases": ["moment of force"],
         "category": "kinesiology",
-        "definition": "Rotational force calculated as Force × Perpendicular Distance. The effectiveness of a force to cause rotation around an axis.",
+        "description": "Rotational force calculated as Force × Perpendicular Distance. The effectiveness of a force to cause rotation around an axis.",
         "references": [
           {
             "source": "exrx",
@@ -913,7 +968,7 @@
         "term": "lever",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "A rigid structure (bone) that rotates around a fixed point (joint). The body uses lever systems to produce movement and force.",
+        "description": "A rigid structure (bone) that rotates around a fixed point (joint). The body uses lever systems to produce movement and force.",
         "references": [
           {
             "source": "exrx",
@@ -925,7 +980,7 @@
         "term": "angle of pull",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "The angle between a muscle's line of pull and the bone on which it inserts. Determines the rotary and stabilizing components of muscle force.",
+        "description": "The angle between a muscle's line of pull and the bone on which it inserts. Determines the rotary and stabilizing components of muscle force.",
         "references": [
           {
             "source": "exrx",
@@ -937,7 +992,7 @@
         "term": "ascending tension curve",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "A resistance profile where muscular tension increases throughout the range of motion. Examples: squat and bench press (hardest at bottom, easiest at top).",
+        "description": "A resistance profile where muscular tension increases throughout the range of motion. Examples: squat and bench press (hardest at bottom, easiest at top).",
         "references": [
           {
             "source": "exrx",
@@ -949,7 +1004,7 @@
         "term": "descending tension curve",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "A resistance profile where muscular tension decreases throughout the range of motion. Examples: rows and chin-ups (hardest at top, easiest at bottom).",
+        "description": "A resistance profile where muscular tension decreases throughout the range of motion. Examples: rows and chin-ups (hardest at top, easiest at bottom).",
         "references": [
           {
             "source": "exrx",
@@ -961,7 +1016,7 @@
         "term": "bell-shaped tension curve",
         "aliases": [],
         "category": "kinesiology",
-        "definition": "A resistance profile where muscular tension is greatest in the middle of the range of motion. Example: bicep curls (hardest at 90° elbow flexion).",
+        "description": "A resistance profile where muscular tension is greatest in the middle of the range of motion. Example: biceps curls (hardest at 90° elbow flexion).",
         "references": [
           {
             "source": "exrx",
@@ -973,7 +1028,7 @@
         "term": "bilateral",
         "aliases": [],
         "category": "movement",
-        "definition": "Involving both sides of the body simultaneously. A bilateral exercise uses both limbs together (e.g., barbell squat, bench press).",
+        "description": "Involving both sides of the body simultaneously. A bilateral exercise uses both limbs together (e.g., barbell squat, bench press).",
         "references": [
           {
             "source": "exrx",
@@ -985,7 +1040,7 @@
         "term": "unilateral",
         "aliases": [],
         "category": "movement",
-        "definition": "Involving one side of the body at a time. A unilateral exercise uses one limb independently (e.g., single-leg squat, one-arm row).",
+        "description": "Involving one side of the body at a time. A unilateral exercise uses one limb independently (e.g., single-leg squat, one-arm row).",
         "references": [
           {
             "source": "exrx",
@@ -997,7 +1052,7 @@
         "term": "bilateral deficit",
         "aliases": ["BLD"],
         "category": "kinesiology",
-        "definition": "The phenomenon where the sum of forces from two unilateral contractions exceeds the force of a single bilateral contraction of the same muscles.",
+        "description": "The phenomenon where the sum of forces from two unilateral contractions exceeds the force of a single bilateral contraction of the same muscles.",
         "references": [
           {
             "source": "exrx",
@@ -1009,7 +1064,7 @@
         "term": "articulation",
         "aliases": ["joint"],
         "category": "anatomy",
-        "definition": "The point where two or more bones meet, allowing movement. Different joint types permit different ranges and types of motion.",
+        "description": "The point where two or more bones meet, allowing movement. Different joint types permit different ranges and types of motion.",
         "references": [
           {
             "source": "exrx",
@@ -1021,7 +1076,7 @@
         "term": "law of inertia",
         "aliases": ["Newton's first law"],
         "category": "kinesiology",
-        "definition": "A body at rest stays at rest and a body in motion stays in motion unless acted upon by an external force. Explains why heavier weights are harder to start moving.",
+        "description": "A body at rest stays at rest and a body in motion stays in motion unless acted upon by an external force. Explains why heavier weights are harder to start moving.",
         "references": [
           {
             "source": "exrx",
@@ -1033,7 +1088,7 @@
         "term": "law of acceleration",
         "aliases": ["Newton's second law"],
         "category": "kinesiology",
-        "definition": "Force equals mass times acceleration (F=ma). Greater force is needed to accelerate heavier weights or to move weights faster.",
+        "description": "Force equals mass times acceleration (F=ma). Greater force is needed to accelerate heavier weights or to move weights faster.",
         "references": [
           {
             "source": "exrx",
@@ -1045,11 +1100,202 @@
         "term": "law of reaction",
         "aliases": ["Newton's third law"],
         "category": "kinesiology",
-        "definition": "For every action there is an equal and opposite reaction. When you push against the floor during a squat, the floor pushes back with equal force.",
+        "description": "For every action there is an equal and opposite reaction. When you push against the floor during a squat, the floor pushes back with equal force.",
         "references": [
           {
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
+          }
+        ]
+      },
+      {
+        "term": "calories",
+        "aliases": ["energy intake", "kcal", "kilocalories"],
+        "category": "nutrition",
+        "description": "A measure of energy from food. Adequate caloric intake supports training adaptations; chronic deficits impair performance, recovery, and hormonal function.",
+        "details": "Low energy availability (LEA) occurs when caloric intake fails to meet the demands of exercise and bodily functions. Meta-analyses show LEA affects 45% of athletes and is linked to decreased endurance, coordination, and increased injury risk.",
+        "references": [
+          {
+            "pmid": "39485653",
+            "author": "Statuta et al.",
+            "year": 2024,
+            "title": "Low energy availability and relative energy deficiency in sport: a systematic review and meta-analysis"
+          }
+        ]
+      },
+      {
+        "term": "protein",
+        "aliases": ["dietary protein"],
+        "category": "nutrition",
+        "description": "A macronutrient essential for muscle protein synthesis and repair. Resistance-trained individuals benefit from intakes of 1.6-2.2 g/kg/day.",
+        "details": "Meta-analyses of 49 studies show protein supplementation augments resistance training gains in muscle mass and strength. Benefits plateau at ~1.6 g/kg/day total intake, with older adults potentially benefiting from 1.2-1.6 g/kg/day.",
+        "references": [
+          {
+            "pmid": "28698222",
+            "author": "Morton et al.",
+            "year": 2018,
+            "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults"
+          }
+        ]
+      },
+      {
+        "term": "fibre",
+        "aliases": ["dietary fibre", "roughage"],
+        "category": "nutrition",
+        "description": "Indigestible plant material that supports digestive health. Higher intakes are associated with reduced cardiovascular disease, cancer, and all-cause mortality.",
+        "details": "An umbrella review of 17 million individuals found convincing evidence linking fibre intake to reduced CVD mortality, pancreatic cancer, and diverticular disease. Benefits appear dose-dependent with no upper threshold identified.",
+        "references": [
+          {
+            "pmid": "29566200",
+            "author": "Veronese et al.",
+            "year": 2018,
+            "title": "Dietary fibre and health outcomes: an umbrella review of systematic reviews and meta-analyses"
+          }
+        ]
+      },
+      {
+        "term": "water",
+        "aliases": ["hydration", "fluid intake"],
+        "category": "nutrition",
+        "description": "Fluid intake to maintain hydration status. Dehydration of 2% body mass or more impairs endurance performance, especially in heat.",
+        "details": "Systematic reviews show fluid intake following dehydration improves continuous exercise performance, particularly at elevated temperatures. Pre-exercise hyperhydration may help delay adverse effects of fluid loss during prolonged exercise.",
+        "references": [
+          {
+            "pmid": "28275997",
+            "author": "McCartney et al.",
+            "year": 2017,
+            "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis"
+          }
+        ]
+      },
+      {
+        "term": "steps",
+        "aliases": ["daily steps", "step count"],
+        "category": "recovery",
+        "description": "A measure of daily ambulatory physical activity. Higher step counts are associated with progressively lower all-cause mortality risk.",
+        "details": "A meta-analysis of 47,471 adults found that compared to the lowest step group (~3,500 steps/day), those averaging 10,900 steps had 40-53% lower mortality risk. Benefits plateau around 6,000-8,000 steps for adults over 60, and 8,000-10,000 for younger adults.",
+        "references": [
+          {
+            "pmid": "35247352",
+            "author": "Paluch et al.",
+            "year": 2022,
+            "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts"
+          }
+        ]
+      },
+      {
+        "term": "sleep",
+        "aliases": ["sleep duration"],
+        "category": "recovery",
+        "description": "A period of rest essential for physical and cognitive recovery. Athletes typically need 7-9 hours, with sleep extension showing performance benefits.",
+        "details": "Systematic reviews show sleep extension improves reaction time, sprint performance, and shooting accuracy in athletes. Collegiate basketball players extending sleep to 10 hours showed 9% improved free-throw accuracy and faster sprint times.",
+        "references": [
+          {
+            "pmid": "37462808",
+            "author": "Cunha et al.",
+            "year": 2023,
+            "title": "The impact of sleep interventions on athletic performance: a systematic review"
+          }
+        ]
+      },
+      {
+        "term": "recovery",
+        "aliases": ["perceived recovery", "recovery status"],
+        "category": "recovery",
+        "description": "A subjective 1-10 rating of readiness to train. Lower scores indicate incomplete recovery and may warrant reduced training intensity.",
+        "details": "The Perceived Recovery Status (PRS) scale correlates with markers of muscle damage and performance decrements. Research shows it can effectively assess daily recovery following resistance exercise, though the relationship is individualized.",
+        "references": [
+          {
+            "pmid": "23287827",
+            "author": "Sikorski et al.",
+            "year": 2013,
+            "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise"
+          }
+        ]
+      },
+      {
+        "term": "reps in reserve",
+        "aliases": ["RIR"],
+        "category": "technique",
+        "description": "The estimated number of repetitions remaining before reaching muscular failure. RIR 0 means no reps left; RIR 2 means two more reps were possible.",
+        "details": "RIR provides a practical way to auto-regulate training intensity. Research suggests training within 0-3 RIR optimizes hypertrophy while managing fatigue. Higher RIR (4+) may be appropriate for technique practice or deload periods.",
+        "references": []
+      },
+      {
+        "term": "maintenance volume",
+        "aliases": ["MV"],
+        "category": "programming",
+        "description": "The minimum weekly training volume (sets per muscle group) needed to preserve existing muscle mass. Typically around 6 working sets per week.",
+        "details": "Research shows young adults can maintain muscle with as few as 3 sets per muscle per week if intensity is preserved. Adults over 60 typically require 6-10 sets per week. Maintaining load (intensity) is more critical than maintaining volume.",
+        "references": [
+          {
+            "pmid": "21131862",
+            "author": "Bickel et al.",
+            "year": 2011,
+            "title": "Exercise dosing to retain resistance training adaptations in young and older adults"
+          },
+          {
+            "pmid": "33629972",
+            "author": "Spiering et al.",
+            "year": 2021,
+            "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time"
+          }
+        ]
+      },
+      {
+        "term": "minimum effective volume",
+        "aliases": ["MEV"],
+        "category": "programming",
+        "description": "The lowest weekly training volume that produces measurable muscle growth. Typically around 8-10 sets per muscle group per week.",
+        "details": "MEV varies by training status and muscle group. Beginners may see growth with fewer sets, while advanced trainees require more. Starting a training block at MEV allows room to progressively increase volume.",
+        "references": [
+          {
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis"
+          }
+        ]
+      },
+      {
+        "term": "maximum adaptive volume",
+        "aliases": ["MAV"],
+        "category": "programming",
+        "description": "The weekly training volume range that produces optimal muscle growth over time. Typically 12-18 sets per muscle group per week.",
+        "details": "MAV represents the progression zone between MEV and MRV. Each session increases fatigue, requiring progressive volume increases to maintain optimal stimulus. The ideal volume varies by individual recovery capacity and training experience.",
+        "references": [
+          {
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis"
+          },
+          {
+            "pmid": "41343037",
+            "author": "Pelland et al.",
+            "year": 2025,
+            "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains"
+          }
+        ]
+      },
+      {
+        "term": "maximum recoverable volume",
+        "aliases": ["MRV"],
+        "category": "programming",
+        "description": "The highest weekly training volume from which you can still recover. Exceeding MRV leads to accumulated fatigue and impaired progress. Typically 20-25 sets per muscle group per week.",
+        "details": "Training at MRV is unsustainable long-term and leads to overtraining symptoms. Research suggests diminishing returns occur well before MRV, with per-session benefits plateauing around 11 sets. Distribute volume across 2-3 sessions for better results.",
+        "references": [
+          {
+            "url": "https://sportrxiv.org/index.php/server/preprint/view/537",
+            "author": "Remmert et al.",
+            "year": 2025,
+            "title": "Is there too much of a good thing? Meta-regressions of the effect of per-session volume on hypertrophy and strength"
+          },
+          {
+            "pmid": "41343037",
+            "author": "Pelland et al.",
+            "year": 2025,
+            "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains"
           }
         ]
       }

@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "References Database",
+  "title": "Sources Database",
   "description": "Authoritative sources for exercise and fitness information",
   "type": "object",
-  "required": ["references"],
+  "required": ["sources"],
   "properties": {
-    "references": {
+    "sources": {
       "type": "array",
       "items": {
         "type": "object",

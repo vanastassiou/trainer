@@ -134,16 +134,32 @@
           "movement_pattern": {
             "type": "string",
             "description": "Fundamental movement classification",
-            "enum": [
-              "push",
-              "pull",
-              "hinge",
-              "squat",
-              "lunge",
-              "carry",
-              "rotation",
-              "isolation"
-            ]
+            "enum": ["push", "pull", "hinge", "squat", "lunge", "carry", "rotation"]
+          },
+          "joint_type": {
+            "type": "string",
+            "description": "Joint involvement: compound (multi-joint) or isolation (single-joint)",
+            "enum": ["compound", "isolation"]
+          },
+          "direction": {
+            "type": "string",
+            "description": "Movement direction for push/pull patterns",
+            "enum": ["horizontal", "vertical"]
+          },
+          "kinetic_chain": {
+            "type": "string",
+            "description": "Kinetic chain type: closed (distal segment fixed) or open (distal segment free)",
+            "enum": ["closed", "open"]
+          },
+          "laterality": {
+            "type": "string",
+            "description": "Limb involvement: bilateral (both limbs) or unilateral (single limb)",
+            "enum": ["bilateral", "unilateral"]
+          },
+          "role": {
+            "type": "string",
+            "description": "Exercise role: basic (primary strength builder) or auxiliary (supporting exercise)",
+            "enum": ["basic", "auxiliary"]
           },
           "description": {
             "type": "string",
