@@ -1819,8 +1819,17 @@ input::placeholder {
 }
 
 .profile-details dt {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: var(--color-text-muted);
   font-size: 14px;
+}
+
+.profile-details dt .term-info-btn {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
 }
 
 .profile-details dd {
