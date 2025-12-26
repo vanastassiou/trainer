@@ -155,7 +155,7 @@
         "term": "isolation exercise",
         "aliases": ["single-joint exercise"],
         "category": "movement",
-        "description": "An exercise that involves just one discernible joint movement. Examples include bicep curls, leg extensions, and lateral raises.",
+        "description": "An exercise that involves just one discernible joint movement. Examples include biceps curls, leg extensions, and lateral raises.",
         "references": [
           {
             "source": "exrx",
@@ -1016,7 +1016,7 @@
         "term": "bell-shaped tension curve",
         "aliases": [],
         "category": "kinesiology",
-        "description": "A resistance profile where muscular tension is greatest in the middle of the range of motion. Example: bicep curls (hardest at 90° elbow flexion).",
+        "description": "A resistance profile where muscular tension is greatest in the middle of the range of motion. Example: biceps curls (hardest at 90° elbow flexion).",
         "references": [
           {
             "source": "exrx",
