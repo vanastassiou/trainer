@@ -7,97 +7,170 @@
   <title>Health Tracker</title>
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
+  <!-- Preload JS modules to avoid waterfall -->
+  <link rel="modulepreload" href="js/app.js">
+  <link rel="modulepreload" href="js/state.js">
+  <link rel="modulepreload" href="js/db.js">
+  <link rel="modulepreload" href="js/utils.js">
+  <link rel="modulepreload" href="js/ui.js">
+  <link rel="modulepreload" href="js/charts.js">
+  <link rel="modulepreload" href="js/measurements.js">
+  <link rel="modulepreload" href="js/workout.js">
+  <link rel="modulepreload" href="js/programs.js">
+  <link rel="modulepreload" href="js/goals.js">
+  <link rel="modulepreload" href="js/learn.js">
+  <link rel="modulepreload" href="js/filters.js">
+  <link rel="modulepreload" href="js/validation.js">
 </head>
 <body>
   <header>
     <nav class="tabs">
-      <button class="tab" data-tab="measurements">Measurements</button>
-      <button class="tab active" data-tab="workout">Workout</button>
-      <button class="tab" data-tab="programs">Programs</button>
-      <button class="tab" data-tab="learn">Learn</button>
+      <button class="tab" data-tab="metrics">Metrics</button>
+      <button class="tab active" data-tab="exercise">Exercise</button>
+      <button class="tab" data-tab="profile">Profile</button>
     </nav>
+    <div id="profile-stats" class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-days-tracked">--</span>
+        <span class="stat-label">Days</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-total-workouts">--</span>
+        <span class="stat-label">Workouts</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-current-streak">--</span>
+        <span class="stat-label">Streak</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-avg-calories">--</span>
+        <span class="stat-label">Avg cal</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-avg-protein">--</span>
+        <span class="stat-label">Avg protein</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-avg-sleep">--</span>
+        <span class="stat-label">Avg sleep</span>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section id="measurements" class="page">
-      <div id="previous-measurements" class="previous-measurements hidden">
-        <div class="previous-measurements-header">
-          <span>Last recorded</span>
-          <span id="previous-measurements-date"></span>
-        </div>
-        <div id="previous-measurements-values"></div>
+    <section id="metrics" class="page">
+      <div class="date-header">
+        <button type="button" class="nav-button date-nav prev" aria-label="Previous day">&lt;</button>
+        <button type="button" class="date-display">
+          <span class="date-text">Today</span>
+        </button>
+        <button type="button" class="nav-button date-nav next" aria-label="Next day" disabled>&gt;</button>
       </div>
 
-      <form id="measurements-form" class="measurements-form">
-        <div class="measurement-row full">
-          <label for="weight">Weight</label>
-          <input type="number" id="weight" name="weight" inputmode="decimal" step="0.1">
-        </div>
+      <nav class="sub-tabs">
+        <button class="sub-tab active" data-subtab="daily">Daily</button>
+        <button class="sub-tab" data-subtab="measurements">Measurements</button>
+      </nav>
 
-        <div class="measurement-row full">
-          <label for="neck">Neck</label>
-          <input type="number" id="neck" name="neck" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="measurement-row full">
-          <label for="chest">Chest</label>
-          <input type="number" id="chest" name="chest" inputmode="decimal" step="0.1">
-        </div>
-
-        <div class="measurement-pair">
-          <div class="measurement-row">
-            <label for="leftBiceps">L Biceps</label>
-            <input type="number" id="leftBiceps" name="leftBiceps" inputmode="decimal" step="0.1">
+      <div id="daily" class="sub-page active">
+        <div class="chart-section" id="daily-chart">
+          <div class="chart-header">
+            <span class="chart-label">Last 30 days</span>
+            <select class="chart-metric-select" id="daily-metric-select">
+              <option value="calories">Calories</option>
+              <option value="protein">Protein</option>
+              <option value="fiber">Fiber</option>
+              <option value="water">Water</option>
+              <option value="steps">Steps</option>
+              <option value="sleep">Sleep</option>
+              <option value="recovery">Recovery</option>
+            </select>
           </div>
-          <div class="measurement-row">
-            <label for="rightBiceps">R Biceps</label>
-            <input type="number" id="rightBiceps" name="rightBiceps" inputmode="decimal" step="0.1">
-          </div>
+          <canvas class="chart-canvas"></canvas>
+          <div class="chart-summary"></div>
         </div>
 
-        <div class="measurement-row full">
-          <label for="waist">Waist</label>
-          <input type="number" id="waist" name="waist" inputmode="decimal" step="0.1">
+        <form id="daily-form" class="daily-form">
+          <div id="daily-fields-container"></div>
+
+          <div class="notes-row">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="How are you feeling today?"></textarea>
+          </div>
+
+          <button type="submit" class="btn accent">Save daily</button>
+        </form>
+      </div>
+
+      <div id="measurements" class="sub-page">
+        <div class="chart-section" id="measurements-chart">
+          <div class="chart-header">
+            <span class="chart-label">Last 30 days</span>
+            <select class="chart-metric-select" id="measurements-metric-select">
+              <option value="weight">Weight</option>
+              <option value="bodyFat">Body fat</option>
+              <option value="restingHR">Resting HR</option>
+              <option value="waist">Waist</option>
+              <option value="chest">Chest</option>
+              <option value="leftBiceps">L Biceps</option>
+              <option value="rightBiceps">R Biceps</option>
+              <option value="hips">Hips</option>
+              <option value="leftQuadriceps">L Quad</option>
+              <option value="rightQuadriceps">R Quad</option>
+              <option value="leftCalf">L Calf</option>
+              <option value="rightCalf">R Calf</option>
+              <option value="neck">Neck</option>
+            </select>
+          </div>
+          <canvas class="chart-canvas"></canvas>
+          <div class="chart-summary"></div>
         </div>
 
-        <div class="measurement-row full">
-          <label for="hips">Hips</label>
-          <input type="number" id="hips" name="hips" inputmode="decimal" step="0.1">
+        <div id="previous-measurements" class="previous-measurements card card--compact hidden">
+          <div class="previous-measurements-header">
+            <span>Last recorded</span>
+            <span id="previous-measurements-date"></span>
+          </div>
+          <div id="previous-measurements-values"></div>
         </div>
 
-        <div class="measurement-pair">
-          <div class="measurement-row">
-            <label for="leftQuadriceps">L Quad</label>
-            <input type="number" id="leftQuadriceps" name="leftQuadriceps" inputmode="decimal" step="0.1">
-          </div>
-          <div class="measurement-row">
-            <label for="rightQuadriceps">R Quad</label>
-            <input type="number" id="rightQuadriceps" name="rightQuadriceps" inputmode="decimal" step="0.1">
-          </div>
-        </div>
-
-        <div class="measurement-pair">
-          <div class="measurement-row">
-            <label for="leftCalf">L Calf</label>
-            <input type="number" id="leftCalf" name="leftCalf" inputmode="decimal" step="0.1">
-          </div>
-          <div class="measurement-row">
-            <label for="rightCalf">R Calf</label>
-            <input type="number" id="rightCalf" name="rightCalf" inputmode="decimal" step="0.1">
-          </div>
-        </div>
-
-        <button type="submit" class="btn accent">Save measurements</button>
-      </form>
+        <form id="measurements-form" class="measurements-form">
+          <div id="measurement-fields-container"></div>
+          <button type="submit" class="btn accent">Save measurements</button>
+        </form>
+      </div>
     </section>
 
-    <section id="workout" class="page active">
+    <section id="exercise" class="page active">
+      <div class="date-header">
+        <button type="button" class="nav-button date-nav prev" aria-label="Previous day">&lt;</button>
+        <button type="button" class="date-display">
+          <span class="date-text">Today</span>
+        </button>
+        <button type="button" class="nav-button date-nav next" aria-label="Next day" disabled>&gt;</button>
+      </div>
+
+      <nav class="sub-tabs">
+        <button class="sub-tab active" data-subtab="workouts">Workouts</button>
+        <button class="sub-tab" data-subtab="programs">Programs</button>
+      </nav>
+
+      <div id="workouts" class="sub-page active">
+        <div class="chart-section" id="workouts-chart">
+          <div class="chart-header">
+            <span class="chart-label">Last 30 days</span>
+            <span class="chart-metric-label">Volume<button type="button" class="term-info-btn" data-term="volume">?</button></span>
+          </div>
+          <canvas class="chart-canvas"></canvas>
+          <div class="chart-summary"></div>
+        </div>
+
       <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the programs tab.</p>
       <div class="program-selector">
         <div class="form-group" id="program-selector-group">
           <label>Program</label>
           <div class="program-display">
-            <span id="current-program-name">No program</span>
+            <span id="current-program-name">-</span>
             <button type="button" id="change-program-btn" class="btn ghost">Change</button>
           </div>
           <select id="current-program" class="hidden">
@@ -106,7 +179,7 @@
         <div class="form-group" id="day-selector-group">
           <label>Day</label>
           <div class="day-selector">
-            <span id="suggested-day" data-day="1">Day 1</span>
+            <span id="suggested-day" data-day="">-</span>
             <button type="button" id="change-day-btn" class="btn ghost">Change</button>
           </div>
           <select id="current-day" class="hidden"></select>
@@ -120,59 +193,155 @@
 
         <button type="submit" class="btn accent full">Save workout</button>
       </form>
+      </div>
+
+      <div id="programs" class="sub-page">
+        <nav class="sub-tabs">
+          <button class="sub-tab active" data-subtab="list-programs">List programs</button>
+          <button class="sub-tab" data-subtab="create-program">Create new</button>
+        </nav>
+
+        <div id="list-programs" class="sub-page active">
+          <div id="programs-list"></div>
+        </div>
+
+        <div id="create-program" class="sub-page">
+          <h3>Add program</h3>
+          <div class="form-group">
+            <label for="new-program-name">Program name</label>
+            <input type="text" id="new-program-name" placeholder="e.g., Push Pull Legs" required>
+          </div>
+
+          <div class="program-days-builder">
+            <label>Days</label>
+            <div id="program-days-container"></div>
+            <button type="button" id="add-program-day-btn" class="btn outline-accent full">+ Add day</button>
+          </div>
+
+          <div class="form-buttons">
+            <button type="button" id="create-program-btn" class="btn accent">Create program</button>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="programs" class="page">
-      <nav class="sub-tabs">
-        <button class="sub-tab active" data-subtab="list-programs">List programs</button>
-        <button class="sub-tab" data-subtab="create-program">Create new</button>
-      </nav>
+    <section id="profile" class="page">
+      <div class="profile-section">
+        <h3>Profile</h3>
 
-      <div id="list-programs" class="sub-page active">
-        <div id="programs-list"></div>
-      </div>
-
-      <div id="create-program" class="sub-page">
-        <h3>Add program</h3>
-        <div class="form-group">
-          <label for="new-program-name">Program name</label>
-          <input type="text" id="new-program-name" placeholder="e.g., Push Pull Legs">
+        <div id="profile-display" class="profile-display hidden">
+          <dl class="profile-details">
+            <dt>Name</dt>
+            <dd id="display-name">--</dd>
+            <dt>Age</dt>
+            <dd id="display-age">--</dd>
+            <dt>Sex</dt>
+            <dd id="display-sex">--</dd>
+            <dt>Height</dt>
+            <dd id="display-height">--</dd>
+            <dt>Units</dt>
+            <dd id="display-units">--</dd>
+          </dl>
+          <button type="button" id="edit-profile-btn" class="btn">Edit</button>
         </div>
 
-        <div class="program-days-builder">
-          <label>Days</label>
-          <div id="program-days-container"></div>
-          <button type="button" id="add-program-day-btn" class="btn outline-accent full">+ Add day</button>
+        <form id="profile-form" class="profile-form">
+          <label for="profile-name">Name</label>
+          <input type="text" id="profile-name" name="name" placeholder="Your name">
+
+          <label for="profile-birthdate">Birthdate</label>
+          <input type="date" id="profile-birthdate" name="birthDate">
+
+          <label for="profile-sex">Sex</label>
+          <select id="profile-sex" name="sex">
+            <option value="">Select</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+
+          <label for="profile-height">Height</label>
+          <div class="height-inputs">
+            <div id="height-metric-input" class="input-with-unit">
+              <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0" placeholder="170">
+              <span class="unit">cm</span>
+            </div>
+            <div id="height-imperial-input" class="input-with-unit hidden">
+              <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">
+              <span class="unit">ft</span>
+              <input type="number" id="profile-height-in" name="height-in" inputmode="decimal" step="0.5" min="0" max="11.9" placeholder="10" class="height-in">
+              <span class="unit">in</span>
+            </div>
+          </div>
+
+          <label for="profile-units">Units</label>
+          <select id="profile-units" name="unitPreference">
+            <option value="metric">Metric</option>
+            <option value="imperial">Imperial</option>
+          </select>
+
+          <button type="submit" class="btn accent">Save profile</button>
+        </form>
+      </div>
+
+      <div class="profile-section">
+        <h3>Goals</h3>
+        <div id="goals-list" class="goals-list">
+          <p id="no-goals-message" class="empty-message">
+            No goals set. Add a goal to start tracking your progress.
+          </p>
         </div>
 
-        <div class="form-buttons">
-          <button type="button" id="create-program-btn" class="btn accent">Create program</button>
+        <form id="add-goal-form" class="add-goal-form">
+          <h4>Add goal</h4>
+
+          <label for="goal-metric">Metric</label>
+          <select id="goal-metric" name="metric" required>
+            <optgroup label="Body">
+              <option value="weight">Weight</option>
+              <option value="bodyFat">Body fat %</option>
+              <option value="waist">Waist</option>
+            </optgroup>
+            <optgroup label="Daily">
+              <option value="calories">Calories</option>
+              <option value="protein">Protein</option>
+              <option value="water">Water</option>
+              <option value="steps">Steps</option>
+              <option value="sleep">Sleep</option>
+            </optgroup>
+          </select>
+
+          <label for="goal-direction">Direction</label>
+          <select id="goal-direction" name="direction" required>
+            <option value="decrease">Decrease to</option>
+            <option value="increase">Increase to</option>
+            <option value="maintain">Maintain at</option>
+          </select>
+          <label for="goal-target">Target</label>
+          <input type="number" id="goal-target" name="target" inputmode="decimal" step="any" required>
+
+          <label for="goal-deadline">Deadline</label>
+          <input type="date" id="goal-deadline" name="deadline">
+
+          <button type="submit" class="btn accent">Add goal</button>
+        </form>
+
+        <div id="completed-goals-section" class="completed-goals">
+          <h4>Completed</h4>
+          <div id="completed-goals-list"></div>
         </div>
       </div>
-    </section>
-
-    <section id="learn" class="page">
-      <div class="article-filters">
-        <select id="article-category-filter">
-          <option value="">All categories</option>
-        </select>
-      </div>
-      <div id="articles-container"></div>
-      <p id="no-articles-message" class="empty-message hidden">
-        No articles yet.
-      </p>
     </section>
 
     <div class="export-section">
-      <button type="button" id="export-btn" class="btn">Export all data</button>
-      <button type="button" id="import-btn" class="btn">Import data</button>
+      <button type="button" id="research-btn" class="btn">Research</button>
+      <button type="button" id="export-btn" class="btn">Export</button>
+      <button type="button" id="import-btn" class="btn">Import</button>
       <input type="file" id="import-file" accept=".json" class="hidden">
     </div>
   </main>
 
-  <!-- Exercise Info Modal -->
-  <div id="exercise-info-modal" class="modal hidden">
-    <div class="modal-backdrop"></div>
+  <!-- Exercise Info Dialog -->
+  <dialog id="exercise-info-modal" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3 id="exercise-info-name">Exercise Name</h3>
@@ -180,11 +349,21 @@
       </div>
       <div id="exercise-info-content" class="exercise-info-content"></div>
     </div>
-  </div>
+  </dialog>
 
-  <!-- Edit Program Modal -->
-  <div id="edit-program-modal" class="modal hidden">
-    <div class="modal-backdrop"></div>
+  <!-- Glossary Term Dialog -->
+  <dialog id="glossary-modal" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="glossary-term-name">Term</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <div id="glossary-term-content" class="glossary-content"></div>
+    </div>
+  </dialog>
+
+  <!-- Edit Program Dialog -->
+  <dialog id="edit-program-modal" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3>Edit program</h3>
@@ -193,7 +372,7 @@
       <div class="edit-program-form">
         <div class="form-group">
           <label for="edit-program-name">Program name</label>
-          <input type="text" id="edit-program-name" placeholder="e.g., Push Pull Legs">
+          <input type="text" id="edit-program-name" placeholder="e.g., Push Pull Legs" required>
         </div>
         <div class="program-days-builder">
           <label>Days</label>
@@ -206,11 +385,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </dialog>
 
   <!-- Workout Switch Dialog -->
-  <div id="workout-switch-dialog" class="modal hidden">
-    <div class="modal-backdrop"></div>
+  <dialog id="workout-switch-dialog" class="modal-dialog">
     <div class="modal-content dialog-content">
       <div class="modal-header">
         <h3>Unsaved workout</h3>
@@ -222,11 +400,10 @@
         <button type="button" class="btn ghost dialog-cancel-btn">Cancel</button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <!-- Exercise Picker Modal -->
-  <div id="exercise-picker-modal" class="modal hidden">
-    <div class="modal-backdrop"></div>
+  <!-- Exercise Picker Dialog -->
+  <dialog id="exercise-picker-modal" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h3>Select exercise</h3>
@@ -248,9 +425,43 @@
       </div>
       <div id="exercise-picker-list" class="exercise-picker-list"></div>
     </div>
-  </div>
+  </dialog>
 
-  <script src="dexie.min.js"></script>
-  <script src="app.js"></script>
+  <!-- Calendar Dialog -->
+  <dialog id="calendar-modal" class="modal-dialog">
+    <div class="modal-content calendar-content">
+      <div class="calendar-header">
+        <button type="button" class="nav-button month-nav prev" aria-label="Previous month">&lt;</button>
+        <span class="month-year"></span>
+        <button type="button" class="nav-button month-nav next" aria-label="Next month">&gt;</button>
+      </div>
+      <div class="calendar-weekdays">
+        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+      </div>
+      <div class="calendar-grid"></div>
+      <button type="button" class="btn accent full today-btn">Today</button>
+    </div>
+  </dialog>
+
+  <!-- Research Dialog -->
+  <dialog id="research-modal" class="modal-dialog fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Research</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <div class="article-filters">
+        <select id="article-category-filter">
+          <option value="">All categories</option>
+        </select>
+      </div>
+      <div id="articles-container"></div>
+      <p id="no-articles-message" class="empty-message hidden">
+        No articles yet.
+      </p>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
