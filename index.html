@@ -165,6 +165,8 @@
           <div class="chart-summary"></div>
         </div>
 
+        <div id="workout-volume-guidance" class="volume-guidance"></div>
+
       <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the programs tab.</p>
       <div class="program-selector">
         <div class="form-group" id="program-selector-group">
@@ -206,20 +208,66 @@
         </div>
 
         <div id="create-program" class="sub-page">
-          <h3>Add program</h3>
+          <h3>Generate program</h3>
+
           <div class="form-group">
-            <label for="new-program-name">Program name</label>
-            <input type="text" id="new-program-name" placeholder="e.g., Push Pull Legs" required>
+            <label for="program-days-per-week">Days per week</label>
+            <select id="program-days-per-week">
+              <option value="1">1 day (full body)</option>
+              <option value="2">2 days (full body)</option>
+              <option value="3" selected>3 days (push/pull/legs)</option>
+              <option value="4">4 days (upper/lower)</option>
+              <option value="5">5 days (PPL + upper/lower)</option>
+              <option value="6">6 days (push/pull/legs x2)</option>
+            </select>
           </div>
 
-          <div class="program-days-builder">
-            <label>Days</label>
-            <div id="program-days-container"></div>
-            <button type="button" id="add-program-day-btn" class="btn outline-accent full">+ Add day</button>
-          </div>
+          <fieldset class="form-group">
+            <legend>Equipment available</legend>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="bodyweight" checked>
+                Bodyweight
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="resistance_band">
+                Resistance bands
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="dumbbell">
+                Dumbbells
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="barbell">
+                Barbells
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="equipment" value="machine">
+                Machines
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Difficulty</legend>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="difficulty" value="beginner" checked>
+                Beginner
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="difficulty" value="intermediate">
+                Intermediate
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="difficulty" value="advanced">
+                Advanced
+              </label>
+            </div>
+          </fieldset>
 
           <div class="form-buttons">
-            <button type="button" id="create-program-btn" class="btn accent">Create program</button>
+            <button type="button" id="generate-program-btn" class="btn accent">Generate program</button>
           </div>
         </div>
       </div>
@@ -281,6 +329,8 @@
 
           <button type="submit" class="btn accent">Save profile</button>
         </form>
+
+        <div id="volume-guidance" class="volume-guidance card"></div>
       </div>
 
       <div class="profile-section">
@@ -380,6 +430,7 @@
           <button type="button" id="edit-add-day-btn" class="btn outline-accent full">+ Add day</button>
         </div>
         <div class="form-buttons">
+          <button type="button" id="regenerate-program-btn" class="btn outline-accent hidden">Regenerate</button>
           <button type="button" id="save-program-btn" class="btn accent">Save program</button>
           <button type="button" id="delete-program-btn" class="btn danger">Delete program</button>
         </div>

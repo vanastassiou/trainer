@@ -36,7 +36,8 @@ import {
   initExercisePicker,
   initExerciseInfoModal,
   addExerciseCard,
-  loadTemplate
+  loadTemplate,
+  renderWorkoutVolumeGuidance
 } from './workout.js';
 
 import {
@@ -48,7 +49,7 @@ import {
 } from './programs.js';
 
 import { initProfile, DIRECTION_CONFIG } from './goals.js';
-import { initResearchButton, loadGlossary, initGlossaryModal } from './learn.js';
+import { initResearchButton, loadGlossary, loadArticles, initGlossaryModal } from './learn.js';
 
 // =============================================================================
 // INITIALIZATION
@@ -91,9 +92,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Remaining data loads in parallel (glossary/profile not needed for UI init)
   await Promise.all([
     loadGlossary(),
+    loadArticles(),
     initProfile()
   ]);
   initGlossaryModal();
+  renderWorkoutVolumeGuidance();
 
   await loadDataForDate(getTodayDate());
   await refreshAllCharts();

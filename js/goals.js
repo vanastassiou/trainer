@@ -18,7 +18,7 @@ import {
 } from './db.js';
 import { METRIC_UNITS, updateFormUnits, displayPreviousMeasurements } from './measurements.js';
 import { state } from './state.js';
-import { toImperial, toMetric, getDisplayUnit } from './utils.js';
+import { toImperial, toMetric, getDisplayUnit, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
 
 // =============================================================================
 // CONSTANTS
@@ -196,19 +196,9 @@ async function renderProfileDisplay() {
     ? profile.sex.charAt(0).toUpperCase() + profile.sex.slice(1)
     : '--';
 
-  // Calculate age from birthdate
-  if (profile.birthDate) {
-    const birthDate = new Date(profile.birthDate + 'T00:00:00');
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    document.getElementById('display-age').textContent = age;
-  } else {
-    document.getElementById('display-age').textContent = '--';
-  }
+  // Calculate age from birthdate using utility function
+  const age = getAgeFromBirthDate(profile.birthDate);
+  document.getElementById('display-age').textContent = age != null ? age : '--';
 
   // Format height based on unit preference
   if (profile.height) {
@@ -225,6 +215,41 @@ async function renderProfileDisplay() {
   // Display units preference
   document.getElementById('display-units').textContent =
     state.unitPreference === 'imperial' ? 'Imperial' : 'Metric';
+
+  // Render volume guidance based on age
+  renderVolumeGuidance(age);
+}
+
+/**
+ * Render personalized volume recommendations based on user's age.
+ * @param {number|null} age - User's age in years
+ */
+function renderVolumeGuidance(age) {
+  const container = document.getElementById('volume-guidance');
+  if (!container) return;
+
+  const recs = getVolumeRecommendations(age);
+
+  const ageNote = age != null
+    ? (recs.ageGroup === 'older-adult'
+      ? 'Research shows adults 60+ benefit from higher training frequency.'
+      : '')
+    : 'Add your birth date to get personalized recommendations.';
+
+  container.innerHTML = `
+    <h4>Volume guidelines</h4>
+    <dl class="volume-recs">
+      <dt>Maintenance</dt>
+      <dd>${recs.maintenance.description}</dd>
+      <dt>Growth</dt>
+      <dd>${recs.growth.description}</dd>
+      <dt>Frequency</dt>
+      <dd>${recs.frequency.description}</dd>
+      <dt>Per session</dt>
+      <dd>${recs.perSession.description}</dd>
+    </dl>
+    ${ageNote ? `<p class="volume-note">${ageNote}</p>` : ''}
+  `;
 }
 
 function updateHeightInputVisibility(preference) {

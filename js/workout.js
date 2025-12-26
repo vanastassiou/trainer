@@ -4,8 +4,9 @@
 // Handles workout logging, exercise cards, and exercise picker.
 
 import { state } from './state.js';
-import { fetchJSON, formatLabel, renderListItems, swapVisibility, toImperial } from './utils.js';
+import { fetchJSON, formatLabel, renderListItems, swapVisibility, toImperial, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
 import { createModalController, showConfirmDialog, showToast } from './ui.js';
+import { getProfile } from './db.js';
 import { filterExercises, getExerciseFilterValues, resetExerciseFilters, getUniqueValues } from './filters.js';
 import { hasUnsavedWorkoutData, collectWorkoutData } from './validation.js';
 import {
@@ -499,4 +500,36 @@ export function showExerciseInfo(exerciseName) {
 
   contentEl.innerHTML = html;
   state.exerciseInfoDialog.open();
+}
+
+// =============================================================================
+// WORKOUT VOLUME GUIDANCE
+// =============================================================================
+
+/**
+ * Render personalized volume guidance banner in workout section.
+ */
+export async function renderWorkoutVolumeGuidance() {
+  const container = document.getElementById('workout-volume-guidance');
+  if (!container) return;
+
+  const profile = await getProfile();
+  const age = getAgeFromBirthDate(profile.birthDate);
+  const recs = getVolumeRecommendations(age);
+
+  const ageText = recs.ageGroup === 'older-adult'
+    ? 'Based on your age, aim for higher frequency (2-3× per week per muscle).'
+    : '';
+
+  container.innerHTML = `
+    <details class="volume-guidance-details">
+      <summary>Volume guidelines</summary>
+      <p>
+        <strong>Maintenance:</strong> ${recs.maintenance.description}<br>
+        <strong>Growth:</strong> ${recs.growth.description}<br>
+        <strong>Per session:</strong> ${recs.perSession.description}
+      </p>
+      ${ageText ? `<p class="volume-note">${ageText}</p>` : ''}
+    </details>
+  `;
 }

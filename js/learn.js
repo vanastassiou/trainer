@@ -4,15 +4,16 @@
 // Handles research articles display and filtering.
 
 import { state } from './state.js';
-import { fetchJSON, formatLabel, renderListItems } from './utils.js';
+import { fetchJSON, formatLabel, renderListItems, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
 import { createModalController } from './ui.js';
+import { getProfile } from './db.js';
 
 // =============================================================================
 // DATA LOADING
 // =============================================================================
 
-async function loadArticles() {
-  if (state.articlesData) return state.articlesData;
+export async function loadArticles() {
+  if (state.articlesData?.articles?.length) return state.articlesData;
   state.articlesData = await fetchJSON('data/articles.json', { articles: [] });
   return state.articlesData;
 }
@@ -144,7 +145,59 @@ export function initGlossaryModal() {
   });
 }
 
-export function showGlossaryTerm(termName) {
+// Volume-related terms that get personalized recommendations
+const VOLUME_TERMS = ['maintenance volume', 'minimum effective volume', 'maximum adaptive volume', 'maximum recoverable volume'];
+
+/**
+ * Check if a term is volume-related based on its name or aliases.
+ * @param {object} term - Glossary term object
+ * @returns {boolean}
+ */
+function isVolumeTerm(term) {
+  const termLower = term.term.toLowerCase();
+  if (VOLUME_TERMS.includes(termLower)) return true;
+  if (term.aliases) {
+    const aliasLower = term.aliases.map(a => a.toLowerCase());
+    return ['mv', 'mev', 'mav', 'mrv'].some(alias => aliasLower.includes(alias));
+  }
+  return false;
+}
+
+/**
+ * Get personalized volume note based on user's age.
+ * @param {object} term - Glossary term object
+ * @param {number|null} age - User's age
+ * @returns {string} HTML string for personalized note
+ */
+function getPersonalizedVolumeNote(term, age) {
+  if (!isVolumeTerm(term)) return '';
+
+  const recs = getVolumeRecommendations(age);
+  const termLower = term.term.toLowerCase();
+
+  if (age == null) {
+    return '<p class="glossary-personalized">Add your birth date in Profile for personalized recommendations.</p>';
+  }
+
+  let note = '';
+  if (termLower === 'maintenance volume' || term.aliases?.includes('MV')) {
+    note = `For you: ${recs.maintenance.description} with ${recs.frequency.description}.`;
+  } else if (termLower === 'minimum effective volume' || term.aliases?.includes('MEV')) {
+    note = `For you: Start mesocycles around ${recs.growth.min} sets per muscle per week.`;
+  } else if (termLower === 'maximum adaptive volume' || term.aliases?.includes('MAV')) {
+    note = `For you: Progress toward ${recs.growth.max} sets per muscle per week during training blocks.`;
+  } else if (termLower === 'maximum recoverable volume' || term.aliases?.includes('MRV')) {
+    note = `For you: ${recs.perSession.description}. Distribute volume across ${recs.frequency.description}.`;
+  }
+
+  if (recs.ageGroup === 'older-adult') {
+    note += ' Research shows adults 60+ benefit from training each muscle 2-3× per week.';
+  }
+
+  return note ? `<p class="glossary-personalized">${note}</p>` : '';
+}
+
+export async function showGlossaryTerm(termName) {
   const term = getGlossaryTerm(termName);
   if (!term) {
     return;
@@ -158,9 +211,18 @@ export function showGlossaryTerm(termName) {
   const categoryLabel = state.glossaryData.glossary.categories[term.category] || term.category;
   const hasDetails = term.details || (term.references && term.references.length > 0);
 
+  // Get personalized note for volume terms
+  let personalizedNote = '';
+  if (isVolumeTerm(term)) {
+    const profile = await getProfile();
+    const age = getAgeFromBirthDate(profile.birthDate);
+    personalizedNote = getPersonalizedVolumeNote(term, age);
+  }
+
   let html = `
     <span class="glossary-category">${categoryLabel}</span>
     <p class="glossary-description">${term.description}</p>
+    ${personalizedNote}
   `;
 
   if (term.aliases && term.aliases.length > 0) {
@@ -183,14 +245,33 @@ export function showGlossaryTerm(termName) {
     }
 
     if (term.references && term.references.length > 0) {
+      // Ensure articles are loaded
+      await loadArticles();
+      const articles = state.articlesData?.articles || [];
+      const refHtml = term.references.map(ref => {
+        if (ref.type === 'article' && ref.id) {
+          // Internal article reference - look up the article
+          const article = articles.find(a => a.id === ref.id);
+          if (article) {
+            const url = article.doi
+              ? `https://doi.org/${article.doi}`
+              : article.url;
+            return `<li><a href="${url}" target="_blank" rel="noopener">${article.title}</a></li>`;
+          }
+          // Fallback: show ID as link to search
+          return `<li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(ref.id.replace(/-/g, ' '))}" target="_blank" rel="noopener">${ref.id}</a></li>`;
+        }
+        // External reference with source/url
+        if (ref.url && ref.source) {
+          return `<li><a href="${ref.url}" target="_blank" rel="noopener">${ref.source}</a></li>`;
+        }
+        return '';
+      }).filter(Boolean).join('');
+
       html += `
         <div class="glossary-references">
           <h5>References</h5>
-          <ul>
-            ${term.references.map(ref =>
-              `<li><a href="${ref.url}" target="_blank" rel="noopener">${ref.source}</a></li>`
-            ).join('')}
-          </ul>
+          <ul>${refHtml}</ul>
         </div>
       `;
     }

@@ -7,7 +7,9 @@
       "programming": "Workout structure and planning terms",
       "technique": "Advanced training methods",
       "kinesiology": "Biomechanics and movement science terms",
-      "direction": "Anatomical position and directional terminology"
+      "direction": "Anatomical position and directional terminology",
+      "nutrition": "Dietary intake and hydration concepts",
+      "recovery": "Rest, sleep, and adaptation terminology"
     },
     "terms": [
       {
@@ -415,6 +417,45 @@
           {
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Guidelines"
+          }
+        ]
+      },
+      {
+        "term": "beginner exercise",
+        "aliases": [],
+        "category": "programming",
+        "description": "An exercise with low technical demands suitable for those new to training. Characterized by a stable base of support, simple movement pattern, and minimal balance or coordination requirements.",
+        "details": "Examples include push-ups, goblet squats, and machine-based exercises. These movements allow trainees to focus on developing basic motor patterns and building foundational strength without excessive injury risk.",
+        "references": [
+          {
+            "source": "pubmed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+          }
+        ]
+      },
+      {
+        "term": "intermediate exercise",
+        "aliases": [],
+        "category": "programming",
+        "description": "An exercise requiring moderate skill and body awareness. Characterized by free weight loading, multi-joint coordination, and moderate balance demands.",
+        "details": "Examples include barbell squats, dumbbell rows, and lunges. These movements build on foundational patterns and introduce greater stability challenges and loading potential.",
+        "references": [
+          {
+            "source": "pubmed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+          }
+        ]
+      },
+      {
+        "term": "advanced exercise",
+        "aliases": [],
+        "category": "programming",
+        "description": "An exercise demanding high levels of strength, stability, or coordination. Characterized by significant balance challenges, complex motor patterns, or high strength-to-bodyweight ratios.",
+        "details": "Examples include pistol squats, handstand push-ups, and Olympic lifts. These movements require substantial training experience and should only be attempted after mastering foundational and intermediate progressions.",
+        "references": [
+          {
+            "source": "pubmed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
           }
         ]
       },
@@ -1057,6 +1098,169 @@
           {
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
+          }
+        ]
+      },
+      {
+        "term": "calories",
+        "aliases": ["energy intake", "kcal", "kilocalories"],
+        "category": "nutrition",
+        "description": "A measure of energy from food. Adequate caloric intake supports training adaptations; chronic deficits impair performance, recovery, and hormonal function.",
+        "details": "Low energy availability (LEA) occurs when caloric intake fails to meet the demands of exercise and bodily functions. Meta-analyses show LEA affects 45% of athletes and is linked to decreased endurance, coordination, and increased injury risk.",
+        "references": [
+          {
+            "type": "article",
+            "id": "statuta-2024-lea-reds"
+          }
+        ]
+      },
+      {
+        "term": "protein",
+        "aliases": ["dietary protein"],
+        "category": "nutrition",
+        "description": "A macronutrient essential for muscle protein synthesis and repair. Resistance-trained individuals benefit from intakes of 1.6-2.2 g/kg/day.",
+        "details": "Meta-analyses of 49 studies show protein supplementation augments resistance training gains in muscle mass and strength. Benefits plateau at ~1.6 g/kg/day total intake, with older adults potentially benefiting from 1.2-1.6 g/kg/day.",
+        "references": [
+          {
+            "type": "article",
+            "id": "morton-2018-protein-rct"
+          }
+        ]
+      },
+      {
+        "term": "fiber",
+        "aliases": ["dietary fiber", "roughage"],
+        "category": "nutrition",
+        "description": "Indigestible plant material that supports digestive health. Higher intakes are associated with reduced cardiovascular disease, cancer, and all-cause mortality.",
+        "details": "An umbrella review of 17 million individuals found convincing evidence linking fiber intake to reduced CVD mortality, pancreatic cancer, and diverticular disease. Benefits appear dose-dependent with no upper threshold identified.",
+        "references": [
+          {
+            "type": "article",
+            "id": "veronese-2018-fiber-umbrella"
+          }
+        ]
+      },
+      {
+        "term": "water",
+        "aliases": ["hydration", "fluid intake"],
+        "category": "nutrition",
+        "description": "Fluid intake to maintain hydration status. Dehydration of 2% body mass or more impairs endurance performance, especially in heat.",
+        "details": "Systematic reviews show fluid intake following dehydration improves continuous exercise performance, particularly at elevated temperatures. Pre-exercise hyperhydration may help delay adverse effects of fluid loss during prolonged exercise.",
+        "references": [
+          {
+            "type": "article",
+            "id": "mccarthy-2017-rehydration"
+          }
+        ]
+      },
+      {
+        "term": "steps",
+        "aliases": ["daily steps", "step count"],
+        "category": "recovery",
+        "description": "A measure of daily ambulatory physical activity. Higher step counts are associated with progressively lower all-cause mortality risk.",
+        "details": "A meta-analysis of 47,471 adults found that compared to the lowest step group (~3,500 steps/day), those averaging 10,900 steps had 40-53% lower mortality risk. Benefits plateau around 6,000-8,000 steps for adults over 60, and 8,000-10,000 for younger adults.",
+        "references": [
+          {
+            "type": "article",
+            "id": "paluch-2022-steps-mortality"
+          }
+        ]
+      },
+      {
+        "term": "sleep",
+        "aliases": ["sleep duration"],
+        "category": "recovery",
+        "description": "A period of rest essential for physical and cognitive recovery. Athletes typically need 7-9 hours, with sleep extension showing performance benefits.",
+        "details": "Systematic reviews show sleep extension improves reaction time, sprint performance, and shooting accuracy in athletes. Collegiate basketball players extending sleep to 10 hours showed 9% improved free-throw accuracy and faster sprint times.",
+        "references": [
+          {
+            "type": "article",
+            "id": "cunha-2023-sleep-interventions"
+          }
+        ]
+      },
+      {
+        "term": "recovery",
+        "aliases": ["perceived recovery", "recovery status"],
+        "category": "recovery",
+        "description": "A subjective 1-10 rating of readiness to train. Lower scores indicate incomplete recovery and may warrant reduced training intensity.",
+        "details": "The Perceived Recovery Status (PRS) scale correlates with markers of muscle damage and performance decrements. Research shows it can effectively assess daily recovery following resistance exercise, though the relationship is individualized.",
+        "references": [
+          {
+            "type": "article",
+            "id": "sikorski-2013-prs-validation"
+          }
+        ]
+      },
+      {
+        "term": "reps in reserve",
+        "aliases": ["RIR"],
+        "category": "technique",
+        "description": "The estimated number of repetitions remaining before reaching muscular failure. RIR 0 means no reps left; RIR 2 means two more reps were possible.",
+        "details": "RIR provides a practical way to auto-regulate training intensity. Research suggests training within 0-3 RIR optimizes hypertrophy while managing fatigue. Higher RIR (4+) may be appropriate for technique practice or deload periods.",
+        "references": []
+      },
+      {
+        "term": "maintenance volume",
+        "aliases": ["MV"],
+        "category": "programming",
+        "description": "The minimum weekly training volume (sets per muscle group) needed to preserve existing muscle mass. Typically around 6 working sets per week.",
+        "details": "Research shows young adults can maintain muscle with as few as 3 sets per muscle per week if intensity is preserved. Adults over 60 typically require 6-10 sets per week. Maintaining load (intensity) is more critical than maintaining volume.",
+        "references": [
+          {
+            "type": "article",
+            "id": "bickel-2011-maintenance-volume"
+          },
+          {
+            "type": "article",
+            "id": "spiering-2021-minimal-dose"
+          }
+        ]
+      },
+      {
+        "term": "minimum effective volume",
+        "aliases": ["MEV"],
+        "category": "programming",
+        "description": "The lowest weekly training volume that produces measurable muscle growth. Typically around 8-10 sets per muscle group per week.",
+        "details": "MEV varies by training status and muscle group. Beginners may see growth with fewer sets, while advanced trainees require more. Starting a training block at MEV allows room to progressively increase volume.",
+        "references": [
+          {
+            "type": "article",
+            "id": "schoenfeld-2017-volume-dose-response"
+          }
+        ]
+      },
+      {
+        "term": "maximum adaptive volume",
+        "aliases": ["MAV"],
+        "category": "programming",
+        "description": "The weekly training volume range that produces optimal muscle growth over time. Typically 12-18 sets per muscle group per week.",
+        "details": "MAV represents the progression zone between MEV and MRV. Each session increases fatigue, requiring progressive volume increases to maintain optimal stimulus. The ideal volume varies by individual recovery capacity and training experience.",
+        "references": [
+          {
+            "type": "article",
+            "id": "schoenfeld-2017-volume-dose-response"
+          },
+          {
+            "type": "article",
+            "id": "pelland-2025-volume-frequency"
+          }
+        ]
+      },
+      {
+        "term": "maximum recoverable volume",
+        "aliases": ["MRV"],
+        "category": "programming",
+        "description": "The highest weekly training volume from which you can still recover. Exceeding MRV leads to accumulated fatigue and impaired progress. Typically 20-25 sets per muscle group per week.",
+        "details": "Training at MRV is unsustainable long-term and leads to overtraining symptoms. Research suggests diminishing returns occur well before MRV, with per-session benefits plateauing around 11 sets. Distribute volume across 2-3 sessions for better results.",
+        "references": [
+          {
+            "type": "article",
+            "id": "remmert-2025-per-session-volume"
+          },
+          {
+            "type": "article",
+            "id": "pelland-2025-volume-frequency"
           }
         ]
       }

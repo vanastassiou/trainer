@@ -200,3 +200,62 @@ export function getDisplayUnit(metric, unitPreference) {
   }
   return metricUnits[metric] || '';
 }
+
+// =============================================================================
+// AGE AND VOLUME UTILITIES
+// =============================================================================
+
+/**
+ * Calculate age from a birth date string.
+ * @param {string} birthDate - ISO date string (YYYY-MM-DD)
+ * @returns {number|null} Age in years, or null if invalid
+ */
+export function getAgeFromBirthDate(birthDate) {
+  if (!birthDate) return null;
+
+  const birth = new Date(birthDate + 'T00:00:00');
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+
+/**
+ * Get volume recommendations based on age.
+ * Research indicates older adults (60+) need higher maintenance volume.
+ * @param {number|null} age - Age in years
+ * @returns {object} Volume recommendations
+ */
+export function getVolumeRecommendations(age) {
+  // Default recommendations (for unknown age or young adults)
+  const defaultRecs = {
+    maintenance: { min: 3, max: 6, description: '3-6 sets per muscle per week' },
+    growth: { min: 10, max: 20, description: '10-20 sets per muscle per week' },
+    frequency: { min: 1, max: 2, description: '1-2 sessions per muscle per week' },
+    perSession: { max: 11, description: 'Up to ~11 sets per muscle per session' },
+    ageGroup: 'adult'
+  };
+
+  if (age == null) {
+    return defaultRecs;
+  }
+
+  // Older adults (60+) need more volume to maintain
+  if (age >= 60) {
+    return {
+      maintenance: { min: 6, max: 10, description: '6-10 sets per muscle per week' },
+      growth: { min: 12, max: 20, description: '12-20 sets per muscle per week' },
+      frequency: { min: 2, max: 3, description: '2-3 sessions per muscle per week' },
+      perSession: { max: 10, description: 'Up to ~10 sets per muscle per session' },
+      ageGroup: 'older-adult'
+    };
+  }
+
+  // Young adults and middle-aged
+  return defaultRecs;
+}

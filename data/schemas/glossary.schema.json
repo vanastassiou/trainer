@@ -36,7 +36,7 @@
               "category": {
                 "type": "string",
                 "description": "Term category",
-                "enum": ["basic", "anatomy", "movement", "programming", "technique", "kinesiology", "direction"]
+                "enum": ["basic", "anatomy", "movement", "programming", "technique", "kinesiology", "direction", "nutrition", "recovery"]
               },
               "description": {
                 "type": "string",
