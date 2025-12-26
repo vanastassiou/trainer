@@ -5,6 +5,7 @@
 // Private state variables
 let _exercisesDB = [];
 let _articlesData = null;
+let _glossaryData = null;
 let _isInitializing = false;
 let _editingProgramId = null;
 let _exercisePickerCallback = null;
@@ -19,6 +20,7 @@ let _exercisePickerDialog = null;
 let _exerciseInfoDialog = null;
 let _calendarDialog = null;
 let _researchDialog = null;
+let _glossaryDialog = null;
 let _unitPreference = 'metric';
 
 // State object with getters/setters for controlled access
@@ -30,6 +32,10 @@ export const state = {
   // Articles data (lazy loaded)
   get articlesData() { return _articlesData; },
   set articlesData(v) { _articlesData = v; },
+
+  // Glossary data (lazy loaded)
+  get glossaryData() { return _glossaryData; },
+  set glossaryData(v) { _glossaryData = v; },
 
   // Initialization flag to prevent race conditions
   get isInitializing() { return _isInitializing; },
@@ -74,6 +80,9 @@ export const state = {
 
   get researchDialog() { return _researchDialog; },
   set researchDialog(v) { _researchDialog = v; },
+
+  get glossaryDialog() { return _glossaryDialog; },
+  set glossaryDialog(v) { _glossaryDialog = v; },
 
   // Unit preference (metric or imperial)
   get unitPreference() { return _unitPreference; },

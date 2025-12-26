@@ -1360,6 +1360,36 @@
             "url": "https://exrx.net/Kinesiology/Levers"
           }
         ]
+      },
+      {
+        "term": "weight",
+        "aliases": ["body weight", "bodyweight"],
+        "category": "biometrics",
+        "description": "Body mass, typically measured in kilograms or pounds. Changes in weight reflect shifts in muscle, fat, water, and glycogen stores.",
+        "details": "Daily weight fluctuates 1-2 kg due to hydration, food intake, and glycogen levels. Weekly averages provide more reliable trend data than single measurements. For body composition goals, the rate of weight change matters: muscle gain typically occurs at 0.25-0.5 kg/month for trained individuals, while fat loss of 0.5-1% bodyweight per week preserves muscle mass.",
+        "references": [
+          {
+            "pmid": "24864135",
+            "author": "Helms et al.",
+            "year": 2014,
+            "title": "Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation"
+          }
+        ]
+      },
+      {
+        "term": "resting heart rate",
+        "aliases": ["restingHR", "resting HR", "RHR"],
+        "category": "biometrics",
+        "description": "Heart rate measured at complete rest, typically 60-100 bpm for adults. Lower values often indicate better cardiovascular fitness.",
+        "details": "Endurance training can reduce resting heart rate by 10-20 bpm over months. Elevated resting heart rate may indicate incomplete recovery, stress, or illness. Measure first thing in the morning before rising for consistent readings. Values below 60 bpm are common in trained athletes and generally not concerning without symptoms.",
+        "references": [
+          {
+            "pmid": "26912360",
+            "author": "Reimers et al.",
+            "year": 2018,
+            "title": "Effects of exercise on the resting heart rate: a systematic review and meta-analysis"
+          }
+        ]
       }
     ]
   }
