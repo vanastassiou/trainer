@@ -39,9 +39,12 @@ const CIRCUMFERENCE_FIELDS = [
   'leftCalf', 'rightCalf'
 ];
 
+// Fields that moved from body to daily (check both for backwards compatibility)
+const MIGRATED_TO_DAILY = ['weight', 'restingHR'];
+
 /**
  * Get metric value from journal based on category and metric name
- * Handles nested structure for body.circumferences
+ * Handles nested structure for body.circumferences and backwards compatibility
  */
 function getMetricValue(journal, category, metric) {
   if (category === 'body') {
@@ -50,6 +53,15 @@ function getMetricValue(journal, category, metric) {
       return journal.body?.circumferences?.[metric];
     }
     return journal.body?.[metric];
+  }
+  if (category === 'daily') {
+    // Check daily first, fall back to body for migrated fields
+    const dailyValue = journal.daily?.[metric];
+    if (dailyValue != null) return dailyValue;
+    if (MIGRATED_TO_DAILY.includes(metric)) {
+      return journal.body?.[metric];
+    }
+    return dailyValue;
   }
   return journal[category]?.[metric];
 }

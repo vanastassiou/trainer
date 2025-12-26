@@ -409,7 +409,7 @@ async function updateMeasurementsChart() {
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
   const select = document.getElementById('measurements-metric-select');
-  const metric = select?.value || 'weight';
+  const metric = select?.value || 'bodyFat';
 
   const data = await getChartData(metric, 'body', 30);
   renderLineChart(canvas, data);

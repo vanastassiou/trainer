@@ -17,7 +17,7 @@ import { getChartData, renderLineChart, getChartSummary, formatSummaryHTML } fro
 // =============================================================================
 
 // Body measurement fields (top-level in body object)
-export const BODY_FIELDS = ['weight', 'bodyFat', 'restingHR'];
+export const BODY_FIELDS = ['bodyFat'];
 
 // Circumference fields (nested in body.circumferences)
 export const CIRCUMFERENCE_FIELDS = [
@@ -45,9 +45,11 @@ export const BODY_LABELS = {
 };
 
 // Daily tracking fields
-export const DAILY_FIELDS = ['calories', 'protein', 'fibre', 'water', 'steps', 'sleep', 'recovery'];
+export const DAILY_FIELDS = ['weight', 'restingHR', 'calories', 'protein', 'fibre', 'water', 'steps', 'sleep', 'recovery'];
 
 export const DAILY_LABELS = {
+  weight: 'Weight',
+  restingHR: 'Resting HR',
   calories: 'Calories',
   protein: 'Protein',
   fibre: 'Fibre',
@@ -59,6 +61,8 @@ export const DAILY_LABELS = {
 
 // Form field configurations for HTML generation
 export const DAILY_FIELD_CONFIG = [
+  { id: 'weight', label: 'Weight', unit: 'kg', inputmode: 'decimal', step: '0.1', group: 'body' },
+  { id: 'restingHR', label: 'Resting HR', unit: 'bpm', inputmode: 'numeric', min: '20', max: '200', group: 'body' },
   { id: 'calories', label: 'Calories', unit: 'kcal', inputmode: 'numeric', group: 'nutrition' },
   { id: 'protein', label: 'Protein', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
   { id: 'fibre', label: 'Fibre', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
@@ -69,14 +73,13 @@ export const DAILY_FIELD_CONFIG = [
 ];
 
 const DAILY_GROUP_LABELS = {
+  body: 'Body',
   nutrition: 'Nutrition',
   activity: 'Activity & recovery'
 };
 
 export const MEASUREMENT_FIELD_CONFIG = [
-  { id: 'weight', label: 'Weight', type: 'full', inputmode: 'decimal', step: '0.1' },
   { id: 'bodyFat', label: 'Body fat', type: 'full', inputmode: 'decimal', step: '0.1', max: '100' },
-  { id: 'restingHR', label: 'Resting HR', type: 'full', inputmode: 'numeric', min: '20', max: '200' },
   { id: 'neck', label: 'Neck', type: 'full', inputmode: 'decimal', step: '0.1' },
   { id: 'chest', label: 'Chest', type: 'full', inputmode: 'decimal', step: '0.1' },
   { id: 'leftBiceps', label: 'L Biceps', pair: 'biceps', inputmode: 'decimal', step: '0.1' },
@@ -128,23 +131,29 @@ export function getUnitForDisplay(metric) {
 export function updateFormUnits() {
   const unitPreference = state.unitPreference;
 
-  // Update daily form units (water)
-  const waterUnit = document.querySelector('#water')?.closest('.data-row')?.querySelector('.unit');
-  if (waterUnit) {
-    waterUnit.textContent = unitPreference === 'imperial' ? 'fl oz' : 'L';
-  }
+  // Fields that need unit updates
+  const fieldsToUpdate = ['weight', 'water', ...CIRCUMFERENCE_FIELDS];
 
-  // Update measurement form units (weight, circumferences)
-  ['weight', ...CIRCUMFERENCE_FIELDS].forEach(fieldId => {
-    const row = document.getElementById(fieldId)?.closest('.data-row');
-    if (row) {
-      let unitSpan = row.querySelector('.unit');
-      if (!unitSpan) {
-        unitSpan = document.createElement('span');
-        unitSpan.className = 'unit';
-        row.appendChild(unitSpan);
-      }
-      unitSpan.textContent = getDisplayUnit(fieldId, unitPreference);
+  fieldsToUpdate.forEach(fieldId => {
+    const input = document.getElementById(fieldId);
+    if (!input) return;
+
+    const label = input.closest('.data-row')?.querySelector('label');
+    if (!label) return;
+
+    const newUnit = getDisplayUnit(fieldId, unitPreference);
+    const fieldConfig = [...DAILY_FIELD_CONFIG, ...MEASUREMENT_FIELD_CONFIG].find(f => f.id === fieldId);
+    const fieldLabel = fieldConfig?.label || BODY_LABELS[fieldId] || fieldId;
+
+    // Find and preserve the tooltip button if present
+    const tooltipBtn = label.querySelector('.term-info-btn');
+
+    // Update label text (preserve tooltip button)
+    if (tooltipBtn) {
+      label.innerHTML = `${fieldLabel} (${newUnit})`;
+      label.appendChild(tooltipBtn);
+    } else {
+      label.textContent = `${fieldLabel} (${newUnit})`;
     }
   });
 }
@@ -231,13 +240,15 @@ export function generateDailyFormRows(containerId) {
     const label = DAILY_GROUP_LABELS[groupId] || groupId;
     html += `<div class="field-group-label">${label}</div>`;
     html += `<div class="field-group">`;
-    html += fields.map(field => `
+    html += fields.map(field => {
+      const unitDisplay = field.unit ? ` (${field.unit})` : '';
+      return `
       <div class="data-row row row--gap-md">
-        <label for="${field.id}">${field.label}<button type="button" class="term-info-btn" data-term="${field.id}">?</button></label>
+        <label for="${field.id}">${field.label}${unitDisplay}<button type="button" class="term-info-btn" data-term="${field.id}">?</button></label>
         <input ${createInputAttrs(field)}>
-        <span class="unit">${field.unit}</span>
       </div>
-    `).join('');
+    `;
+    }).join('');
     html += `</div>`;
   }
 
@@ -254,6 +265,7 @@ export function generateMeasurementFormRows(containerId) {
 
   for (const field of MEASUREMENT_FIELD_CONFIG) {
     const unit = METRIC_UNITS[field.id] || '';
+    const unitDisplay = unit ? ` (${unit})` : '';
 
     if (field.pair) {
       if (processedPairs.has(field.pair)) continue;
@@ -263,21 +275,23 @@ export function generateMeasurementFormRows(containerId) {
       const pairFields = MEASUREMENT_FIELD_CONFIG.filter(f => f.pair === field.pair);
       html += `
         <div class="measurement-pair">
-          ${pairFields.map(f => `
+          ${pairFields.map(f => {
+            const pairUnit = METRIC_UNITS[f.id] || '';
+            const pairUnitDisplay = pairUnit ? ` (${pairUnit})` : '';
+            return `
             <div class="data-row row">
-              <label for="${f.id}">${f.label}</label>
+              <label for="${f.id}">${f.label}${pairUnitDisplay}</label>
               <input ${createInputAttrs(f)}>
-              <span class="unit">${METRIC_UNITS[f.id] || ''}</span>
             </div>
-          `).join('')}
+          `;
+          }).join('')}
         </div>
       `;
     } else {
       html += `
         <div class="data-row row full">
-          <label for="${field.id}">${field.label}</label>
+          <label for="${field.id}">${field.label}${unitDisplay}</label>
           <input ${createInputAttrs(field)}>
-          <span class="unit">${unit}</span>
         </div>
       `;
     }
@@ -405,8 +419,20 @@ export function loadMeasurementsData(journal) {
   loadFieldsToForm(CIRCUMFERENCE_FIELDS, journal.body, (d, f) => d?.circumferences?.[f]);
 }
 
+// Fields that moved from body to daily (for backwards compatibility)
+const MIGRATED_TO_DAILY = ['weight', 'restingHR'];
+
 export function loadDailyData(journal) {
-  loadFieldsToForm(DAILY_FIELDS, journal.daily);
+  // Load daily fields, with fallback to body for migrated fields
+  loadFieldsToForm(DAILY_FIELDS, journal.daily, (d, f) => {
+    const value = d?.[f];
+    if (value != null) return value;
+    // Check body for migrated fields (backwards compatibility)
+    if (MIGRATED_TO_DAILY.includes(f)) {
+      return journal.body?.[f];
+    }
+    return value;
+  });
 
   const notesInput = document.getElementById('notes');
   if (notesInput) {
