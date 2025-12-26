@@ -126,7 +126,7 @@ export function collectProgramDays(container) {
   const days = [];
   container.querySelectorAll('.program-day-card').forEach(card => {
     const exercises = [];
-    card.querySelectorAll('.exercise-tag span').forEach(span => {
+    card.querySelectorAll('.exercise-tag .exercise-name').forEach(span => {
       exercises.push(span.textContent);
     });
     days.push({ exercises });

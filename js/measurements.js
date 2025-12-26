@@ -45,12 +45,12 @@ export const BODY_LABELS = {
 };
 
 // Daily tracking fields
-export const DAILY_FIELDS = ['calories', 'protein', 'fiber', 'water', 'steps', 'sleep', 'recovery'];
+export const DAILY_FIELDS = ['calories', 'protein', 'fibre', 'water', 'steps', 'sleep', 'recovery'];
 
 export const DAILY_LABELS = {
   calories: 'Calories',
   protein: 'Protein',
-  fiber: 'Fiber',
+  fibre: 'Fibre',
   water: 'Water',
   steps: 'Steps',
   sleep: 'Sleep',
@@ -61,7 +61,7 @@ export const DAILY_LABELS = {
 export const DAILY_FIELD_CONFIG = [
   { id: 'calories', label: 'Calories', unit: 'kcal', inputmode: 'numeric', group: 'nutrition' },
   { id: 'protein', label: 'Protein', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
-  { id: 'fiber', label: 'Fiber', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
+  { id: 'fibre', label: 'Fibre', unit: 'g', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
   { id: 'water', label: 'Water', unit: 'L', inputmode: 'decimal', step: '0.1', group: 'nutrition' },
   { id: 'steps', label: 'Steps', unit: '', inputmode: 'numeric', group: 'activity' },
   { id: 'sleep', label: 'Sleep', unit: 'hrs', inputmode: 'decimal', step: '0.25', max: '24', group: 'activity' },
@@ -94,7 +94,7 @@ export const METRIC_UNITS = {
   // Daily metrics
   calories: 'kcal',
   protein: 'g',
-  fiber: 'g',
+  fibre: 'g',
   water: 'L',
   steps: '',
   sleep: 'hrs',
@@ -233,7 +233,7 @@ export function generateDailyFormRows(containerId) {
     html += `<div class="field-group">`;
     html += fields.map(field => `
       <div class="data-row row row--gap-md">
-        <label for="${field.id}">${field.label}</label>
+        <label for="${field.id}">${field.label}<button type="button" class="term-info-btn" data-term="${field.id}">?</button></label>
         <input ${createInputAttrs(field)}>
         <span class="unit">${field.unit}</span>
       </div>

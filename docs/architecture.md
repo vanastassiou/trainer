@@ -76,7 +76,7 @@ Daily log entries keyed by date (YYYY-MM-DD). Each entry contains:
   daily: {                          // Daily vitals/habits
     calories: 2500,                 // kcal
     protein: 180,                   // g
-    fiber: 35,                      // g
+    fibre: 35,                      // g
     water: 3.5,                     // L
     steps: 8500,
     sleep: 7.5,                     // hrs

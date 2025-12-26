@@ -9,7 +9,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "title", "authors", "journal", "year", "url", "category", "question", "methodology", "takeaways"],
+        "required": ["id", "title", "author", "authors", "journal", "year", "url", "category", "question", "methodology", "takeaways"],
         "properties": {
           "id": {
             "type": "string",
@@ -20,9 +20,13 @@
             "type": "string",
             "description": "Article title"
           },
+          "author": {
+            "type": "string",
+            "description": "Citation author (e.g., 'Smith et al.' or 'Smith and Jones')"
+          },
           "authors": {
             "type": "array",
-            "description": "Author names",
+            "description": "Full author names",
             "items": {
               "type": "string"
             }

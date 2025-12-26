@@ -145,6 +145,11 @@
               "isolation"
             ]
           },
+          "role": {
+            "type": "string",
+            "description": "Exercise role: basic (primary strength builder) or auxiliary (supporting exercise)",
+            "enum": ["basic", "auxiliary"]
+          },
           "description": {
             "type": "string",
             "description": "Brief overview of the exercise"

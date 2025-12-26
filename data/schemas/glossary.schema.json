@@ -61,19 +61,75 @@
   },
   "definitions": {
     "reference": {
-      "type": "object",
-      "required": ["source", "url"],
-      "properties": {
-        "source": {
-          "type": "string",
-          "description": "Source identifier"
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "External reference with source name",
+          "required": ["source", "url"],
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "type": "string",
+              "description": "Source identifier (e.g., exrx, pubmed)"
+            },
+            "url": {
+              "type": "string",
+              "description": "URL to source",
+              "format": "uri"
+            }
+          }
         },
-        "url": {
-          "type": "string",
-          "description": "URL to source",
-          "format": "uri"
+        {
+          "type": "object",
+          "description": "PubMed-indexed article reference",
+          "required": ["pmid", "author", "year", "title"],
+          "additionalProperties": false,
+          "properties": {
+            "pmid": {
+              "type": "string",
+              "description": "PubMed ID",
+              "pattern": "^[0-9]+$"
+            },
+            "author": {
+              "type": "string",
+              "description": "Author citation (e.g., 'Smith et al.')"
+            },
+            "year": {
+              "type": "integer",
+              "description": "Publication year"
+            },
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "description": "Non-indexed article reference (preprints, etc.)",
+          "required": ["url", "author", "year", "title"],
+          "additionalProperties": false,
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to article",
+              "format": "uri"
+            },
+            "author": {
+              "type": "string",
+              "description": "Author citation (e.g., 'Smith et al.')"
+            },
+            "year": {
+              "type": "integer",
+              "description": "Publication year"
+            },
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            }
+          }
         }
-      }
+      ]
     }
   }
 }

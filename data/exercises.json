@@ -13,6 +13,7 @@
       "id": "push-up",
       "name": "Push-up",
       "muscle_group": "chest",
+      "role": "basic",
       "secondary_muscles": [
         "triceps brachii",
         "deltoideus anterior",
@@ -50,6 +51,7 @@
       "id": "diamond-push-up",
       "name": "Diamond push-up",
       "muscle_group": "chest",
+      "role": "auxiliary",
       "secondary_muscles": [
         "triceps brachii",
         "deltoideus anterior"
@@ -86,6 +88,7 @@
       "id": "resistance-band-chest-press",
       "name": "Resistance band chest press",
       "muscle_group": "chest",
+      "role": "basic",
       "secondary_muscles": [
         "triceps brachii",
         "deltoideus anterior"
@@ -123,6 +126,7 @@
       "id": "resistance-band-fly",
       "name": "Resistance band fly",
       "muscle_group": "chest",
+      "role": "auxiliary",
       "secondary_muscles": [
         "deltoideus anterior"
       ],
@@ -159,6 +163,7 @@
       "id": "dumbbell-bench-press",
       "name": "Dumbbell bench press",
       "muscle_group": "chest",
+      "role": "basic",
       "secondary_muscles": [
         "triceps brachii",
         "deltoideus anterior"
@@ -196,6 +201,7 @@
       "id": "dumbbell-fly",
       "name": "Dumbbell fly",
       "muscle_group": "chest",
+      "role": "auxiliary",
       "secondary_muscles": [
         "deltoideus anterior"
       ],
@@ -232,6 +238,7 @@
       "id": "incline-dumbbell-press",
       "name": "Incline dumbbell press",
       "muscle_group": "chest",
+      "role": "auxiliary",
       "secondary_muscles": [
         "triceps brachii",
         "deltoideus anterior"
@@ -269,6 +276,7 @@
       "id": "barbell-bench-press",
       "name": "Barbell bench press",
       "muscle_group": "chest",
+      "role": "basic",
       "secondary_muscles": [
         "triceps brachii",
         "deltoideus anterior"
@@ -837,9 +845,48 @@
       ]
     },
     {
+      "id": "incline-pike-push-up",
+      "name": "Incline pike push-up",
+      "muscle_group": "shoulders",
+      "role": "basic",
+      "secondary_muscles": [
+        "triceps brachii",
+        "rectus abdominis"
+      ],
+      "equipment": "bodyweight",
+      "difficulty": "beginner",
+      "movement_pattern": "push",
+      "description": "A beginner-friendly pike push-up with hands elevated to reduce load",
+      "instructions": [
+        "Place hands on an elevated surface (bench, step, or sturdy chair)",
+        "Walk feet back and raise hips into an inverted V shape",
+        "Lower head toward the surface by bending elbows",
+        "Press back up to the starting position"
+      ],
+      "tips": [
+        "The higher the surface, the easier the exercise",
+        "Keep core tight and legs straight",
+        "Progress to lower surfaces as you get stronger"
+      ],
+      "avoid": [
+        "Letting hips sag during the movement",
+        "Using an unstable surface"
+      ],
+      "primary_muscles": [
+        "deltoideus"
+      ],
+      "references": [
+        {
+          "source": "exrx",
+          "url": "https://exrx.net/WeightExercises/DeltoidAnterior/BWPikePushup"
+        }
+      ]
+    },
+    {
       "id": "pike-push-up",
       "name": "Pike push-up",
       "muscle_group": "shoulders",
+      "role": "basic",
       "secondary_muscles": [
         "triceps brachii",
         "rectus abdominis"

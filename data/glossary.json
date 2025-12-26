@@ -376,7 +376,7 @@
         "term": "hypertrophy",
         "aliases": ["muscle growth"],
         "category": "anatomy",
-        "description": "The increase in muscle size resulting from training, primarily through enlargement of existing muscle fibers.",
+        "description": "The increase in muscle size resulting from training, primarily through enlargement of existing muscle fibres.",
         "references": [
           {
             "source": "exrx",
@@ -400,7 +400,7 @@
         "term": "DOMS",
         "aliases": ["delayed onset muscle soreness"],
         "category": "anatomy",
-        "description": "Muscle soreness that develops 24-48 hours after exercise, caused by microscopic injury to muscle fibers leading to inflammation. Most common after eccentric exercise or unfamiliar movements.",
+        "description": "Muscle soreness that develops 24-48 hours after exercise, caused by microscopic injury to muscle fibres leading to inflammation. Most common after eccentric exercise or unfamiliar movements.",
         "references": [
           {
             "source": "exrx",
@@ -1109,8 +1109,10 @@
         "details": "Low energy availability (LEA) occurs when caloric intake fails to meet the demands of exercise and bodily functions. Meta-analyses show LEA affects 45% of athletes and is linked to decreased endurance, coordination, and increased injury risk.",
         "references": [
           {
-            "type": "article",
-            "id": "statuta-2024-lea-reds"
+            "pmid": "39485653",
+            "author": "Statuta et al.",
+            "year": 2024,
+            "title": "Low energy availability and relative energy deficiency in sport: a systematic review and meta-analysis"
           }
         ]
       },
@@ -1122,21 +1124,25 @@
         "details": "Meta-analyses of 49 studies show protein supplementation augments resistance training gains in muscle mass and strength. Benefits plateau at ~1.6 g/kg/day total intake, with older adults potentially benefiting from 1.2-1.6 g/kg/day.",
         "references": [
           {
-            "type": "article",
-            "id": "morton-2018-protein-rct"
+            "pmid": "28698222",
+            "author": "Morton et al.",
+            "year": 2018,
+            "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults"
           }
         ]
       },
       {
-        "term": "fiber",
-        "aliases": ["dietary fiber", "roughage"],
+        "term": "fibre",
+        "aliases": ["dietary fibre", "roughage"],
         "category": "nutrition",
         "description": "Indigestible plant material that supports digestive health. Higher intakes are associated with reduced cardiovascular disease, cancer, and all-cause mortality.",
-        "details": "An umbrella review of 17 million individuals found convincing evidence linking fiber intake to reduced CVD mortality, pancreatic cancer, and diverticular disease. Benefits appear dose-dependent with no upper threshold identified.",
+        "details": "An umbrella review of 17 million individuals found convincing evidence linking fibre intake to reduced CVD mortality, pancreatic cancer, and diverticular disease. Benefits appear dose-dependent with no upper threshold identified.",
         "references": [
           {
-            "type": "article",
-            "id": "veronese-2018-fiber-umbrella"
+            "pmid": "29566200",
+            "author": "Veronese et al.",
+            "year": 2018,
+            "title": "Dietary fibre and health outcomes: an umbrella review of systematic reviews and meta-analyses"
           }
         ]
       },
@@ -1148,8 +1154,10 @@
         "details": "Systematic reviews show fluid intake following dehydration improves continuous exercise performance, particularly at elevated temperatures. Pre-exercise hyperhydration may help delay adverse effects of fluid loss during prolonged exercise.",
         "references": [
           {
-            "type": "article",
-            "id": "mccarthy-2017-rehydration"
+            "pmid": "28275997",
+            "author": "McCartney et al.",
+            "year": 2017,
+            "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis"
           }
         ]
       },
@@ -1161,8 +1169,10 @@
         "details": "A meta-analysis of 47,471 adults found that compared to the lowest step group (~3,500 steps/day), those averaging 10,900 steps had 40-53% lower mortality risk. Benefits plateau around 6,000-8,000 steps for adults over 60, and 8,000-10,000 for younger adults.",
         "references": [
           {
-            "type": "article",
-            "id": "paluch-2022-steps-mortality"
+            "pmid": "35247352",
+            "author": "Paluch et al.",
+            "year": 2022,
+            "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts"
           }
         ]
       },
@@ -1174,8 +1184,10 @@
         "details": "Systematic reviews show sleep extension improves reaction time, sprint performance, and shooting accuracy in athletes. Collegiate basketball players extending sleep to 10 hours showed 9% improved free-throw accuracy and faster sprint times.",
         "references": [
           {
-            "type": "article",
-            "id": "cunha-2023-sleep-interventions"
+            "pmid": "37462808",
+            "author": "Cunha et al.",
+            "year": 2023,
+            "title": "The impact of sleep interventions on athletic performance: a systematic review"
           }
         ]
       },
@@ -1187,8 +1199,10 @@
         "details": "The Perceived Recovery Status (PRS) scale correlates with markers of muscle damage and performance decrements. Research shows it can effectively assess daily recovery following resistance exercise, though the relationship is individualized.",
         "references": [
           {
-            "type": "article",
-            "id": "sikorski-2013-prs-validation"
+            "pmid": "23287827",
+            "author": "Sikorski et al.",
+            "year": 2013,
+            "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise"
           }
         ]
       },
@@ -1208,12 +1222,16 @@
         "details": "Research shows young adults can maintain muscle with as few as 3 sets per muscle per week if intensity is preserved. Adults over 60 typically require 6-10 sets per week. Maintaining load (intensity) is more critical than maintaining volume.",
         "references": [
           {
-            "type": "article",
-            "id": "bickel-2011-maintenance-volume"
+            "pmid": "21131862",
+            "author": "Bickel et al.",
+            "year": 2011,
+            "title": "Exercise dosing to retain resistance training adaptations in young and older adults"
           },
           {
-            "type": "article",
-            "id": "spiering-2021-minimal-dose"
+            "pmid": "33629972",
+            "author": "Spiering et al.",
+            "year": 2021,
+            "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time"
           }
         ]
       },
@@ -1225,8 +1243,10 @@
         "details": "MEV varies by training status and muscle group. Beginners may see growth with fewer sets, while advanced trainees require more. Starting a training block at MEV allows room to progressively increase volume.",
         "references": [
           {
-            "type": "article",
-            "id": "schoenfeld-2017-volume-dose-response"
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis"
           }
         ]
       },
@@ -1238,12 +1258,16 @@
         "details": "MAV represents the progression zone between MEV and MRV. Each session increases fatigue, requiring progressive volume increases to maintain optimal stimulus. The ideal volume varies by individual recovery capacity and training experience.",
         "references": [
           {
-            "type": "article",
-            "id": "schoenfeld-2017-volume-dose-response"
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis"
           },
           {
-            "type": "article",
-            "id": "pelland-2025-volume-frequency"
+            "pmid": "41343037",
+            "author": "Pelland et al.",
+            "year": 2025,
+            "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains"
           }
         ]
       },
@@ -1255,12 +1279,16 @@
         "details": "Training at MRV is unsustainable long-term and leads to overtraining symptoms. Research suggests diminishing returns occur well before MRV, with per-session benefits plateauing around 11 sets. Distribute volume across 2-3 sessions for better results.",
         "references": [
           {
-            "type": "article",
-            "id": "remmert-2025-per-session-volume"
+            "url": "https://sportrxiv.org/index.php/server/preprint/view/537",
+            "author": "Remmert et al.",
+            "year": 2025,
+            "title": "Is there too much of a good thing? Meta-regressions of the effect of per-session volume on hypertrophy and strength"
           },
           {
-            "type": "article",
-            "id": "pelland-2025-volume-frequency"
+            "pmid": "41343037",
+            "author": "Pelland et al.",
+            "year": 2025,
+            "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains"
           }
         ]
       }

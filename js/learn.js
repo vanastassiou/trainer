@@ -245,24 +245,15 @@ export async function showGlossaryTerm(termName) {
     }
 
     if (term.references && term.references.length > 0) {
-      // Ensure articles are loaded
-      await loadArticles();
-      const articles = state.articlesData?.articles || [];
       const refHtml = term.references.map(ref => {
-        if (ref.type === 'article' && ref.id) {
-          // Internal article reference - look up the article
-          const article = articles.find(a => a.id === ref.id);
-          if (article) {
-            const url = article.doi
-              ? `https://doi.org/${article.doi}`
-              : article.url;
-            return `<li><a href="${url}" target="_blank" rel="noopener">${article.title}</a></li>`;
-          }
-          // Fallback: show ID as link to search
-          return `<li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(ref.id.replace(/-/g, ' '))}" target="_blank" rel="noopener">${ref.id}</a></li>`;
+        if (ref.pmid && ref.author && ref.year) {
+          const url = `https://pubmed.ncbi.nlm.nih.gov/${ref.pmid}/`;
+          return `<li><a href="${url}" target="_blank" rel="noopener">${ref.author} (${ref.year}). ${ref.title}</a></li>`;
         }
-        // External reference with source/url
-        if (ref.url && ref.source) {
+        if (ref.author && ref.year && ref.url) {
+          return `<li><a href="${ref.url}" target="_blank" rel="noopener">${ref.author} (${ref.year}). ${ref.title}</a></li>`;
+        }
+        if (ref.source && ref.url) {
           return `<li><a href="${ref.url}" target="_blank" rel="noopener">${ref.source}</a></li>`;
         }
         return '';

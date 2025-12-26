@@ -68,9 +68,9 @@
           "description": "Protein intake in grams",
           "minimum": 0
         },
-        "fiber": {
+        "fibre": {
           "type": "number",
-          "description": "Fiber intake in grams",
+          "description": "Fibre intake in grams",
           "minimum": 0
         },
         "water": {
