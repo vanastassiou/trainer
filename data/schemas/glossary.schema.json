@@ -20,7 +20,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["term", "category", "definition"],
+            "required": ["term", "category", "description"],
             "properties": {
               "term": {
                 "type": "string",
@@ -38,9 +38,13 @@
                 "description": "Term category",
                 "enum": ["basic", "anatomy", "movement", "programming", "technique", "kinesiology", "direction"]
               },
-              "definition": {
+              "description": {
                 "type": "string",
-                "description": "Plain-language definition"
+                "description": "Brief plain-language definition (shown immediately)"
+              },
+              "details": {
+                "type": "string",
+                "description": "Extended explanation (shown under 'more details' fold)"
               },
               "references": {
                 "type": "array",

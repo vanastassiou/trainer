@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Journal Entry",
+  "description": "A daily log entry containing body measurements, daily habits, workout data, and notes",
+  "type": "object",
+  "required": ["date"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Entry date in YYYY-MM-DD format (primary key)",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "lastModified": {
+      "type": "string",
+      "description": "ISO 8601 timestamp of last modification",
+      "format": "date-time"
+    },
+    "body": {
+      "type": "object",
+      "description": "Body measurements (typically recorded periodically, not daily)",
+      "properties": {
+        "weight": {
+          "type": "number",
+          "description": "Body weight in kg",
+          "minimum": 0
+        },
+        "bodyFat": {
+          "type": "number",
+          "description": "Body fat percentage",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "restingHR": {
+          "type": "integer",
+          "description": "Resting heart rate in bpm",
+          "minimum": 20,
+          "maximum": 200
+        },
+        "circumferences": {
+          "type": "object",
+          "description": "Body circumference measurements in cm",
+          "properties": {
+            "neck": { "type": "number", "minimum": 0 },
+            "chest": { "type": "number", "minimum": 0 },
+            "waist": { "type": "number", "minimum": 0 },
+            "hips": { "type": "number", "minimum": 0 },
+            "leftBiceps": { "type": "number", "minimum": 0 },
+            "rightBiceps": { "type": "number", "minimum": 0 },
+            "leftQuadriceps": { "type": "number", "minimum": 0 },
+            "rightQuadriceps": { "type": "number", "minimum": 0 },
+            "leftCalf": { "type": "number", "minimum": 0 },
+            "rightCalf": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "daily": {
+      "type": "object",
+      "description": "Daily vitals and habits",
+      "properties": {
+        "calories": {
+          "type": "integer",
+          "description": "Total calories consumed",
+          "minimum": 0
+        },
+        "protein": {
+          "type": "number",
+          "description": "Protein intake in grams",
+          "minimum": 0
+        },
+        "fiber": {
+          "type": "number",
+          "description": "Fiber intake in grams",
+          "minimum": 0
+        },
+        "water": {
+          "type": "number",
+          "description": "Water intake in liters",
+          "minimum": 0
+        },
+        "steps": {
+          "type": "integer",
+          "description": "Step count",
+          "minimum": 0
+        },
+        "sleep": {
+          "type": "number",
+          "description": "Sleep duration in hours",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "recovery": {
+          "type": "integer",
+          "description": "Subjective recovery rating",
+          "minimum": 1,
+          "maximum": 10
+        }
+      }
+    },
+    "workout": {
+      "type": "object",
+      "description": "Workout session data",
+      "properties": {
+        "programId": {
+          "type": ["string", "null"],
+          "description": "Reference to the program used"
+        },
+        "dayNumber": {
+          "type": ["integer", "null"],
+          "description": "Day number within the program cycle",
+          "minimum": 1
+        },
+        "exercises": {
+          "type": "array",
+          "description": "List of exercises performed",
+          "items": {
+            "type": "object",
+            "required": ["exerciseId"],
+            "properties": {
+              "exerciseId": {
+                "type": "string",
+                "description": "Reference to exercise definition ID"
+              },
+              "sets": {
+                "type": "array",
+                "description": "Sets performed for this exercise",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reps": {
+                      "type": ["integer", "null"],
+                      "description": "Number of repetitions",
+                      "minimum": 0
+                    },
+                    "weight": {
+                      "type": ["number", "null"],
+                      "description": "Weight used in kg",
+                      "minimum": 0
+                    },
+                    "rpe": {
+                      "type": ["number", "null"],
+                      "description": "Rate of Perceived Exertion (1-10)",
+                      "minimum": 1,
+                      "maximum": 10
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-form journal notes"
+    }
+  }
+}
