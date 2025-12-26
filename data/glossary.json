@@ -9,7 +9,8 @@
       "kinesiology": "Biomechanics and movement science terms",
       "direction": "Anatomical position and directional terminology",
       "nutrition": "Dietary intake and hydration concepts",
-      "recovery": "Rest, sleep, and adaptation terminology"
+      "recovery": "Rest, sleep, and adaptation terminology",
+      "biometrics": "Personal characteristics that inform training recommendations"
     },
     "terms": [
       {
@@ -251,7 +252,7 @@
         "term": "agonist",
         "aliases": ["prime mover"],
         "category": "anatomy",
-        "description": "A muscle that causes motion by contracting. The primary muscle responsible for a movement.",
+        "description": "The primary muscle responsible for a movement.",
         "references": [
           {
             "source": "exrx",
@@ -644,7 +645,7 @@
         "term": "target",
         "aliases": ["target muscle"],
         "category": "anatomy",
-        "description": "The primary muscle intended for exercise. The muscle group being specifically trained by a given movement.",
+        "description": "The primary muscle being trained by a movement.",
         "references": [
           {
             "source": "exrx",
@@ -1296,6 +1297,67 @@
             "author": "Pelland et al.",
             "year": 2025,
             "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains"
+          }
+        ]
+      },
+      {
+        "term": "age",
+        "aliases": [],
+        "category": "biometrics",
+        "description": "Age influences recovery capacity, hormonal profiles, and optimal training parameters. Older adults benefit from higher training frequency and may require more recovery time between sessions.",
+        "details": "Adults 60+ show better hypertrophy outcomes when training each muscle 2-3 times per week rather than once. They may need 6-10 sets per muscle weekly for maintenance (vs 3-6 for younger adults) and benefit from longer rest periods. Age-related declines in muscle protein synthesis can be offset by adequate protein intake (1.2-1.6 g/kg/day) and progressive resistance training.",
+        "references": [
+          {
+            "pmid": "21131862",
+            "author": "Bickel et al.",
+            "year": 2011,
+            "title": "Exercise dosing to retain resistance training adaptations in young and older adults"
+          },
+          {
+            "pmid": "27433992",
+            "author": "Schoenfeld et al.",
+            "year": 2017,
+            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass"
+          }
+        ]
+      },
+      {
+        "term": "sex",
+        "aliases": ["biological sex"],
+        "category": "biometrics",
+        "description": "Biological sex influences baseline strength levels, hormonal responses to training, body composition, and the interpretation of body measurements as health indicators.",
+        "details": "Males typically have higher absolute strength due to greater muscle mass and testosterone levels, but relative strength gains from training are similar between sexes. Females may recover faster between sets and sessions, potentially tolerating higher training frequencies. Sex also affects how body measurements predict health risk: males tend to accumulate visceral fat centrally while females store more subcutaneously, making waist circumference thresholds sex-specific (94 cm risk threshold for males vs 80 cm for females). Body fat percentage norms differ substantially (essential fat ~3% for males vs ~12% for females). Both sexes benefit equally from resistance training for health outcomes.",
+        "references": [
+          {
+            "pmid": "32895897",
+            "author": "Roberts et al.",
+            "year": 2020,
+            "title": "Sex differences in resistance training: a systematic review and meta-analysis"
+          },
+          {
+            "pmid": "21951360",
+            "author": "Ashwell et al.",
+            "year": 2012,
+            "title": "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors"
+          }
+        ]
+      },
+      {
+        "term": "height",
+        "aliases": [],
+        "category": "biometrics",
+        "description": "Height affects exercise mechanics through limb leverage, and serves as a reference for health indicators like waist-to-height ratio.",
+        "details": "For exercise: longer limbs create longer moment arms, requiring more work through the same angular range. Taller lifters often benefit from wider stances and adjusted grip widths. For health assessment: waist-to-height ratio (WHtR) is a stronger predictor of cardiometabolic risk than BMI or waist circumference alone. A WHtR below 0.5 indicates lower risk regardless of sex or ethnicity, while values above 0.6 indicate substantially elevated risk. This ratio normalizes waist measurement across different body sizes, making it more universally applicable than fixed waist thresholds.",
+        "references": [
+          {
+            "pmid": "21951360",
+            "author": "Ashwell et al.",
+            "year": 2012,
+            "title": "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors"
+          },
+          {
+            "source": "exrx",
+            "url": "https://exrx.net/Kinesiology/Levers"
           }
         ]
       }
