@@ -9,7 +9,22 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "title", "author", "authors", "journal", "year", "url", "category", "question", "methodology", "takeaways"],
+        "required": [
+          "id",
+          "title",
+          "author",
+          "authors",
+          "journal",
+          "year",
+          "url",
+          "category",
+          "question",
+          "methodology",
+          "takeaways",
+          "evidenceLevel",
+          "peerReviewed",
+          "status"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -54,21 +69,140 @@
             "description": "URL to the article (typically PubMed)",
             "format": "uri"
           },
+          "volume": {
+            "type": ["string", "null"],
+            "description": "Journal volume number"
+          },
+          "issue": {
+            "type": ["string", "null"],
+            "description": "Journal issue number"
+          },
+          "pages": {
+            "type": ["string", "null"],
+            "description": "Page range (e.g., '123-145')"
+          },
           "category": {
             "type": "string",
             "description": "Primary topic category",
-            "enum": ["hypertrophy", "strength", "fat-loss", "maintenance", "nutrition", "recovery", "mobility", "hormones", "training-myths", "safety"]
+            "enum": [
+              "hypertrophy",
+              "strength",
+              "fat-loss",
+              "maintenance",
+              "nutrition",
+              "recovery",
+              "mobility",
+              "hormones",
+              "training-myths",
+              "safety"
+            ]
           },
           "tags": {
             "type": "array",
             "description": "Additional topic tags",
             "items": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "adaptations",
+                "aging",
+                "biomechanics",
+                "body-composition",
+                "bone-density",
+                "cancer",
+                "cardiac-rehab",
+                "cardiovascular",
+                "cognition",
+                "conditioning",
+                "crossfit",
+                "dehydration",
+                "detraining",
+                "dose-response",
+                "elite",
+                "emergency-medicine",
+                "energy-availability",
+                "epidemiology",
+                "exercise-selection",
+                "fibre",
+                "football",
+                "frequency",
+                "growth-hormone",
+                "growth",
+                "guidelines",
+                "high-intensity",
+                "hormones",
+                "hydration",
+                "hypertrophy",
+                "injury-prevention",
+                "injury-rates",
+                "longevity",
+                "maintenance",
+                "maturation",
+                "menopause",
+                "menstrual-cycle",
+                "metabolism",
+                "meta-analysis",
+                "minimal-dose",
+                "monitoring",
+                "mortality",
+                "muscle-damage",
+                "muscle-preservation",
+                "per-session",
+                "perceived-recovery",
+                "performance",
+                "periodization",
+                "physical-activity",
+                "position-statement",
+                "powerlifting",
+                "programming",
+                "protein",
+                "recovery",
+                "RED-S",
+                "sets",
+                "sex-differences",
+                "shoulder",
+                "sleep-extension",
+                "sleep",
+                "special-populations",
+                "sports",
+                "squat",
+                "steps",
+                "strength",
+                "supplementation",
+                "technique",
+                "testosterone",
+                "trained-individuals",
+                "training-intensity",
+                "volume",
+                "weightlifting",
+                "youth"
+              ]
             }
           },
           "question": {
             "type": "string",
             "description": "The research question the study was trying to answer"
+          },
+          "evidenceLevel": {
+            "type": "string",
+            "description": "Oxford CEBM evidence level (1a=SR of RCTs, 1b=RCT, 2a=SR of cohorts, 2b=cohort, 3a=SR of case-control, 3b=case-control, 4=case series, 5=expert opinion)",
+            "enum": ["1a", "1b", "2a", "2b", "3a", "3b", "4", "5"]
+          },
+          "peerReviewed": {
+            "type": "boolean",
+            "description": "Whether the article underwent peer review (false for preprints)"
+          },
+          "status": {
+            "type": "string",
+            "description": "Publication status",
+            "enum": ["current", "retracted", "corrected", "superseded"],
+            "default": "current"
+          },
+          "funding": {
+            "type": ["array", "null"],
+            "description": "Funding sources (null if not disclosed or unknown)",
+            "items": {
+              "type": "string"
+            }
           },
           "methodology": {
             "type": "object",
@@ -77,7 +211,20 @@
             "properties": {
               "studyType": {
                 "type": "string",
-                "description": "Type of study (e.g., RCT, cohort, narrative review, systematic review, meta-analysis)"
+                "description": "Type of study design",
+                "enum": [
+                  "systematic-review-with-meta-analysis",
+                  "systematic-review-with-meta-regression",
+                  "systematic-review",
+                  "umbrella-review",
+                  "randomized-controlled-trial",
+                  "intervention-study",
+                  "prospective-cohort",
+                  "retrospective-cohort",
+                  "cross-sectional",
+                  "narrative-review",
+                  "position-statement"
+                ]
               },
               "population": {
                 "type": ["object", "null"],
@@ -96,7 +243,14 @@
                     "description": "Age groups studied",
                     "items": {
                       "type": "string",
-                      "enum": ["child", "adolescent", "young-adult", "adult", "middle-aged", "older-adult"]
+                      "enum": [
+                        "child",
+                        "adolescent",
+                        "young-adult",
+                        "adult",
+                        "middle-aged",
+                        "older-adult"
+                      ]
                     }
                   },
                   "trainingStatus": {
@@ -112,7 +266,22 @@
                     "description": "Health conditions or status",
                     "items": {
                       "type": "string",
-                      "enum": ["healthy", "diabetic", "obese", "metabolic-syndrome", "postmenopausal", "hypogonadal", "pregnant", "injured", "post-surgical", "osteoporotic", "hypertensive", "cardiac-condition"]
+                      "enum": [
+                        "healthy",
+                        "diabetic",
+                        "obese",
+                        "metabolic-syndrome",
+                        "perimenopausal",
+                        "postmenopausal",
+                        "hypogonadal",
+                        "pregnant",
+                        "injured",
+                        "post-surgical",
+                        "osteoporotic",
+                        "hypertensive",
+                        "cardiac-condition",
+                        "clinical"
+                      ]
                     }
                   }
                 }
@@ -133,6 +302,10 @@
                 }
               }
             }
+          },
+          "summary": {
+            "type": "string",
+            "description": "Brief summary of the study (optional)"
           },
           "takeaways": {
             "type": "array",
