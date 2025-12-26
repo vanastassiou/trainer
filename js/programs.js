@@ -34,9 +34,6 @@ const MUSCLE_ORDER = [
   'shoulders', 'biceps', 'triceps', 'calves', 'core'
 ];
 
-// Compound movement patterns (preferred over isolation)
-const COMPOUND_PATTERNS = ['push', 'pull', 'squat', 'hinge', 'lunge'];
-
 // Exercise selection priority (per NSCA guidelines):
 // 1. Compound movements before isolation
 // 2. Basic (core) exercises before auxiliary (assistance)
@@ -204,8 +201,8 @@ function selectExercise(exercises, muscleGroup, equipment, difficulty, usedExerc
 
   // Sort: compound first, then basic over auxiliary, then alphabetically
   candidates.sort((a, b) => {
-    const aCompound = COMPOUND_PATTERNS.includes(a.movement_pattern) ? 0 : 1;
-    const bCompound = COMPOUND_PATTERNS.includes(b.movement_pattern) ? 0 : 1;
+    const aCompound = a.joint_type === 'compound' ? 0 : 1;
+    const bCompound = b.joint_type === 'compound' ? 0 : 1;
     if (aCompound !== bCompound) return aCompound - bCompound;
 
     const aBasic = a.role === 'basic' ? 0 : 1;
@@ -238,8 +235,8 @@ function selectAuxiliaryExercise(exercises, muscleGroup, equipment, difficulty, 
 
   // Sort: isolation first, then auxiliary over basic, then alphabetically
   candidates.sort((a, b) => {
-    const aIsolation = COMPOUND_PATTERNS.includes(a.movement_pattern) ? 1 : 0;
-    const bIsolation = COMPOUND_PATTERNS.includes(b.movement_pattern) ? 1 : 0;
+    const aIsolation = a.joint_type === 'isolation' ? 0 : 1;
+    const bIsolation = b.joint_type === 'isolation' ? 0 : 1;
     if (aIsolation !== bIsolation) return aIsolation - bIsolation;
 
     const aAux = a.role === 'auxiliary' ? 0 : 1;
