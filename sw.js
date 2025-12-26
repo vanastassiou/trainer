@@ -1,12 +1,26 @@
-const CACHE_NAME = 'health-tracker-v20';
+const CACHE_NAME = 'health-tracker-v57';
 const ASSETS = [
   '/',
   '/index.html',
   '/styles.css',
-  '/app.js',
-  '/dexie.min.js',
+  '/js/app.js',
+  '/js/state.js',
+  '/js/db.js',
+  '/js/workout.js',
+  '/js/programs.js',
+  '/js/goals.js',
+  '/js/measurements.js',
+  '/js/learn.js',
+  '/js/utils.js',
+  '/js/ui.js',
+  '/js/filters.js',
+  '/js/validation.js',
+  '/js/charts.js',
   '/manifest.json',
-  '/data/articles.json'
+  '/data/articles.json',
+  '/data/exercises.json',
+  '/data/glossary.json',
+  '/data/sources.json'
 ];
 
 self.addEventListener('install', (event) => {
