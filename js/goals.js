@@ -43,6 +43,9 @@ const GOAL_METRIC_SOURCES = {
   bodyFat: 'body',
   waistToHeightRatio: 'body',
   steps: 'daily',
+  calories: 'daily',
+  sleep: 'daily',
+  protein: 'daily',
   fibre: 'daily',
   water: 'daily'
 };
