@@ -159,9 +159,14 @@
 
       <div class="chart-section" id="workouts-chart">
         <div class="chart-header">
-          <span class="label-muted">Last 30 days</span>
+          <select class="chart-timespan-select" id="workouts-timespan-select">
+            <option value="7">7 days</option>
+            <option value="28" selected>28 days</option>
+            <option value="90">3 months</option>
+            <option value="180">6 months</option>
+            <option value="all">All time</option>
+          </select>
           <select class="chart-metric-select" id="workouts-metric-select">
-            <option value="volume">Volume</option>
           </select>
         </div>
         <canvas class="chart-canvas"></canvas>

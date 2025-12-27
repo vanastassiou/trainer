@@ -6,7 +6,7 @@
 import { state } from './state.js';
 import { getTodayDate } from './utils.js';
 import { createTabController, createModalController } from './ui.js';
-import { getChartData, getWorkoutVolumeData, getExercisesInPeriod, getExerciseVolumeData, renderLineChart, renderBarChart, getChartSummary, formatSummaryHTML } from './charts.js';
+import { getChartData, getExercisesInPeriod, getExerciseAvgWeightData, renderLineChart, getChartSummary, formatSummaryHTML } from './charts.js';
 
 // Domain modules
 import {
@@ -401,7 +401,8 @@ function initCharts() {
   const dailyTimespanSelect = document.getElementById('daily-timespan-select');
   const measurementsMetricSelect = document.getElementById('measurements-metric-select');
   const measurementsTimespanSelect = document.getElementById('measurements-timespan-select');
-  const workoutsSelect = document.getElementById('workouts-metric-select');
+  const workoutsMetricSelect = document.getElementById('workouts-metric-select');
+  const workoutsTimespanSelect = document.getElementById('workouts-timespan-select');
 
   if (dailyMetricSelect) {
     dailyMetricSelect.addEventListener('change', () => updateDailyChart());
@@ -417,19 +418,27 @@ function initCharts() {
     measurementsTimespanSelect.addEventListener('change', () => updateMeasurementsChart());
   }
 
-  if (workoutsSelect) {
-    workoutsSelect.addEventListener('change', () => updateWorkoutsChart());
+  if (workoutsMetricSelect) {
+    workoutsMetricSelect.addEventListener('change', () => updateWorkoutsChart());
+  }
+  if (workoutsTimespanSelect) {
+    workoutsTimespanSelect.addEventListener('change', async () => {
+      await populateWorkoutsSelect();
+      await updateWorkoutsChart();
+    });
   }
 }
 
 async function populateWorkoutsSelect() {
   const select = document.getElementById('workouts-metric-select');
+  const timespanSelect = document.getElementById('workouts-timespan-select');
   if (!select) return;
 
-  const exercises = await getExercisesInPeriod(30);
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? 365 : parseInt(timespanValue, 10);
+  const exercises = await getExercisesInPeriod(days);
 
-  // Keep volume as first option, add exercises
-  select.innerHTML = '<option value="volume">Volume</option>';
+  select.innerHTML = '';
   for (const name of exercises) {
     const option = document.createElement('option');
     option.value = name;
@@ -484,17 +493,19 @@ async function updateWorkoutsChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
-  const select = document.getElementById('workouts-metric-select');
-  const metric = select?.value || 'volume';
+  const metricSelect = document.getElementById('workouts-metric-select');
+  const timespanSelect = document.getElementById('workouts-timespan-select');
+  const exercise = metricSelect?.value;
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
-  let data;
-  if (metric === 'volume') {
-    data = await getWorkoutVolumeData(30);
-  } else {
-    data = await getExerciseVolumeData(metric, 30);
+  if (!exercise) {
+    summaryEl.innerHTML = '';
+    return;
   }
 
-  renderBarChart(canvas, data);
+  const data = await getExerciseAvgWeightData(exercise, days);
+  renderLineChart(canvas, data, { unit: 'kg', metric: 'weight' });
 
   const summary = getChartSummary(data);
   summaryEl.innerHTML = formatSummaryHTML(summary, 'kg', 'weight');
