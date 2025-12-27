@@ -133,11 +133,13 @@ export function initGlossaryModal() {
     document.getElementById('glossary-modal')
   );
 
-  // Delegate click handler for all term info buttons
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.term-info-btn');
-    if (btn) {
-      const termName = btn.dataset.term;
+  // Delegate click handler for all elements with data-term attribute
+  document.body.addEventListener('click', (e) => {
+    const termEl = e.target.closest('[data-term]');
+    if (termEl) {
+      e.preventDefault();
+      e.stopPropagation();
+      const termName = termEl.dataset.term;
       if (termName) {
         showGlossaryTerm(termName);
       }

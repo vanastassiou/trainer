@@ -205,11 +205,11 @@
           <dl class="profile-details">
             <dt>Name</dt>
             <dd id="display-name">--</dd>
-            <dt>Age<button type="button" class="term-info-btn" data-term="age">?</button></dt>
+            <dt data-term="age">Age</dt>
             <dd id="display-age">--</dd>
-            <dt>Sex<button type="button" class="term-info-btn" data-term="sex">?</button></dt>
+            <dt data-term="sex">Sex</dt>
             <dd id="display-sex">--</dd>
-            <dt>Height<button type="button" class="term-info-btn" data-term="height">?</button></dt>
+            <dt data-term="height">Height</dt>
             <dd id="display-height">--</dd>
             <dt>Units</dt>
             <dd id="display-units">--</dd>
@@ -221,16 +221,16 @@
           <label for="profile-name">Name</label>
           <input type="text" id="profile-name" name="name" placeholder="Your name">
 
-          <label for="profile-birthdate">Birthdate<button type="button" class="term-info-btn" data-term="age">?</button></label>
+          <label for="profile-birthdate"><span data-term="age">Birthdate</span></label>
           <input type="date" id="profile-birthdate" name="birthDate">
 
-          <label for="profile-sex">Sex<button type="button" class="term-info-btn" data-term="sex">?</button></label>
+          <label for="profile-sex"><span data-term="sex">Sex</span></label>
           <select id="profile-sex" name="sex">
             <option value="female">Female</option>
             <option value="male">Male</option>
           </select>
 
-          <label for="profile-height">Height<button type="button" class="term-info-btn" data-term="height">?</button></label>
+          <label for="profile-height"><span data-term="height">Height</span></label>
           <div class="height-inputs">
             <div id="height-metric-input" class="input-with-unit">
               <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0" placeholder="170">
@@ -271,7 +271,7 @@
               <option value="bodyFat">Body fat %</option>
               <option value="waistToHeightRatio">Waist-to-height ratio</option>
           </select>
-          <label for="goal-target">Target</label>
+          <label for="goal-target">Target <span id="goal-target-unit"></span></label>
           <input type="number" id="goal-target" name="target" inputmode="decimal" step="any" required>
           <button type="submit" class="btn accent">Add</button>
         </form>

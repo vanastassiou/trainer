@@ -145,16 +145,7 @@ export function updateFormUnits() {
     const fieldConfig = [...DAILY_FIELD_CONFIG, ...MEASUREMENT_FIELD_CONFIG].find(f => f.id === fieldId);
     const fieldLabel = fieldConfig?.label || BODY_LABELS[fieldId] || fieldId;
 
-    // Find and preserve the tooltip button if present
-    const tooltipBtn = label.querySelector('.term-info-btn');
-
-    // Update label text (preserve tooltip button)
-    if (tooltipBtn) {
-      label.innerHTML = `${fieldLabel} (${newUnit})`;
-      label.appendChild(tooltipBtn);
-    } else {
-      label.textContent = `${fieldLabel} (${newUnit})`;
-    }
+    label.textContent = `${fieldLabel} (${newUnit})`;
   });
 }
 
@@ -244,7 +235,7 @@ export function generateDailyFormRows(containerId) {
       const unitDisplay = field.unit ? ` (${field.unit})` : '';
       return `
       <div class="data-row row row--gap-md">
-        <label for="${field.id}">${field.label}${unitDisplay}<button type="button" class="term-info-btn" data-term="${field.id}">?</button></label>
+        <label for="${field.id}"><span data-term="${field.id}">${field.label}</span>${unitDisplay}</label>
         <input ${createInputAttrs(field)}>
       </div>
     `;

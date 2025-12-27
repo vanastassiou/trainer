@@ -230,9 +230,9 @@ export function addExerciseCard(container, existingData = null, options = {}) {
     <div class="sets-container">
       <div class="set-row set-header">
         <span class="set-label"></span>
-        <span class="col-label">Reps<button type="button" class="term-info-btn" data-term="repetition">?</button></span>
-        <span class="col-label">Weight (${weightUnit})<button type="button" class="term-info-btn" data-term="intensity">?</button></span>
-        <span class="col-label col-label-rir">RIR<button type="button" class="term-info-btn" data-term="reps in reserve">?</button></span>
+        <span class="col-label" data-term="repetition">Reps</span>
+        <span class="col-label" data-term="intensity">Weight (${weightUnit})</span>
+        <span class="col-label col-label-rir" data-term="reps in reserve">RIR</span>
       </div>
       <div class="set-row">
         <span class="set-label">Set 1</span>
