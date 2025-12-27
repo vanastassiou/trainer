@@ -19,7 +19,7 @@
           "reps"
         ],
         "category": "basic",
-        "description": "One complete movement of an exercise, consisting of a concentric (lifting) and eccentric (lowering) phase.",
+        "description": "One complete lift and lower of an exercise. Do 10 reps means doing the movement 10 times.",
         "references": [
           {
             "source": "exrx",
@@ -31,7 +31,7 @@
       {
         "aliases": [],
         "category": "basic",
-        "description": "A group of consecutive repetitions performed without rest.",
+        "description": "A group of reps done without stopping. 3 sets of 10 means doing 10 reps, resting, then repeating twice more.",
         "references": [
           {
             "source": "exrx",
@@ -46,7 +46,7 @@
           "one-rep max"
         ],
         "category": "basic",
-        "description": "The maximum weight that can be lifted for a single repetition with proper form. Used as a benchmark for calculating training loads.",
+        "description": "The heaviest weight you can lift once with good form. Used to calculate training weights (like 80% of 1RM).",
         "references": [
           {
             "source": "exrx",
@@ -58,7 +58,7 @@
       {
         "aliases": [],
         "category": "basic",
-        "description": "The amount of weight used, percentage of one repetition maximum, or the effort used during the exercise.",
+        "description": "How heavy or hard the exercise is. Usually measured as weight lifted or percentage of your max.",
         "references": [
           {
             "source": "exrx",
@@ -70,7 +70,7 @@
       {
         "aliases": [],
         "category": "basic",
-        "description": "The total amount of work performed, typically calculated as sets × reps × weight.",
+        "description": "Total work done, calculated as sets × reps × weight. More volume generally means more muscle growth.",
         "details": "General guidelines per muscle group per week: Maintenance requires 3-6 sets (6-10 for adults 60+). Growth requires 10-20 sets. Limit each session to ~10-11 sets per muscle. Distribute volume across 1-2 sessions per week (2-3 for adults 60+).",
         "references": [
           {
@@ -89,7 +89,7 @@
       {
         "aliases": [],
         "category": "basic",
-        "description": "The number of workouts per week or number of times a muscle group is trained per unit of time.",
+        "description": "How often you train. Can refer to workouts per week or how many times you hit each muscle per week.",
         "references": [
           {
             "source": "exrx",
@@ -103,7 +103,7 @@
           "ROM"
         ],
         "category": "basic",
-        "description": "The degree of rotation available at a joint. Full range of motion in exercise means moving through the complete path of motion the joint allows.",
+        "description": "How far a joint can move. Full range of motion means going through the entire movement, like a squat all the way down and up.",
         "references": [
           {
             "source": "exrx",
@@ -115,7 +115,7 @@
       {
         "aliases": [],
         "category": "basic",
-        "description": "The speed at which repetitions are performed, often expressed as a 4-point notation (e.g., 3/0/2/1) representing eccentric/stretched/concentric/contracted phases.",
+        "description": "The speed of each rep. A 3/0/2/1 tempo means 3 seconds down, no pause, 2 seconds up, 1 second at top.",
         "references": [
           {
             "source": "exrx",
@@ -127,7 +127,7 @@
       {
         "aliases": [],
         "category": "programming",
-        "description": "A set performed with lighter resistance (typically 50% of working weight) for 12-15 reps before working sets to prepare muscles and joints for heavier loads.",
+        "description": "A lighter set done before your main work to prepare muscles and joints. Usually about half the weight for 12-15 reps.",
         "references": [
           {
             "source": "exrx",
@@ -141,7 +141,7 @@
           "work set"
         ],
         "category": "programming",
-        "description": "A set performed at the target training intensity, as opposed to warm-up or acclimation sets.",
+        "description": "A set done at your target weight - the sets that count toward your training, not warm-ups.",
         "references": [
           {
             "source": "exrx",
@@ -155,7 +155,7 @@
           "multi-joint exercise"
         ],
         "category": "movement",
-        "description": "An exercise that involves two or more simultaneous joint movements. Examples include squats, deadlifts, and bench press.",
+        "description": "An exercise using multiple joints at once. Squats, deadlifts, and bench press are compound movements.",
         "references": [
           {
             "source": "exrx",
@@ -169,7 +169,7 @@
           "single-joint exercise"
         ],
         "category": "movement",
-        "description": "An exercise that involves just one discernible joint movement. Examples include biceps curls, leg extensions, and lateral raises.",
+        "description": "An exercise using only one joint. Biceps curls, leg extensions, and lateral raises are isolation movements.",
         "references": [
           {
             "source": "exrx",
@@ -181,7 +181,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "A principal exercise that places greater absolute intensity on muscles exercised relative to auxiliary exercises. Typically compound movements.",
+        "description": "A main lift that works muscles with heavy loads. Usually compound movements like squat, bench, row, and press.",
         "references": [
           {
             "source": "exrx",
@@ -195,7 +195,7 @@
           "accessory exercise"
         ],
         "category": "movement",
-        "description": "An optional exercise that supplements a basic exercise, often placing greater relative intensity on a specific muscle or muscle head.",
+        "description": "A supporting exercise done after main lifts. Targets specific muscles the basic exercises may under-emphasize.",
         "references": [
           {
             "source": "exrx",
@@ -207,7 +207,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "An exercise in which the end segment of the exercised limb is fixed or supporting the weight. Most compound exercises are closed-chain movements. Example: squat.",
+        "description": "An exercise where your hands or feet stay fixed. Squats, push-ups, and pull-ups are closed-chain because you push against a fixed surface.",
         "references": [
           {
             "source": "exrx",
@@ -219,7 +219,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "An exercise in which the end segment of the exercised limb is not fixed or not supporting the weight. Example: leg extension.",
+        "description": "An exercise where your hands or feet move freely through space. Leg extensions and biceps curls are open-chain.",
         "references": [
           {
             "source": "exrx",
@@ -234,7 +234,7 @@
           "positive"
         ],
         "category": "movement",
-        "description": "The phase of movement where the muscle shortens while generating force, typically the lifting or exertion phase.",
+        "description": "The lifting phase where the muscle shortens. Curling the weight up in a biceps curl is concentric.",
         "references": [
           {
             "source": "exrx",
@@ -249,7 +249,7 @@
           "negative"
         ],
         "category": "movement",
-        "description": "The phase of movement where the muscle lengthens while under tension, typically the lowering or return phase.",
+        "description": "The lowering phase where the muscle lengthens under load. Lowering the weight in a biceps curl is eccentric.",
         "references": [
           {
             "source": "exrx",
@@ -264,7 +264,7 @@
           "static hold"
         ],
         "category": "movement",
-        "description": "A muscle contraction where the muscle generates force without changing length. The joint angle remains constant.",
+        "description": "Holding a position without moving. A plank or pausing mid-rep is isometric - the muscle works but doesn't change length.",
         "references": [
           {
             "source": "exrx",
@@ -278,7 +278,7 @@
           "prime mover"
         ],
         "category": "anatomy",
-        "description": "The primary muscle responsible for a movement.",
+        "description": "The main muscle driving a movement. During a biceps curl, the biceps is the agonist.",
         "references": [
           {
             "source": "exrx",
@@ -290,7 +290,7 @@
       {
         "aliases": [],
         "category": "anatomy",
-        "description": "A muscle that can move the joint opposite to the movement produced by the agonist. Relaxes or lengthens while the agonist contracts.",
+        "description": "The muscle opposite the working muscle. During a biceps curl, the triceps is the antagonist and must relax to allow the movement.",
         "references": [
           {
             "source": "exrx",
@@ -302,7 +302,7 @@
       {
         "aliases": [],
         "category": "anatomy",
-        "description": "A muscle that assists another muscle to accomplish a movement.",
+        "description": "A helper muscle that assists the main muscle. During a biceps curl, the brachialis helps the biceps bend the elbow.",
         "references": [
           {
             "source": "exrx",
@@ -314,7 +314,7 @@
       {
         "aliases": [],
         "category": "anatomy",
-        "description": "A muscle that contracts with no significant movement to maintain a posture or fixate a joint during an exercise.",
+        "description": "A muscle that holds a joint steady without moving. Your core stabilizes your spine during a squat.",
         "references": [
           {
             "source": "exrx",
@@ -328,7 +328,7 @@
           "fixator"
         ],
         "category": "anatomy",
-        "description": "A biarticulate muscle that simultaneously moves through two joints with little change in length, shortening through the target joint while lengthening through an adjacent joint.",
+        "description": "A two-joint muscle that stays roughly the same length during movement by shortening at one joint while lengthening at another.",
         "references": [
           {
             "source": "exrx",
@@ -340,7 +340,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Bending a joint, resulting in a decrease of angle between two body segments.",
+        "description": "Bending a joint to decrease the angle. Bending your elbow or bringing your thigh toward your chest is flexion.",
         "references": [
           {
             "source": "exrx",
@@ -352,7 +352,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Straightening a joint, resulting in an increase of angle between two body segments.",
+        "description": "Straightening a joint to increase the angle. Straightening your arm or kicking your leg back is extension.",
         "references": [
           {
             "source": "exrx",
@@ -364,7 +364,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Rotation of the forearm so the palm faces downward, or inward rolling of the foot.",
+        "description": "Rotating your forearm so the palm faces down, like pouring out water.",
         "references": [
           {
             "source": "exrx",
@@ -376,7 +376,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Rotation of the forearm so the palm faces upward, or outward rolling of the foot.",
+        "description": "Rotating your forearm so the palm faces up, like holding a bowl of soup.",
         "references": [
           {
             "source": "exrx",
@@ -388,7 +388,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Movement of a limb away from the midline of the body.",
+        "description": "Moving a limb away from your body's centerline. Raising your arm to the side is shoulder abduction.",
         "references": [
           {
             "source": "exrx",
@@ -400,7 +400,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Movement of a limb toward the midline of the body.",
+        "description": "Moving a limb toward your body's centerline. Lowering your arm back to your side is shoulder adduction.",
         "references": [
           {
             "source": "exrx",
@@ -414,7 +414,7 @@
           "muscle growth"
         ],
         "category": "anatomy",
-        "description": "The increase in muscle size resulting from training, primarily through enlargement of existing muscle fibres.",
+        "description": "Muscle growth from training. Your existing muscle fibers get bigger rather than multiplying.",
         "references": [
           {
             "source": "exrx",
@@ -428,7 +428,7 @@
           "muscle loss"
         ],
         "category": "anatomy",
-        "description": "The decrease in muscle size due to disuse, aging, or other factors.",
+        "description": "Muscle shrinkage from not using it. Happens during inactivity, injury, or aging.",
         "references": [
           {
             "source": "exrx",
@@ -442,7 +442,7 @@
           "delayed onset muscle soreness"
         ],
         "category": "anatomy",
-        "description": "Muscle soreness that develops 24-48 hours after exercise, caused by microscopic injury to muscle fibres leading to inflammation. Most common after eccentric exercise or unfamiliar movements.",
+        "description": "Muscle soreness appearing 1-2 days after a workout. Caused by tiny muscle fiber tears, especially from new exercises or heavy lowering (eccentric) work.",
         "references": [
           {
             "source": "exrx",
@@ -454,7 +454,7 @@
       {
         "aliases": [],
         "category": "programming",
-        "description": "The gradual increase of stress placed on the body during training, achieved by increasing weight, reps, sets, or decreasing rest periods over time.",
+        "description": "Gradually making workouts harder over time by adding weight, reps, or sets. The key driver of long-term progress.",
         "references": [
           {
             "source": "exrx",
@@ -466,7 +466,7 @@
       {
         "aliases": [],
         "category": "programming",
-        "description": "An exercise with low technical demands suitable for those new to training. Characterized by a stable base of support, simple movement pattern, and minimal balance or coordination requirements.",
+        "description": "An easy-to-learn exercise with simple technique. Machine exercises and basic bodyweight movements are beginner-friendly.",
         "details": "Examples include push-ups, goblet squats, and machine-based exercises. These movements allow trainees to focus on developing basic motor patterns and building foundational strength without excessive injury risk.",
         "references": [
           {
@@ -479,7 +479,7 @@
       {
         "aliases": [],
         "category": "programming",
-        "description": "An exercise requiring moderate skill and body awareness. Characterized by free weight loading, multi-joint coordination, and moderate balance demands.",
+        "description": "An exercise requiring some practice. Free weight barbell and dumbbell exercises need more skill than machines.",
         "details": "Examples include barbell squats, dumbbell rows, and lunges. These movements build on foundational patterns and introduce greater stability challenges and loading potential.",
         "references": [
           {
@@ -492,7 +492,7 @@
       {
         "aliases": [],
         "category": "programming",
-        "description": "An exercise demanding high levels of strength, stability, or coordination. Characterized by significant balance challenges, complex motor patterns, or high strength-to-bodyweight ratios.",
+        "description": "A challenging exercise requiring significant strength or skill. Pistol squats and Olympic lifts take years to master.",
         "details": "Examples include pistol squats, handstand push-ups, and Olympic lifts. These movements require substantial training experience and should only be attempted after mastering foundational and intermediate progressions.",
         "references": [
           {
@@ -508,7 +508,7 @@
           "training to failure"
         ],
         "category": "technique",
-        "description": "The point at which no additional repetitions can be completed with proper form. Technical failure occurs when form breaks down.",
+        "description": "When you can't complete another rep with good form. Training to failure means pushing until this point.",
         "references": [
           {
             "source": "exrx",
@@ -520,7 +520,7 @@
       {
         "aliases": [],
         "category": "technique",
-        "description": "Performing two exercises back-to-back with minimal rest between them. Often used with opposing muscle groups (e.g., chest and back).",
+        "description": "Two exercises done back-to-back with no rest between them. Often pairs opposite muscles like chest and back.",
         "references": [
           {
             "source": "exrx",
@@ -535,7 +535,7 @@
           "strip set"
         ],
         "category": "technique",
-        "description": "A technique using progressively decreasing resistance after reaching failure. The exerciser reduces weight and continues reps with minimal rest.",
+        "description": "Reducing the weight after hitting failure and immediately continuing for more reps. Extends the set beyond normal failure.",
         "references": [
           {
             "source": "exrx",
@@ -549,7 +549,7 @@
           "assisted reps"
         ],
         "category": "technique",
-        "description": "Repetitions assisted by a training partner or spotter, typically performed after reaching failure to extend the set.",
+        "description": "Extra reps done with help from a spotter after you can't complete any more on your own.",
         "references": [
           {
             "source": "exrx",
@@ -561,7 +561,7 @@
       {
         "aliases": [],
         "category": "technique",
-        "description": "Performing an isolation exercise immediately before a compound exercise for the same muscle group (e.g., chest fly before chest press).",
+        "description": "Doing an isolation exercise before a compound movement for the same muscle. Like chest flies before bench press.",
         "references": [
           {
             "source": "exrx",
@@ -575,7 +575,7 @@
           "TUT"
         ],
         "category": "technique",
-        "description": "The total time a muscle is under load during a set. Manipulated by controlling tempo or increasing rep count.",
+        "description": "How long your muscle works during a set. Slower reps or more reps increase time under tension.",
         "references": [
           {
             "source": "exrx",
@@ -589,7 +589,7 @@
           "RPE"
         ],
         "category": "technique",
-        "description": "A subjective scale (typically 1-10) measuring exercise intensity based on how hard the effort feels. RPE 10 means maximum effort with no reps left in reserve.",
+        "description": "A 1-10 scale for how hard a set feels. RPE 7 means you could do 3 more reps; RPE 10 means you had nothing left.",
         "references": [],
         "term": "rate of perceived exertion"
       },
@@ -598,7 +598,7 @@
           "pushing movement"
         ],
         "category": "movement",
-        "description": "A movement pattern where resistance is pushed away from the body. Includes exercises like bench press, overhead press, and push-ups.",
+        "description": "Pushing weight away from you. Bench press, overhead press, and push-ups are push exercises.",
         "references": [],
         "term": "push"
       },
@@ -607,7 +607,7 @@
           "pulling movement"
         ],
         "category": "movement",
-        "description": "A movement pattern where resistance is pulled toward the body. Includes exercises like rows, pull-ups, and curls.",
+        "description": "Pulling weight toward you. Rows, pull-ups, and curls are pull exercises.",
         "references": [],
         "term": "pull"
       },
@@ -616,14 +616,14 @@
           "hip hinge"
         ],
         "category": "movement",
-        "description": "A movement pattern involving flexion and extension at the hip while maintaining a neutral spine. Key pattern in deadlifts, Romanian deadlifts, and good mornings.",
+        "description": "Bending forward at the hips while keeping your back flat. Deadlifts, Romanian deadlifts, and good mornings use this pattern.",
         "references": [],
         "term": "hinge"
       },
       {
         "aliases": [],
         "category": "movement",
-        "description": "A fundamental movement pattern involving simultaneous flexion at the hip, knee, and ankle while maintaining an upright torso.",
+        "description": "Sitting down and standing up - bending at the hips, knees, and ankles together while keeping your torso upright.",
         "references": [
           {
             "source": "exrx",
@@ -635,7 +635,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "An exercise's characteristic change of force throughout its range of motion. May be ascending, descending, or bell-shaped.",
+        "description": "How the difficulty changes through a lift's range of motion. Some exercises get harder at the top, bottom, or middle.",
         "references": [
           {
             "source": "exrx",
@@ -647,14 +647,14 @@
       {
         "aliases": [],
         "category": "technique",
-        "description": "Using the legs to generate force and stability during upper body exercises like bench press, achieved by driving feet firmly into the floor.",
+        "description": "Pushing your feet into the floor during bench press to create full-body tension and stability.",
         "references": [],
         "term": "leg drive"
       },
       {
         "aliases": [],
         "category": "movement",
-        "description": "The end position of an exercise where the joints are fully extended. Example: top of a squat or bench press.",
+        "description": "The end position where joints are fully straightened. The top of a squat or bench press.",
         "references": [
           {
             "source": "exrx",
@@ -666,7 +666,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "The most difficult portion of an exercise's range of motion, typically where leverage is least favorable.",
+        "description": "The hardest part of a lift where most people fail. On bench press, it's usually a few inches off the chest.",
         "references": [
           {
             "source": "exrx",
@@ -678,7 +678,7 @@
       {
         "aliases": [],
         "category": "basic",
-        "description": "A training partner who provides safety assistance during heavy or challenging lifts, ready to help if the lifter cannot complete a rep.",
+        "description": "Someone who watches your lift and helps if you get stuck. Essential for heavy bench press and squats.",
         "references": [
           {
             "source": "exrx",
@@ -693,7 +693,7 @@
           "proper form"
         ],
         "category": "basic",
-        "description": "The correct body positioning and movement execution during an exercise to maximize effectiveness and minimize injury risk.",
+        "description": "How you position and move your body during an exercise. Good form maximizes results and prevents injury.",
         "references": [],
         "term": "form"
       },
@@ -702,7 +702,7 @@
           "target muscle"
         ],
         "category": "anatomy",
-        "description": "The primary muscle being trained by a movement.",
+        "description": "The main muscle an exercise works. Bench press targets the chest.",
         "references": [
           {
             "source": "exrx",
@@ -716,7 +716,7 @@
           "muscle origin"
         ],
         "category": "anatomy",
-        "description": "The muscle attachment point that moves least during contraction, generally more proximal (closer to the body's center).",
+        "description": "Where a muscle attaches closer to your torso. This end stays relatively still during movement.",
         "references": [
           {
             "source": "exrx",
@@ -730,7 +730,7 @@
           "muscle insertion"
         ],
         "category": "anatomy",
-        "description": "The muscle attachment point that moves most during contraction, generally more distal (farther from the body's center).",
+        "description": "Where a muscle attaches farther from your torso. This end moves toward the origin when the muscle contracts.",
         "references": [
           {
             "source": "exrx",
@@ -745,7 +745,7 @@
           "two-joint muscle"
         ],
         "category": "anatomy",
-        "description": "A muscle that crosses two joints and can produce movement at both. Examples include hamstrings, rectus femoris, and gastrocnemius.",
+        "description": "A muscle crossing two joints. Hamstrings cross the hip and knee, so leg position affects how much they stretch.",
         "references": [
           {
             "source": "exrx",
@@ -757,7 +757,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "The inability of a biarticulate muscle to exert enough tension to shorten sufficiently to complete full range of motion in both joints simultaneously.",
+        "description": "When a two-joint muscle can't shorten enough to fully move both joints at once. Example: hamstrings can't fully extend the hip and flex the knee simultaneously.",
         "references": [
           {
             "source": "exrx",
@@ -769,7 +769,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "The inability of a biarticulate muscle to stretch enough to complete full range of motion in both joints simultaneously.",
+        "description": "When a two-joint muscle can't stretch enough to allow full movement at both joints at once. Example: tight hamstrings limit hip flexion when the knee is straight.",
         "references": [
           {
             "source": "exrx",
@@ -784,7 +784,7 @@
           "dynamic contraction"
         ],
         "category": "movement",
-        "description": "A muscle contraction with movement against resistance. Despite the name meaning 'same tension,' resistance varies through the range of motion due to changing leverage.",
+        "description": "Normal weight training where you move through a range of motion. Includes both lifting and lowering phases.",
         "references": [
           {
             "source": "exrx",
@@ -798,7 +798,7 @@
           "isokinetic contraction"
         ],
         "category": "movement",
-        "description": "A muscle contraction against force at a constant speed throughout the range of motion. Requires specialized equipment that adjusts resistance to match applied force.",
+        "description": "Movement at constant speed using specialized machines. The machine adjusts resistance to match your force throughout the rep.",
         "references": [
           {
             "source": "exrx",
@@ -812,7 +812,7 @@
           "anterior-posterior plane"
         ],
         "category": "direction",
-        "description": "An anatomical plane that divides the body into left and right portions. Movements in this plane include flexion and extension.",
+        "description": "Imaginary vertical slice dividing the body into left and right halves. Forward/backward movements like squats happen in this plane.",
         "references": [
           {
             "source": "exrx",
@@ -826,7 +826,7 @@
           "coronal plane"
         ],
         "category": "direction",
-        "description": "An anatomical plane that divides the body into front and back portions. Movements in this plane include abduction and adduction.",
+        "description": "Imaginary vertical slice dividing the body into front and back halves. Side-to-side movements like lateral raises happen in this plane.",
         "references": [
           {
             "source": "exrx",
@@ -841,7 +841,7 @@
           "xy plane"
         ],
         "category": "direction",
-        "description": "An anatomical plane that divides the body into upper and lower portions. Movements in this plane include rotation.",
+        "description": "Imaginary horizontal slice dividing the body into upper and lower halves. Rotational movements like twisting happen in this plane.",
         "references": [
           {
             "source": "exrx",
@@ -855,7 +855,7 @@
           "ventral"
         ],
         "category": "direction",
-        "description": "Toward the front of the body.",
+        "description": "Toward the front of the body. Your chest is anterior to your spine.",
         "references": [
           {
             "source": "exrx",
@@ -869,7 +869,7 @@
           "dorsal"
         ],
         "category": "direction",
-        "description": "Toward the back of the body.",
+        "description": "Toward the back of the body. Your shoulder blades are posterior to your chest.",
         "references": [
           {
             "source": "exrx",
@@ -881,7 +881,7 @@
       {
         "aliases": [],
         "category": "direction",
-        "description": "Toward the midline (center) of the body.",
+        "description": "Toward the center of the body. Your inner thigh is medial to your outer thigh.",
         "references": [
           {
             "source": "exrx",
@@ -893,7 +893,7 @@
       {
         "aliases": [],
         "category": "direction",
-        "description": "Away from the midline (center) of the body.",
+        "description": "Away from the center of the body. Your outer thigh is lateral to your inner thigh.",
         "references": [
           {
             "source": "exrx",
@@ -905,7 +905,7 @@
       {
         "aliases": [],
         "category": "direction",
-        "description": "Closer to the reference point or attachment to the trunk. For limbs, closer to the body's center.",
+        "description": "Closer to the torso. Your shoulder is proximal to your elbow.",
         "references": [
           {
             "source": "exrx",
@@ -917,7 +917,7 @@
       {
         "aliases": [],
         "category": "direction",
-        "description": "Farther from the reference point or attachment to the trunk. For limbs, farther from the body's center.",
+        "description": "Farther from the torso. Your hand is distal to your elbow.",
         "references": [
           {
             "source": "exrx",
@@ -931,7 +931,7 @@
           "cranial"
         ],
         "category": "direction",
-        "description": "Toward the head or upper part of the body.",
+        "description": "Toward the head. Your shoulders are superior to your hips.",
         "references": [
           {
             "source": "exrx",
@@ -945,7 +945,7 @@
           "caudal"
         ],
         "category": "direction",
-        "description": "Away from the head or toward the lower part of the body.",
+        "description": "Away from the head. Your hips are inferior to your shoulders.",
         "references": [
           {
             "source": "exrx",
@@ -959,7 +959,7 @@
           "medial rotation"
         ],
         "category": "movement",
-        "description": "Rotary movement around the longitudinal axis of a bone toward the center of the body.",
+        "description": "Rotating a limb inward toward your body's center. Turning your arm so your thumb points toward your body.",
         "references": [
           {
             "source": "exrx",
@@ -973,7 +973,7 @@
           "lateral rotation"
         ],
         "category": "movement",
-        "description": "Rotary movement around the longitudinal axis of a bone away from the center of the body.",
+        "description": "Rotating a limb outward away from your body's center. Turning your arm so your thumb points away from your body.",
         "references": [
           {
             "source": "exrx",
@@ -985,7 +985,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Circular movement combining flexion, extension, abduction, and adduction without shaft rotation. The limb traces a cone shape.",
+        "description": "Moving a limb in a circle. Your arm drawing circles in the air is circumduction.",
         "references": [
           {
             "source": "exrx",
@@ -997,7 +997,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Movement of the foot upward, decreasing the angle between the foot and shin.",
+        "description": "Pulling your toes up toward your shin.",
         "references": [
           {
             "source": "exrx",
@@ -1011,7 +1011,7 @@
           "plantar flexion"
         ],
         "category": "movement",
-        "description": "Movement of the foot downward, increasing the angle between the foot and shin. Pointing the toes.",
+        "description": "Pointing your toes down away from your shin. The motion of going up on your tiptoes.",
         "references": [
           {
             "source": "exrx",
@@ -1023,7 +1023,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Movement of the sole of the foot toward the midline (turning the foot inward).",
+        "description": "Tilting the sole of your foot inward so it faces the other foot.",
         "references": [
           {
             "source": "exrx",
@@ -1035,7 +1035,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Movement of the sole of the foot away from the midline (turning the foot outward).",
+        "description": "Tilting the sole of your foot outward away from the other foot.",
         "references": [
           {
             "source": "exrx",
@@ -1049,7 +1049,7 @@
           "moment of force"
         ],
         "category": "kinesiology",
-        "description": "Rotational force calculated as Force × Perpendicular Distance. The effectiveness of a force to cause rotation around an axis.",
+        "description": "Rotational force around a joint. Longer limbs create more torque, making the same weight feel heavier at certain positions.",
         "references": [
           {
             "source": "exrx",
@@ -1061,7 +1061,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "A rigid structure (bone) that rotates around a fixed point (joint). The body uses lever systems to produce movement and force.",
+        "description": "A bone rotating around a joint. Your body uses lever systems to multiply force or speed depending on muscle attachment points.",
         "references": [
           {
             "source": "exrx",
@@ -1073,7 +1073,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "The angle between a muscle's line of pull and the bone on which it inserts. Determines the rotary and stabilizing components of muscle force.",
+        "description": "The angle at which a muscle pulls on a bone. Muscles generate the most rotational force when pulling at 90 degrees to the bone.",
         "references": [
           {
             "source": "exrx",
@@ -1085,7 +1085,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "A resistance profile where muscular tension increases throughout the range of motion. Examples: squat and bench press (hardest at bottom, easiest at top).",
+        "description": "Exercise gets easier as you complete the rep. Squats and bench press are hardest at the bottom and easiest at lockout.",
         "references": [
           {
             "source": "exrx",
@@ -1097,7 +1097,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "A resistance profile where muscular tension decreases throughout the range of motion. Examples: rows and chin-ups (hardest at top, easiest at bottom).",
+        "description": "Exercise gets harder as you complete the rep. Rows and chin-ups are easiest at the bottom and hardest at the top.",
         "references": [
           {
             "source": "exrx",
@@ -1109,7 +1109,7 @@
       {
         "aliases": [],
         "category": "kinesiology",
-        "description": "A resistance profile where muscular tension is greatest in the middle of the range of motion. Example: biceps curls (hardest at 90° elbow flexion).",
+        "description": "Exercise is hardest in the middle of the rep. Biceps curls are toughest when your elbow is bent at 90 degrees.",
         "references": [
           {
             "source": "exrx",
@@ -1121,7 +1121,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Involving both sides of the body simultaneously. A bilateral exercise uses both limbs together (e.g., barbell squat, bench press).",
+        "description": "Using both sides at once. Barbell squats and bench press are bilateral - both legs or arms work together.",
         "references": [
           {
             "source": "exrx",
@@ -1133,7 +1133,7 @@
       {
         "aliases": [],
         "category": "movement",
-        "description": "Involving one side of the body at a time. A unilateral exercise uses one limb independently (e.g., single-leg squat, one-arm row).",
+        "description": "Using one side at a time. Single-leg squats and one-arm rows are unilateral - each limb works independently.",
         "references": [
           {
             "source": "exrx",
@@ -1147,7 +1147,7 @@
           "BLD"
         ],
         "category": "kinesiology",
-        "description": "The phenomenon where the sum of forces from two unilateral contractions exceeds the force of a single bilateral contraction of the same muscles.",
+        "description": "You can lift more total weight doing single-leg or single-arm exercises than both limbs together. A normal neurological effect.",
         "references": [
           {
             "source": "exrx",
@@ -1161,7 +1161,7 @@
           "joint"
         ],
         "category": "anatomy",
-        "description": "The point where two or more bones meet, allowing movement. Different joint types permit different ranges and types of motion.",
+        "description": "Where bones meet to form a joint. Different joints allow different movements - knees hinge, shoulders rotate.",
         "references": [
           {
             "source": "exrx",
@@ -1175,7 +1175,7 @@
           "Newton's first law"
         ],
         "category": "kinesiology",
-        "description": "A body at rest stays at rest and a body in motion stays in motion unless acted upon by an external force. Explains why heavier weights are harder to start moving.",
+        "description": "Objects resist changes in motion. Heavier weights are harder to start moving and harder to stop once moving.",
         "references": [
           {
             "source": "exrx",
@@ -1189,7 +1189,7 @@
           "Newton's second law"
         ],
         "category": "kinesiology",
-        "description": "Force equals mass times acceleration (F=ma). Greater force is needed to accelerate heavier weights or to move weights faster.",
+        "description": "Force equals mass times acceleration. Moving heavier weights or moving faster both require more force from your muscles.",
         "references": [
           {
             "source": "exrx",
@@ -1203,7 +1203,7 @@
           "Newton's third law"
         ],
         "category": "kinesiology",
-        "description": "For every action there is an equal and opposite reaction. When you push against the floor during a squat, the floor pushes back with equal force.",
+        "description": "Every force has an equal opposite force. Push hard into the floor during a squat and the floor pushes back, driving you up.",
         "references": [
           {
             "source": "exrx",
@@ -1219,7 +1219,7 @@
           "kilocalories"
         ],
         "category": "nutrition",
-        "description": "A measure of energy from food. Adequate caloric intake supports training adaptations; chronic deficits impair performance, recovery, and hormonal function.",
+        "description": "Energy from food. Eating enough supports muscle building and performance; eating too little hurts recovery and hormones.",
         "details": "Low energy availability (LEA) occurs when caloric intake fails to meet the demands of exercise and bodily functions. Meta-analyses show LEA affects 45% of athletes and is linked to decreased endurance, coordination, and increased injury risk.",
         "references": [
           {
@@ -1236,7 +1236,7 @@
           "dietary protein"
         ],
         "category": "nutrition",
-        "description": "A macronutrient essential for muscle protein synthesis and repair. Resistance-trained individuals benefit from intakes of 1.6-2.2 g/kg/day.",
+        "description": "The building block for muscle. Aim for 1.6-2.2 grams per kilogram of body weight daily when training.",
         "details": "Meta-analyses of 49 studies show protein supplementation augments resistance training gains in muscle mass and strength. Benefits plateau at ~1.6 g/kg/day total intake, with older adults potentially benefiting from 1.2-1.6 g/kg/day.",
         "references": [
           {
@@ -1254,7 +1254,7 @@
           "roughage"
         ],
         "category": "nutrition",
-        "description": "Indigestible plant material that supports digestive health. Higher intakes are associated with reduced cardiovascular disease, cancer, and all-cause mortality.",
+        "description": "Plant material your body can't digest. Supports gut health and is linked to lower disease risk. Found in vegetables, fruits, and whole grains.",
         "details": "An umbrella review of 17 million individuals found convincing evidence linking fibre intake to reduced CVD mortality, pancreatic cancer, and diverticular disease. Benefits appear dose-dependent with no upper threshold identified.",
         "references": [
           {
@@ -1272,7 +1272,7 @@
           "fluid intake"
         ],
         "category": "nutrition",
-        "description": "Fluid intake to maintain hydration status. Dehydration of 2% body mass or more impairs endurance performance, especially in heat.",
+        "description": "Staying hydrated supports performance. Losing just 2% of body weight in sweat hurts endurance, especially in heat.",
         "details": "Systematic reviews show fluid intake following dehydration improves continuous exercise performance, particularly at elevated temperatures. Pre-exercise hyperhydration may help delay adverse effects of fluid loss during prolonged exercise.",
         "references": [
           {
@@ -1290,7 +1290,7 @@
           "step count"
         ],
         "category": "recovery",
-        "description": "A measure of daily ambulatory physical activity. Higher step counts are associated with progressively lower all-cause mortality risk.",
+        "description": "Daily walking activity. More steps generally means better health, with benefits peaking around 8,000-10,000 steps per day.",
         "details": "A meta-analysis of 47,471 adults found that compared to the lowest step group (~3,500 steps/day), those averaging 10,900 steps had 40-53% lower mortality risk. Benefits plateau around 6,000-8,000 steps for adults over 60, and 8,000-10,000 for younger adults.",
         "references": [
           {
@@ -1307,7 +1307,7 @@
           "sleep duration"
         ],
         "category": "recovery",
-        "description": "A period of rest essential for physical and cognitive recovery. Athletes typically need 7-9 hours, with sleep extension showing performance benefits.",
+        "description": "Rest essential for recovery and muscle growth. Most people need 7-9 hours; getting more can improve athletic performance.",
         "details": "Systematic reviews show sleep extension improves reaction time, sprint performance, and shooting accuracy in athletes. Collegiate basketball players extending sleep to 10 hours showed 9% improved free-throw accuracy and faster sprint times.",
         "references": [
           {
@@ -1325,7 +1325,7 @@
           "recovery status"
         ],
         "category": "recovery",
-        "description": "A subjective 1-10 rating of readiness to train. Lower scores indicate incomplete recovery and may warrant reduced training intensity.",
+        "description": "A 1-10 self-rating of how ready you feel to train. Low scores suggest you need more rest before your next hard workout.",
         "details": "The Perceived Recovery Status (PRS) scale correlates with markers of muscle damage and performance decrements. Research shows it can effectively assess daily recovery following resistance exercise, though the relationship is individualized.",
         "references": [
           {
@@ -1342,7 +1342,7 @@
           "RIR"
         ],
         "category": "technique",
-        "description": "The estimated number of repetitions remaining before reaching muscular failure. RIR 0 means no reps left; RIR 2 means two more reps were possible.",
+        "description": "How many more reps you could have done. RIR 2 means you stopped with 2 reps left in the tank.",
         "details": "RIR provides a practical way to auto-regulate training intensity. Research suggests training within 0-3 RIR optimizes hypertrophy while managing fatigue. Higher RIR (4+) may be appropriate for technique practice or deload periods.",
         "references": [],
         "term": "reps in reserve"
@@ -1352,7 +1352,7 @@
           "MV"
         ],
         "category": "programming",
-        "description": "The minimum weekly training volume (sets per muscle group) needed to preserve existing muscle mass. Typically around 6 working sets per week.",
+        "description": "The minimum sets per muscle per week to keep what you have. About 6 sets per muscle maintains size during busy periods.",
         "details": "Research shows young adults can maintain muscle with as few as 3 sets per muscle per week if intensity is preserved. Adults over 60 typically require 6-10 sets per week. Maintaining load (intensity) is more critical than maintaining volume.",
         "references": [
           {
@@ -1375,7 +1375,7 @@
           "MEV"
         ],
         "category": "programming",
-        "description": "The lowest weekly training volume that produces measurable muscle growth. Typically around 8-10 sets per muscle group per week.",
+        "description": "The minimum sets per muscle per week to grow. Around 8-10 sets per muscle is where growth begins for most people.",
         "details": "MEV varies by training status and muscle group. Beginners may see growth with fewer sets, while advanced trainees require more. Starting a training block at MEV allows room to progressively increase volume.",
         "references": [
           {
@@ -1392,7 +1392,7 @@
           "MAV"
         ],
         "category": "programming",
-        "description": "The weekly training volume range that produces optimal muscle growth over time. Typically 12-18 sets per muscle group per week.",
+        "description": "The sweet spot for muscle growth. Around 12-18 sets per muscle per week provides the best returns for most people.",
         "details": "MAV represents the progression zone between MEV and MRV. Each session increases fatigue, requiring progressive volume increases to maintain optimal stimulus. The ideal volume varies by individual recovery capacity and training experience.",
         "references": [
           {
@@ -1415,7 +1415,7 @@
           "MRV"
         ],
         "category": "programming",
-        "description": "The highest weekly training volume from which you can still recover. Exceeding MRV leads to accumulated fatigue and impaired progress. Typically 20-25 sets per muscle group per week.",
+        "description": "The most you can do and still recover. Going beyond 20-25 sets per muscle per week leads to burnout, not more growth.",
         "details": "Training at MRV is unsustainable long-term and leads to overtraining symptoms. Research suggests diminishing returns occur well before MRV, with per-session benefits plateauing around 11 sets. Distribute volume across 2-3 sessions for better results.",
         "references": [
           {
@@ -1436,7 +1436,7 @@
       {
         "aliases": [],
         "category": "biometrics",
-        "description": "Age influences recovery capacity, hormonal profiles, and optimal training parameters. Older adults benefit from higher training frequency and may require more recovery time between sessions.",
+        "description": "Affects recovery speed and training needs. Older adults may need more frequent sessions with more recovery time between them.",
         "details": "Adults 60+ show better hypertrophy outcomes when training each muscle 2-3 times per week rather than once. They may need 6-10 sets per muscle weekly for maintenance (vs 3-6 for younger adults) and benefit from longer rest periods. Age-related declines in muscle protein synthesis can be offset by adequate protein intake (1.2-1.6 g/kg/day) and progressive resistance training.",
         "references": [
           {
@@ -1459,7 +1459,7 @@
           "biological sex"
         ],
         "category": "biometrics",
-        "description": "Biological sex influences baseline strength levels, hormonal responses to training, body composition, and the interpretation of body measurements as health indicators.",
+        "description": "Affects strength baselines, hormones, and how body measurements relate to health. Both sexes benefit equally from resistance training.",
         "details": "Males typically have higher absolute strength due to greater muscle mass and testosterone levels, but relative strength gains from training are similar between sexes. Females may recover faster between sets and sessions, potentially tolerating higher training frequencies. Sex also affects how body measurements predict health risk: males tend to accumulate visceral fat centrally while females store more subcutaneously, making waist circumference thresholds sex-specific (94 cm risk threshold for males vs 80 cm for females). Body fat percentage norms differ substantially (essential fat ~3% for males vs ~12% for females). Both sexes benefit equally from resistance training for health outcomes.",
         "references": [
           {
@@ -1480,7 +1480,7 @@
       {
         "aliases": [],
         "category": "biometrics",
-        "description": "Height affects exercise mechanics through limb leverage, and serves as a reference for health indicators like waist-to-height ratio.",
+        "description": "Affects exercise mechanics and leverage. Also used to calculate waist-to-height ratio, a useful health indicator.",
         "details": "For exercise: longer limbs create longer moment arms, requiring more work through the same angular range. Taller lifters often benefit from wider stances and adjusted grip widths. For health assessment: waist-to-height ratio (WHtR) is a stronger predictor of cardiometabolic risk than BMI or waist circumference alone. A WHtR below 0.5 indicates lower risk regardless of sex or ethnicity, while values above 0.6 indicate substantially elevated risk. This ratio normalizes waist measurement across different body sizes, making it more universally applicable than fixed waist thresholds.",
         "references": [
           {
@@ -1502,7 +1502,7 @@
           "bodyweight"
         ],
         "category": "biometrics",
-        "description": "Body mass, typically measured in kilograms or pounds. Changes in weight reflect shifts in muscle, fat, water, and glycogen stores.",
+        "description": "Your body mass in kilograms or pounds. Daily fluctuations are normal; track weekly averages for reliable trends.",
         "details": "Daily weight fluctuates 1-2 kg due to hydration, food intake, and glycogen levels. Weekly averages provide more reliable trend data than single measurements. For body composition goals, the rate of weight change matters: muscle gain typically occurs at 0.25-0.5 kg/month for trained individuals, while fat loss of 0.5-1% bodyweight per week preserves muscle mass.",
         "references": [
           {
@@ -1521,7 +1521,7 @@
           "RHR"
         ],
         "category": "biometrics",
-        "description": "Heart rate measured at complete rest, typically 60-100 bpm for adults. Lower values often indicate better cardiovascular fitness.",
+        "description": "Your heart rate at rest, normally 60-100 bpm. Lower is usually better. Elevated readings can signal stress or incomplete recovery.",
         "details": "Endurance training can reduce resting heart rate by 10-20 bpm over months. Elevated resting heart rate may indicate incomplete recovery, stress, or illness. Measure first thing in the morning before rising for consistent readings. Values below 60 bpm are common in trained athletes and generally not concerning without symptoms.",
         "references": [
           {
