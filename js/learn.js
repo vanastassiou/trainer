@@ -46,6 +46,7 @@ function filterArticles() {
     filtered = filtered.filter(a => a.category === category);
   }
 
+  filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
   renderArticles(filtered);
 }
 
@@ -155,6 +156,7 @@ function filterReferences() {
     filtered = filtered.filter(s => s.type === type);
   }
 
+  filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
   renderReferencesList(filtered);
 }
 
@@ -192,7 +194,8 @@ export async function initLearnPage() {
   // Articles
   const articlesData = await loadArticles();
   populateCategoryFilter(articlesData.articles);
-  renderArticles(articlesData.articles);
+  const sortedArticles = [...articlesData.articles].sort((a, b) => a.title.localeCompare(b.title));
+  renderArticles(sortedArticles);
   document.getElementById('article-category-filter').addEventListener('change', filterArticles);
 
   // Glossary
@@ -205,7 +208,8 @@ export async function initLearnPage() {
   // References
   const sourcesData = await loadSources();
   populateReferencesTypeFilter(sourcesData.sources);
-  renderReferencesList(sourcesData.sources);
+  const sortedSources = [...sourcesData.sources].sort((a, b) => a.name.localeCompare(b.name));
+  renderReferencesList(sortedSources);
   document.getElementById('references-type-filter').addEventListener('change', filterReferences);
 }
 
