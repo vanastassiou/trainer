@@ -7,6 +7,7 @@
 import { state } from './state.js';
 import { getTodayDate } from './utils.js';
 import { showToast } from './ui.js';
+import { DAILY_FIELDS } from './measurements.js';
 
 // =============================================================================
 // DATABASE SETUP
@@ -334,6 +335,20 @@ export async function saveProfile(data) {
 // JOURNAL QUERIES
 // =============================================================================
 
+/**
+ * Calculate the percentage of daily stats fields that are filled in a journal.
+ * @param {Object} journal - The journal object
+ * @returns {number} Completion percentage (0-100)
+ */
+export function calculateDailyCompletion(journal) {
+  if (!journal?.daily) return 0;
+  const filled = DAILY_FIELDS.filter(field => {
+    const value = journal.daily[field];
+    return value !== null && value !== undefined && value !== '';
+  }).length;
+  return Math.round((filled / DAILY_FIELDS.length) * 100);
+}
+
 export async function getRecentJournals(includeToday = false) {
   try {
     const today = getTodayDate();
@@ -371,8 +386,9 @@ export async function saveJournalForDate(journal) {
   try {
     journal.lastModified = new Date().toISOString();
     await putRecord('journals', journal);
-    // Update cache for calendar dots
-    state.addToJournalDatesCache(journal.date);
+    // Update cache for calendar indicators with completion percentage
+    const completion = calculateDailyCompletion(journal);
+    state.addToJournalDatesCache(journal.date, completion);
     showToast('Saved');
   } catch (err) {
     console.error('Failed to save journal:', err);
@@ -391,7 +407,10 @@ export async function loadJournalDatesForMonth(year, month) {
     const journals = await getAllFromStore('journals');
     const filtered = journals.filter(j => j.date >= startDate && j.date <= endDate);
 
-    filtered.forEach(j => state.addToJournalDatesCache(j.date));
+    filtered.forEach(j => {
+      const completion = calculateDailyCompletion(j);
+      state.addToJournalDatesCache(j.date, completion);
+    });
   } catch (err) {
     console.error('Failed to load journal dates:', err);
   }

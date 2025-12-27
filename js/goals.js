@@ -15,7 +15,7 @@ import {
   saveProfile,
   getRecentJournals
 } from './db.js';
-import { METRIC_UNITS, updateFormUnits, displayPreviousMeasurements } from './measurements.js';
+import { METRIC_UNITS, updateFormUnits } from './measurements.js';
 import { state } from './state.js';
 import { toImperial, toMetric, getDisplayUnit, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
 
@@ -278,9 +278,6 @@ export function updateAllUnitDisplays() {
 
   // Re-render goals with new units
   renderGoalsList();
-
-  // Re-render previous measurements
-  displayPreviousMeasurements();
 }
 
 // =============================================================================

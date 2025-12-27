@@ -201,6 +201,30 @@ function getNiceAxisBounds(min, max) {
 }
 
 /**
+ * Calculate linear regression for trend line
+ * @param {Array} data - Array of {date, value} objects
+ * @returns {Object} {slope, intercept} for y = slope * x + intercept
+ */
+function calculateLinearRegression(data) {
+  const n = data.length;
+  if (n < 2) return null;
+
+  let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+
+  data.forEach((point, i) => {
+    sumX += i;
+    sumY += point.value;
+    sumXY += i * point.value;
+    sumX2 += i * i;
+  });
+
+  const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+  const intercept = (sumY - slope * sumX) / n;
+
+  return { slope, intercept };
+}
+
+/**
  * Format value for Y-axis label
  */
 function formatYLabel(value, unit) {
@@ -318,6 +342,28 @@ export function renderLineChart(canvas, data, options = {}) {
     ctx.fillText(label, x, height - marginBottom + 5);
   }
 
+  // Draw trend line
+  const trendColor = options.trendColor || 'rgba(251, 191, 36, 0.4)';
+  const regression = calculateLinearRegression(displayData);
+  if (regression) {
+    const startY = regression.intercept;
+    const endY = regression.slope * (displayData.length - 1) + regression.intercept;
+
+    const x1 = marginLeft;
+    const y1 = marginTop + chartHeight - ((startY - min) / range) * chartHeight;
+    const x2 = marginLeft + chartWidth;
+    const y2 = marginTop + chartHeight - ((endY - min) / range) * chartHeight;
+
+    ctx.beginPath();
+    ctx.strokeStyle = trendColor;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
   // Draw line
   ctx.beginPath();
   ctx.strokeStyle = lineColor;
@@ -430,24 +476,19 @@ const CONVERTIBLE_FIELDS = [
 export function formatSummaryHTML(summary, unit = '', metric = null) {
   if (!summary) return '';
 
-  let { start, end, change } = summary;
+  let { start, end } = summary;
   let displayUnit = unit;
 
   // Convert if imperial and metric is convertible
   if (metric && state.unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(metric)) {
     start = toImperial(start, metric);
     end = toImperial(end, metric);
-    change = toImperial(change, metric);
     displayUnit = getDisplayUnit(metric, 'imperial');
   }
-
-  const sign = change >= 0 ? '+' : '';
-  const changeClass = change >= 0 ? 'change-positive' : 'change-negative';
 
   return `
     <span>${start.toFixed(1)}${displayUnit}</span>
     <span> → </span>
     <span>${end.toFixed(1)}${displayUnit}</span>
-    <span class="${changeClass}"> (${sign}${change.toFixed(1)})</span>
   `;
 }

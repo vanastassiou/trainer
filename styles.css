@@ -219,7 +219,6 @@ main {
 
 /* Card-specific overrides (base styles from .card class) */
 .exercise-card { box-shadow: var(--shadow); }
-.previous-measurements { padding: 12px; }
 
 /* =============================================================================
    BUTTONS
@@ -570,32 +569,6 @@ input::placeholder {
   margin-top: var(--spacing-md);
 }
 
-.previous-measurements {
-  margin-bottom: 16px;
-}
-
-.previous-measurements-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-size: 13px;
-  color: var(--color-text-muted);
-}
-
-#previous-measurements-values {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-}
-
-.measurement-item {
-  font-size: 13px;
-}
-
-.measurement-item strong {
-  color: var(--color-text-muted);
-  font-weight: 500;
-}
 
 /* =============================================================================
    WORKOUT
@@ -2426,6 +2399,18 @@ input::placeholder {
 
 .calendar-day.selected.has-data::after {
   background: var(--color-bg);
+}
+
+/* Hide dot indicator when completion emoji is present */
+.calendar-day:has(.completion-indicator)::after {
+  display: none;
+}
+
+.completion-indicator {
+  position: absolute;
+  bottom: 2px;
+  font-size: 10px;
+  line-height: 1;
 }
 
 .today-btn {

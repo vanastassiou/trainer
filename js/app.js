@@ -25,7 +25,6 @@ import {
   generateMeasurementFormRows,
   loadMeasurementsData,
   loadDailyData,
-  displayPreviousMeasurements,
   initMeasurementsForm,
   initDailyForm
 } from './measurements.js';
@@ -130,14 +129,26 @@ function initTabs() {
   // Main tabs: metrics, workouts, profile
   createTabController('.tabs > .tab', 'main > section.page', {
     storageKey: 'activeTab',
-    tabAttr: 'data-tab'
+    tabAttr: 'data-tab',
+    onActivate: (tabId) => {
+      if (tabId === 'metrics') {
+        updateDailyChart();
+        updateMeasurementsChart();
+      }
+    }
   });
 
   // Sub-tabs use createTabController
   createTabController(
     '#metrics > .sub-tabs > .sub-tab',
     '#metrics > .sub-page',
-    { tabAttr: 'data-subtab' }
+    {
+      tabAttr: 'data-subtab',
+      onActivate: (tabId) => {
+        if (tabId === 'daily') updateDailyChart();
+        else if (tabId === 'measurements') updateMeasurementsChart();
+      }
+    }
   );
 }
 
@@ -206,7 +217,8 @@ function navigateDate(delta) {
 }
 
 function openCalendar() {
-  const date = new Date(state.selectedDate + 'T00:00:00');
+  const dateStr = state.selectedDate || getTodayDate();
+  const date = new Date(dateStr + 'T00:00:00');
   state.calendarMonth = { year: date.getFullYear(), month: date.getMonth() };
   loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
   renderCalendar();
@@ -246,6 +258,7 @@ function renderCalendar() {
     const isToday = dateStr === today;
     const isSelected = dateStr === state.selectedDate;
     const hasData = state.journalDatesCache.has(dateStr);
+    const completion = state.getJournalDateCompletion(dateStr);
     const isFuture = dateStr > today;
 
     const classes = ['calendar-day'];
@@ -254,7 +267,19 @@ function renderCalendar() {
     if (hasData) classes.push('has-data');
     if (isFuture) classes.push('future');
 
-    html += `<button class="${classes.join(' ')}" data-date="${dateStr}" ${isFuture ? 'disabled' : ''}>${day}</button>`;
+    // Add completion indicator emoji
+    let indicator = '';
+    if (hasData && completion !== null) {
+      if (completion === 100) {
+        indicator = '<span class="completion-indicator">⭐</span>';
+      } else if (completion >= 75) {
+        indicator = '<span class="completion-indicator">😁</span>';
+      } else if (completion >= 50) {
+        indicator = '<span class="completion-indicator">😊</span>';
+      }
+    }
+
+    html += `<button class="${classes.join(' ')}" data-date="${dateStr}" ${isFuture ? 'disabled' : ''}>${day}${indicator}</button>`;
   }
 
   grid.innerHTML = html;
@@ -332,8 +357,6 @@ async function loadDataForDate(date) {
       await loadTemplate();
     }
   }
-
-  await displayPreviousMeasurements();
 
   const programSelect = document.getElementById('current-program');
   const programName = document.getElementById('current-program-name');
