@@ -230,11 +230,10 @@
             <option value="male">Male</option>
           </select>
 
-          <label for="profile-height"><span data-term="height">Height</span></label>
+          <label for="profile-height"><span data-term="height">Height</span> <span id="height-label-unit">(cm)</span></label>
           <div class="height-inputs">
             <div id="height-metric-input" class="input-with-unit">
               <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0" placeholder="170">
-              <span class="unit">cm</span>
             </div>
             <div id="height-imperial-input" class="input-with-unit hidden">
               <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">

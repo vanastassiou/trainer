@@ -262,13 +262,16 @@ function renderVolumeGuidance(age) {
 function updateHeightInputVisibility(preference) {
   const metricInput = document.getElementById('height-metric-input');
   const imperialInput = document.getElementById('height-imperial-input');
+  const labelUnit = document.getElementById('height-label-unit');
 
   if (preference === 'imperial') {
     metricInput.classList.add('hidden');
     imperialInput.classList.remove('hidden');
+    if (labelUnit) labelUnit.textContent = '(ft/in)';
   } else {
     metricInput.classList.remove('hidden');
     imperialInput.classList.add('hidden');
+    if (labelUnit) labelUnit.textContent = '(cm)';
   }
 }
 
