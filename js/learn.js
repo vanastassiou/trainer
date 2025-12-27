@@ -65,8 +65,8 @@ function renderArticles(articles) {
 
   emptyMessage.classList.add('hidden');
   container.innerHTML = articles.map(article => `
-    <div class="article-card card">
-      <h3 class="article-title">
+    <div class="learn-card">
+      <h3 class="learn-card-title">
         ${article.doi || article.url
           ? `<a href="${article.doi ? `https://doi.org/${article.doi}` : article.url}" target="_blank" rel="noopener">${article.title}</a>`
           : article.title}
@@ -79,7 +79,7 @@ function renderArticles(articles) {
         <div class="article-takeaways-label">Key takeaways</div>
         <ul>${renderListItems(article.takeaways)}</ul>
       </div>
-      ${article.category ? `<span class="article-category">${formatLabel(article.category)}</span>` : ''}
+      ${article.category ? `<div class="learn-card-tags"><span class="learn-tag">${formatLabel(article.category)}</span></div>` : ''}
     </div>
   `).join('');
 }
@@ -132,10 +132,10 @@ function renderGlossaryList(terms) {
 
   emptyMessage.classList.add('hidden');
   container.innerHTML = terms.map(term => `
-    <div class="glossary-card" data-term="${term.term}">
-      <div class="glossary-card-term">${term.term}</div>
-      <div class="glossary-card-category">${categories[term.category] || term.category}</div>
-      <div class="glossary-card-description">${term.description}</div>
+    <div class="learn-card learn-card--interactive" data-term="${term.term}">
+      <div class="learn-card-title">${term.term}</div>
+      <div class="learn-card-meta">${categories[term.category] || term.category}</div>
+      <div class="learn-card-description learn-card-description--clamp">${term.description}</div>
     </div>
   `).join('');
 }
@@ -177,15 +177,15 @@ function renderReferencesList(sources) {
 
   emptyMessage.classList.add('hidden');
   container.innerHTML = sources.map(source => `
-    <div class="reference-card">
-      <div class="reference-card-name">
+    <div class="learn-card">
+      <div class="learn-card-title">
         <a href="${source.url}" target="_blank" rel="noopener">${source.name}</a>
       </div>
-      <div class="reference-card-org">${source.organization}</div>
-      <div class="reference-card-description">${source.description}</div>
-      <div class="reference-card-meta">
-        <span class="reference-card-tag">${formatLabel(source.type)}</span>
-        ${source.free_access ? '<span class="reference-card-tag">Free access</span>' : ''}
+      <div class="learn-card-meta">${source.organization}</div>
+      <div class="learn-card-description">${source.description}</div>
+      <div class="learn-card-tags">
+        <span class="learn-tag">${formatLabel(source.type)}</span>
+        ${source.free_access ? '<span class="learn-tag">Free access</span>' : ''}
       </div>
     </div>
   `).join('');
