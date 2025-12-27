@@ -1,472 +1,633 @@
 {
   "sources": [
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "INT",
+      "description": "Evidence-based recommendations for physical activity across all age groups, including muscle-strengthening and flexibility guidance",
+      "free_access": true,
       "id": "who-pa-guidelines",
       "name": "WHO guidelines on physical activity and sedentary behaviour",
       "organization": "World Health Organization",
       "type": "government",
-      "country": "INT",
-      "url": "https://www.who.int/publications/i/item/9789240015128",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Evidence-based recommendations for physical activity across all age groups, including muscle-strengthening and flexibility guidance"
+      "url": "https://www.who.int/publications/i/item/9789240015128"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "pdf",
+      "country": "INT",
+      "description": "Full PDF of WHO 2020 physical activity guidelines",
+      "free_access": true,
       "id": "who-pa-guidelines-pdf",
       "name": "WHO physical activity guidelines (PDF)",
       "organization": "World Health Organization",
       "type": "government",
-      "country": "INT",
-      "url": "https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "pdf",
-      "free_access": true,
-      "description": "Full PDF of WHO 2020 physical activity guidelines"
+      "url": "https://iris.who.int/bitstream/handle/10665/336656/9789240015128-eng.pdf"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Comprehensive U.S. federal guidelines on physical activity for all ages and abilities",
+      "free_access": true,
       "id": "hhs-pa-guidelines",
       "name": "Physical activity guidelines for Americans (2nd edition)",
       "organization": "U.S. Department of Health and Human Services",
       "type": "government",
-      "country": "US",
-      "url": "https://odphp.health.gov/our-work/nutrition-physical-activity/physical-activity-guidelines",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Comprehensive U.S. federal guidelines on physical activity for all ages and abilities"
+      "url": "https://odphp.health.gov/our-work/nutrition-physical-activity/physical-activity-guidelines"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "pdf",
+      "country": "US",
+      "description": "Full PDF of 2018 U.S. Physical Activity Guidelines",
+      "free_access": true,
       "id": "hhs-pa-guidelines-pdf",
       "name": "Physical activity guidelines for Americans (PDF)",
       "organization": "U.S. Department of Health and Human Services",
       "type": "government",
-      "country": "US",
-      "url": "https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "pdf",
-      "free_access": true,
-      "description": "Full PDF of 2018 U.S. Physical Activity Guidelines"
+      "url": "https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "NIH guide to endurance, strength, and balance exercises for older adults",
+      "free_access": true,
       "id": "nia-exercise-types",
       "name": "Three types of exercise (NIA)",
       "organization": "National Institute on Aging",
       "type": "government",
-      "country": "US",
-      "url": "https://www.nia.nih.gov/health/exercise-and-physical-activity/three-types-exercise-can-improve-your-health-and-physical",
-      "categories": ["bodyweight", "free_weight", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "NIH guide to endurance, strength, and balance exercises for older adults"
+      "url": "https://www.nia.nih.gov/health/exercise-and-physical-activity/three-types-exercise-can-improve-your-health-and-physical"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Evidence-based strength training guidance for older adults",
+      "free_access": true,
       "id": "nia-strength-training",
       "name": "Strength training for healthy aging",
       "organization": "National Institute on Aging",
       "type": "government",
-      "country": "US",
-      "url": "https://www.nia.nih.gov/news/how-can-strength-training-build-healthier-bodies-we-age",
-      "categories": ["bodyweight", "free_weight"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Evidence-based strength training guidance for older adults"
+      "url": "https://www.nia.nih.gov/news/how-can-strength-training-build-healthier-bodies-we-age"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "CDC recommendations for physical activity across the lifespan",
+      "free_access": true,
       "id": "cdc-pa-guidelines",
       "name": "CDC physical activity guidelines",
       "organization": "Centers for Disease Control and Prevention",
       "type": "government",
-      "country": "US",
-      "url": "https://www.cdc.gov/physical-activity/php/guidelines-recommendations/index.html",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "CDC recommendations for physical activity across the lifespan"
+      "url": "https://www.cdc.gov/physical-activity/php/guidelines-recommendations/index.html"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Comprehensive weight management program with exercise components",
+      "free_access": true,
       "id": "va-move-program",
       "name": "VA MOVE! weight management program",
       "organization": "U.S. Department of Veterans Affairs",
       "type": "government",
-      "country": "US",
-      "url": "https://www.move.va.gov/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Comprehensive weight management program with exercise components"
+      "url": "https://www.move.va.gov/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "pdf",
+      "country": "US",
+      "description": "16-module workbook and food/activity logs for veterans",
+      "free_access": true,
       "id": "va-move-materials",
       "name": "VA MOVE! veteran workbook & materials",
       "organization": "U.S. Department of Veterans Affairs",
       "type": "government",
-      "country": "US",
-      "url": "https://www.move.va.gov/vetworkbook.asp",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "pdf",
-      "free_access": true,
-      "description": "16-module workbook and food/activity logs for veterans"
+      "url": "https://www.move.va.gov/vetworkbook.asp"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Exercise program for older veterans with personalized prescriptions",
+      "free_access": true,
       "id": "va-gerofit",
       "name": "VA Gerofit program",
       "organization": "U.S. Department of Veterans Affairs",
       "type": "government",
-      "country": "US",
-      "url": "https://www.va.gov/GERIATRICS/pages/gerofit_Home.asp",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Exercise program for older veterans with personalized prescriptions"
+      "url": "https://www.va.gov/GERIATRICS/pages/gerofit_Home.asp"
     },
     {
+      "categories": [
+        "bodyweight",
+        "mobility"
+      ],
+      "content_type": "pdf",
+      "country": "US",
+      "description": "Army field manual covering physical readiness training, preparation drills, and conditioning",
+      "free_access": true,
       "id": "army-fm7-22",
       "name": "Army FM 7-22 holistic health and fitness",
       "organization": "U.S. Army",
       "type": "military",
-      "country": "US",
-      "url": "https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN30964-FM_7-22-001-WEB-4.pdf",
-      "categories": ["bodyweight", "mobility"],
-      "content_type": "pdf",
-      "free_access": true,
-      "description": "Army field manual covering physical readiness training, preparation drills, and conditioning"
+      "url": "https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN30964-FM_7-22-001-WEB-4.pdf"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "exercise_library",
+      "country": "US",
+      "description": "Searchable database of exercises with photos and step-by-step instructions",
+      "free_access": true,
       "id": "ace-exercise-library",
       "name": "ACE exercise library",
       "organization": "American Council on Exercise",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://www.acefitness.org/resources/everyone/exercise-library/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "exercise_library",
-      "free_access": true,
-      "description": "Searchable database of exercises with photos and step-by-step instructions"
+      "url": "https://www.acefitness.org/resources/everyone/exercise-library/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Infographics, handouts, and resources on exercise science topics",
+      "free_access": true,
       "id": "acsm-resource-library",
       "name": "ACSM resource library",
       "organization": "American College of Sports Medicine",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://acsm.org/resource-library/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Infographics, handouts, and resources on exercise science topics"
+      "url": "https://acsm.org/resource-library/"
     },
     {
+      "categories": [
+        "free_weight",
+        "machine"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Evidence-based articles on strength and conditioning",
+      "free_access": true,
       "id": "nsca-articles",
       "name": "NSCA education articles",
       "organization": "National Strength and Conditioning Association",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://www.nsca.com/education/articles/",
-      "categories": ["free_weight", "machine"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Evidence-based articles on strength and conditioning"
+      "url": "https://www.nsca.com/education/articles/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "US",
+      "description": "Professional standards, guidelines, and educational resources",
+      "free_access": true,
       "id": "nsca-tools",
       "name": "NSCA tools & resources",
       "organization": "National Strength and Conditioning Association",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://www.nsca.com/education/tools-and-resources/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Professional standards, guidelines, and educational resources"
+      "url": "https://www.nsca.com/education/tools-and-resources/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "exercise_library",
+      "country": "US",
+      "description": "Comprehensive directory organized by muscle group and equipment type",
+      "free_access": true,
       "id": "exrx-directory",
       "name": "ExRx.net exercise directory",
       "organization": "ExRx.net",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://exrx.net/Lists/Directory",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "exercise_library",
-      "free_access": true,
-      "description": "Comprehensive directory organized by muscle group and equipment type"
+      "url": "https://exrx.net/Lists/Directory"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "exercise_library",
+      "country": "US",
+      "description": "Over 2,100 exercises with video demonstrations and instructions",
+      "free_access": true,
       "id": "exrx-exercises",
       "name": "ExRx.net exercise library",
       "organization": "ExRx.net",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://exrx.net/WorkoutTools/Exercises",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "exercise_library",
-      "free_access": true,
-      "description": "Over 2,100 exercises with video demonstrations and instructions"
+      "url": "https://exrx.net/WorkoutTools/Exercises"
     },
     {
+      "categories": [
+        "free_weight"
+      ],
+      "content_type": "pdf",
+      "country": "US",
+      "description": "Technical guide for dumbbell movements and progressions",
+      "free_access": true,
       "id": "crossfit-dumbbell-guide",
       "name": "CrossFit dumbbell training guide",
       "organization": "CrossFit",
       "type": "nonprofit",
-      "country": "US",
-      "url": "https://assets.crossfit.com/pdfs/seminars/Dumbbell_Training_Guide.pdf",
-      "categories": ["free_weight"],
-      "content_type": "pdf",
-      "free_access": true,
-      "description": "Technical guide for dumbbell movements and progressions"
+      "url": "https://assets.crossfit.com/pdfs/seminars/Dumbbell_Training_Guide.pdf"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "video",
+      "country": "GB",
+      "description": "Free instructor-led videos for aerobics, strength, pilates, and yoga",
+      "free_access": true,
       "id": "nhs-fitness-studio",
       "name": "NHS fitness studio",
       "organization": "National Health Service",
       "type": "government",
-      "country": "GB",
-      "url": "https://www.nhs.uk/conditions/nhs-fitness-studio/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "video",
-      "free_access": true,
-      "description": "Free instructor-led videos for aerobics, strength, pilates, and yoga"
+      "url": "https://www.nhs.uk/conditions/nhs-fitness-studio/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "mobility"
+      ],
+      "content_type": "video",
+      "country": "GB",
+      "description": "5-week plan with how-to videos for strength and flexibility exercises",
+      "free_access": true,
       "id": "nhs-strength-flex",
       "name": "NHS strength and flex videos",
       "organization": "National Health Service",
       "type": "government",
-      "country": "GB",
-      "url": "https://www.nhs.uk/live-well/exercise/strength-and-flex-exercise-plan-how-to-videos/",
-      "categories": ["bodyweight", "mobility"],
-      "content_type": "video",
-      "free_access": true,
-      "description": "5-week plan with how-to videos for strength and flexibility exercises"
+      "url": "https://www.nhs.uk/live-well/exercise/strength-and-flex-exercise-plan-how-to-videos/"
     },
     {
+      "categories": [
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "GB",
+      "description": "Stretches for lower back, calves, and general flexibility",
+      "free_access": true,
       "id": "nhs-flexibility",
       "name": "NHS flexibility exercises",
       "organization": "National Health Service",
       "type": "government",
-      "country": "GB",
-      "url": "https://www.nhs.uk/live-well/exercise/flexibility-exercises/",
-      "categories": ["mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Stretches for lower back, calves, and general flexibility"
+      "url": "https://www.nhs.uk/live-well/exercise/flexibility-exercises/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "GB",
+      "description": "Central hub for NHS exercise guidance and resources",
+      "free_access": true,
       "id": "nhs-exercise-hub",
       "name": "NHS exercise hub",
       "organization": "National Health Service",
       "type": "government",
-      "country": "GB",
-      "url": "https://www.nhs.uk/live-well/exercise/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Central hub for NHS exercise guidance and resources"
+      "url": "https://www.nhs.uk/live-well/exercise/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "video",
+      "country": "GB",
+      "description": "Free at-home workout programs including Couch to Fitness",
+      "free_access": true,
       "id": "sport-england-join",
       "name": "Sport England join the movement",
       "organization": "Sport England",
       "type": "government",
-      "country": "GB",
-      "url": "https://www.sportengland.org/jointhemovement",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "video",
-      "free_access": true,
-      "description": "Free at-home workout programs including Couch to Fitness"
+      "url": "https://www.sportengland.org/jointhemovement"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "pdf",
+      "country": "EU",
+      "description": "EU framework guidelines for national physical activity policies",
+      "free_access": true,
       "id": "eu-pa-guidelines-pdf",
       "name": "EU physical activity guidelines (PDF)",
       "organization": "European Commission",
       "type": "government",
-      "country": "EU",
-      "url": "https://ec.europa.eu/assets/eac/sport/library/policy_documents/eu-physical-activity-guidelines-2008_en.pdf",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "pdf",
-      "free_access": true,
-      "description": "EU framework guidelines for national physical activity policies"
+      "url": "https://ec.europa.eu/assets/eac/sport/library/policy_documents/eu-physical-activity-guidelines-2008_en.pdf"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "EU",
+      "description": "EU sport policy resources and HEPA initiative information",
+      "free_access": true,
       "id": "eu-sport-portal",
       "name": "EU sport: physical activity and health",
       "organization": "European Commission",
       "type": "government",
-      "country": "EU",
-      "url": "https://sport.ec.europa.eu/policies/sport-and-society/physical-activity-and-health",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "EU sport policy resources and HEPA initiative information"
+      "url": "https://sport.ec.europa.eu/policies/sport-and-society/physical-activity-and-health"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "EU",
+      "description": "Evidence-based physical activity recommendations for adults",
+      "free_access": true,
       "id": "eu-knowledge-policy",
       "name": "EU knowledge for policy: physical activity",
       "organization": "European Commission",
       "type": "government",
-      "country": "EU",
-      "url": "https://knowledge4policy.ec.europa.eu/health-promotion-knowledge-gateway/physical-activity-sedentary-behaviour-table-2b_en",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Evidence-based physical activity recommendations for adults"
+      "url": "https://knowledge4policy.ec.europa.eu/health-promotion-knowledge-gateway/physical-activity-sedentary-behaviour-table-2b_en"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "AU",
+      "description": "National guidelines for physical activity across all age groups",
+      "free_access": true,
       "id": "aus-pa-guidelines",
       "name": "Australian physical activity guidelines",
       "organization": "Australian Government Department of Health",
       "type": "government",
-      "country": "AU",
-      "url": "https://www.health.gov.au/topics/physical-activity-and-exercise/physical-activity-and-exercise-guidelines-for-all-australians",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "National guidelines for physical activity across all age groups"
+      "url": "https://www.health.gov.au/topics/physical-activity-and-exercise/physical-activity-and-exercise-guidelines-for-all-australians"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "AU",
+      "description": "Activity guidelines emphasizing strength, balance, and flexibility for seniors",
+      "free_access": true,
       "id": "aus-healthdirect",
       "name": "healthdirect: physical activity for older adults",
       "organization": "healthdirect Australia",
       "type": "government",
-      "country": "AU",
-      "url": "https://www.healthdirect.gov.au/physical-activity-guidelines-for-older-adults",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Activity guidelines emphasizing strength, balance, and flexibility for seniors"
+      "url": "https://www.healthdirect.gov.au/physical-activity-guidelines-for-older-adults"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "CA",
+      "description": "Integrated guidelines covering physical activity, sedentary behavior, and sleep",
+      "free_access": true,
       "id": "csep-guidelines",
       "name": "CSEP 24-hour movement guidelines",
       "organization": "Canadian Society for Exercise Physiology",
       "type": "nonprofit",
-      "country": "CA",
-      "url": "https://csepguidelines.ca/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Integrated guidelines covering physical activity, sedentary behavior, and sleep"
+      "url": "https://csepguidelines.ca/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "CA",
+      "description": "Federal physical activity recommendations for Canadian adults",
+      "free_access": true,
       "id": "canada-pa-tips",
       "name": "Canada.ca physical activity tips for adults",
       "organization": "Public Health Agency of Canada",
       "type": "government",
-      "country": "CA",
-      "url": "https://www.canada.ca/en/public-health/services/publications/healthy-living/physical-activity-tips-adults-18-64-years.html",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "Federal physical activity recommendations for Canadian adults"
+      "url": "https://www.canada.ca/en/public-health/services/publications/healthy-living/physical-activity-tips-adults-18-64-years.html"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "guidelines",
+      "country": "CA",
+      "description": "National physical activity promotion organization with free resources",
+      "free_access": true,
       "id": "participaction",
       "name": "ParticipACTION",
       "organization": "ParticipACTION",
       "type": "nonprofit",
-      "country": "CA",
-      "url": "https://www.participaction.com/en-ca",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "guidelines",
-      "free_access": true,
-      "description": "National physical activity promotion organization with free resources"
+      "url": "https://www.participaction.com/en-ca"
     },
     {
+      "categories": [
+        "mobility"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Review of static, dynamic, and pre-contraction stretching techniques",
+      "free_access": true,
       "id": "pmc-stretching-concepts",
       "name": "Current concepts in muscle stretching for exercise and rehabilitation",
       "organization": "PubMed Central",
       "type": "academic",
-      "country": "US",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3273886/",
-      "categories": ["mobility"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Review of static, dynamic, and pre-contraction stretching techniques"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3273886/"
     },
     {
+      "categories": [
+        "mobility",
+        "free_weight"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Systematic review comparing ROM improvements from strength training vs stretching",
+      "free_access": true,
       "id": "pmc-strength-vs-stretching",
       "name": "Strength training versus stretching for improving range of motion",
       "organization": "PubMed Central",
       "type": "academic",
-      "country": "US",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8067745/",
-      "categories": ["mobility", "free_weight"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Systematic review comparing ROM improvements from strength training vs stretching"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8067745/"
     },
     {
+      "categories": [
+        "mobility"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Review of foam rolling, vibration, and other flexibility techniques",
+      "free_access": true,
       "id": "pmc-alternative-flexibility",
       "name": "Alternative flexibility training",
       "organization": "PubMed Central",
       "type": "academic",
-      "country": "US",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10069383/",
-      "categories": ["mobility"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Review of foam rolling, vibration, and other flexibility techniques"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10069383/"
     },
     {
+      "categories": [
+        "bodyweight",
+        "free_weight",
+        "machine",
+        "mobility"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Biomechanical principles of strength, stability, and postural alignment in exercise",
+      "free_access": true,
       "id": "pmc-exercise-biomechanics",
       "name": "Exercise biomechanics for health",
       "organization": "PubMed Central",
       "type": "academic",
-      "country": "US",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10048551/",
-      "categories": ["bodyweight", "free_weight", "machine", "mobility"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Biomechanical principles of strength, stability, and postural alignment in exercise"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10048551/"
     },
     {
+      "categories": [
+        "mobility"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Evidence review of proprioceptive neuromuscular facilitation stretching",
+      "free_access": true,
       "id": "pubmed-pnf-stretching",
       "name": "PNF stretching: mechanisms and clinical implications",
       "organization": "PubMed",
       "type": "academic",
-      "country": "US",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17052131/",
-      "categories": ["mobility"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Evidence review of proprioceptive neuromuscular facilitation stretching"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17052131/"
     },
     {
+      "categories": [
+        "bodyweight"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Research on time-efficient bodyweight training protocols",
+      "free_access": true,
       "id": "pmc-bodyweight-training",
       "name": "Simple bodyweight training improves cardiorespiratory fitness",
       "organization": "PubMed Central",
       "type": "academic",
-      "country": "US",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8136567/",
-      "categories": ["bodyweight"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Research on time-efficient bodyweight training protocols"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8136567/"
     },
     {
+      "categories": [
+        "free_weight",
+        "machine"
+      ],
+      "content_type": "research",
+      "country": "US",
+      "description": "Evidence-based resistance training recommendations for healthy adults",
+      "free_access": true,
       "id": "pubmed-resistance-guidelines",
       "name": "ACSM position stand: progression models in resistance training",
       "organization": "PubMed",
       "type": "academic",
-      "country": "US",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/",
-      "categories": ["free_weight", "machine"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Evidence-based resistance training recommendations for healthy adults"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
     },
     {
+      "categories": [
+        "mobility"
+      ],
+      "content_type": "research",
+      "country": "INT",
+      "description": "Comprehensive review of stretching biomechanics and therapeutic applications",
+      "free_access": true,
       "id": "mdpi-stretching-biomechanics",
       "name": "Biomechanical, healing and therapeutic effects of stretching",
       "organization": "MDPI Applied Sciences",
       "type": "academic",
-      "country": "INT",
-      "url": "https://www.mdpi.com/2076-3417/13/15/8596",
-      "categories": ["mobility"],
-      "content_type": "research",
-      "free_access": true,
-      "description": "Comprehensive review of stretching biomechanics and therapeutic applications"
+      "url": "https://www.mdpi.com/2076-3417/13/15/8596"
     }
   ]
 }

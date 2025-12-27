@@ -223,16 +223,15 @@ export function addExerciseCard(container, existingData = null, options = {}) {
 
   card.innerHTML = `
     <div class="exercise-header">
-      <input type="text" class="exercise-name ${fromProgram ? 'tappable' : ''}" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
-      <button type="button" class="exercise-info-btn" title="Exercise info">?</button>
-      ${fromProgram ? '' : '<button type="button" class="btn danger remove-btn">Remove</button>'}
+      <input type="text" class="exercise-name" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
+      <button type="button" class="btn secondary edit-exercise-btn">Edit</button>
     </div>
     <div class="sets-container">
       <div class="set-row set-header">
         <span class="set-label"></span>
-        <span class="col-label">Reps<button type="button" class="term-info-btn" data-term="repetition">?</button></span>
-        <span class="col-label">Weight (${weightUnit})<button type="button" class="term-info-btn" data-term="intensity">?</button></span>
-        <span class="col-label col-label-rir">RIR<button type="button" class="term-info-btn" data-term="reps in reserve">?</button></span>
+        <span class="col-label" data-term="repetition">Reps</span>
+        <span class="col-label" data-term="intensity">Weight (${weightUnit})</span>
+        <span class="col-label col-label-rir" data-term="reps in reserve">RIR</span>
       </div>
       <div class="set-row">
         <span class="set-label">Set 1</span>
@@ -280,34 +279,23 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   // Update weight visibility based on exercise type
   updateWeightVisibility(card);
 
-  if (fromProgram) {
-    nameInput.addEventListener('click', () => {
-      const name = nameInput.value.trim();
-      if (name) {
-        showExerciseInfo(name);
-      }
-    });
-  } else {
+  // Show exercise info when name is clicked (if it has a value)
+  nameInput.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    if (name) {
+      showExerciseInfo(name);
+    }
+  });
+
+  if (!fromProgram) {
     // Update weight visibility when name changes for non-program cards
     nameInput.addEventListener('blur', () => updateWeightVisibility(card));
   }
 
-  const infoBtn = card.querySelector('.exercise-info-btn');
-  infoBtn.addEventListener('click', () => {
-    const name = nameInput.value.trim();
-    if (name) {
-      showExerciseInfo(name);
-    } else {
-      showToast('Enter an exercise name first');
-    }
+  const editBtn = card.querySelector('.edit-exercise-btn');
+  editBtn.addEventListener('click', () => {
+    openExerciseEditModal(card);
   });
-
-  const removeBtn = card.querySelector('.remove-btn');
-  if (removeBtn) {
-    removeBtn.addEventListener('click', () => {
-      card.remove();
-    });
-  }
 
   container.appendChild(card);
 }
@@ -433,9 +421,15 @@ function updateExercisePicker() {
   renderExerciseList();
 }
 
-export function openExercisePicker(callback) {
+export function openExercisePicker(callback, filters = {}) {
   state.exercisePickerCallback = callback;
   resetExerciseFilters();
+
+  // Apply any pre-set filters
+  if (filters.muscleGroup) {
+    document.getElementById('filter-muscle-group').value = filters.muscleGroup;
+  }
+
   updateExercisePicker();
   state.exercisePickerDialog.open();
 }
@@ -536,5 +530,51 @@ export function showExerciseInfo(exerciseName) {
 
   contentEl.innerHTML = html;
   state.exerciseInfoDialog.open();
+}
+
+// =============================================================================
+// EXERCISE EDIT MODAL
+// =============================================================================
+
+let currentEditCard = null;
+
+export function initExerciseEditModal() {
+  state.exerciseEditDialog = createModalController(
+    document.getElementById('exercise-edit-modal')
+  );
+
+  const swapBtn = document.getElementById('exercise-swap-btn');
+  const removeBtn = document.getElementById('exercise-remove-btn');
+
+  swapBtn.addEventListener('click', () => {
+    if (!currentEditCard) return;
+    const nameInput = currentEditCard.querySelector('.exercise-name');
+    const exerciseName = nameInput.value.trim();
+    const exercise = getExerciseByName(exerciseName);
+    const muscleGroup = exercise?.muscle_group || '';
+
+    state.exerciseEditDialog.close();
+
+    openExercisePicker((newName) => {
+      nameInput.value = newName;
+      updateWeightVisibility(currentEditCard);
+      currentEditCard = null;
+    }, { muscleGroup });
+  });
+
+  removeBtn.addEventListener('click', () => {
+    if (!currentEditCard) return;
+    state.exerciseEditDialog.close();
+    currentEditCard.remove();
+    currentEditCard = null;
+  });
+}
+
+function openExerciseEditModal(card) {
+  currentEditCard = card;
+  const nameInput = card.querySelector('.exercise-name');
+  const exerciseName = nameInput.value.trim() || 'Exercise';
+  document.getElementById('exercise-edit-name').textContent = exerciseName;
+  state.exerciseEditDialog.open();
 }
 

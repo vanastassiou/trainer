@@ -145,16 +145,7 @@ export function updateFormUnits() {
     const fieldConfig = [...DAILY_FIELD_CONFIG, ...MEASUREMENT_FIELD_CONFIG].find(f => f.id === fieldId);
     const fieldLabel = fieldConfig?.label || BODY_LABELS[fieldId] || fieldId;
 
-    // Find and preserve the tooltip button if present
-    const tooltipBtn = label.querySelector('.term-info-btn');
-
-    // Update label text (preserve tooltip button)
-    if (tooltipBtn) {
-      label.innerHTML = `${fieldLabel} (${newUnit})`;
-      label.appendChild(tooltipBtn);
-    } else {
-      label.textContent = `${fieldLabel} (${newUnit})`;
-    }
+    label.textContent = `${fieldLabel} (${newUnit})`;
   });
 }
 
@@ -244,7 +235,7 @@ export function generateDailyFormRows(containerId) {
       const unitDisplay = field.unit ? ` (${field.unit})` : '';
       return `
       <div class="data-row row row--gap-md">
-        <label for="${field.id}">${field.label}${unitDisplay}<button type="button" class="term-info-btn" data-term="${field.id}">?</button></label>
+        <label for="${field.id}"><span data-term="${field.id}">${field.label}</span>${unitDisplay}</label>
         <input ${createInputAttrs(field)}>
       </div>
     `;
@@ -299,72 +290,6 @@ export function generateMeasurementFormRows(containerId) {
   }
 
   container.insertAdjacentHTML('afterbegin', html);
-}
-
-// =============================================================================
-// MEASUREMENTS DISPLAY
-// =============================================================================
-
-export async function getMostRecentMeasurements() {
-  const journals = await getRecentJournals(true);
-  for (const journal of journals) {
-    // Check if body has any values (top-level or circumferences)
-    if (journal.body) {
-      const hasTopLevel = BODY_FIELDS.some(f => journal.body[f] != null);
-      const hasCircumferences = journal.body.circumferences &&
-        CIRCUMFERENCE_FIELDS.some(f => journal.body.circumferences[f] != null);
-      if (hasTopLevel || hasCircumferences) {
-        return journal;
-      }
-    }
-  }
-  return null;
-}
-
-export async function displayPreviousMeasurements() {
-  const container = document.getElementById('previous-measurements');
-  const dateSpan = document.getElementById('previous-measurements-date');
-  const valuesDiv = document.getElementById('previous-measurements-values');
-
-  const journal = await getMostRecentMeasurements();
-
-  if (!journal) {
-    container.classList.add('hidden');
-    return;
-  }
-
-  const body = journal.body || {};
-  const circumferences = body.circumferences || {};
-  const unitPreference = state.unitPreference;
-
-  // Collect all body values (top-level + circumferences)
-  const allValues = [
-    ...BODY_FIELDS.map(f => [f, body[f]]),
-    ...CIRCUMFERENCE_FIELDS.map(f => [f, circumferences[f]])
-  ];
-
-  const values = allValues
-    .filter(([_, v]) => v !== null && v !== undefined)
-    .map(([key, value]) => {
-      let displayValue = value;
-      let unit = METRIC_UNITS[key] || '';
-
-      // Convert if imperial and convertible
-      if (unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(key)) {
-        displayValue = toImperial(value, key);
-        unit = getDisplayUnit(key, 'imperial');
-        if (typeof displayValue === 'number') {
-          displayValue = displayValue.toFixed(1);
-        }
-      }
-
-      return `<span class="measurement-item"><strong>${BODY_LABELS[key] || key}:</strong> ${displayValue}${unit}</span>`;
-    })
-    .join('');
-
-  dateSpan.textContent = journal.date;
-  valuesDiv.innerHTML = values;
-  container.classList.remove('hidden');
 }
 
 // =============================================================================

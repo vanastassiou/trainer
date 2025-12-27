@@ -1,7 +1,7 @@
 // =============================================================================
 // LEARN MODULE
 // =============================================================================
-// Handles research articles display and filtering.
+// Handles research articles, glossary, and references display.
 
 import { state } from './state.js';
 import { fetchJSON, formatLabel, renderListItems, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
@@ -18,22 +18,10 @@ export async function loadArticles() {
   return state.articlesData;
 }
 
-// =============================================================================
-// RESEARCH MODAL
-// =============================================================================
-
-export function initResearchButton() {
-  state.researchDialog = createModalController(
-    document.getElementById('research-modal')
-  );
-
-  document.getElementById('research-btn').addEventListener('click', async () => {
-    state.researchDialog.open();
-    // Lazy load articles on first open
-    if (!state.articlesData) {
-      await initLearnPage();
-    }
-  });
+export async function loadSources() {
+  if (state.sourcesData?.sources?.length) return state.sourcesData;
+  state.sourcesData = await fetchJSON('data/sources.json', { sources: [] });
+  return state.sourcesData;
 }
 
 // =============================================================================
@@ -58,6 +46,7 @@ function filterArticles() {
     filtered = filtered.filter(a => a.category === category);
   }
 
+  filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
   renderArticles(filtered);
 }
 
@@ -77,8 +66,8 @@ function renderArticles(articles) {
 
   emptyMessage.classList.add('hidden');
   container.innerHTML = articles.map(article => `
-    <div class="article-card card">
-      <h3 class="article-title">
+    <div class="learn-card">
+      <h3 class="learn-card-title">
         ${article.doi || article.url
           ? `<a href="${article.doi ? `https://doi.org/${article.doi}` : article.url}" target="_blank" rel="noopener">${article.title}</a>`
           : article.title}
@@ -91,7 +80,108 @@ function renderArticles(articles) {
         <div class="article-takeaways-label">Key takeaways</div>
         <ul>${renderListItems(article.takeaways)}</ul>
       </div>
-      ${article.category ? `<span class="article-category">${formatLabel(article.category)}</span>` : ''}
+      ${article.category ? `<div class="learn-card-tags"><span class="learn-tag">${formatLabel(article.category)}</span></div>` : ''}
+    </div>
+  `).join('');
+}
+
+// =============================================================================
+// GLOSSARY LIST
+// =============================================================================
+
+function populateGlossaryCategoryFilter(categories) {
+  const filter = document.getElementById('glossary-category-filter');
+  const categoryNames = Object.entries(categories)
+    .sort((a, b) => a[1].localeCompare(b[1]));
+
+  filter.innerHTML = '<option value="">All categories</option>' +
+    categoryNames.map(([key, label]) => `<option value="${key}">${label}</option>`).join('');
+}
+
+function filterGlossary() {
+  if (!state.glossaryData) return;
+
+  const category = document.getElementById('glossary-category-filter').value;
+  let filtered = state.glossaryData.glossary.terms;
+
+  if (category) {
+    filtered = filtered.filter(t => t.category === category);
+  }
+
+  filtered = [...filtered].sort((a, b) => a.term.localeCompare(b.term));
+  renderGlossaryList(filtered);
+}
+
+function renderGlossaryList(terms) {
+  const container = document.getElementById('glossary-list');
+  const emptyMessage = document.getElementById('no-glossary-message');
+  const categories = state.glossaryData?.glossary?.categories || {};
+
+  if (terms.length === 0) {
+    container.innerHTML = '';
+    emptyMessage.classList.remove('hidden');
+    return;
+  }
+
+  emptyMessage.classList.add('hidden');
+  container.innerHTML = terms.map(term => `
+    <div class="learn-card">
+      <div class="learn-card-title">${term.term}</div>
+      <div class="learn-card-meta">${categories[term.category] || term.category}</div>
+      <div class="learn-card-description">${term.description}</div>
+      ${term.aliases?.length ? `<div class="glossary-aliases">Also: ${term.aliases.join(', ')}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+// =============================================================================
+// REFERENCES LIST
+// =============================================================================
+
+function populateReferencesTypeFilter(sources) {
+  const filter = document.getElementById('references-type-filter');
+  const types = [...new Set(sources.map(s => s.type))].filter(Boolean).sort();
+
+  filter.innerHTML = '<option value="">All types</option>' +
+    types.map(t => `<option value="${t}">${formatLabel(t)}</option>`).join('');
+}
+
+function filterReferences() {
+  if (!state.sourcesData) return;
+
+  const type = document.getElementById('references-type-filter').value;
+  let filtered = state.sourcesData.sources;
+
+  if (type) {
+    filtered = filtered.filter(s => s.type === type);
+  }
+
+  filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+  renderReferencesList(filtered);
+}
+
+function renderReferencesList(sources) {
+  const container = document.getElementById('references-list');
+  const emptyMessage = document.getElementById('no-references-message');
+
+  if (sources.length === 0) {
+    container.innerHTML = '';
+    emptyMessage.classList.remove('hidden');
+    return;
+  }
+
+  emptyMessage.classList.add('hidden');
+  container.innerHTML = sources.map(source => `
+    <div class="learn-card">
+      <div class="learn-card-title">
+        <a href="${source.url}" target="_blank" rel="noopener">${source.name}</a>
+      </div>
+      <div class="learn-card-meta">${source.organization}</div>
+      <div class="learn-card-description">${source.description}</div>
+      <div class="learn-card-tags">
+        <span class="learn-tag">${formatLabel(source.type)}</span>
+        ${source.free_access ? '<span class="learn-tag">Free access</span>' : ''}
+      </div>
     </div>
   `).join('');
 }
@@ -101,11 +191,26 @@ function renderArticles(articles) {
 // =============================================================================
 
 export async function initLearnPage() {
-  const data = await loadArticles();
-  populateCategoryFilter(data.articles);
-  renderArticles(data.articles);
-
+  // Articles
+  const articlesData = await loadArticles();
+  populateCategoryFilter(articlesData.articles);
+  const sortedArticles = [...articlesData.articles].sort((a, b) => a.title.localeCompare(b.title));
+  renderArticles(sortedArticles);
   document.getElementById('article-category-filter').addEventListener('change', filterArticles);
+
+  // Glossary
+  const glossaryData = await loadGlossary();
+  populateGlossaryCategoryFilter(glossaryData.glossary.categories);
+  const sortedTerms = [...glossaryData.glossary.terms].sort((a, b) => a.term.localeCompare(b.term));
+  renderGlossaryList(sortedTerms);
+  document.getElementById('glossary-category-filter').addEventListener('change', filterGlossary);
+
+  // References
+  const sourcesData = await loadSources();
+  populateReferencesTypeFilter(sourcesData.sources);
+  const sortedSources = [...sourcesData.sources].sort((a, b) => a.name.localeCompare(b.name));
+  renderReferencesList(sortedSources);
+  document.getElementById('references-type-filter').addEventListener('change', filterReferences);
 }
 
 // =============================================================================
@@ -133,11 +238,13 @@ export function initGlossaryModal() {
     document.getElementById('glossary-modal')
   );
 
-  // Delegate click handler for all term info buttons
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.term-info-btn');
-    if (btn) {
-      const termName = btn.dataset.term;
+  // Delegate click handler for all elements with data-term attribute
+  document.body.addEventListener('click', (e) => {
+    const termEl = e.target.closest('[data-term]');
+    if (termEl) {
+      e.preventDefault();
+      e.stopPropagation();
+      const termName = termEl.dataset.term;
       if (termName) {
         showGlossaryTerm(termName);
       }

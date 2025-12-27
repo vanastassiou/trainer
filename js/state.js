@@ -11,7 +11,7 @@ let _editingProgramId = null;
 let _exercisePickerCallback = null;
 let _selectedDate = null;
 let _calendarMonth = null;
-let _journalDatesCache = new Set();
+let _journalDatesCache = new Map(); // Maps date -> completion percentage (0-100)
 
 // Modal controllers (initialized after DOM ready)
 let _workoutSwitchDialog = null;
@@ -57,10 +57,11 @@ export const state = {
   get calendarMonth() { return _calendarMonth; },
   set calendarMonth(v) { _calendarMonth = v; },
 
-  // Dates that have journal entries (for calendar dots)
+  // Dates that have journal entries with completion percentage (for calendar indicators)
   get journalDatesCache() { return _journalDatesCache; },
-  addToJournalDatesCache(date) { _journalDatesCache.add(date); },
-  clearJournalDatesCache() { _journalDatesCache = new Set(); },
+  addToJournalDatesCache(date, completion = 0) { _journalDatesCache.set(date, completion); },
+  getJournalDateCompletion(date) { return _journalDatesCache.get(date) ?? null; },
+  clearJournalDatesCache() { _journalDatesCache = new Map(); },
 
   // Modal controllers
   get workoutSwitchDialog() { return _workoutSwitchDialog; },

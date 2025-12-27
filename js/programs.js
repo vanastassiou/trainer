@@ -892,7 +892,7 @@ export async function renderProgramsList(refreshProgramUI) {
   container.innerHTML = programs.map(program => {
     const dayCount = getProgramDayCount(program);
     const daysPreview = program.days
-      ? program.days.map((day, i) => `<div class="program-day-preview"><strong>Day ${i + 1}</strong><span class="exercises">${day.exercises.join(', ')}</span></div>`).join('')
+      ? program.days.map((day, i) => `<div class="program-day-preview"><strong>Day ${i + 1}</strong><span class="exercises">${day.exercises.map(ex => `<span class="exercise-link" data-exercise="${ex.name}">${ex.name}</span>`).join(', ')}</span></div>`).join('')
       : '';
 
     const isActive = activeProgram?.id === program.id;
@@ -922,6 +922,14 @@ export async function renderProgramsList(refreshProgramUI) {
   if (!programsListInitialized) {
     programsListInitialized = true;
     container.addEventListener('click', async (e) => {
+      // Exercise link click - show exercise info
+      const exerciseLink = e.target.closest('.exercise-link');
+      if (exerciseLink) {
+        e.stopPropagation();
+        showExerciseInfo(exerciseLink.dataset.exercise);
+        return;
+      }
+
       const card = e.target.closest('.program-card');
       if (!card) return;
 

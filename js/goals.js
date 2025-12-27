@@ -13,10 +13,9 @@ import {
   deleteGoal,
   getProfile,
   saveProfile,
-  calculateStats,
   getRecentJournals
 } from './db.js';
-import { METRIC_UNITS, updateFormUnits, displayPreviousMeasurements } from './measurements.js';
+import { METRIC_UNITS, updateFormUnits } from './measurements.js';
 import { state } from './state.js';
 import { toImperial, toMetric, getDisplayUnit, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
 
@@ -33,23 +32,34 @@ export const DIRECTION_CONFIG = {
 const GOAL_METRIC_LABELS = {
   weight: 'Weight',
   bodyFat: 'Body fat',
-  waist: 'Waist',
-  calories: 'Calories',
-  protein: 'Protein',
-  water: 'Water',
+  waistToHeightRatio: 'Waist-to-height ratio',
   steps: 'Steps',
-  sleep: 'Sleep'
+  fibre: 'Fibre',
+  water: 'Water'
 };
 
 const GOAL_METRIC_SOURCES = {
   weight: 'body',
   bodyFat: 'body',
-  waist: 'body',
-  calories: 'daily',
-  protein: 'daily',
-  water: 'daily',
+  waistToHeightRatio: 'body',
   steps: 'daily',
-  sleep: 'daily'
+  calories: 'daily',
+  sleep: 'daily',
+  protein: 'daily',
+  fibre: 'daily',
+  water: 'daily'
+};
+
+// Tracking mode determines how goal progress is measured
+// point-in-time: Uses most recent recorded value
+// 30-day-average: Uses rolling average of last 30 days
+const GOAL_TRACKING_MODE = {
+  weight: 'point-in-time',
+  bodyFat: 'point-in-time',
+  waistToHeightRatio: 'point-in-time',
+  steps: '30-day-average',
+  fibre: '30-day-average',
+  water: '30-day-average'
 };
 
 // =============================================================================
@@ -255,13 +265,16 @@ function renderVolumeGuidance(age) {
 function updateHeightInputVisibility(preference) {
   const metricInput = document.getElementById('height-metric-input');
   const imperialInput = document.getElementById('height-imperial-input');
+  const labelUnit = document.getElementById('height-label-unit');
 
   if (preference === 'imperial') {
     metricInput.classList.add('hidden');
     imperialInput.classList.remove('hidden');
+    if (labelUnit) labelUnit.textContent = '(ft/in)';
   } else {
     metricInput.classList.remove('hidden');
     imperialInput.classList.add('hidden');
+    if (labelUnit) labelUnit.textContent = '(cm)';
   }
 }
 
@@ -271,9 +284,6 @@ export function updateAllUnitDisplays() {
 
   // Re-render goals with new units
   renderGoalsList();
-
-  // Re-render previous measurements
-  displayPreviousMeasurements();
 }
 
 // =============================================================================
@@ -281,18 +291,36 @@ export function updateAllUnitDisplays() {
 // =============================================================================
 
 export async function renderStats() {
-  const stats = await calculateStats();
+  const journals = await getRecentJournals(true);
+  const recentJournals = journals.slice(0, 30);
 
-  document.getElementById('stat-days-tracked').textContent = stats.daysTracked;
-  document.getElementById('stat-total-workouts').textContent = stats.totalWorkouts;
-  document.getElementById('stat-current-streak').textContent =
-    stats.currentStreak + (stats.currentStreak === 1 ? ' day' : ' days');
+  // Calculate 30-day averages for each metric
+  const avgSteps = calculate30DayAverage(recentJournals, 'steps');
+  const avgCalories = calculate30DayAverage(recentJournals, 'calories');
+  const avgSleep = calculate30DayAverage(recentJournals, 'sleep');
+  const avgProtein = calculate30DayAverage(recentJournals, 'protein');
+  const avgFibre = calculate30DayAverage(recentJournals, 'fibre');
+  const avgWater = calculate30DayAverage(recentJournals, 'water');
+
+  // Format sleep as hours:minutes
+  const formatSleep = (hours) => {
+    if (hours == null) return '--';
+    const h = Math.floor(hours);
+    const m = Math.round((hours - h) * 60);
+    return `${h}:${m.toString().padStart(2, '0')}`;
+  };
+
+  document.getElementById('stat-avg-steps').textContent =
+    avgSteps != null ? Math.round(avgSteps).toLocaleString() : '--';
   document.getElementById('stat-avg-calories').textContent =
-    stats.avgCalories != null ? Math.round(stats.avgCalories) + ' kcal' : '--';
+    avgCalories != null ? Math.round(avgCalories) : '--';
+  document.getElementById('stat-avg-sleep').textContent = formatSleep(avgSleep);
   document.getElementById('stat-avg-protein').textContent =
-    stats.avgProtein != null ? Math.round(stats.avgProtein) + 'g' : '--';
-  document.getElementById('stat-avg-sleep').textContent =
-    stats.avgSleep != null ? stats.avgSleep.toFixed(1) + ' hrs' : '--';
+    avgProtein != null ? Math.round(avgProtein) + 'g' : '--';
+  document.getElementById('stat-avg-fibre').textContent =
+    avgFibre != null ? Math.round(avgFibre) + 'g' : '--';
+  document.getElementById('stat-avg-water').textContent =
+    avgWater != null ? avgWater.toFixed(1) + 'L' : '--';
 }
 
 // =============================================================================
@@ -301,6 +329,18 @@ export async function renderStats() {
 
 function initGoalsForm() {
   const addGoalForm = document.getElementById('add-goal-form');
+  const metricSelect = document.getElementById('goal-metric');
+  const unitSpan = document.getElementById('goal-target-unit');
+
+  // Update unit display when metric changes
+  function updateTargetUnit() {
+    const metric = metricSelect.value;
+    const unit = getDisplayUnit(metric, state.unitPreference) || METRIC_UNITS[metric] || '';
+    unitSpan.textContent = unit ? `(${unit})` : '';
+  }
+
+  metricSelect.addEventListener('change', updateTargetUnit);
+  updateTargetUnit(); // Set initial unit
 
   addGoalForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -320,6 +360,7 @@ function initGoalsForm() {
 
     await createGoal(goalData);
     addGoalForm.reset();
+    updateTargetUnit(); // Reset unit display
     showToast('Goal added');
     await renderGoalsList();
   });
@@ -329,21 +370,88 @@ function initGoalsForm() {
 // GOAL PROGRESS
 // =============================================================================
 
-async function getLatestMetricValue(metric) {
-  const source = GOAL_METRIC_SOURCES[metric];
-  if (!source) return null;
+/**
+ * Get the current value for a goal metric based on its tracking mode.
+ * - Point-in-time metrics return the most recent recorded value
+ * - 30-day-average metrics return the rolling average over last 30 days
+ * - Derived metrics (waist-to-height ratio) are calculated from other values
+ */
+async function getGoalMetricValue(metric) {
+  const trackingMode = GOAL_TRACKING_MODE[metric];
+  if (!trackingMode) return null;
 
   // Get recent journals (already sorted by date descending)
   const journals = await getRecentJournals(true);
   const recentJournals = journals.slice(0, 30);
 
-  for (const journal of recentJournals) {
+  // Handle derived metrics
+  if (metric === 'waistToHeightRatio') {
+    return await calculateWaistToHeightRatio(recentJournals);
+  }
+
+  // For 30-day average, collect all values and average them
+  if (trackingMode === '30-day-average') {
+    return calculate30DayAverage(recentJournals, metric);
+  }
+
+  // For point-in-time, return the most recent value
+  return getLatestValue(recentJournals, metric);
+}
+
+/**
+ * Calculate waist-to-height ratio using most recent waist and profile height.
+ */
+async function calculateWaistToHeightRatio(journals) {
+  const profile = await getProfile();
+  if (!profile.height) return null;
+
+  // Find most recent waist measurement
+  for (const journal of journals) {
+    const waist = journal.body?.circumferences?.waist;
+    if (waist != null) {
+      return waist / profile.height;
+    }
+  }
+  return null;
+}
+
+/**
+ * Calculate 30-day rolling average for a metric.
+ */
+function calculate30DayAverage(journals, metric) {
+  const source = GOAL_METRIC_SOURCES[metric];
+  const values = [];
+
+  for (const journal of journals) {
     let value = null;
     if (source === 'body') {
-      // Check circumferences first for waist
-      if (metric === 'waist' && journal.body?.circumferences?.waist != null) {
-        value = journal.body.circumferences.waist;
-      } else if (journal.body?.[metric] != null) {
+      if (journal.body?.[metric] != null) {
+        value = journal.body[metric];
+      }
+    } else if (source === 'daily') {
+      if (journal.daily?.[metric] != null) {
+        value = journal.daily[metric];
+      }
+    }
+    if (value != null) {
+      values.push(value);
+    }
+  }
+
+  if (values.length === 0) return null;
+  return values.reduce((sum, v) => sum + v, 0) / values.length;
+}
+
+/**
+ * Get the most recent non-null value for a metric.
+ */
+function getLatestValue(journals, metric) {
+  const source = GOAL_METRIC_SOURCES[metric];
+
+  for (const journal of journals) {
+    let value = null;
+    if (source === 'body') {
+      if (journal.body?.[metric] != null) {
         value = journal.body[metric];
       }
     } else if (source === 'daily') {
@@ -405,26 +513,35 @@ export async function renderGoalsList() {
   } else {
 
     const goalsHtml = await Promise.all(activeGoals.map(async (goal) => {
-      const currentValue = await getLatestMetricValue(goal.metric);
+      const currentValue = await getGoalMetricValue(goal.metric);
       const progress = calculateProgress(currentValue, goal.target, goal.direction);
       const metricLabel = GOAL_METRIC_LABELS[goal.metric] || goal.metric;
+      const trackingMode = GOAL_TRACKING_MODE[goal.metric];
 
-      // Get unit based on preference
-      const unit = getDisplayUnit(goal.metric, state.unitPreference) || METRIC_UNITS[goal.metric] || '';
+      // Get unit based on preference (waist-to-height ratio has no unit)
+      const unit = goal.metric === 'waistToHeightRatio'
+        ? ''
+        : getDisplayUnit(goal.metric, state.unitPreference) || METRIC_UNITS[goal.metric] || '';
 
-      // Convert values for display if imperial
+      // Convert values for display if imperial (skip for ratio)
       let displayCurrent = currentValue;
       let displayTarget = goal.target;
 
-      if (state.unitPreference === 'imperial') {
+      if (state.unitPreference === 'imperial' && goal.metric !== 'waistToHeightRatio') {
         displayCurrent = currentValue != null ? toImperial(currentValue, goal.metric) : null;
         displayTarget = toImperial(goal.target, goal.metric);
       }
 
-      // Format values
-      const formatValue = (v) => v != null ? (typeof v === 'number' ? v.toFixed(1) : v) : null;
+      // Format values (ratios use 2 decimal places)
+      const formatValue = (v) => {
+        if (v == null) return null;
+        if (goal.metric === 'waistToHeightRatio') return v.toFixed(2);
+        return typeof v === 'number' ? v.toFixed(1) : v;
+      };
 
       const { symbol: directionSymbol } = DIRECTION_CONFIG[goal.direction] || DIRECTION_CONFIG.maintain;
+      const isAverage = trackingMode === '30-day-average';
+      const currentLabel = isAverage ? '30-day avg' : 'Current';
 
       let progressHtml = '';
       if (displayCurrent != null) {
@@ -434,7 +551,7 @@ export async function renderGoalsList() {
             <div class="goal-progress-bar">
               <div class="goal-progress-fill ${isComplete ? 'complete' : ''}" style="width: ${progress || 0}%"></div>
             </div>
-            <span class="goal-current">Current: ${formatValue(displayCurrent)}${unit}</span>
+            <span class="goal-current">${currentLabel}: ${formatValue(displayCurrent)}${unit}</span>
           </div>
         `;
       } else {
@@ -444,6 +561,11 @@ export async function renderGoalsList() {
       const deadlineHtml = goal.deadline
         ? `<span class="goal-deadline">Due: ${formatDeadline(goal.deadline)}</span>`
         : '';
+
+      // Auto-complete goal if target is reached
+      if (progress === 100) {
+        completeGoal(goal.id);
+      }
 
       return `
         <div class="goal-card card" data-id="${goal.id}">
@@ -456,7 +578,6 @@ export async function renderGoalsList() {
           <div class="goal-footer">
             ${deadlineHtml}
             <div class="goal-actions">
-              <button type="button" class="btn sm complete-goal-btn">Complete</button>
               <button type="button" class="btn sm danger delete-goal-btn">Delete</button>
             </div>
           </div>
@@ -474,15 +595,23 @@ export async function renderGoalsList() {
       const metricLabel = GOAL_METRIC_LABELS[goal.metric] || goal.metric;
       const { symbol: directionSymbol } = DIRECTION_CONFIG[goal.direction] || DIRECTION_CONFIG.maintain;
 
-      // Get unit based on preference
-      const unit = getDisplayUnit(goal.metric, state.unitPreference) || METRIC_UNITS[goal.metric] || '';
+      // Get unit based on preference (waist-to-height ratio has no unit)
+      const unit = goal.metric === 'waistToHeightRatio'
+        ? ''
+        : getDisplayUnit(goal.metric, state.unitPreference) || METRIC_UNITS[goal.metric] || '';
 
-      // Convert target for display if imperial
+      // Convert target for display if imperial (skip for ratio)
       let displayTarget = goal.target;
-      if (state.unitPreference === 'imperial') {
+      if (state.unitPreference === 'imperial' && goal.metric !== 'waistToHeightRatio') {
         displayTarget = toImperial(goal.target, goal.metric);
       }
-      const formatValue = (v) => v != null ? (typeof v === 'number' ? v.toFixed(1) : v) : null;
+
+      // Format values (ratios use 2 decimal places)
+      const formatValue = (v) => {
+        if (v == null) return null;
+        if (goal.metric === 'waistToHeightRatio') return v.toFixed(2);
+        return typeof v === 'number' ? v.toFixed(1) : v;
+      };
 
       return `
         <div class="goal-card card completed" data-id="${goal.id}">
@@ -526,13 +655,6 @@ function initGoalsListeners() {
     if (!card) return;
 
     const id = card.dataset.id;
-
-    if (e.target.closest('.complete-goal-btn')) {
-      await completeGoal(id);
-      showToast('Goal completed!');
-      await renderGoalsList();
-      return;
-    }
 
     if (e.target.closest('.delete-goal-btn')) {
       if (confirm('Delete this goal?')) {

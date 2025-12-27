@@ -12,12 +12,18 @@
   --color-tertiary-hover: #fbcfe8;
   --color-tertiary-light: rgba(249, 168, 212, 0.10);
   --color-text: #e4e2ec;
-  --color-text-muted: #7a7590;
+  --color-text-muted: #9a95a8;  /* WCAG 2.2: 5.8:1 contrast on --color-bg */
   --color-label: #ffffff;
-  --color-border: #33303f;
+  --color-border: #4a4660;  /* WCAG 2.2: 3.1:1 non-text contrast */
   --color-danger: #f87171;
   --color-danger-hover: #ef4444;
+  --color-accent: var(--color-primary);
+  --color-success: #34d399;
+  --color-success-hover: #4ade80;
+  --radius-sm: 4px;
   --radius: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
   /* Spacing scale */
@@ -27,6 +33,7 @@
   --spacing-lg: 12px;
   --spacing-xl: 16px;
   --spacing-2xl: 24px;
+  --gap-grid: 12px;
 
   /* Z-index layers */
   --z-header: 100;
@@ -46,11 +53,17 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 16px;
+  font-size: clamp(15px, 2vw + 0.5rem, 16px);
   line-height: 1.5;
   color: var(--color-text);
   background: var(--color-bg);
   min-height: 100vh;
+}
+
+/* WCAG 2.4.11: Focus not obscured by sticky header */
+:focus {
+  scroll-margin-top: 80px;
+  scroll-margin-bottom: 20px;
 }
 
 /* =============================================================================
@@ -67,11 +80,20 @@ header {
 
 .stats-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-md);
   overflow-x: auto;
   border-top: 1px solid var(--color-border);
+}
+
+.stats-header {
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: calc(-1 * var(--spacing-xs));
 }
 
 .stat-item {
@@ -92,10 +114,35 @@ header {
   color: var(--color-text-muted);
 }
 
+@media (max-width: 360px) {
+  .stats-bar {
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .stat-item {
+    padding: var(--spacing-xs);
+  }
+
+  .stat-item .stat-value {
+    font-size: 14px;
+  }
+
+  .stat-item .stat-label {
+    font-size: 10px;
+  }
+}
+
 main {
   padding: 16px;
   max-width: 500px;
   margin: 0 auto;
+}
+
+@media (max-width: 360px) {
+  main {
+    padding: 12px 8px;
+  }
 }
 
 .hidden { display: none !important; }
@@ -125,15 +172,9 @@ main {
 }
 
 .data-row label {
-  width: 70px;
-  flex-shrink: 0;
-}
-
-.data-row label:has(.term-info-btn) {
-  display: inline-flex;
-  align-items: baseline;
   width: auto;
   min-width: 70px;
+  flex-shrink: 0;
 }
 
 .data-row input {
@@ -164,24 +205,23 @@ main {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 16px;
-}
 
-.card--inset {
-  background: var(--color-bg);
-}
+  &--inset {
+    background: var(--color-bg);
+  }
 
-.card--compact {
-  padding: 12px;
-}
+  &--compact {
+    padding: 12px;
+  }
 
-.card--active {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 1px var(--color-primary-light);
+  &--active {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary-light);
+  }
 }
 
 /* Card-specific overrides (base styles from .card class) */
 .exercise-card { box-shadow: var(--shadow); }
-.previous-measurements { padding: 12px; }
 
 /* =============================================================================
    BUTTONS
@@ -194,7 +234,7 @@ button {
   transition: all var(--transition-fast);
 }
 
-/* Base */
+/* Base button with nested variants */
 .btn {
   padding: 10px 14px;
   font-size: 14px;
@@ -203,81 +243,87 @@ button {
   background: var(--color-surface);
   color: var(--color-text);
   border-color: var(--color-border);
-}
 
-.btn:hover {
-  border-color: var(--color-text-muted);
-}
+  &:hover {
+    background: color-mix(in srgb, var(--color-surface) 85%, white);
+    border-color: var(--color-text-muted);
+  }
 
-/* Accent */
-.btn.accent {
-  background: var(--color-secondary);
-  color: var(--color-bg);
-  border-color: var(--color-secondary);
-}
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
 
-.btn.accent:hover {
-  background: var(--color-secondary-hover);
-  border-color: var(--color-secondary-hover);
-}
+  &:disabled {
+    background: var(--color-text-muted);
+    border-color: var(--color-text-muted);
+    color: var(--color-bg);
+    cursor: default;
+    opacity: 0.6;
+  }
 
-/* Outline accent */
-.btn.outline-accent {
-  background: var(--color-surface);
-  color: var(--color-secondary);
-  border-color: var(--color-border);
-  border-style: dashed;
-}
+  /* Accent variant */
+  &.accent {
+    background: var(--color-secondary);
+    color: var(--color-bg);
+    border-color: var(--color-secondary);
 
-.btn.outline-accent:hover {
-  border-color: var(--color-secondary);
-  background: var(--color-secondary-light);
-}
+    &:hover {
+      background: var(--color-secondary-hover);
+      border-color: var(--color-secondary-hover);
+    }
+  }
 
-/* Danger */
-.btn.danger {
-  background: transparent;
-  color: var(--color-danger);
-  border-color: var(--color-danger);
-}
+  /* Outline accent variant */
+  &.outline-accent {
+    background: var(--color-surface);
+    color: var(--color-secondary);
+    border-color: var(--color-border);
+    border-style: dashed;
 
-.btn.danger:hover {
-  background: var(--color-danger);
-  color: white;
-}
+    &:hover {
+      border-color: var(--color-secondary);
+      background: var(--color-secondary-light);
+    }
+  }
 
-/* Ghost */
-.btn.ghost {
-  background: transparent;
-  color: var(--color-text-muted);
-  border-color: var(--color-border);
-  padding: 6px 10px;
-  font-size: 13px;
-}
+  /* Danger variant */
+  &.danger {
+    background: transparent;
+    color: var(--color-danger);
+    border-color: var(--color-danger);
 
-.btn.ghost:hover {
-  border-color: var(--color-text-muted);
-  color: var(--color-text);
-}
+    &:hover {
+      background: var(--color-danger);
+      color: white;
+    }
+  }
 
-/* Small */
-.btn.sm {
-  padding: 4px 8px;
-  font-size: 12px;
-}
+  /* Ghost variant */
+  &.ghost {
+    background: transparent;
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+    padding: 6px 10px;
+    font-size: 13px;
 
-/* Full width */
-.btn.full {
-  width: 100%;
-}
+    &:hover {
+      border-color: var(--color-text-muted);
+      color: var(--color-text);
+    }
+  }
 
-/* Disabled */
-.btn:disabled {
-  background: var(--color-text-muted);
-  border-color: var(--color-text-muted);
-  color: var(--color-bg);
-  cursor: default;
-  opacity: 0.6;
+  /* Size variants */
+  &.sm {
+    padding: 4px 8px;
+    font-size: 12px;
+    min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
+    min-width: 24px;
+  }
+
+  &.full {
+    width: 100%;
+  }
 }
 
 /* =============================================================================
@@ -352,13 +398,20 @@ input::placeholder {
 
 .tab {
   flex: 1;
-  padding: 14px;
+  padding: 14px 8px;
   border: none;
   background: transparent;
   font-size: 15px;
   font-weight: 500;
   color: var(--color-text-muted);
   border-bottom: 2px solid transparent;
+}
+
+@media (max-width: 360px) {
+  .tab {
+    padding: 12px 4px;
+    font-size: 14px;
+  }
 }
 
 .tab:hover {
@@ -369,6 +422,11 @@ input::placeholder {
   background: var(--color-secondary-light);
   color: var(--color-secondary);
   border-bottom-color: var(--color-secondary);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: -2px;
 }
 
 /* Sub-tabs */
@@ -388,6 +446,17 @@ input::placeholder {
   color: var(--color-text-muted);
 }
 
+@media (max-width: 360px) {
+  .sub-tabs {
+    gap: 4px;
+  }
+
+  .sub-tab {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}
+
 .sub-tab:hover {
   color: var(--color-text);
   border-color: var(--color-text-muted);
@@ -399,6 +468,11 @@ input::placeholder {
   border-color: var(--color-secondary);
 }
 
+.sub-tab:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
 .sub-page { display: none; }
 .sub-page.active { display: block; }
 
@@ -406,7 +480,6 @@ input::placeholder {
    MEASUREMENTS
    ============================================================================= */
 
-#measurement-fields-container,
 #daily-fields-container {
   display: flex;
   flex-direction: column;
@@ -416,7 +489,13 @@ input::placeholder {
 .field-group {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-sm) 12px;
+  gap: var(--spacing-sm) var(--gap-grid);
+}
+
+@media (max-width: 360px) {
+  .field-group {
+    grid-template-columns: 1fr;
+  }
 }
 
 .field-group .data-row {
@@ -428,7 +507,7 @@ input::placeholder {
 
 .field-group .data-row label {
   width: auto;
-  text-align: left;
+  text-align: start;
   justify-self: start;
 }
 
@@ -450,12 +529,19 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  container-type: inline-size;
 }
 
 #measurement-fields-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-sm) 12px;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-sm) var(--gap-grid);
+}
+
+@container (min-width: 300px) {
+  #measurement-fields-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 #measurement-fields-container .data-row {
@@ -467,7 +553,7 @@ input::placeholder {
 
 #measurement-fields-container .data-row label {
   width: auto;
-  text-align: left;
+  text-align: start;
 }
 
 #measurement-fields-container .data-row input {
@@ -486,32 +572,6 @@ input::placeholder {
   margin-top: var(--spacing-md);
 }
 
-.previous-measurements {
-  margin-bottom: 16px;
-}
-
-.previous-measurements-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-size: 13px;
-  color: var(--color-text-muted);
-}
-
-#previous-measurements-values {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-}
-
-.measurement-item {
-  font-size: 13px;
-}
-
-.measurement-item strong {
-  color: var(--color-text-muted);
-  font-weight: 500;
-}
 
 /* =============================================================================
    WORKOUT
@@ -524,44 +584,35 @@ input::placeholder {
   margin-bottom: 12px;
 }
 
-.exercise-header input {
+.exercise-header .exercise-name {
   flex: 1;
-}
-
-.exercise-header input[readonly] {
   background: transparent;
   border: none;
   color: var(--color-secondary);
   font-weight: 600;
   font-size: 18px;
   padding: 0;
-  cursor: default;
   letter-spacing: -0.3px;
 }
 
-.exercise-header input[readonly]:focus {
+.exercise-header .exercise-name::placeholder {
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.exercise-header .exercise-name:focus {
   box-shadow: none;
+  outline: none;
 }
 
-.exercise-info-btn {
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  flex-shrink: 0;
-  background: var(--color-primary-light);
-  border: 1px solid var(--color-primary);
+.exercise-header .exercise-name[readonly] {
+  cursor: pointer;
+}
+
+.exercise-header .exercise-name:hover {
+  text-decoration: underline;
+  text-decoration-style: dotted;
   color: var(--color-primary);
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.exercise-info-btn:hover {
-  background: var(--color-primary);
-  color: var(--color-bg);
 }
 
 .sets-container {
@@ -616,16 +667,10 @@ input::placeholder {
   flex-wrap: wrap;
 }
 
-.col-label .term-info-btn {
-  width: 16px;
-  height: 16px;
-  font-size: 10px;
-}
-
 #exercises-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--gap-grid);
 }
 
 #exercises-container:empty {
@@ -678,7 +723,7 @@ input::placeholder {
   .program-selector {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: var(--gap-grid);
   }
 }
 
@@ -696,7 +741,7 @@ input::placeholder {
 #programs-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--gap-grid);
   margin-bottom: 24px;
 }
 
@@ -711,6 +756,11 @@ input::placeholder {
 .program-card.active {
   border-color: var(--color-secondary);
   box-shadow: 0 0 0 1px var(--color-secondary-light);
+}
+
+.program-card:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
 }
 
 .program-card .program-header {
@@ -845,7 +895,7 @@ input::placeholder {
 #program-days-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--gap-grid);
   margin-bottom: 12px;
 }
 
@@ -889,6 +939,7 @@ input::placeholder {
   border-radius: 4px;
   font-size: 13px;
   font-weight: 500;
+  min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
 }
 
 .exercise-tag.locked {
@@ -991,18 +1042,21 @@ input::placeholder {
 }
 
 /* =============================================================================
-   EXPORT/IMPORT
+   DATA SECTION (Export/Import)
    ============================================================================= */
 
-.export-section {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--color-border);
+.section-desc {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.data-actions {
   display: flex;
   gap: 8px;
 }
 
-.export-section button {
+.data-actions button {
   flex: 1;
 }
 
@@ -1235,10 +1289,10 @@ input::placeholder {
   max-height: none;
   border-radius: var(--radius);
   margin: auto;
-  animation: fadeIn 0.15s ease-out;
+  animation: fadeInScale 0.15s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInScale {
   from {
     opacity: 0;
     transform: scale(0.95);
@@ -1312,7 +1366,8 @@ input::placeholder {
 }
 
 .exercise-meta-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
@@ -1322,6 +1377,7 @@ input::placeholder {
   background: var(--color-bg);
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
+  min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
 }
 
 .exercise-info-section {
@@ -1357,7 +1413,7 @@ input::placeholder {
 .exercise-info-section ol,
 .exercise-info-section ul {
   margin: 0;
-  padding-left: 20px;
+  padding-inline-start: 20px;
 }
 
 .exercise-info-section li {
@@ -1369,6 +1425,71 @@ input::placeholder {
 
 .exercise-info-section li:last-child {
   margin-bottom: 0;
+}
+
+/* =============================================================================
+   ACTION SHEET (Exercise Edit Modal)
+   ============================================================================= */
+
+.action-sheet .modal-content {
+  padding-bottom: 8px;
+}
+
+.action-sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.action-sheet-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.action-sheet-btn:hover {
+  background: var(--color-bg);
+}
+
+.action-sheet-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--color-danger);
+}
+
+.action-sheet-btn .action-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+  color: var(--color-secondary);
+}
+
+.action-sheet-btn.danger .action-icon {
+  color: var(--color-danger);
+}
+
+.action-sheet-btn .action-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.action-sheet-btn.danger .action-text {
+  color: var(--color-danger);
+}
+
+.action-sheet-btn .action-desc {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--color-muted);
 }
 
 /* =============================================================================
@@ -1389,7 +1510,8 @@ input::placeholder {
 }
 
 .glossary-category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
@@ -1399,6 +1521,7 @@ input::placeholder {
   padding: 4px 8px;
   border-radius: 4px;
   margin-bottom: 12px;
+  min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
 }
 
 .glossary-aliases {
@@ -1424,7 +1547,7 @@ input::placeholder {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  text-align: left;
+  text-align: start;
 }
 
 .glossary-details-toggle:hover {
@@ -1537,7 +1660,7 @@ input::placeholder {
 .volume-guidance-details summary::before {
   content: "▶ ";
   font-size: 10px;
-  margin-right: 6px;
+  margin-inline-end: 6px;
 }
 
 .volume-guidance-details[open] summary::before {
@@ -1554,7 +1677,7 @@ input::placeholder {
 .volume-recs {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 6px 12px;
+  gap: var(--spacing-sm) var(--gap-grid);
   font-size: 13px;
 }
 
@@ -1576,35 +1699,18 @@ input::placeholder {
   color: var(--color-secondary);
 }
 
-/* Term info buttons */
-.term-info-btn {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  flex-shrink: 0;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* Glossary term links */
+[data-term],
+.exercise-link {
   cursor: pointer;
-  vertical-align: middle;
-  margin-left: 4px;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
 }
 
-.term-info-btn:hover {
-  background: var(--color-primary-light);
-  border-color: var(--color-primary);
+[data-term]:hover,
+.exercise-link:hover {
   color: var(--color-primary);
-}
-
-/* Tappable exercise names */
-.exercise-name.tappable {
-  cursor: pointer;
 }
 
 .exercise-tag.tappable span {
@@ -1616,49 +1722,118 @@ input::placeholder {
 }
 
 /* =============================================================================
-   LEARN / ARTICLES
+   LEARN TAB - SHARED STYLES
    ============================================================================= */
 
-.article-filters {
+/* Filters */
+.learn-filters {
+  display: flex;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
-.article-filters select {
+.learn-filters input {
+  flex: 1;
+}
+
+.learn-filters select {
+  min-width: 140px;
+}
+
+.learn-filters--single select {
   width: 100%;
 }
 
-#articles-container {
+/* Card list */
+.learn-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-#articles-container:empty {
+.learn-list:empty {
   display: none;
 }
 
-.article-card {
+/* Card base */
+.learn-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 12px 16px;
 }
 
-.article-title {
-  font-size: 16px;
+.learn-card--interactive {
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.learn-card--interactive:hover {
+  border-color: var(--color-secondary);
+}
+
+/* Card title */
+.learn-card-title {
+  font-size: 15px;
   font-weight: 600;
   color: var(--color-secondary);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-.article-title a {
+.learn-card-title a {
   color: inherit;
   text-decoration: none;
 }
 
-.article-title a:hover {
+.learn-card-title a:hover {
   text-decoration: underline;
 }
+
+/* Card meta (secondary info line) */
+.learn-card-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: capitalize;
+}
+
+/* Card description */
+.learn-card-description {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.learn-card-description--clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags */
+.learn-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--color-tertiary-light);
+  color: var(--color-tertiary);
+  text-transform: capitalize;
+  min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
+}
+
+.learn-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* =============================================================================
+   LEARN TAB - ARTICLES
+   ============================================================================= */
 
 .article-meta {
   font-size: 13px;
@@ -1690,7 +1865,7 @@ input::placeholder {
 
 .article-takeaways ul {
   margin: 0;
-  padding-left: 18px;
+  padding-inline-start: 18px;
 }
 
 .article-takeaways li {
@@ -1704,15 +1879,15 @@ input::placeholder {
   margin-bottom: 0;
 }
 
-.article-category {
-  display: inline-block;
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 3px;
-  background: var(--color-tertiary-light);
-  color: var(--color-tertiary);
-  text-transform: capitalize;
-  margin-top: 12px;
+/* =============================================================================
+   LEARN TAB - GLOSSARY
+   ============================================================================= */
+
+.glossary-aliases {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  font-style: italic;
 }
 
 /* =============================================================================
@@ -1826,12 +2001,6 @@ input::placeholder {
   font-size: 14px;
 }
 
-.profile-details dt .term-info-btn {
-  width: 16px;
-  height: 16px;
-  font-size: 10px;
-}
-
 .profile-details dd {
   margin: 0;
   font-size: 14px;
@@ -1845,16 +2014,7 @@ input::placeholder {
 }
 
 .profile-form > label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  text-align: left;
-}
-
-.profile-form > label .term-info-btn {
-  width: 16px;
-  height: 16px;
-  font-size: 10px;
+  text-align: start;
 }
 
 .profile-form > label[for="profile-name"] {
@@ -1870,6 +2030,15 @@ input::placeholder {
   margin-top: var(--spacing-sm);
 }
 
+@media (max-width: 480px) {
+  .profile-form {
+    grid-template-columns: auto 1fr;
+  }
+
+  .profile-form > input[name="name"] {
+    grid-column: 2;
+  }
+}
 
 .input-with-unit {
   display: flex;
@@ -1900,17 +2069,21 @@ input::placeholder {
 }
 
 #height-imperial-input .unit {
-  margin-right: var(--spacing-sm);
+  margin-inline-end: var(--spacing-sm);
 }
 
-/* Statistics Grid */
+/* Statistics Grid with container query support */
+.stats-container {
+  container-type: inline-size;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-md);
 }
 
-@media (min-width: 480px) {
+@container (min-width: 400px) {
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -2012,7 +2185,7 @@ input::placeholder {
 .goal-completed-badge {
   color: var(--color-success);
   font-size: 18px;
-  margin-left: var(--spacing-sm);
+  margin-inline-start: var(--spacing-sm);
 }
 
 .goal-progress {
@@ -2087,8 +2260,8 @@ input::placeholder {
 
 .add-goal-form {
   display: grid;
-  grid-template-columns: auto 1fr auto 1fr;
-  gap: var(--spacing-sm) var(--spacing-lg);
+  grid-template-columns: auto auto auto auto auto;
+  gap: var(--spacing-sm) var(--spacing-md);
   align-items: center;
   padding: var(--spacing-lg);
   border-top: 1px solid var(--color-border);
@@ -2099,7 +2272,7 @@ input::placeholder {
 }
 
 .add-goal-form > label {
-  text-align: left;
+  text-align: start;
 }
 
 .add-goal-form > label[for="goal-metric"] {
@@ -2107,7 +2280,11 @@ input::placeholder {
 }
 
 .add-goal-form > select[name="metric"] {
-  grid-column: 2 / -1;
+  width: fit-content;
+}
+
+.add-goal-form > input[name="target"] {
+  width: 5em;
 }
 
 .add-goal-form > label[for="goal-deadline"] {
@@ -2118,9 +2295,19 @@ input::placeholder {
   grid-column: 2 / -1;
 }
 
-.add-goal-form > button {
-  grid-column: 1 / -1;
-  margin-top: var(--spacing-sm);
+@media (max-width: 480px) {
+  .add-goal-form {
+    grid-template-columns: auto 1fr;
+  }
+
+  .add-goal-form > button {
+    grid-column: 1 / -1;
+    margin-top: var(--spacing-sm);
+  }
+
+  .add-goal-form > input[name="deadline"] {
+    grid-column: 2;
+  }
 }
 
 /* =============================================================================
@@ -2135,6 +2322,18 @@ input::placeholder {
   padding: var(--spacing-md) var(--spacing-lg);
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+}
+
+@media (max-width: 360px) {
+  .date-header {
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+  }
+
+  .date-display {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 14px;
+  }
 }
 
 /* Shared nav button base */
@@ -2241,11 +2440,16 @@ input::placeholder {
   color: var(--color-text);
   cursor: pointer;
   position: relative;
-  min-height: 40px;
+  min-height: 44px;  /* WCAG 2.5.5: Enhanced target size */
 }
 
 .calendar-day:hover:not(:disabled) {
   background: var(--color-primary-light);
+}
+
+.calendar-day:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
 }
 
 .calendar-day:disabled {
@@ -2288,6 +2492,18 @@ input::placeholder {
   background: var(--color-bg);
 }
 
+/* Hide dot indicator when completion emoji is present */
+.calendar-day:has(.completion-indicator)::after {
+  display: none;
+}
+
+.completion-indicator {
+  position: absolute;
+  bottom: 2px;
+  font-size: 10px;
+  line-height: 1;
+}
+
 .today-btn {
   margin-top: var(--spacing-lg);
 }
@@ -2311,6 +2527,25 @@ input::placeholder {
   margin-bottom: var(--spacing-md);
 }
 
+@media (max-width: 360px) {
+  .chart-section {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .chart-header {
+    gap: var(--spacing-sm);
+  }
+
+  .chart-timespan-select,
+  .chart-metric-select {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
 .chart-metric-label {
   font-size: 14px;
   color: var(--color-primary);
@@ -2319,6 +2554,7 @@ input::placeholder {
   gap: 2px;
 }
 
+.chart-timespan-select,
 .chart-metric-select {
   font-size: 14px;
   background: var(--color-bg);
@@ -2328,6 +2564,7 @@ input::placeholder {
   border-radius: var(--radius);
 }
 
+.chart-timespan-select:focus,
 .chart-metric-select:focus {
   outline: none;
   border-color: var(--color-primary);
@@ -2335,7 +2572,7 @@ input::placeholder {
 
 .chart-canvas {
   width: 100%;
-  height: 100px;
+  height: 140px;
   display: block;
 }
 
@@ -2352,4 +2589,31 @@ input::placeholder {
 
 .chart-summary .change-negative {
   color: var(--color-danger);
+}
+
+/* =============================================================================
+   ACCESSIBILITY: WCAG 2.2 COMPLIANCE
+   ============================================================================= */
+
+/* WCAG 2.3.3: Animation from interactions - respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: #6a6680;
+    --color-text-muted: #b5b0c0;
+    --color-primary-light: rgba(196, 181, 253, 0.25);
+    --color-secondary-light: rgba(251, 191, 36, 0.25);
+    --color-tertiary-light: rgba(249, 168, 212, 0.25);
+  }
 }

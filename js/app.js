@@ -6,7 +6,7 @@
 import { state } from './state.js';
 import { getTodayDate } from './utils.js';
 import { createTabController, createModalController } from './ui.js';
-import { getChartData, getWorkoutVolumeData, getExercisesInPeriod, getExerciseVolumeData, renderLineChart, renderBarChart, getChartSummary, formatSummaryHTML } from './charts.js';
+import { getChartData, getExercisesInPeriod, getExerciseAvgWeightData, renderLineChart, getChartSummary, formatSummaryHTML } from './charts.js';
 
 // Domain modules
 import {
@@ -25,7 +25,6 @@ import {
   generateMeasurementFormRows,
   loadMeasurementsData,
   loadDailyData,
-  displayPreviousMeasurements,
   initMeasurementsForm,
   initDailyForm
 } from './measurements.js';
@@ -35,6 +34,7 @@ import {
   initWorkoutForm,
   initExercisePicker,
   initExerciseInfoModal,
+  initExerciseEditModal,
   addExerciseCard,
   loadTemplate
 } from './workout.js';
@@ -47,8 +47,8 @@ import {
   refreshProgramUI
 } from './programs.js';
 
-import { initProfile, DIRECTION_CONFIG } from './goals.js';
-import { initResearchButton, loadGlossary, loadArticles, initGlossaryModal } from './learn.js';
+import { initProfile, renderGoalsList, DIRECTION_CONFIG } from './goals.js';
+import { initLearnPage, initGlossaryModal } from './learn.js';
 
 // =============================================================================
 // INITIALIZATION
@@ -66,7 +66,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize UI (sync, no data needed)
   initTabs();
   initDateNavigation();
-  initMeasurementsForm(updateMeasurementsChart);
+  initMeasurementsForm(async () => {
+    await updateMeasurementsChart();
+    await renderGoalsList();
+  });
   initWorkoutForm({
     onProgramChange: async () => {
       await renderProgramsList(refreshProgramUI);
@@ -79,19 +82,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   initProgramsPage({ refreshProgramUI });
   initExportButton();
-  initResearchButton();
-  initDailyForm(updateDailyChart);
+  initDailyForm(async () => {
+    await updateDailyChart();
+    await renderGoalsList();
+  });
   initCharts();
 
   // Load data - exercises must complete before picker init to avoid race
   await loadExercisesDB();
   initExercisePicker();
   initExerciseInfoModal();
+  initExerciseEditModal();
 
   // Remaining data loads in parallel (glossary/profile not needed for UI init)
   await Promise.all([
-    loadGlossary(),
-    loadArticles(),
+    initLearnPage(),
     initProfile()
   ]);
   initGlossaryModal();
@@ -121,16 +126,35 @@ function registerServiceWorker() {
 // =============================================================================
 
 function initTabs() {
-  // Main tabs: metrics, workouts, profile
+  // Main tabs: metrics, workouts, learn, profile
   createTabController('.tabs > .tab', 'main > section.page', {
     storageKey: 'activeTab',
-    tabAttr: 'data-tab'
+    tabAttr: 'data-tab',
+    onActivate: (tabId) => {
+      if (tabId === 'metrics') {
+        updateDailyChart();
+        updateMeasurementsChart();
+      }
+    }
   });
 
-  // Sub-tabs use createTabController
+  // Sub-tabs: Metrics
   createTabController(
     '#metrics > .sub-tabs > .sub-tab',
     '#metrics > .sub-page',
+    {
+      tabAttr: 'data-subtab',
+      onActivate: (tabId) => {
+        if (tabId === 'daily') updateDailyChart();
+        else if (tabId === 'measurements') updateMeasurementsChart();
+      }
+    }
+  );
+
+  // Sub-tabs: Learn
+  createTabController(
+    '#learn > .sub-tabs > .sub-tab',
+    '#learn > .sub-page',
     { tabAttr: 'data-subtab' }
   );
 }
@@ -158,16 +182,17 @@ function initDateNavigation() {
 
   // Calendar month navigation
   const calendarModal = document.getElementById('calendar-modal');
-  calendarModal.querySelector('.month-nav.prev').addEventListener('click', () => {
+  calendarModal.querySelector('.month-nav.prev').addEventListener('click', async () => {
     state.calendarMonth.month--;
     if (state.calendarMonth.month < 0) {
       state.calendarMonth.month = 11;
       state.calendarMonth.year--;
     }
+    await loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
     renderCalendar();
   });
 
-  calendarModal.querySelector('.month-nav.next').addEventListener('click', () => {
+  calendarModal.querySelector('.month-nav.next').addEventListener('click', async () => {
     const today = new Date();
     const nextMonth = new Date(state.calendarMonth.year, state.calendarMonth.month + 1, 1);
     if (nextMonth <= new Date(today.getFullYear(), today.getMonth() + 1, 1)) {
@@ -176,6 +201,7 @@ function initDateNavigation() {
         state.calendarMonth.month = 0;
         state.calendarMonth.year++;
       }
+      await loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
       renderCalendar();
     }
   });
@@ -199,10 +225,11 @@ function navigateDate(delta) {
   }
 }
 
-function openCalendar() {
-  const date = new Date(state.selectedDate + 'T00:00:00');
+async function openCalendar() {
+  const dateStr = state.selectedDate || getTodayDate();
+  const date = new Date(dateStr + 'T00:00:00');
   state.calendarMonth = { year: date.getFullYear(), month: date.getMonth() };
-  loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
+  await loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
   renderCalendar();
   state.calendarDialog.open();
 }
@@ -240,6 +267,7 @@ function renderCalendar() {
     const isToday = dateStr === today;
     const isSelected = dateStr === state.selectedDate;
     const hasData = state.journalDatesCache.has(dateStr);
+    const completion = state.getJournalDateCompletion(dateStr);
     const isFuture = dateStr > today;
 
     const classes = ['calendar-day'];
@@ -248,7 +276,19 @@ function renderCalendar() {
     if (hasData) classes.push('has-data');
     if (isFuture) classes.push('future');
 
-    html += `<button class="${classes.join(' ')}" data-date="${dateStr}" ${isFuture ? 'disabled' : ''}>${day}</button>`;
+    // Add completion indicator emoji
+    let indicator = '';
+    if (hasData && completion !== null) {
+      if (completion === 100) {
+        indicator = '<span class="completion-indicator">⭐</span>';
+      } else if (completion >= 75) {
+        indicator = '<span class="completion-indicator">😁</span>';
+      } else if (completion >= 50) {
+        indicator = '<span class="completion-indicator">😊</span>';
+      }
+    }
+
+    html += `<button class="${classes.join(' ')}" data-date="${dateStr}" ${isFuture ? 'disabled' : ''}>${day}${indicator}</button>`;
   }
 
   grid.innerHTML = html;
@@ -327,8 +367,6 @@ async function loadDataForDate(date) {
     }
   }
 
-  await displayPreviousMeasurements();
-
   const programSelect = document.getElementById('current-program');
   const programName = document.getElementById('current-program-name');
 
@@ -366,31 +404,48 @@ function updateDateHeaders(date) {
 // =============================================================================
 
 function initCharts() {
-  const dailySelect = document.getElementById('daily-metric-select');
-  const measurementsSelect = document.getElementById('measurements-metric-select');
-  const workoutsSelect = document.getElementById('workouts-metric-select');
+  const dailyMetricSelect = document.getElementById('daily-metric-select');
+  const dailyTimespanSelect = document.getElementById('daily-timespan-select');
+  const measurementsMetricSelect = document.getElementById('measurements-metric-select');
+  const measurementsTimespanSelect = document.getElementById('measurements-timespan-select');
+  const workoutsMetricSelect = document.getElementById('workouts-metric-select');
+  const workoutsTimespanSelect = document.getElementById('workouts-timespan-select');
 
-  if (dailySelect) {
-    dailySelect.addEventListener('change', () => updateDailyChart());
+  if (dailyMetricSelect) {
+    dailyMetricSelect.addEventListener('change', () => updateDailyChart());
+  }
+  if (dailyTimespanSelect) {
+    dailyTimespanSelect.addEventListener('change', () => updateDailyChart());
   }
 
-  if (measurementsSelect) {
-    measurementsSelect.addEventListener('change', () => updateMeasurementsChart());
+  if (measurementsMetricSelect) {
+    measurementsMetricSelect.addEventListener('change', () => updateMeasurementsChart());
+  }
+  if (measurementsTimespanSelect) {
+    measurementsTimespanSelect.addEventListener('change', () => updateMeasurementsChart());
   }
 
-  if (workoutsSelect) {
-    workoutsSelect.addEventListener('change', () => updateWorkoutsChart());
+  if (workoutsMetricSelect) {
+    workoutsMetricSelect.addEventListener('change', () => updateWorkoutsChart());
+  }
+  if (workoutsTimespanSelect) {
+    workoutsTimespanSelect.addEventListener('change', async () => {
+      await populateWorkoutsSelect();
+      await updateWorkoutsChart();
+    });
   }
 }
 
 async function populateWorkoutsSelect() {
   const select = document.getElementById('workouts-metric-select');
+  const timespanSelect = document.getElementById('workouts-timespan-select');
   if (!select) return;
 
-  const exercises = await getExercisesInPeriod(30);
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? 365 : parseInt(timespanValue, 10);
+  const exercises = await getExercisesInPeriod(days);
 
-  // Keep volume as first option, add exercises
-  select.innerHTML = '<option value="volume">Volume</option>';
+  select.innerHTML = '';
   for (const name of exercises) {
     const option = document.createElement('option');
     option.value = name;
@@ -405,14 +460,17 @@ async function updateDailyChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
-  const select = document.getElementById('daily-metric-select');
-  const metric = select?.value || 'calories';
+  const metricSelect = document.getElementById('daily-metric-select');
+  const timespanSelect = document.getElementById('daily-timespan-select');
+  const metric = metricSelect?.value || 'calories';
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
-  const data = await getChartData(metric, 'daily', 30);
-  renderLineChart(canvas, data);
+  const unit = METRIC_UNITS[metric] || '';
+  const data = await getChartData(metric, 'daily', days);
+  renderLineChart(canvas, data, { unit, metric });
 
   const summary = getChartSummary(data);
-  const unit = METRIC_UNITS[metric] || '';
   summaryEl.innerHTML = formatSummaryHTML(summary, unit, metric);
 }
 
@@ -422,14 +480,17 @@ async function updateMeasurementsChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
-  const select = document.getElementById('measurements-metric-select');
-  const metric = select?.value || 'bodyFat';
+  const metricSelect = document.getElementById('measurements-metric-select');
+  const timespanSelect = document.getElementById('measurements-timespan-select');
+  const metric = metricSelect?.value || 'bodyFat';
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
-  const data = await getChartData(metric, 'body', 30);
-  renderLineChart(canvas, data);
+  const unit = METRIC_UNITS[metric] || '';
+  const data = await getChartData(metric, 'body', days);
+  renderLineChart(canvas, data, { unit, metric });
 
   const summary = getChartSummary(data);
-  const unit = METRIC_UNITS[metric] || '';
   summaryEl.innerHTML = formatSummaryHTML(summary, unit, metric);
 }
 
@@ -439,17 +500,19 @@ async function updateWorkoutsChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
-  const select = document.getElementById('workouts-metric-select');
-  const metric = select?.value || 'volume';
+  const metricSelect = document.getElementById('workouts-metric-select');
+  const timespanSelect = document.getElementById('workouts-timespan-select');
+  const exercise = metricSelect?.value;
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
-  let data;
-  if (metric === 'volume') {
-    data = await getWorkoutVolumeData(30);
-  } else {
-    data = await getExerciseVolumeData(metric, 30);
+  if (!exercise) {
+    summaryEl.innerHTML = '';
+    return;
   }
 
-  renderBarChart(canvas, data);
+  const data = await getExerciseAvgWeightData(exercise, days);
+  renderLineChart(canvas, data, { unit: 'kg', metric: 'weight' });
 
   const summary = getChartSummary(data);
   summaryEl.innerHTML = formatSummaryHTML(summary, 'kg', 'weight');

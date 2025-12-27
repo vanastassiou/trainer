@@ -70,41 +70,25 @@ function getMetricValue(journal, category, metric) {
  * Get chart data for a specific metric over time
  * @param {string} metric - Field name (e.g., 'weight', 'calories')
  * @param {string} category - 'body', 'daily', or 'workout'
- * @param {number} days - Number of days to look back
+ * @param {number|null} days - Number of days to look back, or null for all time
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getChartData(metric, category, days = 30) {
+export async function getChartData(metric, category, days = 28) {
   const endDate = getTodayDate();
-  const startDate = subtractDays(endDate, days);
-
   const allJournals = await getRecentJournals(true);
-  const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+
+  let journals;
+  if (days === null) {
+    // All time
+    journals = allJournals;
+  } else {
+    const startDate = subtractDays(endDate, days);
+    journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+  }
 
   return journals
     .filter(j => getMetricValue(j, category, metric) != null)
     .map(j => ({ date: j.date, value: getMetricValue(j, category, metric) }))
-    .sort((a, b) => a.date.localeCompare(b.date));
-}
-
-/**
- * Get workout volume data over time
- * @param {number} days - Number of days to look back
- * @returns {Promise<Array>} Array of {date, value} objects
- */
-export async function getWorkoutVolumeData(days = 30) {
-  const endDate = getTodayDate();
-  const startDate = subtractDays(endDate, days);
-
-  const allJournals = await getRecentJournals(true);
-  const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
-
-  return journals
-    .filter(j => j.workout?.exercises?.length > 0)
-    .map(j => ({
-      date: j.date,
-      value: calculateWorkoutVolume(j.workout)
-    }))
-    .filter(d => d.value > 0)
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
@@ -133,50 +117,105 @@ export async function getExercisesInPeriod(days = 30) {
 }
 
 /**
- * Get volume data for a specific exercise over time
+ * Get average weight per rep for a specific exercise over time
  * @param {string} exerciseName - Name of the exercise
- * @param {number} days - Number of days to look back
+ * @param {number|null} days - Number of days to look back, or null for all time
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getExerciseVolumeData(exerciseName, days = 30) {
+export async function getExerciseAvgWeightData(exerciseName, days = 28) {
   const endDate = getTodayDate();
-  const startDate = subtractDays(endDate, days);
-
   const allJournals = await getRecentJournals(true);
-  const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+
+  let journals;
+  if (days === null) {
+    journals = allJournals;
+  } else {
+    const startDate = subtractDays(endDate, days);
+    journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+  }
 
   return journals
     .filter(j => j.workout?.exercises?.some(ex => ex.name === exerciseName))
     .map(j => {
       const exercise = j.workout.exercises.find(ex => ex.name === exerciseName);
-      const volume = exercise.sets.reduce((total, set) => {
-        return total + (set.reps || 0) * (set.weight || 0);
-      }, 0);
-      return { date: j.date, value: volume };
+      let totalWeight = 0;
+      let totalReps = 0;
+      exercise.sets.forEach(set => {
+        const reps = set.reps || 0;
+        const weight = set.weight || 0;
+        totalWeight += reps * weight;
+        totalReps += reps;
+      });
+      return { date: j.date, value: totalReps > 0 ? totalWeight / totalReps : 0 };
     })
     .filter(d => d.value > 0)
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
 /**
- * Calculate total workout volume (reps x weight)
- * @param {Object} workout - Workout object with exercises
- * @returns {number} Total volume
+ * Format date for axis label based on data range
  */
-function calculateWorkoutVolume(workout) {
-  if (!workout?.exercises) return 0;
-  return workout.exercises.reduce((total, ex) => {
-    return total + ex.sets.reduce((setTotal, set) => {
-      return setTotal + (set.reps || 0) * (set.weight || 0);
-    }, 0);
-  }, 0);
+function formatDateLabel(dateStr, isLongRange) {
+  const date = new Date(dateStr + 'T00:00:00');
+  if (isLongRange) {
+    return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+  }
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+/**
+ * Calculate nice axis bounds with padding
+ */
+function getNiceAxisBounds(min, max) {
+  const range = max - min || 1;
+  const padding = range * 0.1;
+  const niceMin = min - padding;
+  const niceMax = max + padding;
+  return { min: niceMin, max: niceMax, range: niceMax - niceMin };
+}
+
+/**
+ * Calculate linear regression for trend line
+ * @param {Array} data - Array of {date, value} objects
+ * @returns {Object} {slope, intercept} for y = slope * x + intercept
+ */
+function calculateLinearRegression(data) {
+  const n = data.length;
+  if (n < 2) return null;
+
+  let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+
+  data.forEach((point, i) => {
+    sumX += i;
+    sumY += point.value;
+    sumXY += i * point.value;
+    sumX2 += i * i;
+  });
+
+  const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+  const intercept = (sumY - slope * sumX) / n;
+
+  return { slope, intercept };
+}
+
+/**
+ * Format value for Y-axis label
+ */
+function formatYLabel(value, unit) {
+  if (Math.abs(value) >= 1000) {
+    return (value / 1000).toFixed(1) + 'k';
+  }
+  if (Number.isInteger(value) || Math.abs(value) >= 100) {
+    return Math.round(value).toString();
+  }
+  return value.toFixed(1);
 }
 
 /**
  * Render a line chart on a canvas element
  * @param {HTMLCanvasElement} canvas - Canvas element
  * @param {Array} data - Array of {date, value} objects
- * @param {Object} options - Chart options
+ * @param {Object} options - Chart options (unit, metric, lineColor, etc.)
  */
 export function renderLineChart(canvas, data, options = {}) {
   const ctx = canvas.getContext('2d');
@@ -190,7 +229,15 @@ export function renderLineChart(canvas, data, options = {}) {
 
   const width = rect.width;
   const height = rect.height;
-  const padding = 15;
+
+  // Margins for axes
+  const marginLeft = 45;
+  const marginRight = 10;
+  const marginTop = 10;
+  const marginBottom = 25;
+
+  const chartWidth = width - marginLeft - marginRight;
+  const chartHeight = height - marginTop - marginBottom;
 
   // Clear canvas
   ctx.clearRect(0, 0, width, height);
@@ -200,33 +247,107 @@ export function renderLineChart(canvas, data, options = {}) {
     return;
   }
 
-  // Calculate bounds
-  const values = data.map(d => d.value);
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const range = max - min || 1;
+  // Get unit for display (handle imperial conversion)
+  let displayUnit = options.unit || '';
+  let displayData = data;
+  if (options.metric && state.unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(options.metric)) {
+    displayUnit = getDisplayUnit(options.metric, 'imperial');
+    displayData = data.map(d => ({ ...d, value: toImperial(d.value, options.metric) }));
+  }
 
-  // Draw grid lines (subtle)
-  ctx.strokeStyle = options.gridColor || 'rgba(255,255,255,0.05)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = padding + (i / 4) * (height - 2 * padding);
+  // Calculate bounds with padding
+  const values = displayData.map(d => d.value);
+  const rawMin = Math.min(...values);
+  const rawMax = Math.max(...values);
+  const { min, max, range } = getNiceAxisBounds(rawMin, rawMax);
+
+  // Determine if long range (> 60 days between first and last)
+  const firstDate = new Date(data[0].date);
+  const lastDate = new Date(data[data.length - 1].date);
+  const daySpan = (lastDate - firstDate) / (1000 * 60 * 60 * 24);
+  const isLongRange = daySpan > 60;
+
+  // Colors
+  const textColor = options.textColor || '#9a95a8';
+  const gridColor = options.gridColor || 'rgba(255,255,255,0.08)';
+  const lineColor = options.lineColor || '#c4b5fd';
+  const dotColor = options.dotColor || '#fbbf24';
+
+  ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.textBaseline = 'middle';
+
+  // Draw Y-axis labels and grid lines
+  const yTickCount = 4;
+  for (let i = 0; i <= yTickCount; i++) {
+    const value = min + (i / yTickCount) * range;
+    const y = marginTop + chartHeight - (i / yTickCount) * chartHeight;
+
+    // Grid line
+    ctx.strokeStyle = gridColor;
+    ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(padding, y);
-    ctx.lineTo(width - padding, y);
+    ctx.moveTo(marginLeft, y);
+    ctx.lineTo(width - marginRight, y);
     ctx.stroke();
+
+    // Y label
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'right';
+    ctx.fillText(formatYLabel(value, displayUnit), marginLeft - 5, y);
+  }
+
+  // Draw unit label at top of Y-axis
+  if (displayUnit) {
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'left';
+    ctx.fillText(displayUnit, marginLeft, marginTop - 2);
+  }
+
+  // Draw X-axis labels (show ~4-5 labels)
+  const xLabelCount = Math.min(5, data.length);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  for (let i = 0; i < xLabelCount; i++) {
+    const dataIndex = Math.floor(i * (data.length - 1) / (xLabelCount - 1));
+    const x = marginLeft + (dataIndex / (data.length - 1)) * chartWidth;
+    const label = formatDateLabel(data[dataIndex].date, isLongRange);
+
+    ctx.fillStyle = textColor;
+    ctx.fillText(label, x, height - marginBottom + 5);
+  }
+
+  // Draw trend line
+  const trendColor = options.trendColor || 'rgba(251, 191, 36, 0.4)';
+  const regression = calculateLinearRegression(displayData);
+  if (regression) {
+    const startY = regression.intercept;
+    const endY = regression.slope * (displayData.length - 1) + regression.intercept;
+
+    const x1 = marginLeft;
+    const y1 = marginTop + chartHeight - ((startY - min) / range) * chartHeight;
+    const x2 = marginLeft + chartWidth;
+    const y2 = marginTop + chartHeight - ((endY - min) / range) * chartHeight;
+
+    ctx.beginPath();
+    ctx.strokeStyle = trendColor;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.setLineDash([]);
   }
 
   // Draw line
   ctx.beginPath();
-  ctx.strokeStyle = options.lineColor || '#c4b5fd';
+  ctx.strokeStyle = lineColor;
   ctx.lineWidth = 2;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
 
-  data.forEach((point, i) => {
-    const x = padding + (i / (data.length - 1)) * (width - 2 * padding);
-    const y = height - padding - ((point.value - min) / range) * (height - 2 * padding);
+  displayData.forEach((point, i) => {
+    const x = marginLeft + (i / (displayData.length - 1)) * chartWidth;
+    const y = marginTop + chartHeight - ((point.value - min) / range) * chartHeight;
 
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -235,10 +356,9 @@ export function renderLineChart(canvas, data, options = {}) {
   ctx.stroke();
 
   // Draw dots at start and end
-  const dotColor = options.dotColor || '#fbbf24';
-  [0, data.length - 1].forEach(i => {
-    const x = padding + (i / (data.length - 1)) * (width - 2 * padding);
-    const y = height - padding - ((data[i].value - min) / range) * (height - 2 * padding);
+  [0, displayData.length - 1].forEach(i => {
+    const x = marginLeft + (i / (displayData.length - 1)) * chartWidth;
+    const y = marginTop + chartHeight - ((displayData[i].value - min) / range) * chartHeight;
     ctx.beginPath();
     ctx.arc(x, y, 4, 0, Math.PI * 2);
     ctx.fillStyle = dotColor;
@@ -330,24 +450,19 @@ const CONVERTIBLE_FIELDS = [
 export function formatSummaryHTML(summary, unit = '', metric = null) {
   if (!summary) return '';
 
-  let { start, end, change } = summary;
+  let { start, end } = summary;
   let displayUnit = unit;
 
   // Convert if imperial and metric is convertible
   if (metric && state.unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(metric)) {
     start = toImperial(start, metric);
     end = toImperial(end, metric);
-    change = toImperial(change, metric);
     displayUnit = getDisplayUnit(metric, 'imperial');
   }
-
-  const sign = change >= 0 ? '+' : '';
-  const changeClass = change >= 0 ? 'change-positive' : 'change-negative';
 
   return `
     <span>${start.toFixed(1)}${displayUnit}</span>
     <span> → </span>
     <span>${end.toFixed(1)}${displayUnit}</span>
-    <span class="${changeClass}"> (${sign}${change.toFixed(1)})</span>
   `;
 }
