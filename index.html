@@ -397,6 +397,28 @@
     </div>
   </dialog>
 
+  <!-- Exercise Edit Dialog -->
+  <dialog id="exercise-edit-modal" class="modal-dialog action-sheet">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="exercise-edit-name">Edit Exercise</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <div class="action-sheet-actions">
+        <button type="button" class="action-sheet-btn" id="exercise-swap-btn">
+          <span class="action-icon">↻</span>
+          <span class="action-text">Swap exercise</span>
+          <span class="action-desc">Replace with similar exercise</span>
+        </button>
+        <button type="button" class="action-sheet-btn danger" id="exercise-remove-btn">
+          <span class="action-icon">✕</span>
+          <span class="action-text">Remove exercise</span>
+          <span class="action-desc">Delete from workout</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Glossary Term Dialog -->
   <dialog id="glossary-modal" class="modal-dialog">
     <div class="modal-content">

@@ -34,6 +34,7 @@ import {
   initWorkoutForm,
   initExercisePicker,
   initExerciseInfoModal,
+  initExerciseEditModal,
   addExerciseCard,
   loadTemplate
 } from './workout.js';
@@ -92,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadExercisesDB();
   initExercisePicker();
   initExerciseInfoModal();
+  initExerciseEditModal();
 
   // Remaining data loads in parallel (glossary/profile not needed for UI init)
   await Promise.all([
