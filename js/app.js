@@ -47,7 +47,7 @@ import {
   refreshProgramUI
 } from './programs.js';
 
-import { initProfile, DIRECTION_CONFIG } from './goals.js';
+import { initProfile, renderGoalsList, DIRECTION_CONFIG } from './goals.js';
 import { initResearchButton, loadGlossary, loadArticles, initGlossaryModal } from './learn.js';
 
 // =============================================================================
@@ -66,7 +66,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize UI (sync, no data needed)
   initTabs();
   initDateNavigation();
-  initMeasurementsForm(updateMeasurementsChart);
+  initMeasurementsForm(async () => {
+    await updateMeasurementsChart();
+    await renderGoalsList();
+  });
   initWorkoutForm({
     onProgramChange: async () => {
       await renderProgramsList(refreshProgramUI);
@@ -80,7 +83,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   initProgramsPage({ refreshProgramUI });
   initExportButton();
   initResearchButton();
-  initDailyForm(updateDailyChart);
+  initDailyForm(async () => {
+    await updateDailyChart();
+    await renderGoalsList();
+  });
   initCharts();
 
   // Load data - exercises must complete before picker init to avoid race

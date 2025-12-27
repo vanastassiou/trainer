@@ -220,7 +220,6 @@
 
           <label for="profile-sex">Sex<button type="button" class="term-info-btn" data-term="sex">?</button></label>
           <select id="profile-sex" name="sex">
-            <option value="">Select</option>
             <option value="female">Female</option>
             <option value="male">Male</option>
           </select>
@@ -262,33 +261,13 @@
 
           <label for="goal-metric">Metric</label>
           <select id="goal-metric" name="metric" required>
-            <optgroup label="Body">
               <option value="weight">Weight</option>
               <option value="bodyFat">Body fat %</option>
-              <option value="waist">Waist</option>
-            </optgroup>
-            <optgroup label="Daily">
-              <option value="calories">Calories</option>
-              <option value="protein">Protein</option>
-              <option value="water">Water</option>
-              <option value="steps">Steps</option>
-              <option value="sleep">Sleep</option>
-            </optgroup>
-          </select>
-
-          <label for="goal-direction">Direction</label>
-          <select id="goal-direction" name="direction" required>
-            <option value="decrease">Decrease to</option>
-            <option value="increase">Increase to</option>
-            <option value="maintain">Maintain at</option>
+              <option value="waistToHeightRatio">Waist-to-height ratio</option>
           </select>
           <label for="goal-target">Target</label>
           <input type="number" id="goal-target" name="target" inputmode="decimal" step="any" required>
-
-          <label for="goal-deadline">Deadline</label>
-          <input type="date" id="goal-deadline" name="deadline">
-
-          <button type="submit" class="btn accent">Add goal</button>
+          <button type="submit" class="btn accent">Add</button>
         </form>
 
         <div id="completed-goals-section" class="completed-goals">
