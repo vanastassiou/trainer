@@ -101,19 +101,10 @@ function filterGlossary() {
   if (!state.glossaryData) return;
 
   const category = document.getElementById('glossary-category-filter').value;
-  const search = document.getElementById('glossary-search').value.toLowerCase().trim();
   let filtered = state.glossaryData.glossary.terms;
 
   if (category) {
     filtered = filtered.filter(t => t.category === category);
-  }
-
-  if (search) {
-    filtered = filtered.filter(t =>
-      t.term.toLowerCase().includes(search) ||
-      (t.aliases && t.aliases.some(a => a.toLowerCase().includes(search))) ||
-      t.description.toLowerCase().includes(search)
-    );
   }
 
   renderGlossaryList(filtered);
@@ -208,7 +199,6 @@ export async function initLearnPage() {
   populateGlossaryCategoryFilter(glossaryData.glossary.categories);
   renderGlossaryList(glossaryData.glossary.terms);
   document.getElementById('glossary-category-filter').addEventListener('change', filterGlossary);
-  document.getElementById('glossary-search').addEventListener('input', filterGlossary);
 
   // References
   const sourcesData = await loadSources();
