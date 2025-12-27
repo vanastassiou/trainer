@@ -48,7 +48,7 @@ import {
 } from './programs.js';
 
 import { initProfile, renderGoalsList, DIRECTION_CONFIG } from './goals.js';
-import { initResearchButton, loadGlossary, loadArticles, initGlossaryModal } from './learn.js';
+import { initLearnPage, initGlossaryModal } from './learn.js';
 
 // =============================================================================
 // INITIALIZATION
@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   initProgramsPage({ refreshProgramUI });
   initExportButton();
-  initResearchButton();
   initDailyForm(async () => {
     await updateDailyChart();
     await renderGoalsList();
@@ -97,8 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Remaining data loads in parallel (glossary/profile not needed for UI init)
   await Promise.all([
-    loadGlossary(),
-    loadArticles(),
+    initLearnPage(),
     initProfile()
   ]);
   initGlossaryModal();
@@ -128,7 +126,7 @@ function registerServiceWorker() {
 // =============================================================================
 
 function initTabs() {
-  // Main tabs: metrics, workouts, profile
+  // Main tabs: metrics, workouts, learn, profile
   createTabController('.tabs > .tab', 'main > section.page', {
     storageKey: 'activeTab',
     tabAttr: 'data-tab',
@@ -140,7 +138,7 @@ function initTabs() {
     }
   });
 
-  // Sub-tabs use createTabController
+  // Sub-tabs: Metrics
   createTabController(
     '#metrics > .sub-tabs > .sub-tab',
     '#metrics > .sub-page',
@@ -151,6 +149,13 @@ function initTabs() {
         else if (tabId === 'measurements') updateMeasurementsChart();
       }
     }
+  );
+
+  // Sub-tabs: Learn
+  createTabController(
+    '#learn > .sub-tabs > .sub-tab',
+    '#learn > .sub-page',
+    { tabAttr: 'data-subtab' }
   );
 }
 

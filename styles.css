@@ -1042,18 +1042,21 @@ input::placeholder {
 }
 
 /* =============================================================================
-   EXPORT/IMPORT
+   DATA SECTION (Export/Import)
    ============================================================================= */
 
-.export-section {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--color-border);
+.section-desc {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.data-actions {
   display: flex;
   gap: 8px;
 }
 
-.export-section button {
+.data-actions button {
   flex: 1;
 }
 
@@ -1818,6 +1821,135 @@ input::placeholder {
   text-transform: capitalize;
   margin-top: 12px;
   min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
+}
+
+/* =============================================================================
+   GLOSSARY
+   ============================================================================= */
+
+.glossary-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.glossary-filters input {
+  flex: 1;
+}
+
+.glossary-filters select {
+  min-width: 140px;
+}
+
+.glossary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.glossary-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.glossary-card:hover {
+  border-color: var(--color-secondary);
+}
+
+.glossary-card-term {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 4px;
+}
+
+.glossary-card-category {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: capitalize;
+}
+
+.glossary-card-description {
+  font-size: 13px;
+  color: var(--color-text);
+  margin-top: 8px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =============================================================================
+   REFERENCES
+   ============================================================================= */
+
+.references-filters {
+  margin-bottom: 16px;
+}
+
+.references-filters select {
+  width: 100%;
+}
+
+.references-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reference-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+
+.reference-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 4px;
+}
+
+.reference-card-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.reference-card-name a:hover {
+  text-decoration: underline;
+}
+
+.reference-card-org {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.reference-card-description {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.reference-card-meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.reference-card-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--color-tertiary-light);
+  color: var(--color-tertiary);
+  text-transform: capitalize;
 }
 
 /* =============================================================================

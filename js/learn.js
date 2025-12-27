@@ -1,7 +1,7 @@
 // =============================================================================
 // LEARN MODULE
 // =============================================================================
-// Handles research articles display and filtering.
+// Handles research articles, glossary, and references display.
 
 import { state } from './state.js';
 import { fetchJSON, formatLabel, renderListItems, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
@@ -18,22 +18,10 @@ export async function loadArticles() {
   return state.articlesData;
 }
 
-// =============================================================================
-// RESEARCH MODAL
-// =============================================================================
-
-export function initResearchButton() {
-  state.researchDialog = createModalController(
-    document.getElementById('research-modal')
-  );
-
-  document.getElementById('research-btn').addEventListener('click', async () => {
-    state.researchDialog.open();
-    // Lazy load articles on first open
-    if (!state.articlesData) {
-      await initLearnPage();
-    }
-  });
+export async function loadSources() {
+  if (state.sourcesData?.sources?.length) return state.sourcesData;
+  state.sourcesData = await fetchJSON('data/sources.json', { sources: [] });
+  return state.sourcesData;
 }
 
 // =============================================================================
@@ -97,15 +85,135 @@ function renderArticles(articles) {
 }
 
 // =============================================================================
+// GLOSSARY LIST
+// =============================================================================
+
+function populateGlossaryCategoryFilter(categories) {
+  const filter = document.getElementById('glossary-category-filter');
+  const categoryNames = Object.entries(categories)
+    .sort((a, b) => a[1].localeCompare(b[1]));
+
+  filter.innerHTML = '<option value="">All categories</option>' +
+    categoryNames.map(([key, label]) => `<option value="${key}">${label}</option>`).join('');
+}
+
+function filterGlossary() {
+  if (!state.glossaryData) return;
+
+  const category = document.getElementById('glossary-category-filter').value;
+  const search = document.getElementById('glossary-search').value.toLowerCase().trim();
+  let filtered = state.glossaryData.glossary.terms;
+
+  if (category) {
+    filtered = filtered.filter(t => t.category === category);
+  }
+
+  if (search) {
+    filtered = filtered.filter(t =>
+      t.term.toLowerCase().includes(search) ||
+      (t.aliases && t.aliases.some(a => a.toLowerCase().includes(search))) ||
+      t.description.toLowerCase().includes(search)
+    );
+  }
+
+  renderGlossaryList(filtered);
+}
+
+function renderGlossaryList(terms) {
+  const container = document.getElementById('glossary-list');
+  const emptyMessage = document.getElementById('no-glossary-message');
+  const categories = state.glossaryData?.glossary?.categories || {};
+
+  if (terms.length === 0) {
+    container.innerHTML = '';
+    emptyMessage.classList.remove('hidden');
+    return;
+  }
+
+  emptyMessage.classList.add('hidden');
+  container.innerHTML = terms.map(term => `
+    <div class="glossary-card" data-term="${term.term}">
+      <div class="glossary-card-term">${term.term}</div>
+      <div class="glossary-card-category">${categories[term.category] || term.category}</div>
+      <div class="glossary-card-description">${term.description}</div>
+    </div>
+  `).join('');
+}
+
+// =============================================================================
+// REFERENCES LIST
+// =============================================================================
+
+function populateReferencesTypeFilter(sources) {
+  const filter = document.getElementById('references-type-filter');
+  const types = [...new Set(sources.map(s => s.type))].filter(Boolean).sort();
+
+  filter.innerHTML = '<option value="">All types</option>' +
+    types.map(t => `<option value="${t}">${formatLabel(t)}</option>`).join('');
+}
+
+function filterReferences() {
+  if (!state.sourcesData) return;
+
+  const type = document.getElementById('references-type-filter').value;
+  let filtered = state.sourcesData.sources;
+
+  if (type) {
+    filtered = filtered.filter(s => s.type === type);
+  }
+
+  renderReferencesList(filtered);
+}
+
+function renderReferencesList(sources) {
+  const container = document.getElementById('references-list');
+  const emptyMessage = document.getElementById('no-references-message');
+
+  if (sources.length === 0) {
+    container.innerHTML = '';
+    emptyMessage.classList.remove('hidden');
+    return;
+  }
+
+  emptyMessage.classList.add('hidden');
+  container.innerHTML = sources.map(source => `
+    <div class="reference-card">
+      <div class="reference-card-name">
+        <a href="${source.url}" target="_blank" rel="noopener">${source.name}</a>
+      </div>
+      <div class="reference-card-org">${source.organization}</div>
+      <div class="reference-card-description">${source.description}</div>
+      <div class="reference-card-meta">
+        <span class="reference-card-tag">${formatLabel(source.type)}</span>
+        ${source.free_access ? '<span class="reference-card-tag">Free access</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// =============================================================================
 // INITIALIZATION
 // =============================================================================
 
 export async function initLearnPage() {
-  const data = await loadArticles();
-  populateCategoryFilter(data.articles);
-  renderArticles(data.articles);
-
+  // Articles
+  const articlesData = await loadArticles();
+  populateCategoryFilter(articlesData.articles);
+  renderArticles(articlesData.articles);
   document.getElementById('article-category-filter').addEventListener('change', filterArticles);
+
+  // Glossary
+  const glossaryData = await loadGlossary();
+  populateGlossaryCategoryFilter(glossaryData.glossary.categories);
+  renderGlossaryList(glossaryData.glossary.terms);
+  document.getElementById('glossary-category-filter').addEventListener('change', filterGlossary);
+  document.getElementById('glossary-search').addEventListener('input', filterGlossary);
+
+  // References
+  const sourcesData = await loadSources();
+  populateReferencesTypeFilter(sourcesData.sources);
+  renderReferencesList(sourcesData.sources);
+  document.getElementById('references-type-filter').addEventListener('change', filterReferences);
 }
 
 // =============================================================================
