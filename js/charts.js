@@ -70,15 +70,21 @@ function getMetricValue(journal, category, metric) {
  * Get chart data for a specific metric over time
  * @param {string} metric - Field name (e.g., 'weight', 'calories')
  * @param {string} category - 'body', 'daily', or 'workout'
- * @param {number} days - Number of days to look back
+ * @param {number|null} days - Number of days to look back, or null for all time
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getChartData(metric, category, days = 30) {
+export async function getChartData(metric, category, days = 28) {
   const endDate = getTodayDate();
-  const startDate = subtractDays(endDate, days);
-
   const allJournals = await getRecentJournals(true);
-  const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+
+  let journals;
+  if (days === null) {
+    // All time
+    journals = allJournals;
+  } else {
+    const startDate = subtractDays(endDate, days);
+    journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
+  }
 
   return journals
     .filter(j => getMetricValue(j, category, metric) != null)
@@ -173,10 +179,45 @@ function calculateWorkoutVolume(workout) {
 }
 
 /**
+ * Format date for axis label based on data range
+ */
+function formatDateLabel(dateStr, isLongRange) {
+  const date = new Date(dateStr + 'T00:00:00');
+  if (isLongRange) {
+    return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+  }
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+/**
+ * Calculate nice axis bounds with padding
+ */
+function getNiceAxisBounds(min, max) {
+  const range = max - min || 1;
+  const padding = range * 0.1;
+  const niceMin = min - padding;
+  const niceMax = max + padding;
+  return { min: niceMin, max: niceMax, range: niceMax - niceMin };
+}
+
+/**
+ * Format value for Y-axis label
+ */
+function formatYLabel(value, unit) {
+  if (Math.abs(value) >= 1000) {
+    return (value / 1000).toFixed(1) + 'k';
+  }
+  if (Number.isInteger(value) || Math.abs(value) >= 100) {
+    return Math.round(value).toString();
+  }
+  return value.toFixed(1);
+}
+
+/**
  * Render a line chart on a canvas element
  * @param {HTMLCanvasElement} canvas - Canvas element
  * @param {Array} data - Array of {date, value} objects
- * @param {Object} options - Chart options
+ * @param {Object} options - Chart options (unit, metric, lineColor, etc.)
  */
 export function renderLineChart(canvas, data, options = {}) {
   const ctx = canvas.getContext('2d');
@@ -190,7 +231,15 @@ export function renderLineChart(canvas, data, options = {}) {
 
   const width = rect.width;
   const height = rect.height;
-  const padding = 15;
+
+  // Margins for axes
+  const marginLeft = 45;
+  const marginRight = 10;
+  const marginTop = 10;
+  const marginBottom = 25;
+
+  const chartWidth = width - marginLeft - marginRight;
+  const chartHeight = height - marginTop - marginBottom;
 
   // Clear canvas
   ctx.clearRect(0, 0, width, height);
@@ -200,33 +249,85 @@ export function renderLineChart(canvas, data, options = {}) {
     return;
   }
 
-  // Calculate bounds
-  const values = data.map(d => d.value);
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const range = max - min || 1;
+  // Get unit for display (handle imperial conversion)
+  let displayUnit = options.unit || '';
+  let displayData = data;
+  if (options.metric && state.unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(options.metric)) {
+    displayUnit = getDisplayUnit(options.metric, 'imperial');
+    displayData = data.map(d => ({ ...d, value: toImperial(d.value, options.metric) }));
+  }
 
-  // Draw grid lines (subtle)
-  ctx.strokeStyle = options.gridColor || 'rgba(255,255,255,0.05)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = padding + (i / 4) * (height - 2 * padding);
+  // Calculate bounds with padding
+  const values = displayData.map(d => d.value);
+  const rawMin = Math.min(...values);
+  const rawMax = Math.max(...values);
+  const { min, max, range } = getNiceAxisBounds(rawMin, rawMax);
+
+  // Determine if long range (> 60 days between first and last)
+  const firstDate = new Date(data[0].date);
+  const lastDate = new Date(data[data.length - 1].date);
+  const daySpan = (lastDate - firstDate) / (1000 * 60 * 60 * 24);
+  const isLongRange = daySpan > 60;
+
+  // Colors
+  const textColor = options.textColor || '#9a95a8';
+  const gridColor = options.gridColor || 'rgba(255,255,255,0.08)';
+  const lineColor = options.lineColor || '#c4b5fd';
+  const dotColor = options.dotColor || '#fbbf24';
+
+  ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.textBaseline = 'middle';
+
+  // Draw Y-axis labels and grid lines
+  const yTickCount = 4;
+  for (let i = 0; i <= yTickCount; i++) {
+    const value = min + (i / yTickCount) * range;
+    const y = marginTop + chartHeight - (i / yTickCount) * chartHeight;
+
+    // Grid line
+    ctx.strokeStyle = gridColor;
+    ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(padding, y);
-    ctx.lineTo(width - padding, y);
+    ctx.moveTo(marginLeft, y);
+    ctx.lineTo(width - marginRight, y);
     ctx.stroke();
+
+    // Y label
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'right';
+    ctx.fillText(formatYLabel(value, displayUnit), marginLeft - 5, y);
+  }
+
+  // Draw unit label at top of Y-axis
+  if (displayUnit) {
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'left';
+    ctx.fillText(displayUnit, marginLeft, marginTop - 2);
+  }
+
+  // Draw X-axis labels (show ~4-5 labels)
+  const xLabelCount = Math.min(5, data.length);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  for (let i = 0; i < xLabelCount; i++) {
+    const dataIndex = Math.floor(i * (data.length - 1) / (xLabelCount - 1));
+    const x = marginLeft + (dataIndex / (data.length - 1)) * chartWidth;
+    const label = formatDateLabel(data[dataIndex].date, isLongRange);
+
+    ctx.fillStyle = textColor;
+    ctx.fillText(label, x, height - marginBottom + 5);
   }
 
   // Draw line
   ctx.beginPath();
-  ctx.strokeStyle = options.lineColor || '#c4b5fd';
+  ctx.strokeStyle = lineColor;
   ctx.lineWidth = 2;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
 
-  data.forEach((point, i) => {
-    const x = padding + (i / (data.length - 1)) * (width - 2 * padding);
-    const y = height - padding - ((point.value - min) / range) * (height - 2 * padding);
+  displayData.forEach((point, i) => {
+    const x = marginLeft + (i / (displayData.length - 1)) * chartWidth;
+    const y = marginTop + chartHeight - ((point.value - min) / range) * chartHeight;
 
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -235,10 +336,9 @@ export function renderLineChart(canvas, data, options = {}) {
   ctx.stroke();
 
   // Draw dots at start and end
-  const dotColor = options.dotColor || '#fbbf24';
-  [0, data.length - 1].forEach(i => {
-    const x = padding + (i / (data.length - 1)) * (width - 2 * padding);
-    const y = height - padding - ((data[i].value - min) / range) * (height - 2 * padding);
+  [0, displayData.length - 1].forEach(i => {
+    const x = marginLeft + (i / (displayData.length - 1)) * chartWidth;
+    const y = marginTop + chartHeight - ((displayData[i].value - min) / range) * chartHeight;
     ctx.beginPath();
     ctx.arc(x, y, 4, 0, Math.PI * 2);
     ctx.fillStyle = dotColor;

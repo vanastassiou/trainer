@@ -372,16 +372,24 @@ function updateDateHeaders(date) {
 // =============================================================================
 
 function initCharts() {
-  const dailySelect = document.getElementById('daily-metric-select');
-  const measurementsSelect = document.getElementById('measurements-metric-select');
+  const dailyMetricSelect = document.getElementById('daily-metric-select');
+  const dailyTimespanSelect = document.getElementById('daily-timespan-select');
+  const measurementsMetricSelect = document.getElementById('measurements-metric-select');
+  const measurementsTimespanSelect = document.getElementById('measurements-timespan-select');
   const workoutsSelect = document.getElementById('workouts-metric-select');
 
-  if (dailySelect) {
-    dailySelect.addEventListener('change', () => updateDailyChart());
+  if (dailyMetricSelect) {
+    dailyMetricSelect.addEventListener('change', () => updateDailyChart());
+  }
+  if (dailyTimespanSelect) {
+    dailyTimespanSelect.addEventListener('change', () => updateDailyChart());
   }
 
-  if (measurementsSelect) {
-    measurementsSelect.addEventListener('change', () => updateMeasurementsChart());
+  if (measurementsMetricSelect) {
+    measurementsMetricSelect.addEventListener('change', () => updateMeasurementsChart());
+  }
+  if (measurementsTimespanSelect) {
+    measurementsTimespanSelect.addEventListener('change', () => updateMeasurementsChart());
   }
 
   if (workoutsSelect) {
@@ -411,14 +419,17 @@ async function updateDailyChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
-  const select = document.getElementById('daily-metric-select');
-  const metric = select?.value || 'calories';
+  const metricSelect = document.getElementById('daily-metric-select');
+  const timespanSelect = document.getElementById('daily-timespan-select');
+  const metric = metricSelect?.value || 'calories';
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
-  const data = await getChartData(metric, 'daily', 30);
-  renderLineChart(canvas, data);
+  const unit = METRIC_UNITS[metric] || '';
+  const data = await getChartData(metric, 'daily', days);
+  renderLineChart(canvas, data, { unit, metric });
 
   const summary = getChartSummary(data);
-  const unit = METRIC_UNITS[metric] || '';
   summaryEl.innerHTML = formatSummaryHTML(summary, unit, metric);
 }
 
@@ -428,14 +439,17 @@ async function updateMeasurementsChart() {
 
   const canvas = chartSection.querySelector('.chart-canvas');
   const summaryEl = chartSection.querySelector('.chart-summary');
-  const select = document.getElementById('measurements-metric-select');
-  const metric = select?.value || 'bodyFat';
+  const metricSelect = document.getElementById('measurements-metric-select');
+  const timespanSelect = document.getElementById('measurements-timespan-select');
+  const metric = metricSelect?.value || 'bodyFat';
+  const timespanValue = timespanSelect?.value || '28';
+  const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
-  const data = await getChartData(metric, 'body', 30);
-  renderLineChart(canvas, data);
+  const unit = METRIC_UNITS[metric] || '';
+  const data = await getChartData(metric, 'body', days);
+  renderLineChart(canvas, data, { unit, metric });
 
   const summary = getChartSummary(data);
-  const unit = METRIC_UNITS[metric] || '';
   summaryEl.innerHTML = formatSummaryHTML(summary, unit, metric);
 }
 

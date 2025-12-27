@@ -75,7 +75,14 @@
       <div id="daily" class="sub-page active">
         <div class="chart-section" id="daily-chart">
           <div class="chart-header">
-            <span class="label-muted">Last 30 days</span>
+            <select class="chart-timespan-select" id="daily-timespan-select">
+              <option value="7">7 days</option>
+              <option value="28" selected>28 days</option>
+              <option value="90">3 months</option>
+              <option value="180">6 months</option>
+              <option value="365">1 year</option>
+              <option value="all">All time</option>
+            </select>
             <select class="chart-metric-select" id="daily-metric-select">
               <option value="weight">Weight</option>
               <option value="restingHR">Resting HR</option>
@@ -107,7 +114,14 @@
       <div id="measurements" class="sub-page">
         <div class="chart-section" id="measurements-chart">
           <div class="chart-header">
-            <span class="label-muted">Last 30 days</span>
+            <select class="chart-timespan-select" id="measurements-timespan-select">
+              <option value="7">7 days</option>
+              <option value="28" selected>28 days</option>
+              <option value="90">3 months</option>
+              <option value="180">6 months</option>
+              <option value="365">1 year</option>
+              <option value="all">All time</option>
+            </select>
             <select class="chart-metric-select" id="measurements-metric-select">
               <option value="bodyFat">Body fat</option>
               <option value="waist">Waist</option>

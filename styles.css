@@ -130,6 +130,12 @@ main {
   margin: 0 auto;
 }
 
+@media (max-width: 360px) {
+  main {
+    padding: 12px 8px;
+  }
+}
+
 .hidden { display: none !important; }
 .page { display: none; }
 .page.active { display: block; }
@@ -438,6 +444,17 @@ input::placeholder {
   color: var(--color-text-muted);
 }
 
+@media (max-width: 360px) {
+  .sub-tabs {
+    gap: 4px;
+  }
+
+  .sub-tab {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}
+
 .sub-tab:hover {
   color: var(--color-text);
   border-color: var(--color-text-muted);
@@ -471,6 +488,12 @@ input::placeholder {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-sm) var(--gap-grid);
+}
+
+@media (max-width: 360px) {
+  .field-group {
+    grid-template-columns: 1fr;
+  }
 }
 
 .field-group .data-row {
@@ -2237,6 +2260,18 @@ input::placeholder {
   border-bottom: 1px solid var(--color-border);
 }
 
+@media (max-width: 360px) {
+  .date-header {
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+  }
+
+  .date-display {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 14px;
+  }
+}
+
 /* Shared nav button base */
 .nav-button {
   background: transparent;
@@ -2416,6 +2451,25 @@ input::placeholder {
   margin-bottom: var(--spacing-md);
 }
 
+@media (max-width: 360px) {
+  .chart-section {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .chart-header {
+    gap: var(--spacing-sm);
+  }
+
+  .chart-timespan-select,
+  .chart-metric-select {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
 .chart-metric-label {
   font-size: 14px;
   color: var(--color-primary);
@@ -2424,6 +2478,7 @@ input::placeholder {
   gap: 2px;
 }
 
+.chart-timespan-select,
 .chart-metric-select {
   font-size: 14px;
   background: var(--color-bg);
@@ -2433,6 +2488,7 @@ input::placeholder {
   border-radius: var(--radius);
 }
 
+.chart-timespan-select:focus,
 .chart-metric-select:focus {
   outline: none;
   border-color: var(--color-primary);
@@ -2440,7 +2496,7 @@ input::placeholder {
 
 .chart-canvas {
   width: 100%;
-  height: 100px;
+  height: 140px;
   display: block;
 }
 
