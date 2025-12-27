@@ -105,6 +105,25 @@ header {
   color: var(--color-text-muted);
 }
 
+@media (max-width: 360px) {
+  .stats-bar {
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .stat-item {
+    padding: var(--spacing-xs);
+  }
+
+  .stat-item .stat-value {
+    font-size: 14px;
+  }
+
+  .stat-item .stat-label {
+    font-size: 10px;
+  }
+}
+
 main {
   padding: 16px;
   max-width: 500px;
@@ -371,13 +390,20 @@ input::placeholder {
 
 .tab {
   flex: 1;
-  padding: 14px;
+  padding: 14px 8px;
   border: none;
   background: transparent;
   font-size: 15px;
   font-weight: 500;
   color: var(--color-text-muted);
   border-bottom: 2px solid transparent;
+}
+
+@media (max-width: 360px) {
+  .tab {
+    padding: 12px 4px;
+    font-size: 14px;
+  }
 }
 
 .tab:hover {

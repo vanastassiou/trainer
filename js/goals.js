@@ -13,7 +13,6 @@ import {
   deleteGoal,
   getProfile,
   saveProfile,
-  calculateStats,
   getRecentJournals
 } from './db.js';
 import { METRIC_UNITS, updateFormUnits, displayPreviousMeasurements } from './measurements.js';
@@ -289,18 +288,36 @@ export function updateAllUnitDisplays() {
 // =============================================================================
 
 export async function renderStats() {
-  const stats = await calculateStats();
+  const journals = await getRecentJournals(true);
+  const recentJournals = journals.slice(0, 30);
 
-  document.getElementById('stat-days-tracked').textContent = stats.daysTracked;
-  document.getElementById('stat-total-workouts').textContent = stats.totalWorkouts;
-  document.getElementById('stat-current-streak').textContent =
-    stats.currentStreak + (stats.currentStreak === 1 ? ' day' : ' days');
+  // Calculate 30-day averages for each metric
+  const avgSteps = calculate30DayAverage(recentJournals, 'steps');
+  const avgCalories = calculate30DayAverage(recentJournals, 'calories');
+  const avgSleep = calculate30DayAverage(recentJournals, 'sleep');
+  const avgProtein = calculate30DayAverage(recentJournals, 'protein');
+  const avgFibre = calculate30DayAverage(recentJournals, 'fibre');
+  const avgWater = calculate30DayAverage(recentJournals, 'water');
+
+  // Format sleep as hours:minutes
+  const formatSleep = (hours) => {
+    if (hours == null) return '--';
+    const h = Math.floor(hours);
+    const m = Math.round((hours - h) * 60);
+    return `${h}:${m.toString().padStart(2, '0')}`;
+  };
+
+  document.getElementById('stat-avg-steps').textContent =
+    avgSteps != null ? Math.round(avgSteps).toLocaleString() : '--';
   document.getElementById('stat-avg-calories').textContent =
-    stats.avgCalories != null ? Math.round(stats.avgCalories) + ' kcal' : '--';
+    avgCalories != null ? Math.round(avgCalories) : '--';
+  document.getElementById('stat-avg-sleep').textContent = formatSleep(avgSleep);
   document.getElementById('stat-avg-protein').textContent =
-    stats.avgProtein != null ? Math.round(stats.avgProtein) + 'g' : '--';
-  document.getElementById('stat-avg-sleep').textContent =
-    stats.avgSleep != null ? stats.avgSleep.toFixed(1) + ' hrs' : '--';
+    avgProtein != null ? Math.round(avgProtein) + 'g' : '--';
+  document.getElementById('stat-avg-fibre').textContent =
+    avgFibre != null ? Math.round(avgFibre) + 'g' : '--';
+  document.getElementById('stat-avg-water').textContent =
+    avgWater != null ? avgWater.toFixed(1) + 'L' : '--';
 }
 
 // =============================================================================
