@@ -132,10 +132,11 @@ function renderGlossaryList(terms) {
 
   emptyMessage.classList.add('hidden');
   container.innerHTML = terms.map(term => `
-    <div class="learn-card learn-card--interactive" data-term="${term.term}">
+    <div class="learn-card">
       <div class="learn-card-title">${term.term}</div>
       <div class="learn-card-meta">${categories[term.category] || term.category}</div>
-      <div class="learn-card-description learn-card-description--clamp">${term.description}</div>
+      <div class="learn-card-description">${term.description}</div>
+      ${term.aliases?.length ? `<div class="glossary-aliases">Also: ${term.aliases.join(', ')}</div>` : ''}
     </div>
   `).join('');
 }
