@@ -1,1808 +1,2956 @@
 {
   "articles": [
     {
-      "id": "cureton-1988-hypertrophy-sex",
-      "title": "Muscle hypertrophy in men and women",
       "author": "Cureton et al.",
-      "authors": ["Cureton KJ", "Collins MA", "Hill DW", "McElhannon FM Jr"],
-      "journal": "Medicine & Science in Sports & Exercise",
-      "year": 1988,
-      "pmid": "3173042",
-      "doi": "10.1249/00005768-198810001-00004",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/3173042/",
+      "authors": [
+        "Cureton KJ",
+        "Collins MA",
+        "Hill DW",
+        "McElhannon FM Jr"
+      ],
       "category": "hypertrophy",
-      "tags": ["adaptations", "body-composition"],
-      "question": "Do men and women experience similar muscle hypertrophy from resistance training?",
+      "doi": "10.1249/00005768-198810001-00004",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "cureton-1988-hypertrophy-sex",
+      "journal": "Medicine & Science in Sports & Exercise",
       "methodology": {
-        "studyType": "intervention-study",
+        "duration": "16 weeks",
+        "limitations": [
+          "small sample size",
+          "single age group"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult"],
-          "trainingStatus": ["untrained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained"
+          ]
         },
         "sampleSize": 23,
-        "duration": "16 weeks",
-        "limitations": ["small sample size", "single age group"]
+        "studyType": "intervention-study"
       },
+      "peerReviewed": true,
+      "pmid": "3173042",
+      "question": "Do men and women experience similar muscle hypertrophy from resistance training?",
+      "status": "current",
+      "tags": [
+        "adaptations",
+        "body-composition"
+      ],
       "takeaways": [
         "Women and men show similar relative hypertrophy from training",
         "Upper arm muscle increased ~16-23% in both sexes after 16 weeks",
         "Strength gains were significant in both groups",
         "Absolute gains differ, but percentage gains are comparable"
-      ]
+      ],
+      "title": "Muscle hypertrophy in men and women",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3173042/",
+      "year": 1988
     },
     {
-      "id": "roberts-2020-sex-differences",
-      "title": "Sex differences in resistance training: a systematic review and meta-analysis",
       "author": "Roberts et al.",
-      "authors": ["Roberts BM", "Nuckols G", "Krieger JW"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 2020,
-      "pmid": "32218059",
-      "doi": "10.1519/JSC.0000000000003521",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32218059/",
+      "authors": [
+        "Roberts BM",
+        "Nuckols G",
+        "Krieger JW"
+      ],
       "category": "hypertrophy",
-      "tags": ["adaptations", "body-composition", "sex-differences"],
-      "question": "Are there sex differences in hypertrophy and strength adaptations to resistance training?",
+      "doi": "10.1519/JSC.0000000000003521",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "roberts-2020-sex-differences",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in training protocols across studies"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": null,
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["heterogeneity in training protocols across studies"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "peerReviewed": true,
+      "pmid": "32218059",
+      "question": "Are there sex differences in hypertrophy and strength adaptations to resistance training?",
+      "status": "current",
+      "tags": [
+        "adaptations",
+        "body-composition",
+        "sex-differences"
+      ],
       "takeaways": [
         "No significant sex difference in hypertrophy (effect size = 0.07)",
         "Females showed larger relative gains in upper-body strength",
         "No significant sex difference in lower-body strength gains",
         "Males and females can follow similar resistance training programs"
-      ]
+      ],
+      "title": "Sex differences in resistance training: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32218059/",
+      "year": 2020
     },
     {
-      "id": "mcnulty-2020-menstrual-cycle",
-      "title": "The effects of menstrual cycle phase on exercise performance in eumenorrheic women: a systematic review and meta-analysis",
       "author": "McNulty et al.",
-      "authors": ["McNulty KL", "Elliott-Sale KJ", "Dolan E", "Swinton PA", "Ansdell P", "Goodall S", "Thomas K", "Hicks KM"],
-      "journal": "Sports Medicine",
-      "year": 2020,
-      "pmid": "32661839",
-      "doi": "10.1007/s40279-020-01319-3",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32661839/",
+      "authors": [
+        "McNulty KL",
+        "Elliott-Sale KJ",
+        "Dolan E",
+        "Swinton PA",
+        "Ansdell P",
+        "Goodall S",
+        "Thomas K",
+        "Hicks KM"
+      ],
       "category": "hormones",
-      "tags": ["menstrual-cycle", "performance", "programming"],
-      "question": "Does menstrual cycle phase affect exercise performance in eumenorrheic women?",
+      "doi": "10.1007/s40279-020-01319-3",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "mcnulty-2020-menstrual-cycle",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "evidence quality rated as low",
+          "inconsistent phase verification methods across studies"
+        ],
         "population": {
-          "sex": ["female"],
           "ageGroup": null,
-          "trainingStatus": null,
-          "healthStatus": ["healthy"]
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["evidence quality rated as low", "inconsistent phase verification methods across studies"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "peerReviewed": true,
+      "pmid": "32661839",
+      "question": "Does menstrual cycle phase affect exercise performance in eumenorrheic women?",
+      "status": "current",
+      "tags": [
+        "menstrual-cycle",
+        "performance",
+        "programming"
+      ],
       "takeaways": [
         "Exercise performance may be trivially reduced in early follicular phase",
         "Effect sizes are small and likely not practically significant",
         "Individual response varies; personalized approach recommended",
         "No strong evidence for periodizing training around menstrual cycle"
-      ]
+      ],
+      "title": "The effects of menstrual cycle phase on exercise performance in eumenorrheic women: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32661839/",
+      "year": 2020
     },
     {
-      "id": "craig-1989-hormonal-responses",
-      "title": "Effects of progressive resistance training on growth hormone and testosterone levels in young and elderly subjects",
       "author": "Craig et al.",
-      "authors": ["Craig BW", "Brown R", "Everhart J"],
-      "journal": "Mechanisms of Ageing and Development",
-      "year": 1989,
-      "pmid": "2796409",
-      "doi": "10.1016/0047-6374(89)90099-7",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2796409/",
+      "authors": [
+        "Craig BW",
+        "Brown R",
+        "Everhart J"
+      ],
       "category": "hormones",
-      "tags": ["adaptations", "testosterone", "growth-hormone", "aging"],
-      "question": "How do growth hormone and testosterone respond to resistance training in young vs elderly men?",
+      "doi": "10.1016/0047-6374(89)90099-7",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "craig-1989-hormonal-responses",
+      "journal": "Mechanisms of Ageing and Development",
       "methodology": {
-        "studyType": "intervention-study",
+        "duration": "12 weeks",
+        "limitations": [
+          "male subjects only",
+          "sample size not specified in abstract"
+        ],
         "population": {
-          "sex": ["male"],
-          "ageGroup": ["young-adult", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": "12 weeks",
-        "limitations": ["male subjects only", "sample size not specified in abstract"]
+        "studyType": "intervention-study"
       },
+      "peerReviewed": true,
+      "pmid": "2796409",
+      "question": "How do growth hormone and testosterone respond to resistance training in young vs elderly men?",
+      "status": "current",
+      "tags": [
+        "adaptations",
+        "testosterone",
+        "growth-hormone",
+        "aging"
+      ],
       "takeaways": [
         "Resistance training induces GH and testosterone release regardless of age",
         "Young subjects show greater hormonal response than elderly",
         "Both acute exercise and chronic training affect hormone levels",
         "Strength gains of 37-39% achieved in both age groups"
-      ]
+      ],
+      "title": "Effects of progressive resistance training on growth hormone and testosterone levels in young and elderly subjects",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2796409/",
+      "year": 1989
     },
     {
-      "id": "stone-1990-muscle-conditioning",
-      "title": "Muscle conditioning and muscle injuries",
       "author": "Stone",
-      "authors": ["Stone MH"],
-      "journal": "Medicine & Science in Sports & Exercise",
-      "year": 1990,
-      "pmid": "2205781",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2205781/",
+      "authors": [
+        "Stone MH"
+      ],
       "category": "safety",
-      "tags": ["injury-prevention", "periodization", "conditioning"],
-      "question": "How does muscle conditioning affect injury rates in athletes?",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "stone-1990-muscle-conditioning",
+      "journal": "Medicine & Science in Sports & Exercise",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": {
-          "sex": ["male", "female"],
           "ageGroup": null,
-          "trainingStatus": ["trained", "elite"],
-          "healthStatus": ["healthy"]
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "2205781",
+      "question": "How does muscle conditioning affect injury rates in athletes?",
+      "status": "current",
       "summary": "Reviews how muscle and connective tissue adapt to resistance training, resulting in greater tissue mass and increased tensile strength. Proposes periodization as a training model to increase performance while reducing overtraining and injury.",
+      "tags": [
+        "injury-prevention",
+        "periodization",
+        "conditioning"
+      ],
       "takeaways": [
         "Pre-conditioning and in-season muscle conditioning reduce injuries among athletes",
         "Periodization (varying volume, intensity, and exercises) reduces overtraining and injury risk",
         "Muscle and connective tissue adaptations from resistance training increase tensile strength",
         "Load-bearing and resistive training produce protective tissue adaptations"
-      ]
+      ],
+      "title": "Muscle conditioning and muscle injuries",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2205781/",
+      "year": 1990
     },
     {
-      "id": "zemper-1990-weightroom-injuries",
-      "title": "Four-year study of weightroom injuries in a national sample of college football teams",
       "author": "Zemper",
-      "authors": ["Zemper ED"],
-      "journal": "National Strength and Conditioning Association Journal",
-      "year": 1990,
-      "url": "https://www.exra.org/WtRm.htm",
+      "authors": [
+        "Zemper ED"
+      ],
       "category": "safety",
-      "tags": ["injury-rates", "football", "epidemiology"],
-      "question": "How do weight room injury rates compare to injuries during sport participation?",
       "evidenceLevel": "2b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "zemper-1990-weightroom-injuries",
+      "journal": "National Strength and Conditioning Association Journal",
       "methodology": {
-        "studyType": "prospective-cohort",
+        "duration": "4 years",
+        "limitations": [
+          "college football players only",
+          "male subjects only",
+          "not indexed in PubMed"
+        ],
         "population": {
-          "sex": ["male"],
-          "ageGroup": ["young-adult"],
-          "trainingStatus": ["trained", "elite"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male"
+          ],
+          "trainingStatus": [
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": "4 years",
-        "limitations": ["college football players only", "male subjects only", "not indexed in PubMed"]
+        "studyType": "prospective-cohort"
       },
+      "peerReviewed": true,
+      "question": "How do weight room injury rates compare to injuries during sport participation?",
+      "status": "current",
       "summary": "Four-year prospective study using the Athletic Injury Monitoring System (AIMS) to track weight room injuries in college football teams compared to on-field injuries.",
+      "tags": [
+        "injury-rates",
+        "football",
+        "epidemiology"
+      ],
       "takeaways": [
         "Weight room injuries accounted for only 1% of time lost compared to football practice injuries",
         "Weight training is substantially safer than contact sport participation",
         "Injury rates from resistance training are very low in supervised settings",
         "Strength training should not be avoided due to injury concerns"
-      ]
+      ],
+      "title": "Four-year study of weightroom injuries in a national sample of college football teams",
+      "url": "https://www.exra.org/WtRm.htm",
+      "year": 1990
     },
     {
-      "id": "mccartney-1998-resistance-heart-disease",
-      "title": "Role of resistance training in heart disease",
       "author": "McCartney",
-      "authors": ["McCartney N"],
-      "journal": "Medicine & Science in Sports & Exercise",
-      "year": 1998,
-      "pmid": "9789866",
-      "doi": "10.1097/00005768-199810001-00008",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/9789866/",
+      "authors": [
+        "McCartney N"
+      ],
       "category": "safety",
-      "tags": ["cardiac-rehab", "special-populations", "cardiovascular"],
-      "question": "Is resistance training safe and beneficial for cardiac rehabilitation patients?",
+      "doi": "10.1097/00005768-199810001-00008",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "mccartney-1998-resistance-heart-disease",
+      "journal": "Medicine & Science in Sports & Exercise",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adult", "middle-aged", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["cardiac-condition"]
+          "ageGroup": [
+            "adult",
+            "middle-aged",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "cardiac-condition"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "9789866",
+      "question": "Is resistance training safe and beneficial for cardiac rehabilitation patients?",
+      "status": "current",
       "summary": "Reviews evidence supporting resistance training as part of cardiac rehabilitation programs, demonstrating safety and benefits for patients with heart disease.",
+      "tags": [
+        "cardiac-rehab",
+        "special-populations",
+        "cardiovascular"
+      ],
       "takeaways": [
         "Resistance training is an accepted part of cardiac rehabilitation since mid-1980s",
         "Studies show safety in Phase II, III, and IV cardiac rehab programs",
         "Resistance training had fewer cardiovascular complications than aerobic training alone",
         "Benefits include improved strength and functional capacity in cardiac patients"
-      ]
+      ],
+      "title": "Role of resistance training in heart disease",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9789866/",
+      "year": 1998
     },
     {
-      "id": "faigenbaum-2009-youth-resistance",
-      "title": "Youth resistance training: Updated position statement paper from the National Strength and Conditioning Association",
       "author": "Faigenbaum et al.",
-      "authors": ["Faigenbaum AD", "Kraemer WJ", "Blimkie CJR", "Jeffreys I", "Micheli LJ", "Nitka M", "Rowland TW"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 2009,
-      "pmid": "19620931",
-      "doi": "10.1519/JSC.0b013e31819df407",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/19620931/",
+      "authors": [
+        "Faigenbaum AD",
+        "Kraemer WJ",
+        "Blimkie CJR",
+        "Jeffreys I",
+        "Micheli LJ",
+        "Nitka M",
+        "Rowland TW"
+      ],
       "category": "safety",
-      "tags": ["youth", "special-populations", "position-statement"],
-      "question": "Is resistance training safe and effective for children and adolescents?",
+      "doi": "10.1519/JSC.0b013e31819df407",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "faigenbaum-2009-youth-resistance",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "position-statement",
+        "duration": null,
+        "limitations": [
+          "position statement format rather than systematic review"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["child", "adolescent"],
-          "trainingStatus": ["untrained", "recreational"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "child",
+            "adolescent"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["position statement format rather than systematic review"]
+        "studyType": "position-statement"
       },
+      "peerReviewed": true,
+      "pmid": "19620931",
+      "question": "Is resistance training safe and effective for children and adolescents?",
+      "status": "current",
       "summary": "NSCA position statement updating 1996 recommendations on youth resistance training, addressing risks, benefits, and program design for children and adolescents.",
+      "tags": [
+        "youth",
+        "special-populations",
+        "position-statement"
+      ],
       "takeaways": [
         "Youth resistance training is safe and effective with proper supervision and age-appropriate guidelines",
         "Benefits include increased strength, improved motor skills, and enhanced sports performance",
         "Injury risk is low when qualified professionals supervise and proper technique is emphasized",
         "The NSCA supports resistance training for healthy children and adolescents"
-      ]
+      ],
+      "title": "Youth resistance training: Updated position statement paper from the National Strength and Conditioning Association",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19620931/",
+      "year": 2009
     },
     {
-      "id": "kerr-2010-weight-training-injuries",
-      "title": "Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007",
       "author": "Kerr et al.",
-      "authors": ["Kerr ZY", "Collins CL", "Comstock RD"],
-      "journal": "American Journal of Sports Medicine",
-      "year": 2010,
-      "pmid": "20139328",
-      "doi": "10.1177/0363546509351560",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/20139328/",
+      "authors": [
+        "Kerr ZY",
+        "Collins CL",
+        "Comstock RD"
+      ],
       "category": "safety",
-      "tags": ["injury-rates", "epidemiology", "emergency-medicine"],
-      "question": "What are the epidemiological patterns of weight training injuries in the US?",
+      "doi": "10.1177/0363546509351560",
       "evidenceLevel": "2b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "kerr-2010-weight-training-injuries",
+      "journal": "American Journal of Sports Medicine",
       "methodology": {
-        "studyType": "retrospective-cohort",
+        "duration": "18 years (1990-2007)",
+        "limitations": [
+          "emergency department data only",
+          "may underestimate minor injuries"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adolescent", "young-adult", "adult", "middle-aged", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": null
+          "ageGroup": [
+            "adolescent",
+            "young-adult",
+            "adult",
+            "middle-aged",
+            "older-adult"
+          ],
+          "healthStatus": null,
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": "18 years (1990-2007)",
-        "limitations": ["emergency department data only", "may underestimate minor injuries"]
+        "studyType": "retrospective-cohort"
       },
+      "peerReviewed": true,
+      "pmid": "20139328",
+      "question": "What are the epidemiological patterns of weight training injuries in the US?",
+      "status": "current",
+      "tags": [
+        "injury-rates",
+        "epidemiology",
+        "emergency-medicine"
+      ],
       "takeaways": [
         "90.4% of injuries occurred with free weights",
         "65.5% of injuries resulted from weights dropping on the person",
         "Low back and shoulders are most common injury sites",
         "Strains account for 46.1% of injuries",
         "Males, adolescents, and older persons have highest injury rates"
-      ]
+      ],
+      "title": "Epidemiology of weight training-related injuries presenting to United States emergency departments, 1990 to 2007",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20139328/",
+      "year": 2010
     },
     {
-      "id": "kolber-2010-shoulder-injuries",
-      "title": "Shoulder injuries attributed to resistance training: a brief review",
       "author": "Kolber et al.",
-      "authors": ["Kolber MJ", "Beekhuizen KS", "Cheng MS", "Hellman MA"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 2010,
-      "pmid": "20508476",
-      "doi": "10.1519/JSC.0b013e3181dc4330",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/20508476/",
+      "authors": [
+        "Kolber MJ",
+        "Beekhuizen KS",
+        "Cheng MS",
+        "Hellman MA"
+      ],
       "category": "safety",
-      "tags": ["shoulder", "injury-prevention", "exercise-selection"],
-      "question": "What are the mechanisms and risk factors for shoulder injuries in resistance training?",
+      "doi": "10.1519/JSC.0b013e3181dc4330",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "kolber-2010-shoulder-injuries",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": {
-          "sex": ["male", "female"],
           "ageGroup": null,
-          "trainingStatus": ["recreational", "trained"],
-          "healthStatus": ["healthy"]
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "recreational",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "20508476",
+      "question": "What are the mechanisms and risk factors for shoulder injuries in resistance training?",
+      "status": "current",
+      "tags": [
+        "shoulder",
+        "injury-prevention",
+        "exercise-selection"
+      ],
       "takeaways": [
         "Up to 36% of resistance training injuries occur at the shoulder complex",
         "Biased exercise selection creates joint and muscle imbalances",
         "Rotator cuff and scapular muscles are often neglected",
         "Unfavorable positioning during exercises increases injury risk",
         "Balance pushing and pulling movements to reduce shoulder injury risk"
-      ]
+      ],
+      "title": "Shoulder injuries attributed to resistance training: a brief review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20508476/",
+      "year": 2010
     },
     {
-      "id": "keogh-2017-injury-epidemiology",
-      "title": "The epidemiology of injuries across the weight-training sports",
       "author": "Keogh and Winwood",
-      "authors": ["Keogh JWL", "Winwood PW"],
-      "journal": "Sports Medicine",
-      "year": 2017,
-      "pmid": "27328853",
-      "doi": "10.1007/s40279-016-0575-0",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27328853/",
+      "authors": [
+        "Keogh JWL",
+        "Winwood PW"
+      ],
       "category": "safety",
-      "tags": ["injury-rates", "epidemiology", "powerlifting", "weightlifting", "crossfit"],
-      "question": "What is the injury epidemiology across different weight-training sports?",
+      "doi": "10.1007/s40279-016-0575-0",
       "evidenceLevel": "2a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "keogh-2017-injury-epidemiology",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in injury definitions across studies"
+        ],
         "population": {
-          "sex": ["male", "female"],
           "ageGroup": null,
-          "trainingStatus": ["recreational", "trained", "elite"],
-          "healthStatus": ["healthy"]
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "recreational",
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["heterogeneity in injury definitions across studies"]
+        "studyType": "systematic-review"
       },
+      "peerReviewed": true,
+      "pmid": "27328853",
+      "question": "What is the injury epidemiology across different weight-training sports?",
+      "status": "current",
+      "tags": [
+        "injury-rates",
+        "epidemiology",
+        "powerlifting",
+        "weightlifting",
+        "crossfit"
+      ],
       "takeaways": [
         "Weight-training sports have relatively low injury rates compared to team sports",
         "Shoulder (6-36%), low back, and knee are most common injury sites",
         "Proper technique and progressive loading reduce injury risk",
         "No significant differences in injury rates by age, sex, or bodyweight class"
-      ]
+      ],
+      "title": "The epidemiology of injuries across the weight-training sports",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27328853/",
+      "year": 2017
     },
     {
-      "id": "schoenfeld-2010-squat-biomechanics",
-      "title": "Squatting kinematics and kinetics and their application to exercise performance",
       "author": "Schoenfeld",
-      "authors": ["Schoenfeld BJ"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 2010,
-      "pmid": "20182386",
-      "doi": "10.1519/JSC.0b013e3181bac2d7",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/20182386/",
+      "authors": [
+        "Schoenfeld BJ"
+      ],
       "category": "training-myths",
-      "tags": ["squat", "biomechanics", "technique"],
-      "question": "What does biomechanical research tell us about squat depth and safety?",
+      "doi": "10.1519/JSC.0b013e3181bac2d7",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "schoenfeld-2010-squat-biomechanics",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": null,
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "20182386",
+      "question": "What does biomechanical research tell us about squat depth and safety?",
+      "status": "current",
       "summary": "Reviews biomechanical literature on squat depth, knee position, and spinal loading. Addresses common concerns about deep squats and knees traveling past toes.",
+      "tags": [
+        "squat",
+        "biomechanics",
+        "technique"
+      ],
       "takeaways": [
         "Deep squats are safe when performed with proper technique",
         "Quadriceps development is maximized at parallel depth",
         "Hip extensor activation increases with squat depth",
         "No evidence that posterior pelvic tilt (butt wink) increases lumbar injury risk",
         "Knees extending beyond toes is safe and often necessary for proper form"
-      ]
+      ],
+      "title": "Squatting kinematics and kinetics and their application to exercise performance",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20182386/",
+      "year": 2010
     },
     {
-      "id": "hass-2000-single-vs-multiple-sets",
-      "title": "Single versus multiple sets in long-term recreational weightlifters",
       "author": "Hass et al.",
-      "authors": ["Hass CJ", "Garzarella L", "De Hoyos D", "Pollock ML"],
-      "journal": "Medicine & Science in Sports & Exercise",
-      "year": 2000,
-      "pmid": "10647555",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10647555/",
+      "authors": [
+        "Hass CJ",
+        "Garzarella L",
+        "De Hoyos D",
+        "Pollock ML"
+      ],
       "category": "training-myths",
-      "tags": ["volume", "sets", "hypertrophy", "strength"],
-      "question": "Are multiple sets more effective than single sets for recreational weightlifters?",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "hass-2000-single-vs-multiple-sets",
+      "journal": "Medicine & Science in Sports & Exercise",
       "methodology": {
-        "studyType": "randomized-controlled-trial",
+        "duration": "13 weeks",
+        "limitations": [
+          "recreational lifters only",
+          "relatively short duration"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adult"],
-          "trainingStatus": ["recreational"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "recreational"
+          ]
         },
         "sampleSize": null,
-        "duration": "13 weeks",
-        "limitations": ["recreational lifters only", "relatively short duration"]
+        "studyType": "randomized-controlled-trial"
       },
+      "peerReviewed": true,
+      "pmid": "10647555",
+      "question": "Are multiple sets more effective than single sets for recreational weightlifters?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "sets",
+        "hypertrophy",
+        "strength"
+      ],
       "takeaways": [
         "One set is nearly as effective as three sets for strength gains",
         "No significant difference in body composition changes between groups",
         "One-set programs remain effective even after a year of training",
         "Recreational lifters can achieve good results with lower training volume"
-      ]
+      ],
+      "title": "Single versus multiple sets in long-term recreational weightlifters",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10647555/",
+      "year": 2000
     },
     {
-      "id": "malina-2006-youth-weight-training",
-      "title": "Weight training in youth-growth, maturation, and safety: an evidence-based review",
       "author": "Malina",
-      "authors": ["Malina RM"],
-      "journal": "Clinical Journal of Sport Medicine",
-      "year": 2006,
-      "pmid": "17119361",
-      "doi": "10.1097/01.jsm.0000248843.31874.be",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17119361/",
+      "authors": [
+        "Malina RM"
+      ],
       "category": "safety",
-      "tags": ["youth", "growth", "maturation", "special-populations"],
-      "question": "Does resistance training affect growth and maturation in youth?",
+      "doi": "10.1097/01.jsm.0000248843.31874.be",
       "evidenceLevel": "2a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "malina-2006-youth-weight-training",
+      "journal": "Clinical Journal of Sport Medicine",
       "methodology": {
-        "studyType": "systematic-review",
+        "duration": null,
+        "limitations": [
+          "limited long-term follow-up data"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["child", "adolescent"],
-          "trainingStatus": ["untrained", "recreational"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "child",
+            "adolescent"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["limited long-term follow-up data"]
+        "studyType": "systematic-review"
       },
+      "peerReviewed": true,
+      "pmid": "17119361",
+      "question": "Does resistance training affect growth and maturation in youth?",
+      "status": "current",
+      "tags": [
+        "youth",
+        "growth",
+        "maturation",
+        "special-populations"
+      ],
       "takeaways": [
         "Supervised resistance training is safe for pre- and early-pubertal youth",
         "No negative impact on growth or maturation with proper supervision",
         "Growth plate injuries are rare with appropriate technique and loads",
         "Low instructor-to-participant ratios are essential for safety"
-      ]
+      ],
+      "title": "Weight training in youth-growth, maturation, and safety: an evidence-based review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17119361/",
+      "year": 2006
     },
     {
-      "id": "ratel-2011-youth-high-intensity",
-      "title": "High-intensity and resistance training and elite young athletes",
       "author": "Ratel",
-      "authors": ["Ratel S"],
-      "journal": "Medicine and Sport Science",
-      "year": 2011,
-      "pmid": "21178368",
-      "doi": "10.1159/000320635",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21178368/",
+      "authors": [
+        "Ratel S"
+      ],
       "category": "safety",
-      "tags": ["youth", "elite", "high-intensity", "special-populations"],
-      "question": "Is high-intensity resistance training safe for elite young athletes?",
+      "doi": "10.1159/000320635",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "ratel-2011-youth-high-intensity",
+      "journal": "Medicine and Sport Science",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["child", "adolescent"],
-          "trainingStatus": ["trained", "elite"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "child",
+            "adolescent"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "21178368",
+      "question": "Is high-intensity resistance training safe for elite young athletes?",
+      "status": "current",
+      "tags": [
+        "youth",
+        "elite",
+        "high-intensity",
+        "special-populations"
+      ],
       "takeaways": [
         "Resistance training is safe and effective for developing youth strength",
         "No adverse effects when properly supervised with appropriate precautions",
         "Benefits include improved maximal strength, power, and athletic performance",
         "Age-appropriate program design is essential"
-      ]
+      ],
+      "title": "High-intensity and resistance training and elite young athletes",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21178368/",
+      "year": 2011
     },
     {
-      "id": "risser-1990-injury-guidelines",
-      "title": "Musculoskeletal injuries caused by weight training: guidelines for prevention",
       "author": "Risser",
-      "authors": ["Risser WL"],
-      "journal": "Clinical Pediatrics",
-      "year": 1990,
-      "pmid": "2193768",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2193768/",
+      "authors": [
+        "Risser WL"
+      ],
       "category": "safety",
-      "tags": ["injury-prevention", "guidelines", "youth"],
-      "question": "What guidelines prevent weight training injuries in youth?",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "risser-1990-injury-guidelines",
+      "journal": "Clinical Pediatrics",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["child", "adolescent", "young-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "child",
+            "adolescent",
+            "young-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "2193768",
+      "question": "What guidelines prevent weight training injuries in youth?",
+      "status": "current",
+      "tags": [
+        "injury-prevention",
+        "guidelines",
+        "youth"
+      ],
       "takeaways": [
         "Adequate warm-up reduces injury risk",
         "Loss of form when lifting heavy weights increases injury risk",
         "Proper supervision is essential for injury prevention",
         "Progressive loading helps prevent overuse injuries"
-      ]
+      ],
+      "title": "Musculoskeletal injuries caused by weight training: guidelines for prevention",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2193768/",
+      "year": 1990
     },
     {
-      "id": "risser-1990-adolescent-injuries",
-      "title": "Weight-training injuries in adolescents",
       "author": "Risser et al.",
-      "authors": ["Risser WL", "Risser JM", "Preston D"],
-      "journal": "American Journal of Diseases of Children",
-      "year": 1990,
-      "pmid": "2396614",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2396614/",
+      "authors": [
+        "Risser WL",
+        "Risser JM",
+        "Preston D"
+      ],
       "category": "safety",
-      "tags": ["youth", "injury-rates", "epidemiology", "football"],
-      "question": "What is the incidence and pattern of weight training injuries in adolescent athletes?",
       "evidenceLevel": "2b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "risser-1990-adolescent-injuries",
+      "journal": "American Journal of Diseases of Children",
       "methodology": {
-        "studyType": "prospective-cohort",
+        "duration": null,
+        "limitations": [
+          "male football players only"
+        ],
         "population": {
-          "sex": ["male"],
-          "ageGroup": ["adolescent"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "adolescent"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["male football players only"]
+        "studyType": "prospective-cohort"
       },
+      "peerReviewed": true,
+      "pmid": "2396614",
+      "question": "What is the incidence and pattern of weight training injuries in adolescent athletes?",
+      "status": "current",
+      "tags": [
+        "youth",
+        "injury-rates",
+        "epidemiology",
+        "football"
+      ],
       "takeaways": [
         "Strains are the most common injury type (74.1%)",
         "Back is the most common injury site (59.3%)",
         "Proper technique and supervision reduce injury incidence",
         "Most injuries are minor and resolve quickly"
-      ]
+      ],
+      "title": "Weight-training injuries in adolescents",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2396614/",
+      "year": 1990
     },
     {
-      "id": "faigenbaum-2004-youth-injury-prevention",
-      "title": "Can resistance training reduce injuries in youth sports?",
       "author": "Faigenbaum and Schram",
-      "authors": ["Faigenbaum AD", "Schram J"],
-      "journal": "Strength and Conditioning Journal",
-      "year": 2004,
-      "url": "https://journals.lww.com/nsca-scj/Abstract/2004/06000/Can_Resistance_Training_Reduce_Injuries_in_Youth.4.aspx",
+      "authors": [
+        "Faigenbaum AD",
+        "Schram J"
+      ],
       "category": "safety",
-      "tags": ["youth", "injury-prevention", "sports"],
-      "question": "Can resistance training programs reduce sports injuries in youth athletes?",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "faigenbaum-2004-youth-injury-prevention",
+      "journal": "Strength and Conditioning Journal",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology",
+          "not indexed in PubMed"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["child", "adolescent"],
-          "trainingStatus": ["untrained", "recreational", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "child",
+            "adolescent"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology", "not indexed in PubMed"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "question": "Can resistance training programs reduce sports injuries in youth athletes?",
+      "status": "current",
+      "tags": [
+        "youth",
+        "injury-prevention",
+        "sports"
+      ],
       "takeaways": [
         "Resistance training can significantly reduce sports-related injuries in adolescents",
         "Preparatory conditioning improves tissue resilience",
         "Proper program design is essential for injury prevention benefits",
         "Additional research needed on optimal protocols"
-      ]
+      ],
+      "title": "Can resistance training reduce injuries in youth sports?",
+      "url": "https://journals.lww.com/nsca-scj/Abstract/2004/06000/Can_Resistance_Training_Reduce_Injuries_in_Youth.4.aspx",
+      "year": 2004
     },
     {
-      "id": "butragueno-2014-strength-training-injuries",
-      "title": "Injuries in strength training: review and practical application",
       "author": "Butragueño et al.",
-      "authors": ["Butragueño J", "Benito PJ", "Maffulli N"],
-      "journal": "European Journal of Human Movement",
-      "year": 2014,
-      "url": "https://www.researchgate.net/publication/264122818_Injuries_in_strength_training_review_and_practical_application",
+      "authors": [
+        "Butragueño J",
+        "Benito PJ",
+        "Maffulli N"
+      ],
       "category": "safety",
-      "tags": ["injury-rates", "epidemiology", "powerlifting", "weightlifting", "crossfit"],
-      "question": "What is known about injuries across different strength training modalities?",
       "evidenceLevel": "2a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "butragueno-2014-strength-training-injuries",
+      "journal": "European Journal of Human Movement",
       "methodology": {
-        "studyType": "systematic-review",
+        "duration": null,
+        "limitations": [
+          "conflicting injury definitions across studies",
+          "not indexed in PubMed"
+        ],
         "population": {
-          "sex": ["male", "female"],
           "ageGroup": null,
-          "trainingStatus": ["recreational", "trained", "elite"],
-          "healthStatus": ["healthy"]
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "recreational",
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["conflicting injury definitions across studies", "not indexed in PubMed"]
+        "studyType": "systematic-review"
       },
+      "peerReviewed": true,
+      "question": "What is known about injuries across different strength training modalities?",
+      "status": "current",
+      "tags": [
+        "injury-rates",
+        "epidemiology",
+        "powerlifting",
+        "weightlifting",
+        "crossfit"
+      ],
       "takeaways": [
         "Injury incidence ranges from 0.0017-0.0035 per 100 hours to 1.1-7.0 per 1000 hours",
         "Lower back, shoulder, and knee are most frequently injured areas",
         "Strength training is generally safe across modalities",
         "Most weightlifting injuries result in less than 1 day of missed training"
-      ]
+      ],
+      "title": "Injuries in strength training: review and practical application",
+      "url": "https://www.researchgate.net/publication/264122818_Injuries_in_strength_training_review_and_practical_application",
+      "year": 2014
     },
     {
-      "id": "statuta-2024-lea-reds",
-      "title": "Low energy availability and relative energy deficiency in sport: a systematic review and meta-analysis",
       "author": "Statuta et al.",
-      "authors": ["Statuta SM", "Asif IM", "Drezner JA"],
-      "journal": "Sports Medicine",
-      "year": 2024,
-      "pmid": "39485653",
-      "doi": "10.1007/s40279-024-02130-0",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39485653/",
+      "authors": [
+        "Statuta SM",
+        "Asif IM",
+        "Drezner JA"
+      ],
       "category": "nutrition",
-      "tags": ["energy-availability", "RED-S", "performance"],
-      "question": "How prevalent is low energy availability in athletes and what are its effects?",
+      "doi": "10.1007/s40279-024-02130-0",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "statuta-2024-lea-reds",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in LEA definitions",
+          "cross-sectional designs"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adolescent", "young-adult", "adult"],
-          "trainingStatus": ["trained", "elite"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "adolescent",
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": 6118,
-        "duration": null,
-        "limitations": ["heterogeneity in LEA definitions", "cross-sectional designs"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "peerReviewed": true,
+      "pmid": "39485653",
+      "question": "How prevalent is low energy availability in athletes and what are its effects?",
+      "status": "current",
+      "tags": [
+        "energy-availability",
+        "RED-S",
+        "performance"
+      ],
       "takeaways": [
         "44.7% of athletes studied had low energy availability",
         "LEA impairs endurance performance, coordination, and concentration",
         "Athletes with LEA have higher risk of bone stress injuries",
         "Both male (49.4%) and female (44.2%) athletes affected"
-      ]
+      ],
+      "title": "Low energy availability and relative energy deficiency in sport: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39485653/",
+      "year": 2024
     },
     {
-      "id": "morton-2018-protein-rct",
-      "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
       "author": "Morton et al.",
-      "authors": ["Morton RW", "Murphy KT", "McKellar SR", "Schoenfeld BJ", "Henselmans M", "Helms E", "Aragon AA", "Devries MC", "Banfield L", "Krieger JW", "Phillips SM"],
-      "journal": "British Journal of Sports Medicine",
-      "year": 2018,
-      "pmid": "28698222",
-      "doi": "10.1136/bjsports-2017-097608",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/",
+      "authors": [
+        "Morton RW",
+        "Murphy KT",
+        "McKellar SR",
+        "Schoenfeld BJ",
+        "Henselmans M",
+        "Helms E",
+        "Aragon AA",
+        "Devries MC",
+        "Banfield L",
+        "Krieger JW",
+        "Phillips SM"
+      ],
       "category": "nutrition",
-      "tags": ["protein", "hypertrophy", "strength", "supplementation"],
-      "question": "Does protein supplementation enhance resistance training adaptations?",
+      "doi": "10.1136/bjsports-2017-097608",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "morton-2018-protein-rct",
+      "journal": "British Journal of Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-regression",
+        "duration": "6+ weeks",
+        "limitations": [
+          "heterogeneity in protein sources and timing"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult", "older-adult"],
-          "trainingStatus": ["untrained", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "trained"
+          ]
         },
         "sampleSize": 1863,
-        "duration": "6+ weeks",
-        "limitations": ["heterogeneity in protein sources and timing"]
+        "studyType": "systematic-review-with-meta-regression"
       },
+      "peerReviewed": true,
+      "pmid": "28698222",
+      "question": "Does protein supplementation enhance resistance training adaptations?",
+      "status": "current",
+      "tags": [
+        "protein",
+        "hypertrophy",
+        "strength",
+        "supplementation"
+      ],
       "takeaways": [
         "Protein supplementation increases 1RM strength by 2.49 kg",
         "Fat-free mass gains augmented by 0.30 kg with protein",
         "Benefits plateau at total intake of 1.62 g/kg/day",
         "Increasing age reduces efficacy; training experience increases it"
-      ]
+      ],
+      "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28698222/",
+      "year": 2018
     },
     {
-      "id": "veronese-2018-fibre-umbrella",
-      "title": "Dietary fibre and health outcomes: an umbrella review of systematic reviews and meta-analyses",
       "author": "Veronese et al.",
-      "authors": ["Veronese N", "Solmi M", "Caruso MG", "Giannelli G", "Osella AR", "Evangelou E", "Maggi S", "Fontana L", "Stubbs B", "Tzoulaki I"],
-      "journal": "American Journal of Clinical Nutrition",
-      "year": 2018,
-      "pmid": "29566200",
-      "doi": "10.1093/ajcn/nqx082",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29566200/",
+      "authors": [
+        "Veronese N",
+        "Solmi M",
+        "Caruso MG",
+        "Giannelli G",
+        "Osella AR",
+        "Evangelou E",
+        "Maggi S",
+        "Fontana L",
+        "Stubbs B",
+        "Tzoulaki I"
+      ],
       "category": "nutrition",
-      "tags": ["fibre", "mortality", "cardiovascular", "cancer"],
-      "question": "What health outcomes are convincingly associated with dietary fibre intake?",
+      "doi": "10.1093/ajcn/nqx082",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "veronese-2018-fibre-umbrella",
+      "journal": "American Journal of Clinical Nutrition",
       "methodology": {
-        "studyType": "umbrella-review",
+        "duration": null,
+        "limitations": [
+          "observational data",
+          "confounding factors"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adult", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["healthy", "clinical"]
+          "ageGroup": [
+            "adult",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy",
+            "clinical"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["observational data", "confounding factors"]
+        "studyType": "umbrella-review"
       },
+      "peerReviewed": true,
+      "pmid": "29566200",
+      "question": "What health outcomes are convincingly associated with dietary fibre intake?",
+      "status": "current",
+      "tags": [
+        "fibre",
+        "mortality",
+        "cardiovascular",
+        "cancer"
+      ],
       "takeaways": [
         "Convincing evidence for reduced pancreatic cancer and CVD mortality",
         "Highly suggestive evidence for reduced all-cause mortality and coronary disease",
         "18 meta-analyses covering 298 prospective studies reviewed",
         "Supports recommendations for higher fibre intake"
-      ]
+      ],
+      "title": "Dietary fibre and health outcomes: an umbrella review of systematic reviews and meta-analyses",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29566200/",
+      "year": 2018
     },
     {
-      "id": "mccarthy-2017-rehydration",
-      "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis",
       "author": "McCartney et al.",
-      "authors": ["McCartney D", "Desbrow B", "Irwin C"],
-      "journal": "Sports Medicine - Open",
-      "year": 2017,
-      "pmid": "28275997",
-      "doi": "10.1186/s40798-017-0079-y",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/28275997/",
+      "authors": [
+        "McCartney D",
+        "Desbrow B",
+        "Irwin C"
+      ],
       "category": "nutrition",
-      "tags": ["hydration", "dehydration", "performance", "cognition"],
-      "question": "Does rehydration after fluid loss improve subsequent performance?",
+      "doi": "10.1186/s40798-017-0079-y",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "mccarthy-2017-rehydration",
+      "journal": "Sports Medicine - Open",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in dehydration protocols",
+          "varied performance measures"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["heterogeneity in dehydration protocols", "varied performance measures"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "peerReviewed": true,
+      "pmid": "28275997",
+      "question": "Does rehydration after fluid loss improve subsequent performance?",
+      "status": "current",
+      "tags": [
+        "hydration",
+        "dehydration",
+        "performance",
+        "cognition"
+      ],
       "takeaways": [
         "Fluid intake benefits strongest for continuous exercise tasks",
         "Greater improvement at elevated environmental temperatures",
         "Benefits increase with longer exercise duration",
         "Dehydration of 2%+ body mass impairs endurance performance"
-      ]
+      ],
+      "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28275997/",
+      "year": 2017
     },
     {
-      "id": "paluch-2022-steps-mortality",
-      "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
       "author": "Paluch et al.",
-      "authors": ["Paluch AE", "Bajpai S", "Bassett DR", "Carnethon MR", "Ekelund U", "Evenson KR", "Galuska DA", "Jefferis BJ", "Kraus WE", "Lee IM", "Matthews CE", "Omura JD", "Patel AV", "Piber D", "Rees-Punia E", "Dallmeier D", "Klenk J", "Whincup PH", "Dooley EE", "Pettee Gabriel K", "Palta P", "Pompeii LA", "Chernofsky A", "Larson MG", "Vasan RS", "Spartano NL", "Ballin M", "Nordström P", "Nordström A", "Anderssen SA", "Hansen BH", "Cochrane JA", "Dwyer T", "Wang J", "Ferrucci L", "Liu F", "Schrack JA", "Urbanek JK", "Saint-Maurice PF", "Silva SGD", "Nessa A", "Freedson P", "de Lacey B", "Turakhia M"],
-      "journal": "Lancet Public Health",
-      "year": 2022,
-      "pmid": "35247352",
-      "doi": "10.1016/S2468-2667(21)00302-9",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35247352/",
+      "authors": [
+        "Paluch AE",
+        "Bajpai S",
+        "Bassett DR",
+        "Carnethon MR",
+        "Ekelund U",
+        "Evenson KR",
+        "Galuska DA",
+        "Jefferis BJ",
+        "Kraus WE",
+        "Lee IM",
+        "Matthews CE",
+        "Omura JD",
+        "Patel AV",
+        "Piber D",
+        "Rees-Punia E",
+        "Dallmeier D",
+        "Klenk J",
+        "Whincup PH",
+        "Dooley EE",
+        "Pettee Gabriel K",
+        "Palta P",
+        "Pompeii LA",
+        "Chernofsky A",
+        "Larson MG",
+        "Vasan RS",
+        "Spartano NL",
+        "Ballin M",
+        "Nordström P",
+        "Nordström A",
+        "Anderssen SA",
+        "Hansen BH",
+        "Cochrane JA",
+        "Dwyer T",
+        "Wang J",
+        "Ferrucci L",
+        "Liu F",
+        "Schrack JA",
+        "Urbanek JK",
+        "Saint-Maurice PF",
+        "Silva SGD",
+        "Nessa A",
+        "Freedson P",
+        "de Lacey B",
+        "Turakhia M"
+      ],
       "category": "recovery",
-      "tags": ["steps", "physical-activity", "mortality", "longevity"],
-      "question": "How many daily steps are associated with reduced mortality risk?",
+      "doi": "10.1016/S2468-2667(21)00302-9",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "paluch-2022-steps-mortality",
+      "journal": "Lancet Public Health",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": "7.1 years median follow-up",
+        "limitations": [
+          "observational design",
+          "accelerometer heterogeneity"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adult", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "adult",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": 47471,
-        "duration": "7.1 years median follow-up",
-        "limitations": ["observational design", "accelerometer heterogeneity"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "peerReviewed": true,
+      "pmid": "35247352",
+      "question": "How many daily steps are associated with reduced mortality risk?",
+      "status": "current",
+      "tags": [
+        "steps",
+        "physical-activity",
+        "mortality",
+        "longevity"
+      ],
       "takeaways": [
         "More steps progressively lower mortality risk up to age-specific thresholds",
         "Adults 60+: benefits plateau at 6,000-8,000 steps/day",
         "Adults under 60: benefits continue to 8,000-10,000 steps/day",
         "Highest quartile (10,900 steps) had 40-53% lower mortality vs lowest"
-      ]
+      ],
+      "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35247352/",
+      "year": 2022
     },
     {
-      "id": "cunha-2023-sleep-interventions",
-      "title": "The impact of sleep interventions on athletic performance: a systematic review",
       "author": "Cunha et al.",
-      "authors": ["Cunha LA", "Costa JA", "Marques EA", "Brito J", "Lastella M", "Figueiredo P"],
-      "journal": "Sports Medicine - Open",
-      "year": 2023,
-      "pmid": "37462808",
-      "doi": "10.1186/s40798-023-00599-z",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37462808/",
+      "authors": [
+        "Cunha LA",
+        "Costa JA",
+        "Marques EA",
+        "Brito J",
+        "Lastella M",
+        "Figueiredo P"
+      ],
       "category": "recovery",
-      "tags": ["sleep", "performance", "recovery", "sleep-extension"],
-      "question": "Do sleep interventions improve athletic performance?",
+      "doi": "10.1186/s40798-023-00599-z",
       "evidenceLevel": "2a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "cunha-2023-sleep-interventions",
+      "journal": "Sports Medicine - Open",
       "methodology": {
-        "studyType": "systematic-review",
+        "duration": null,
+        "limitations": [
+          "low quality evidence",
+          "risk of bias in included studies"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adolescent", "young-adult", "adult"],
-          "trainingStatus": ["trained", "elite"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "adolescent",
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["low quality evidence", "risk of bias in included studies"]
+        "studyType": "systematic-review"
       },
+      "peerReviewed": true,
+      "pmid": "37462808",
+      "question": "Do sleep interventions improve athletic performance?",
+      "status": "current",
+      "tags": [
+        "sleep",
+        "performance",
+        "recovery",
+        "sleep-extension"
+      ],
       "takeaways": [
         "Sleep extension and napping most promising interventions",
         "All sleep extension studies showed positive performance impact",
         "Improved reaction time, sprint performance, and sport-specific skills",
         "Sleep extension to 10 hours improved basketball shooting accuracy 9%"
-      ]
+      ],
+      "title": "The impact of sleep interventions on athletic performance: a systematic review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37462808/",
+      "year": 2023
     },
     {
-      "id": "sikorski-2013-prs-validation",
-      "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise",
       "author": "Sikorski et al.",
-      "authors": ["Sikorski EM", "Wilson JM", "Lowery RP", "Joy JM", "Laurent CM", "Wilson SM", "Heber D", "Naimo MA", "Averbuch B", "Gilchrist P"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 2013,
-      "pmid": "23287827",
-      "doi": "10.1519/JSC.0b013e31827dcf41",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/23287827/",
+      "authors": [
+        "Sikorski EM",
+        "Wilson JM",
+        "Lowery RP",
+        "Joy JM",
+        "Laurent CM",
+        "Wilson SM",
+        "Heber D",
+        "Naimo MA",
+        "Averbuch B",
+        "Gilchrist P"
+      ],
       "category": "recovery",
-      "tags": ["recovery", "perceived-recovery", "muscle-damage", "monitoring"],
-      "question": "Does perceived recovery status correlate with physiological markers of recovery?",
+      "doi": "10.1519/JSC.0b013e31827dcf41",
       "evidenceLevel": "2b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "sikorski-2013-prs-validation",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "intervention-study",
+        "duration": "72 hours",
+        "limitations": [
+          "small sample size",
+          "male-only",
+          "single exercise protocol"
+        ],
         "population": {
-          "sex": ["male"],
-          "ageGroup": ["young-adult"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": 10,
-        "duration": "72 hours",
-        "limitations": ["small sample size", "male-only", "single exercise protocol"]
+        "studyType": "intervention-study"
       },
+      "peerReviewed": true,
+      "pmid": "23287827",
+      "question": "Does perceived recovery status correlate with physiological markers of recovery?",
+      "status": "current",
+      "tags": [
+        "recovery",
+        "perceived-recovery",
+        "muscle-damage",
+        "monitoring"
+      ],
       "takeaways": [
         "PRS declined from 8.6 to 4.2 following high-volume resistance exercise",
         "Inverse relationship between creatine kinase and PRS (r = 0.58)",
         "PRS reflects physiological muscle damage markers",
         "Can be used as practical tool for monitoring recovery status"
-      ]
+      ],
+      "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23287827/",
+      "year": 2013
     },
     {
-      "id": "bickel-2011-maintenance-volume",
-      "title": "Exercise dosing to retain resistance training adaptations in young and older adults",
       "author": "Bickel et al.",
-      "authors": ["Bickel CS", "Cross JM", "Bamman MM"],
-      "journal": "Medicine & Science in Sports & Exercise",
-      "year": 2011,
-      "pmid": "21131862",
-      "doi": "10.1249/MSS.0b013e3181fb3d14",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21131862/",
+      "authors": [
+        "Bickel CS",
+        "Cross JM",
+        "Bamman MM"
+      ],
       "category": "maintenance",
-      "tags": ["volume", "aging", "detraining", "muscle-preservation"],
-      "question": "What is the minimum training dose required to maintain resistance training adaptations?",
+      "doi": "10.1249/MSS.0b013e3181fb3d14",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "bickel-2011-maintenance-volume",
+      "journal": "Medicine & Science in Sports & Exercise",
       "methodology": {
-        "studyType": "randomized-controlled-trial",
+        "duration": "48 weeks (16 weeks training + 32 weeks maintenance)",
+        "limitations": [
+          "untrained subjects only",
+          "leg training only"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "older-adult"],
-          "trainingStatus": ["untrained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained"
+          ]
         },
         "sampleSize": 70,
-        "duration": "48 weeks (16 weeks training + 32 weeks maintenance)",
-        "limitations": ["untrained subjects only", "leg training only"]
+        "studyType": "randomized-controlled-trial"
       },
+      "peerReviewed": true,
+      "pmid": "21131862",
+      "question": "What is the minimum training dose required to maintain resistance training adaptations?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "aging",
+        "detraining",
+        "muscle-preservation"
+      ],
       "takeaways": [
         "Young adults maintained muscle size with 1/9 of original training volume (3 sets/week)",
         "Older adults (60-75) required 1/3 of original volume to maintain gains",
         "Strength was largely preserved even with 1/9 volume in both age groups",
         "Intensity (load) is more critical than volume for maintaining adaptations"
-      ]
+      ],
+      "title": "Exercise dosing to retain resistance training adaptations in young and older adults",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21131862/",
+      "year": 2011
     },
     {
-      "id": "spiering-2021-minimal-dose",
-      "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time",
       "author": "Spiering et al.",
-      "authors": ["Spiering BA", "Mujika I", "Sharp MA", "Foulis SA"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 2021,
-      "pmid": "33629972",
-      "doi": "10.1519/JSC.0000000000003964",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33629972/",
+      "authors": [
+        "Spiering BA",
+        "Mujika I",
+        "Sharp MA",
+        "Foulis SA"
+      ],
       "category": "maintenance",
-      "tags": ["volume", "frequency", "minimal-dose", "aging"],
-      "question": "What is the minimal exercise dose needed to preserve strength and muscle over time?",
+      "doi": "10.1519/JSC.0000000000003964",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "spiering-2021-minimal-dose",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review without systematic methodology"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review without systematic methodology"]
+        "studyType": "narrative-review"
       },
+      "peerReviewed": true,
+      "pmid": "33629972",
+      "question": "What is the minimal exercise dose needed to preserve strength and muscle over time?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "frequency",
+        "minimal-dose",
+        "aging"
+      ],
       "takeaways": [
         "Young adults can maintain strength for 32 weeks with 1 session/week and 1 set/exercise",
         "Older adults need 2 sessions/week and 2-3 sets/exercise to maintain muscle size",
         "Exercise intensity (relative load) is the key variable for maintenance",
         "Large reductions in frequency and volume are tolerable if intensity is preserved"
-      ]
+      ],
+      "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33629972/",
+      "year": 2021
     },
     {
-      "id": "schoenfeld-2017-volume-dose-response",
-      "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis",
       "author": "Schoenfeld et al.",
-      "authors": ["Schoenfeld BJ", "Ogborn D", "Krieger JW"],
-      "journal": "Journal of Sports Sciences",
-      "year": 2017,
-      "pmid": "27433992",
-      "doi": "10.1080/02640414.2016.1210197",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27433992/",
+      "authors": [
+        "Schoenfeld BJ",
+        "Ogborn D",
+        "Krieger JW"
+      ],
       "category": "hypertrophy",
-      "tags": ["volume", "dose-response", "sets", "meta-analysis"],
-      "question": "What is the dose-response relationship between weekly training volume and muscle hypertrophy?",
+      "doi": "10.1080/02640414.2016.1210197",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "schoenfeld-2017-volume-dose-response",
+      "journal": "Journal of Sports Sciences",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in training protocols",
+          "limited studies at high volumes"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["heterogeneity in training protocols", "limited studies at high volumes"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "peerReviewed": true,
+      "pmid": "27433992",
+      "question": "What is the dose-response relationship between weekly training volume and muscle hypertrophy?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "dose-response",
+        "sets",
+        "meta-analysis"
+      ],
       "takeaways": [
         "Graded dose-response: more weekly sets produce greater hypertrophy gains",
         "10+ sets per muscle per week significantly outperforms <5 sets",
         "Each additional set increases effect size by 0.023",
         "Higher volumes benefit both trained and untrained individuals"
-      ]
+      ],
+      "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27433992/",
+      "year": 2017
     },
     {
-      "id": "pelland-2025-volume-frequency",
-      "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains",
       "author": "Pelland et al.",
-      "authors": ["Pelland JC", "Robinson ZP", "Remmert JF", "Hinson SK", "Zourdos MC"],
-      "journal": "Sports Medicine",
-      "year": 2025,
-      "pmid": "41343037",
-      "doi": "10.1007/s40279-025-02344-w",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41343037/",
+      "authors": [
+        "Pelland JC",
+        "Robinson ZP",
+        "Remmert JF",
+        "Hinson SK",
+        "Zourdos MC"
+      ],
       "category": "hypertrophy",
-      "tags": ["volume", "frequency", "dose-response", "meta-analysis"],
-      "question": "How do weekly volume and frequency affect hypertrophy and strength gains?",
+      "doi": "10.1007/s40279-025-02344-w",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "pelland-2025-volume-frequency",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-regression",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in set counting methods",
+          "indirect volume estimation"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["heterogeneity in set counting methods", "indirect volume estimation"]
+        "studyType": "systematic-review-with-meta-regression"
       },
+      "peerReviewed": true,
+      "pmid": "41343037",
+      "question": "How do weekly volume and frequency affect hypertrophy and strength gains?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "frequency",
+        "dose-response",
+        "meta-analysis"
+      ],
       "takeaways": [
         "Volume shows diminishing returns for both hypertrophy and strength",
         "Diminishing returns are more pronounced for strength than hypertrophy",
         "Frequency has weak effects on hypertrophy but clear benefits for strength",
         "Direct vs indirect set quantification affects dose-response estimates"
-      ]
+      ],
+      "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41343037/",
+      "year": 2025
     },
     {
-      "id": "remmert-2025-per-session-volume",
-      "title": "Is there too much of a good thing? Meta-regressions of the effect of per-session volume on hypertrophy and strength",
       "author": "Remmert et al.",
-      "authors": ["Remmert JF", "Pelland JC", "Robinson ZP", "Hinson SK", "Zourdos MC"],
-      "journal": "SportRxiv",
-      "year": 2025,
-      "url": "https://sportrxiv.org/index.php/server/preprint/view/537",
+      "authors": [
+        "Remmert JF",
+        "Pelland JC",
+        "Robinson ZP",
+        "Hinson SK",
+        "Zourdos MC"
+      ],
       "category": "hypertrophy",
-      "tags": ["volume", "per-session", "dose-response", "meta-analysis"],
-      "question": "What is the optimal per-session training volume for hypertrophy and strength?",
       "evidenceLevel": "1a",
-      "peerReviewed": false,
-      "status": "current",
       "funding": null,
+      "id": "remmert-2025-per-session-volume",
+      "journal": "SportRxiv",
       "methodology": {
-        "studyType": "systematic-review-with-meta-regression",
+        "duration": null,
+        "limitations": [
+          "preprint awaiting peer review",
+          "indirect volume estimation"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["preprint awaiting peer review", "indirect volume estimation"]
+        "studyType": "systematic-review-with-meta-regression"
       },
+      "peerReviewed": false,
+      "question": "What is the optimal per-session training volume for hypertrophy and strength?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "per-session",
+        "dose-response",
+        "meta-analysis"
+      ],
       "takeaways": [
         "Point of diminishing returns at ~11 sets per session for hypertrophy",
         "Point of diminishing returns at ~2 direct sets per session for strength",
         "Distributing volume across 2-3 weekly sessions may be more efficient",
         "More than 15 sets per muscle per session provides minimal additional benefit"
-      ]
+      ],
+      "title": "Is there too much of a good thing? Meta-regressions of the effect of per-session volume on hypertrophy and strength",
+      "url": "https://sportrxiv.org/index.php/server/preprint/view/537",
+      "year": 2025
     },
     {
-      "id": "ostrowski-1997-volume-maintenance",
-      "title": "The effect of weight training volume on hormonal output and muscular size and function",
       "author": "Ostrowski et al.",
-      "authors": ["Ostrowski KJ", "Wilson GJ", "Weatherby R", "Murphy PW", "Lyttle AD"],
-      "journal": "Journal of Strength and Conditioning Research",
-      "year": 1997,
-      "url": "https://journals.lww.com/nsca-jscr/abstract/1997/08000/the_effect_of_weight_training_volume_on_hormonal.6.aspx",
+      "authors": [
+        "Ostrowski KJ",
+        "Wilson GJ",
+        "Weatherby R",
+        "Murphy PW",
+        "Lyttle AD"
+      ],
       "category": "maintenance",
-      "tags": ["volume", "trained-individuals", "hormones"],
-      "question": "How does training volume affect muscular adaptations in trained individuals?",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "ostrowski-1997-volume-maintenance",
+      "journal": "Journal of Strength and Conditioning Research",
       "methodology": {
-        "studyType": "randomized-controlled-trial",
+        "duration": "10 weeks",
+        "limitations": [
+          "male subjects only",
+          "not indexed in PubMed"
+        ],
         "population": {
-          "sex": ["male"],
-          "ageGroup": ["young-adult"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": 35,
-        "duration": "10 weeks",
-        "limitations": ["male subjects only", "not indexed in PubMed"]
+        "studyType": "randomized-controlled-trial"
       },
+      "peerReviewed": true,
+      "question": "How does training volume affect muscular adaptations in trained individuals?",
+      "status": "current",
+      "tags": [
+        "volume",
+        "trained-individuals",
+        "hormones"
+      ],
       "takeaways": [
         "Trained individuals maintained muscle with 3 sets per muscle group per week",
         "Intensity and frequency must be preserved when reducing volume",
         "No significant difference in hormonal response between volume conditions",
         "Low volume sufficient for maintenance but higher volume may optimize growth"
-      ]
+      ],
+      "title": "The effect of weight training volume on hormonal output and muscular size and function",
+      "url": "https://journals.lww.com/nsca-jscr/abstract/1997/08000/the_effect_of_weight_training_volume_on_hormonal.6.aspx",
+      "year": 1997
     },
     {
-      "id": "jones-2021-sex-differences-older",
-      "title": "Sex Differences in Adaptations in Muscle Strength and Size Following Resistance Training in Older Adults: A Systematic Review and Meta-analysis",
       "author": "Jones et al.",
-      "authors": ["Matthew D Jones", "Michael A Wewege", "Daniel A Hackett", "Justin WL Keogh", "Amanda D Hagstrom"],
-      "journal": "Sports Medicine",
-      "year": 2021,
-      "pmid": "33332016",
-      "doi": "10.1007/s40279-020-01388-4",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33332016/",
-      "volume": "51",
-      "issue": "3",
-      "pages": "503-517",
+      "authors": [
+        "Matthew D Jones",
+        "Michael A Wewege",
+        "Daniel A Hackett",
+        "Justin WL Keogh",
+        "Amanda D Hagstrom"
+      ],
       "category": "hypertrophy",
-      "tags": ["sex-differences", "aging", "strength", "adaptations"],
-      "question": "Are there sex differences in adaptations to resistance training in older adults?",
+      "doi": "10.1007/s40279-020-01388-4",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "jones-2021-sex-differences-older",
+      "issue": "3",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneity in training protocols",
+          "outcome measurement methods varied"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["older-adult"],
-          "trainingStatus": ["untrained", "recreational"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "older-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational"
+          ]
         },
         "sampleSize": 1410,
-        "duration": null,
-        "limitations": ["heterogeneity in training protocols", "outcome measurement methods varied"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "503-517",
+      "peerReviewed": true,
+      "pmid": "33332016",
+      "question": "Are there sex differences in adaptations to resistance training in older adults?",
+      "status": "current",
+      "tags": [
+        "sex-differences",
+        "aging",
+        "strength",
+        "adaptations"
+      ],
       "takeaways": [
         "Women achieve greater relative lower-body strength gains than men",
         "Men show larger absolute gains in upper-body strength, lower-body strength, and muscle size",
         "No significant sex differences in relative upper-body strength or relative muscle size",
         "Interpretation depends heavily on whether results are expressed in absolute or relative terms"
-      ]
+      ],
+      "title": "Sex Differences in Adaptations in Muscle Strength and Size Following Resistance Training in Older Adults: A Systematic Review and Meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33332016/",
+      "volume": "51",
+      "year": 2021
     },
     {
-      "id": "siedler-2023-diet-breaks-females",
-      "title": "The Effects of Intermittent Diet Breaks during 25% Energy Restriction on Body Composition and Resting Metabolic Rate in Resistance-Trained Females: A Randomized Controlled Trial",
       "author": "Siedler et al.",
-      "authors": ["Madelin R Siedler", "Megan H Lewis", "Eric T Trexler", "Priscila Lamadrid", "Brian J Waddell", "Sarah F Bishop", "Gillian SanFilippo", "Kaitlin Callahan", "David Mathas", "Gianna F Mastrofini", "Menno Henselmans", "Fredrik T Vårvik", "Bill I Campbell"],
-      "journal": "Journal of Human Kinetics",
-      "year": 2023,
-      "pmid": "37181269",
-      "doi": "10.5114/jhk/159960",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37181269/",
-      "volume": "86",
-      "issue": null,
-      "pages": "117-132",
+      "authors": [
+        "Madelin R Siedler",
+        "Megan H Lewis",
+        "Eric T Trexler",
+        "Priscila Lamadrid",
+        "Brian J Waddell",
+        "Sarah F Bishop",
+        "Gillian SanFilippo",
+        "Kaitlin Callahan",
+        "David Mathas",
+        "Gianna F Mastrofini",
+        "Menno Henselmans",
+        "Fredrik T Vårvik",
+        "Bill I Campbell"
+      ],
       "category": "fat-loss",
-      "tags": ["body-composition", "metabolism", "sex-differences", "trained-individuals"],
-      "question": "Do intermittent diet breaks improve fat loss outcomes compared to continuous dieting in resistance-trained women?",
+      "doi": "10.5114/jhk/159960",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "siedler-2023-diet-breaks-females",
+      "issue": null,
+      "journal": "Journal of Human Kinetics",
       "methodology": {
-        "studyType": "randomized-controlled-trial",
+        "duration": "6-8 weeks",
+        "limitations": [
+          "short duration",
+          "self-reported dietary intake"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": 38,
-        "duration": "6-8 weeks",
-        "limitations": ["short duration", "self-reported dietary intake"]
+        "studyType": "randomized-controlled-trial"
       },
+      "pages": "117-132",
+      "peerReviewed": true,
+      "pmid": "37181269",
+      "question": "Do intermittent diet breaks improve fat loss outcomes compared to continuous dieting in resistance-trained women?",
+      "status": "current",
+      "tags": [
+        "body-composition",
+        "metabolism",
+        "sex-differences",
+        "trained-individuals"
+      ],
       "takeaways": [
         "No differences in body composition changes between continuous and intermittent dieting",
         "No differences in resting metabolic rate between groups",
         "Diet breaks may reduce disinhibition around food without compromising results",
         "Psychological benefits may exist even without physiological advantages"
-      ]
+      ],
+      "title": "The Effects of Intermittent Diet Breaks during 25% Energy Restriction on Body Composition and Resting Metabolic Rate in Resistance-Trained Females: A Randomized Controlled Trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37181269/",
+      "volume": "86",
+      "year": 2023
     },
     {
-      "id": "peos-2021-icecap-trial",
-      "title": "Continuous versus Intermittent Dieting for Fat Loss and Fat-Free Mass Retention in Resistance-trained Adults: The ICECAP Trial",
       "author": "Peos et al.",
-      "authors": ["Jackson J Peos", "Eric R Helms", "Paul A Fournier", "Julian Ong", "Carly Hall", "James Krieger", "Amanda Sainsbury"],
-      "journal": "Medicine & Science in Sports & Exercise",
-      "year": 2021,
-      "pmid": "33587549",
-      "doi": "10.1249/MSS.0000000000002636",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33587549/",
-      "volume": "53",
-      "issue": "8",
-      "pages": "1685-1698",
+      "authors": [
+        "Jackson J Peos",
+        "Eric R Helms",
+        "Paul A Fournier",
+        "Julian Ong",
+        "Carly Hall",
+        "James Krieger",
+        "Amanda Sainsbury"
+      ],
       "category": "fat-loss",
-      "tags": ["body-composition", "muscle-preservation", "trained-individuals", "recovery"],
-      "question": "Does intermittent energy restriction preserve more muscle than continuous dieting in resistance-trained adults?",
+      "doi": "10.1249/MSS.0000000000002636",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "peos-2021-icecap-trial",
+      "issue": "8",
+      "journal": "Medicine & Science in Sports & Exercise",
       "methodology": {
-        "studyType": "randomized-controlled-trial",
+        "duration": "12 weeks",
+        "limitations": [
+          "adherence challenges",
+          "self-reported intake"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": 61,
-        "duration": "12 weeks",
-        "limitations": ["adherence challenges", "self-reported intake"]
+        "studyType": "randomized-controlled-trial"
       },
+      "pages": "1685-1698",
+      "peerReviewed": true,
+      "pmid": "33587549",
+      "question": "Does intermittent energy restriction preserve more muscle than continuous dieting in resistance-trained adults?",
+      "status": "current",
+      "tags": [
+        "body-composition",
+        "muscle-preservation",
+        "trained-individuals",
+        "recovery"
+      ],
       "takeaways": [
         "Similar fat loss achieved with both intermittent and continuous approaches",
         "Fat-free mass retention was comparable between groups",
         "Intermittent approach associated with lower hunger levels",
         "Diet breaks may improve adherence without compromising outcomes"
-      ]
+      ],
+      "title": "Continuous versus Intermittent Dieting for Fat Loss and Fat-Free Mass Retention in Resistance-trained Adults: The ICECAP Trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33587549/",
+      "volume": "53",
+      "year": 2021
     },
     {
-      "id": "trommelen-2023-protein-no-limit",
-      "title": "The anabolic response to protein ingestion during recovery from exercise has no upper limit in magnitude and duration in vivo in humans",
       "author": "Trommelen et al.",
-      "authors": ["Jorn Trommelen", "Glenn A A van Lieshout", "Jean Nyakayiru", "Andrew M Holwerda", "Joey S J Smeets", "Floris K Hendriks", "Janneau M X van Kranenburg", "Antoine H Zorenc", "Joan M Senden", "Joy P B Goessens", "Annemie P Gijsen", "Luc J C van Loon"],
-      "journal": "Cell Reports Medicine",
-      "year": 2023,
-      "pmid": "38118410",
-      "doi": "10.1016/j.xcrm.2023.101324",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38118410/",
-      "volume": "4",
-      "issue": "12",
-      "pages": "101324",
+      "authors": [
+        "Jorn Trommelen",
+        "Glenn A A van Lieshout",
+        "Jean Nyakayiru",
+        "Andrew M Holwerda",
+        "Joey S J Smeets",
+        "Floris K Hendriks",
+        "Janneau M X van Kranenburg",
+        "Antoine H Zorenc",
+        "Joan M Senden",
+        "Joy P B Goessens",
+        "Annemie P Gijsen",
+        "Luc J C van Loon"
+      ],
       "category": "nutrition",
-      "tags": ["protein", "recovery", "hypertrophy", "dose-response"],
-      "question": "Is there an upper limit to how much protein can stimulate muscle protein synthesis after exercise?",
+      "doi": "10.1016/j.xcrm.2023.101324",
       "evidenceLevel": "1b",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "trommelen-2023-protein-no-limit",
+      "issue": "12",
+      "journal": "Cell Reports Medicine",
       "methodology": {
-        "studyType": "randomized-controlled-trial",
+        "duration": "acute (12+ hours)",
+        "limitations": [
+          "male subjects only",
+          "acute study design"
+        ],
         "population": {
-          "sex": ["male"],
-          "ageGroup": ["young-adult"],
-          "trainingStatus": ["recreational"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male"
+          ],
+          "trainingStatus": [
+            "recreational"
+          ]
         },
         "sampleSize": 36,
-        "duration": "acute (12+ hours)",
-        "limitations": ["male subjects only", "acute study design"]
+        "studyType": "randomized-controlled-trial"
       },
+      "pages": "101324",
+      "peerReviewed": true,
+      "pmid": "38118410",
+      "question": "Is there an upper limit to how much protein can stimulate muscle protein synthesis after exercise?",
+      "status": "current",
+      "tags": [
+        "protein",
+        "recovery",
+        "hypertrophy",
+        "dose-response"
+      ],
       "takeaways": [
         "100g protein produces greater and more prolonged anabolic response than 25g",
         "Anabolic response extends beyond 12 hours with larger protein doses",
         "No significant increase in amino acid oxidation with higher doses",
         "Previous estimates of per-meal protein limits may have been too conservative"
-      ]
+      ],
+      "title": "The anabolic response to protein ingestion during recovery from exercise has no upper limit in magnitude and duration in vivo in humans",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38118410/",
+      "volume": "4",
+      "year": 2023
     },
     {
-      "id": "ashtary-larky-2020-weight-loss-rate",
-      "title": "Effects of gradual weight loss v. rapid weight loss on body composition and RMR: a systematic review and meta-analysis",
       "author": "Ashtary-Larky et al.",
-      "authors": ["Damoon Ashtary-Larky", "Reza Bagheri", "Amir Abbasnezhad", "Grant M Tinsley", "Meysam Alipour", "Alexei Wong"],
-      "journal": "British Journal of Nutrition",
-      "year": 2020,
-      "pmid": "32576318",
-      "doi": "10.1017/S0007114520002469",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32576318/",
-      "volume": "124",
-      "issue": "11",
-      "pages": "1121-1132",
+      "authors": [
+        "Damoon Ashtary-Larky",
+        "Reza Bagheri",
+        "Amir Abbasnezhad",
+        "Grant M Tinsley",
+        "Meysam Alipour",
+        "Alexei Wong"
+      ],
       "category": "fat-loss",
-      "tags": ["body-composition", "metabolism", "dose-response"],
-      "question": "Does the rate of weight loss affect body composition and metabolic rate?",
+      "doi": "10.1017/S0007114520002469",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "ashtary-larky-2020-weight-loss-rate",
+      "issue": "11",
+      "journal": "British Journal of Nutrition",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "limited number of studies",
+          "heterogeneous populations"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["adult"],
-          "trainingStatus": null,
-          "healthStatus": ["obese"]
+          "ageGroup": [
+            "adult"
+          ],
+          "healthStatus": [
+            "obese"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["limited number of studies", "heterogeneous populations"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "1121-1132",
+      "peerReviewed": true,
+      "pmid": "32576318",
+      "question": "Does the rate of weight loss affect body composition and metabolic rate?",
+      "status": "current",
+      "tags": [
+        "body-composition",
+        "metabolism",
+        "dose-response"
+      ],
       "takeaways": [
         "Gradual weight loss results in greater fat mass reduction than rapid weight loss",
         "Gradual approach better preserves resting metabolic rate",
         "No significant difference in fat-free mass retention between approaches",
         "Slower dieting may be more sustainable for long-term results"
-      ]
+      ],
+      "title": "Effects of gradual weight loss v. rapid weight loss on body composition and RMR: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32576318/",
+      "volume": "124",
+      "year": 2020
     },
     {
-      "id": "refalo-2023-proximity-failure",
-      "title": "Influence of Resistance Training Proximity-to-Failure on Skeletal Muscle Hypertrophy: A Systematic Review with Meta-analysis",
       "author": "Refalo et al.",
-      "authors": ["Martin C Refalo", "Eric R Helms", "Eric T Trexler", "D Lee Hamilton", "Jackson J Fyfe"],
-      "journal": "Sports Medicine",
-      "year": 2023,
-      "pmid": "36334240",
-      "doi": "10.1007/s40279-022-01784-y",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36334240/",
-      "volume": "53",
-      "issue": "3",
-      "pages": "649-665",
+      "authors": [
+        "Martin C Refalo",
+        "Eric R Helms",
+        "Eric T Trexler",
+        "D Lee Hamilton",
+        "Jackson J Fyfe"
+      ],
       "category": "hypertrophy",
-      "tags": ["training-intensity", "dose-response", "programming"],
-      "question": "Does training to failure produce greater hypertrophy than stopping short of failure?",
+      "doi": "10.1007/s40279-022-01784-y",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "refalo-2023-proximity-failure",
+      "issue": "3",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "definition of failure varied",
+          "velocity loss thresholds differed"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["definition of failure varied", "velocity loss thresholds differed"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "649-665",
+      "peerReviewed": true,
+      "pmid": "36334240",
+      "question": "Does training to failure produce greater hypertrophy than stopping short of failure?",
+      "status": "current",
+      "tags": [
+        "training-intensity",
+        "dose-response",
+        "programming"
+      ],
       "takeaways": [
         "Training to failure shows only trivial advantage for hypertrophy (ES=0.19)",
         "Higher velocity loss thresholds associated with slightly more hypertrophy",
         "Volume load and relative load do not moderate the effect",
         "Training shy of failure may be sufficient for most trainees"
-      ]
+      ],
+      "title": "Influence of Resistance Training Proximity-to-Failure on Skeletal Muscle Hypertrophy: A Systematic Review with Meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36334240/",
+      "volume": "53",
+      "year": 2023
     },
     {
-      "id": "grgic-2019-time-of-day",
-      "title": "The effects of time of day-specific resistance training on adaptations in skeletal muscle hypertrophy and muscle strength: A systematic review and meta-analysis",
       "author": "Grgic et al.",
-      "authors": ["Jozo Grgic", "Bruno Lazinica", "Alessandro Garofolini", "Brad J Schoenfeld", "Nicholas J Saner", "Pavle Mikulic"],
-      "journal": "Chronobiology International",
-      "year": 2019,
-      "pmid": "30704301",
-      "doi": "10.1080/07420528.2018.1567046",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30704301/",
-      "volume": "36",
-      "issue": "4",
-      "pages": "449-460",
+      "authors": [
+        "Jozo Grgic",
+        "Bruno Lazinica",
+        "Alessandro Garofolini",
+        "Brad J Schoenfeld",
+        "Nicholas J Saner",
+        "Pavle Mikulic"
+      ],
       "category": "hypertrophy",
-      "tags": ["programming", "recovery", "strength"],
-      "question": "Does training time of day affect muscle hypertrophy and strength gains?",
+      "doi": "10.1080/07420528.2018.1567046",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "grgic-2019-time-of-day",
+      "issue": "4",
+      "journal": "Chronobiology International",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "limited number of studies",
+          "training status heterogeneity"
+        ],
         "population": {
-          "sex": ["male", "female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "male",
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["limited number of studies", "training status heterogeneity"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "449-460",
+      "peerReviewed": true,
+      "pmid": "30704301",
+      "question": "Does training time of day affect muscle hypertrophy and strength gains?",
+      "status": "current",
+      "tags": [
+        "programming",
+        "recovery",
+        "strength"
+      ],
       "takeaways": [
         "Strength tends to be higher in the evening at baseline",
         "Training adaptations are generally similar regardless of training time",
         "Consistency in training time may be more important than specific time of day",
         "Individual chronotype may influence optimal training time"
-      ]
+      ],
+      "title": "The effects of time of day-specific resistance training on adaptations in skeletal muscle hypertrophy and muscle strength: A systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30704301/",
+      "volume": "36",
+      "year": 2019
     },
     {
-      "id": "martins-sa-2023-rt-postmenopausal",
-      "title": "Resistance training for postmenopausal women: systematic review and meta-analysis",
       "author": "Martins Sá et al.",
-      "authors": ["Kamilla Mayr Martins Sá", "Gabriela Resende da Silva", "Ulisses Kiskissian Martins", "Mileny Esbravatti Stephano Colovati", "Giuliana Raduan Crizol", "Rachel Riera", "Rafael Leite Pacheco", "Ana Luiza Cabrera Martimbianco"],
-      "journal": "Menopause",
-      "year": 2023,
-      "pmid": "36283059",
-      "doi": "10.1097/GME.0000000000002079",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36283059/",
-      "volume": "30",
-      "issue": "1",
-      "pages": "108-116",
+      "authors": [
+        "Kamilla Mayr Martins Sá",
+        "Gabriela Resende da Silva",
+        "Ulisses Kiskissian Martins",
+        "Mileny Esbravatti Stephano Colovati",
+        "Giuliana Raduan Crizol",
+        "Rachel Riera",
+        "Rafael Leite Pacheco",
+        "Ana Luiza Cabrera Martimbianco"
+      ],
       "category": "hypertrophy",
-      "tags": ["menopause", "strength", "body-composition", "special-populations"],
-      "question": "Does resistance training improve symptoms and functional capacity in postmenopausal women?",
+      "doi": "10.1097/GME.0000000000002079",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "martins-sa-2023-rt-postmenopausal",
+      "issue": "1",
+      "journal": "Menopause",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "low to very low certainty evidence",
+          "heterogeneous interventions"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["middle-aged", "older-adult"],
-          "trainingStatus": ["untrained", "recreational"],
-          "healthStatus": ["postmenopausal"]
+          "ageGroup": [
+            "middle-aged",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "postmenopausal"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational"
+          ]
         },
         "sampleSize": 452,
-        "duration": null,
-        "limitations": ["low to very low certainty evidence", "heterogeneous interventions"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "108-116",
+      "peerReviewed": true,
+      "pmid": "36283059",
+      "question": "Does resistance training improve symptoms and functional capacity in postmenopausal women?",
+      "status": "current",
+      "tags": [
+        "menopause",
+        "strength",
+        "body-composition",
+        "special-populations"
+      ],
       "takeaways": [
         "RT significantly reduces hot flash frequency (RR 13.0 vs control)",
         "Improves functional capacity and bone mineral density",
         "Decreases fat mass compared to no exercise",
         "No serious adverse events reported in included trials"
-      ]
+      ],
+      "title": "Resistance training for postmenopausal women: systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36283059/",
+      "volume": "30",
+      "year": 2023
     },
     {
-      "id": "qian-2023-exercise-sleep-menopause",
-      "title": "The effect of exercise intervention on improving sleep in menopausal women: a systematic review and meta-analysis",
       "author": "Qian et al.",
-      "authors": ["Jialu Qian", "Shiwen Sun", "Man Wang", "Yaping Sun", "Xiangyu Sun", "Cecilia Jevitt", "Xiaoyan Yu"],
-      "journal": "Frontiers in Medicine",
-      "year": 2023,
-      "pmid": "37181372",
-      "doi": "10.3389/fmed.2023.1092294",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37181372/",
-      "volume": "10",
-      "issue": null,
-      "pages": "1092294",
+      "authors": [
+        "Jialu Qian",
+        "Shiwen Sun",
+        "Man Wang",
+        "Yaping Sun",
+        "Xiangyu Sun",
+        "Cecilia Jevitt",
+        "Xiaoyan Yu"
+      ],
       "category": "recovery",
-      "tags": ["menopause", "sleep", "special-populations"],
-      "question": "Does exercise improve sleep quality in menopausal women?",
+      "doi": "10.3389/fmed.2023.1092294",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "qian-2023-exercise-sleep-menopause",
+      "issue": null,
+      "journal": "Frontiers in Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneous exercise protocols",
+          "varied sleep assessment methods"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["middle-aged", "older-adult"],
-          "trainingStatus": null,
-          "healthStatus": ["postmenopausal"]
+          "ageGroup": [
+            "middle-aged",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "postmenopausal"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["heterogeneous exercise protocols", "varied sleep assessment methods"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "1092294",
+      "peerReviewed": true,
+      "pmid": "37181372",
+      "question": "Does exercise improve sleep quality in menopausal women?",
+      "status": "current",
+      "tags": [
+        "menopause",
+        "sleep",
+        "special-populations"
+      ],
       "takeaways": [
         "Exercise significantly reduces insomnia severity (SMD -0.91)",
         "Benefits more pronounced in women with existing sleep disorders",
         "Various exercise types (yoga, aerobic, walking) show benefits",
         "Recommended as non-pharmacological intervention for menopausal sleep issues"
-      ]
+      ],
+      "title": "The effect of exercise intervention on improving sleep in menopausal women: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37181372/",
+      "volume": "10",
+      "year": 2023
     },
     {
-      "id": "davis-2012-weight-gain-menopause",
-      "title": "Understanding weight gain at menopause",
       "author": "Davis et al.",
-      "authors": ["S R Davis", "C Castelo-Branco", "P Chedraui", "M A Lumsden", "R E Nappi", "D Shah", "P Villaseca"],
-      "journal": "Climacteric",
-      "year": 2012,
-      "pmid": "22978257",
-      "doi": "10.3109/13697137.2012.707385",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22978257/",
-      "volume": "15",
-      "issue": "5",
-      "pages": "419-429",
+      "authors": [
+        "S R Davis",
+        "C Castelo-Branco",
+        "P Chedraui",
+        "M A Lumsden",
+        "R E Nappi",
+        "D Shah",
+        "P Villaseca"
+      ],
       "category": "fat-loss",
-      "tags": ["menopause", "body-composition", "metabolism", "special-populations"],
-      "question": "What causes weight gain during menopause and how can it be addressed?",
+      "doi": "10.3109/13697137.2012.707385",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "davis-2012-weight-gain-menopause",
+      "issue": "5",
+      "journal": "Climacteric",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review",
+          "primarily cross-sectional data"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["middle-aged"],
-          "trainingStatus": null,
-          "healthStatus": ["postmenopausal"]
+          "ageGroup": [
+            "middle-aged"
+          ],
+          "healthStatus": [
+            "postmenopausal"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": null
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review", "primarily cross-sectional data"]
+        "studyType": "narrative-review"
       },
+      "pages": "419-429",
+      "peerReviewed": true,
+      "pmid": "22978257",
+      "question": "What causes weight gain during menopause and how can it be addressed?",
+      "status": "current",
+      "tags": [
+        "menopause",
+        "body-composition",
+        "metabolism",
+        "special-populations"
+      ],
       "takeaways": [
         "Weight gain per se is due to aging, not menopause",
         "Hormonal changes cause fat redistribution to abdominal region",
         "Lower estrogen:androgen ratio promotes central adiposity",
         "Estrogen therapy may partly prevent menopause-related body composition changes"
-      ]
+      ],
+      "title": "Understanding weight gain at menopause",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22978257/",
+      "volume": "15",
+      "year": 2012
     },
     {
-      "id": "kemmler-2023-exercise-bmd-postmenopausal",
-      "title": "Exercise training and bone mineral density in postmenopausal women: an updated systematic review and meta-analysis of intervention studies with emphasis on potential moderators",
       "author": "Kemmler et al.",
-      "authors": ["Wolfgang Kemmler", "Matthias Kohl", "Franz Jakob", "Klaus Engelke", "Simon von Stengel"],
-      "journal": "Osteoporosis International",
-      "year": 2023,
-      "pmid": "36749350",
-      "doi": "10.1007/s00198-022-06592-8",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36749350/",
-      "volume": "34",
-      "issue": "7",
-      "pages": "1149-1179",
+      "authors": [
+        "Wolfgang Kemmler",
+        "Matthias Kohl",
+        "Franz Jakob",
+        "Klaus Engelke",
+        "Simon von Stengel"
+      ],
       "category": "safety",
-      "tags": ["menopause", "bone-density", "strength", "special-populations"],
-      "question": "Does exercise improve bone mineral density in postmenopausal women?",
+      "doi": "10.1007/s00198-022-06592-8",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "kemmler-2023-exercise-bmd-postmenopausal",
+      "issue": "7",
+      "journal": "Osteoporosis International",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneous exercise protocols",
+          "varied BMD measurement sites"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["middle-aged", "older-adult"],
-          "trainingStatus": ["untrained", "recreational"],
-          "healthStatus": ["postmenopausal"]
+          "ageGroup": [
+            "middle-aged",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "postmenopausal"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational"
+          ]
         },
         "sampleSize": 5581,
-        "duration": null,
-        "limitations": ["heterogeneous exercise protocols", "varied BMD measurement sites"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "1149-1179",
+      "peerReviewed": true,
+      "pmid": "36749350",
+      "question": "Does exercise improve bone mineral density in postmenopausal women?",
+      "status": "current",
+      "tags": [
+        "menopause",
+        "bone-density",
+        "strength",
+        "special-populations"
+      ],
       "takeaways": [
         "Exercise has positive effect on BMD in postmenopausal women",
         "80 studies with 94 training groups analyzed",
         "Combined RT plus impact exercise most effective for hip and spine",
         "High-intensity training (≥70% 1RM) 3x/week may be optimal"
-      ]
+      ],
+      "title": "Exercise training and bone mineral density in postmenopausal women: an updated systematic review and meta-analysis of intervention studies with emphasis on potential moderators",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36749350/",
+      "volume": "34",
+      "year": 2023
     },
     {
-      "id": "chen-2023-exercise-body-composition-postmenopausal",
-      "title": "The effects of exercise training on body composition in postmenopausal women: a systematic review and meta-analysis",
       "author": "Chen et al.",
-      "authors": ["Nan Chen", "Yong He", "Jie Zhan", "Dongdong Wang", "Yue Guan", "Yuxin Zheng", "Ming Cai"],
-      "journal": "Frontiers in Endocrinology",
-      "year": 2023,
-      "pmid": "37383396",
-      "doi": "10.3389/fendo.2023.1183765",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37383396/",
-      "volume": "14",
-      "issue": null,
-      "pages": "1183765",
+      "authors": [
+        "Nan Chen",
+        "Yong He",
+        "Jie Zhan",
+        "Dongdong Wang",
+        "Yue Guan",
+        "Yuxin Zheng",
+        "Ming Cai"
+      ],
       "category": "fat-loss",
-      "tags": ["menopause", "body-composition", "strength", "cardiovascular", "special-populations"],
-      "question": "How does exercise affect body composition in postmenopausal women?",
+      "doi": "10.3389/fendo.2023.1183765",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "chen-2023-exercise-body-composition-postmenopausal",
+      "issue": null,
+      "journal": "Frontiers in Endocrinology",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneous populations",
+          "varied intervention durations"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["middle-aged", "older-adult"],
-          "trainingStatus": ["untrained", "recreational"],
-          "healthStatus": ["postmenopausal"]
+          "ageGroup": [
+            "middle-aged",
+            "older-adult"
+          ],
+          "healthStatus": [
+            "postmenopausal"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational"
+          ]
         },
         "sampleSize": 5697,
-        "duration": null,
-        "limitations": ["heterogeneous populations", "varied intervention durations"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "1183765",
+      "peerReviewed": true,
+      "pmid": "37383396",
+      "question": "How does exercise affect body composition in postmenopausal women?",
+      "status": "current",
+      "tags": [
+        "menopause",
+        "body-composition",
+        "strength",
+        "cardiovascular",
+        "special-populations"
+      ],
       "takeaways": [
         "Exercise increases muscle mass/volume and fat-free mass",
         "Decreases fat mass, body fat percentage, and visceral fat",
         "Reduces waist circumference effectively",
         "101 studies with 5697 postmenopausal women analyzed"
-      ]
+      ],
+      "title": "The effects of exercise training on body composition in postmenopausal women: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37383396/",
+      "volume": "14",
+      "year": 2023
     },
     {
-      "id": "mcnulty-2020-menstrual-cycle-performance",
-      "title": "The Effects of Menstrual Cycle Phase on Exercise Performance in Eumenorrheic Women: A Systematic Review and Meta-Analysis",
       "author": "McNulty et al.",
-      "authors": ["Kelly Lee McNulty", "Kirsty Jayne Elliott-Sale", "Eimear Dolan", "Paul Alan Swinton", "Paul Ansdell", "Stuart Goodall", "Kevin Thomas", "Kirsty Marie Hicks"],
-      "journal": "Sports Medicine",
-      "year": 2020,
-      "pmid": "32661839",
-      "doi": "10.1007/s40279-020-01319-3",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32661839/",
-      "volume": "50",
-      "issue": "10",
-      "pages": "1813-1827",
+      "authors": [
+        "Kelly Lee McNulty",
+        "Kirsty Jayne Elliott-Sale",
+        "Eimear Dolan",
+        "Paul Alan Swinton",
+        "Paul Ansdell",
+        "Stuart Goodall",
+        "Kevin Thomas",
+        "Kirsty Marie Hicks"
+      ],
       "category": "strength",
-      "tags": ["menstrual-cycle", "performance", "sex-differences", "special-populations"],
-      "question": "Does menstrual cycle phase affect exercise performance in women?",
+      "doi": "10.1007/s40279-020-01319-3",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "mcnulty-2020-menstrual-cycle-performance",
+      "issue": "10",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "low evidence quality (42%)",
+          "inconsistent cycle phase verification"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "recreational", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["low evidence quality (42%)", "inconsistent cycle phase verification"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "1813-1827",
+      "peerReviewed": true,
+      "pmid": "32661839",
+      "question": "Does menstrual cycle phase affect exercise performance in women?",
+      "status": "current",
+      "tags": [
+        "menstrual-cycle",
+        "performance",
+        "sex-differences",
+        "special-populations"
+      ],
       "takeaways": [
         "Trivial reduction in performance during early follicular phase (ES -0.06)",
         "Largest difference between early and late follicular phases (ES -0.14)",
         "Individual variation is substantial; personalized approach recommended",
         "Evidence quality rated as low due to methodological issues"
-      ]
+      ],
+      "title": "The Effects of Menstrual Cycle Phase on Exercise Performance in Eumenorrheic Women: A Systematic Review and Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32661839/",
+      "volume": "50",
+      "year": 2020
     },
     {
-      "id": "colenso-semple-2023-menstrual-cycle-strength",
-      "title": "Current evidence shows no influence of women's menstrual cycle phase on acute strength performance or adaptations to resistance exercise training",
       "author": "Colenso-Semple et al.",
-      "authors": ["Lauren M Colenso-Semple", "Alysha C D'Souza", "Kirsty J Elliott-Sale", "Stuart M Phillips"],
-      "journal": "Frontiers in Sports and Active Living",
-      "year": 2023,
-      "pmid": "37033884",
-      "doi": "10.3389/fspor.2023.1054542",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37033884/",
-      "volume": "5",
-      "issue": null,
-      "pages": "1054542",
+      "authors": [
+        "Lauren M Colenso-Semple",
+        "Alysha C D'Souza",
+        "Kirsty J Elliott-Sale",
+        "Stuart M Phillips"
+      ],
       "category": "hypertrophy",
-      "tags": ["menstrual-cycle", "strength", "hypertrophy", "sex-differences"],
-      "question": "Does menstrual cycle phase influence strength performance or resistance training adaptations?",
+      "doi": "10.3389/fspor.2023.1054542",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "colenso-semple-2023-menstrual-cycle-strength",
+      "issue": null,
+      "journal": "Frontiers in Sports and Active Living",
       "methodology": {
-        "studyType": "umbrella-review",
+        "duration": null,
+        "limitations": [
+          "inconsistent cycle verification methods",
+          "high variability across studies"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "recreational", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational",
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["inconsistent cycle verification methods", "high variability across studies"]
+        "studyType": "umbrella-review"
       },
+      "pages": "1054542",
+      "peerReviewed": true,
+      "pmid": "37033884",
+      "question": "Does menstrual cycle phase influence strength performance or resistance training adaptations?",
+      "status": "current",
+      "tags": [
+        "menstrual-cycle",
+        "strength",
+        "hypertrophy",
+        "sex-differences"
+      ],
       "takeaways": [
         "No consistent evidence that cycle phase affects strength performance",
         "Premature to conclude hormones influence training adaptations",
         "Cycle-phase-based training planning is impractical due to individual variation",
         "Methodological quality of existing studies is poor"
-      ]
+      ],
+      "title": "Current evidence shows no influence of women's menstrual cycle phase on acute strength performance or adaptations to resistance exercise training",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37033884/",
+      "volume": "5",
+      "year": 2023
     },
     {
-      "id": "kissow-2022-follicular-luteal-training",
-      "title": "Effects of Follicular and Luteal Phase-Based Menstrual Cycle Resistance Training on Muscle Strength and Mass",
       "author": "Kissow et al.",
-      "authors": ["Julie Kissow", "Kamine J Jacobsen", "Thomas P Gunnarsson", "Søren Jessen", "Morten Hostrup"],
-      "journal": "Sports Medicine",
-      "year": 2022,
-      "pmid": "35471634",
-      "doi": "10.1007/s40279-022-01679-y",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35471634/",
-      "volume": "52",
-      "issue": "12",
-      "pages": "2813-2819",
+      "authors": [
+        "Julie Kissow",
+        "Kamine J Jacobsen",
+        "Thomas P Gunnarsson",
+        "Søren Jessen",
+        "Morten Hostrup"
+      ],
       "category": "hypertrophy",
-      "tags": ["menstrual-cycle", "strength", "hypertrophy", "programming", "sex-differences"],
-      "question": "Is training during the follicular phase more effective than luteal phase for muscle gains?",
+      "doi": "10.1007/s40279-022-01679-y",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "kissow-2022-follicular-luteal-training",
+      "issue": "12",
+      "journal": "Sports Medicine",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review",
+          "limited intervention studies"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "trained"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review", "limited intervention studies"]
+        "studyType": "narrative-review"
       },
+      "pages": "2813-2819",
+      "peerReviewed": true,
+      "pmid": "35471634",
+      "question": "Is training during the follicular phase more effective than luteal phase for muscle gains?",
+      "status": "current",
+      "tags": [
+        "menstrual-cycle",
+        "strength",
+        "hypertrophy",
+        "programming",
+        "sex-differences"
+      ],
       "takeaways": [
         "Strength and anaerobic capacity may peak during follicular phase",
         "Estrogen regulates protein metabolism and muscle recovery",
         "Follicular phase training may be superior for strength and mass gains",
         "More research needed on practical implementation"
-      ]
+      ],
+      "title": "Effects of Follicular and Luteal Phase-Based Menstrual Cycle Resistance Training on Muscle Strength and Mass",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35471634/",
+      "volume": "52",
+      "year": 2022
     },
     {
-      "id": "niering-2024-menstrual-cycle-strength",
-      "title": "The Influence of Menstrual Cycle Phases on Maximal Strength Performance in Healthy Female Adults: A Systematic Review with Meta-Analysis",
       "author": "Niering et al.",
-      "authors": ["Marc Niering", "Nacera Wolf-Belala", "Johanna Seifert", "Ole Tovar", "Jacqueline Coldewey", "Jennifer Kuranda", "Thomas Muehlbauer"],
-      "journal": "Sports (Basel)",
-      "year": 2024,
-      "pmid": "38251305",
-      "doi": "10.3390/sports12010031",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38251305/",
-      "volume": "12",
-      "issue": "1",
-      "pages": "31",
+      "authors": [
+        "Marc Niering",
+        "Nacera Wolf-Belala",
+        "Johanna Seifert",
+        "Ole Tovar",
+        "Jacqueline Coldewey",
+        "Jennifer Kuranda",
+        "Thomas Muehlbauer"
+      ],
       "category": "strength",
-      "tags": ["menstrual-cycle", "strength", "performance", "sex-differences"],
-      "question": "Which menstrual cycle phase is optimal for maximal strength performance?",
+      "doi": "10.3390/sports12010031",
       "evidenceLevel": "1a",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "niering-2024-menstrual-cycle-strength",
+      "issue": "1",
+      "journal": "Sports (Basel)",
       "methodology": {
-        "studyType": "systematic-review-with-meta-analysis",
+        "duration": null,
+        "limitations": [
+          "heterogeneous strength testing methods",
+          "varied cycle verification"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["untrained", "recreational", "trained"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "untrained",
+            "recreational",
+            "trained"
+          ]
         },
         "sampleSize": 433,
-        "duration": null,
-        "limitations": ["heterogeneous strength testing methods", "varied cycle verification"]
+        "studyType": "systematic-review-with-meta-analysis"
       },
+      "pages": "31",
+      "peerReviewed": true,
+      "pmid": "38251305",
+      "question": "Which menstrual cycle phase is optimal for maximal strength performance?",
+      "status": "current",
+      "tags": [
+        "menstrual-cycle",
+        "strength",
+        "performance",
+        "sex-differences"
+      ],
       "takeaways": [
         "Late follicular phase optimal for isometric strength (medium effect)",
         "Ovulatory phase optimal for isokinetic strength",
         "Early follicular phase unfavorable for all strength types",
         "22 studies with 433 subjects analyzed"
-      ]
+      ],
+      "title": "The Influence of Menstrual Cycle Phases on Maximal Strength Performance in Healthy Female Adults: A Systematic Review with Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38251305/",
+      "volume": "12",
+      "year": 2024
     },
     {
-      "id": "carmichael-2021-menstrual-cycle-athletes",
-      "title": "The Impact of Menstrual Cycle Phase on Athletes' Performance: A Narrative Review",
       "author": "Carmichael et al.",
-      "authors": ["Mikaeli Anne Carmichael", "Rebecca Louise Thomson", "Lisa Jane Moran", "Thomas Philip Wycherley"],
-      "journal": "International Journal of Environmental Research and Public Health",
-      "year": 2021,
-      "pmid": "33572406",
-      "doi": "10.3390/ijerph18041667",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33572406/",
-      "volume": "18",
-      "issue": "4",
-      "pages": "1667",
+      "authors": [
+        "Mikaeli Anne Carmichael",
+        "Rebecca Louise Thomson",
+        "Lisa Jane Moran",
+        "Thomas Philip Wycherley"
+      ],
       "category": "strength",
-      "tags": ["menstrual-cycle", "performance", "special-populations", "elite"],
-      "question": "How does menstrual cycle phase affect perceived vs objective athletic performance?",
+      "doi": "10.3390/ijerph18041667",
       "evidenceLevel": "5",
-      "peerReviewed": true,
-      "status": "current",
       "funding": null,
+      "id": "carmichael-2021-menstrual-cycle-athletes",
+      "issue": "4",
+      "journal": "International Journal of Environmental Research and Public Health",
       "methodology": {
-        "studyType": "narrative-review",
+        "duration": null,
+        "limitations": [
+          "narrative review",
+          "variable study designs"
+        ],
         "population": {
-          "sex": ["female"],
-          "ageGroup": ["young-adult", "adult"],
-          "trainingStatus": ["trained", "elite"],
-          "healthStatus": ["healthy"]
+          "ageGroup": [
+            "young-adult",
+            "adult"
+          ],
+          "healthStatus": [
+            "healthy"
+          ],
+          "sex": [
+            "female"
+          ],
+          "trainingStatus": [
+            "trained",
+            "elite"
+          ]
         },
         "sampleSize": null,
-        "duration": null,
-        "limitations": ["narrative review", "variable study designs"]
+        "studyType": "narrative-review"
       },
+      "pages": "1667",
+      "peerReviewed": true,
+      "pmid": "33572406",
+      "question": "How does menstrual cycle phase affect perceived vs objective athletic performance?",
+      "status": "current",
+      "tags": [
+        "menstrual-cycle",
+        "performance",
+        "special-populations",
+        "elite"
+      ],
       "takeaways": [
         "Athletes perceive worse performance in early follicular and late luteal phases",
         "Objective testing shows no clear, consistent effects across phases",
         "Individual variation is substantial; some athletes affected more than others",
         "Both psychological and physiological factors influence overall performance"
-      ]
+      ],
+      "title": "The Impact of Menstrual Cycle Phase on Athletes' Performance: A Narrative Review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33572406/",
+      "volume": "18",
+      "year": 2021
     }
   ]
 }

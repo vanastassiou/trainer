@@ -107,6 +107,7 @@ function filterGlossary() {
     filtered = filtered.filter(t => t.category === category);
   }
 
+  filtered = [...filtered].sort((a, b) => a.term.localeCompare(b.term));
   renderGlossaryList(filtered);
 }
 
@@ -197,7 +198,8 @@ export async function initLearnPage() {
   // Glossary
   const glossaryData = await loadGlossary();
   populateGlossaryCategoryFilter(glossaryData.glossary.categories);
-  renderGlossaryList(glossaryData.glossary.terms);
+  const sortedTerms = [...glossaryData.glossary.terms].sort((a, b) => a.term.localeCompare(b.term));
+  renderGlossaryList(sortedTerms);
   document.getElementById('glossary-category-filter').addEventListener('change', filterGlossary);
 
   // References
