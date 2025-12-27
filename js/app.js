@@ -175,16 +175,17 @@ function initDateNavigation() {
 
   // Calendar month navigation
   const calendarModal = document.getElementById('calendar-modal');
-  calendarModal.querySelector('.month-nav.prev').addEventListener('click', () => {
+  calendarModal.querySelector('.month-nav.prev').addEventListener('click', async () => {
     state.calendarMonth.month--;
     if (state.calendarMonth.month < 0) {
       state.calendarMonth.month = 11;
       state.calendarMonth.year--;
     }
+    await loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
     renderCalendar();
   });
 
-  calendarModal.querySelector('.month-nav.next').addEventListener('click', () => {
+  calendarModal.querySelector('.month-nav.next').addEventListener('click', async () => {
     const today = new Date();
     const nextMonth = new Date(state.calendarMonth.year, state.calendarMonth.month + 1, 1);
     if (nextMonth <= new Date(today.getFullYear(), today.getMonth() + 1, 1)) {
@@ -193,6 +194,7 @@ function initDateNavigation() {
         state.calendarMonth.month = 0;
         state.calendarMonth.year++;
       }
+      await loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
       renderCalendar();
     }
   });
@@ -216,11 +218,11 @@ function navigateDate(delta) {
   }
 }
 
-function openCalendar() {
+async function openCalendar() {
   const dateStr = state.selectedDate || getTodayDate();
   const date = new Date(dateStr + 'T00:00:00');
   state.calendarMonth = { year: date.getFullYear(), month: date.getMonth() };
-  loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
+  await loadJournalDatesForMonth(state.calendarMonth.year, state.calendarMonth.month);
   renderCalendar();
   state.calendarDialog.open();
 }
