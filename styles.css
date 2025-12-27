@@ -1697,14 +1697,16 @@ input::placeholder {
 }
 
 /* Glossary term links */
-[data-term] {
+[data-term],
+.exercise-link {
   cursor: pointer;
   text-decoration: underline;
   text-decoration-style: dotted;
   text-underline-offset: 2px;
 }
 
-[data-term]:hover {
+[data-term]:hover,
+.exercise-link:hover {
   color: var(--color-primary);
 }
 
