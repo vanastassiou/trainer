@@ -567,19 +567,33 @@ input::placeholder {
 
 .field-group {
   display: grid;
-  grid-template-columns: 1fr 70px 1fr 70px;
-  gap: var(--spacing-sm) var(--spacing-lg);
-  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm) var(--spacing-md);
+  align-items: end;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .field-group {
-    grid-template-columns: 1fr 70px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@media (max-width: 320px) {
+  .field-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-group .data-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
 .field-group .data-row label {
-  text-align: start;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-align: center;
 }
 
 .field-group .data-row input {
@@ -588,11 +602,15 @@ input::placeholder {
 
 .field-group-label {
   font-weight: 500;
-  margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
 }
 
 .field-group-label:first-child {
   margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .measurements-form {
@@ -3065,11 +3083,6 @@ input::placeholder {
    ============================================================================= */
 
 @layer overrides {
-
-/* Field group layout override (higher precedence than utilities .data-row) */
-.field-group .data-row {
-  display: contents;
-}
 
 /* WCAG 2.3.3: Animation from interactions - respect user preference */
 @media (prefers-reduced-motion: reduce) {
