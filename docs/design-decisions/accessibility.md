@@ -38,11 +38,12 @@ All color combinations meet WCAG 2.2 contrast requirements.
 
 ### Focus visible (2.4.7)
 
-All interactive elements have visible focus indicators:
+All interactive elements have visible focus indicators using standardized tokens
+(`--focus-ring` and `--focus-offset`):
 
 - **Buttons**: 2px solid amber outline with 2px offset
-- **Form inputs**: Amber border with 2px box-shadow
-- **Tabs**: 2px solid amber outline (inset for primary tabs)
+- **Form inputs**: Amber border with box-shadow, plus outline on `:focus-visible`
+- **Tabs**: 2px solid amber outline with 2px offset
 - **Calendar days**: 2px solid amber outline with 2px offset
 - **Program cards**: 2px solid amber outline with 2px offset
 
@@ -114,6 +115,7 @@ Compliance verified using:
 
 ## Changes log
 
-| Date | Change |
-| ---- | ------ |
-| 2025-12-26 | Initial WCAG 2.2 AA compliance implementation |
+| Date       | Change                                                      |
+| ---------- | ----------------------------------------------------------- |
+| 2025-12-28 | Standardized focus tokens, consistent tab focus offset      |
+| 2025-12-26 | Initial WCAG 2.2 AA compliance implementation               |
