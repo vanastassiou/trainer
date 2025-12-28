@@ -32,11 +32,11 @@
     /* Show correct tab/page before JS loads based on saved preference */
     html[data-tab="metrics"] #metrics,
     html[data-tab="workouts"] #workouts,
-    html[data-tab="learn"] #learn,
-    html[data-tab="profile"] #profile { display: block; }
+    html[data-tab="profile"] #profile,
+    html[data-tab="about"] #about,
+    html[data-tab="learn"] #learn { display: block; }
     html[data-tab="metrics"] .tab[data-tab="metrics"],
     html[data-tab="workouts"] .tab[data-tab="workouts"],
-    html[data-tab="learn"] .tab[data-tab="learn"],
     html[data-tab="profile"] .tab[data-tab="profile"] {
       background: var(--color-secondary-light);
       color: var(--color-secondary);
@@ -49,7 +49,6 @@
     <nav class="tabs">
       <button class="tab" data-tab="metrics">Metrics</button>
       <button class="tab" data-tab="workouts">Workouts</button>
-      <button class="tab" data-tab="learn">Learn</button>
       <button class="tab" data-tab="profile">Profile</button>
     </nav>
     <div id="profile-stats" class="stats-bar">
@@ -227,12 +226,6 @@
     </section>
 
     <section id="learn" class="page">
-      <nav class="sub-tabs">
-        <button class="sub-tab active" data-subtab="articles">Articles</button>
-        <button class="sub-tab" data-subtab="glossary">Glossary</button>
-        <button class="sub-tab" data-subtab="references">References</button>
-      </nav>
-
       <div id="articles" class="sub-page active">
         <div class="learn-filters learn-filters--single">
           <select id="article-category-filter">
@@ -292,7 +285,7 @@
 
         <form id="profile-form" class="profile-form">
           <label for="profile-name">Name</label>
-          <input type="text" id="profile-name" name="name" placeholder="Your name">
+          <input type="text" id="profile-name" name="name">
 
           <label for="profile-birthdate"><span data-term="age">Birthdate</span></label>
           <input type="date" id="profile-birthdate" name="birthDate">
@@ -306,7 +299,7 @@
           <label for="profile-height"><span data-term="height">Height</span> <span id="height-label-unit">(cm)</span></label>
           <div class="height-inputs">
             <div id="height-metric-input" class="input-with-unit">
-              <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0" placeholder="170">
+              <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0">
             </div>
             <div id="height-imperial-input" class="input-with-unit hidden">
               <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">
@@ -334,24 +327,12 @@
           </p>
         </div>
 
-        <form id="add-goal-form" class="add-goal-form">
-          <h4>Add goal</h4>
+        <button type="button" id="add-goal-btn" class="btn outline-accent full">+ Add goal</button>
 
-          <label for="goal-metric">Metric</label>
-          <select id="goal-metric" name="metric" required>
-              <option value="weight">Weight</option>
-              <option value="bodyFat">Body fat %</option>
-              <option value="waistToHeightRatio">Waist-to-height ratio</option>
-          </select>
-          <label for="goal-target">Target <span id="goal-target-unit"></span></label>
-          <input type="number" id="goal-target" name="target" inputmode="decimal" step="any" required>
-          <button type="submit" class="btn accent">Add</button>
-        </form>
-
-        <div id="completed-goals-section" class="completed-goals">
-          <h4>Completed</h4>
+        <details id="completed-goals-section" class="completed-goals">
+          <summary>Completed</summary>
           <div id="completed-goals-list"></div>
-        </div>
+        </details>
       </div>
 
       <div id="programs" class="profile-section">
@@ -454,7 +435,41 @@
         </div>
       </div>
     </section>
+
+    <section id="about" class="page">
+      <h2>About</h2>
+      <p class="about-intro">Health Tracker is a privacy-focused fitness app that runs entirely in your browser.</p>
+
+      <div class="about-section">
+        <h3>Features</h3>
+        <ul>
+          <li>Track workouts, body measurements, and daily metrics</li>
+          <li>Create and manage training programs</li>
+          <li>Set and monitor fitness goals</li>
+          <li>Works offline with no account required</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <h3>Privacy</h3>
+        <p>All your data stays on your device. Nothing is sent to any server. You can export your data anytime from the Profile tab.</p>
+      </div>
+
+      <div class="about-section">
+        <h3>Version</h3>
+        <p>v1.0.0</p>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <button type="button" class="footer-link" data-tab="learn" data-subtab="articles">FAQ</button>
+      <button type="button" class="footer-link" data-tab="learn" data-subtab="glossary">Glossary</button>
+      <button type="button" class="footer-link" data-tab="learn" data-subtab="references">References</button>
+      <button type="button" class="footer-link" data-tab="about">About</button>
+    </nav>
+  </footer>
 
   <!-- Exercise Info Dialog -->
   <dialog id="exercise-info-modal" class="modal-dialog">
@@ -594,6 +609,30 @@
       </div>
       <div class="calendar-grid"></div>
       <button type="button" class="btn accent full today-btn">Today</button>
+    </div>
+  </dialog>
+
+  <!-- Add Goal Dialog -->
+  <dialog id="add-goal-modal" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add goal</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <form id="add-goal-form" class="add-goal-form">
+        <div class="form-group">
+          <label for="goal-metric">Metric</label>
+          <select id="goal-metric" name="metric" required>
+            <option value="bodyFat">Body fat %</option>
+            <option value="waistToHeightRatio">Waist-to-height ratio</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="goal-target">Target <span id="goal-target-unit"></span></label>
+          <input type="number" id="goal-target" name="target" inputmode="decimal" step="any" required>
+        </div>
+        <button type="submit" class="btn accent full">Add goal</button>
+      </form>
     </div>
   </dialog>
 
