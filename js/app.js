@@ -48,7 +48,7 @@ import {
   refreshProgramUI
 } from './programs.js';
 
-import { initProfile, renderGoalsList, DIRECTION_CONFIG } from './goals.js';
+import { initProfile, renderGoalsList } from './goals.js';
 import { initLearnPage, initGlossaryModal } from './learn.js';
 
 // =============================================================================
@@ -127,8 +127,8 @@ function registerServiceWorker() {
 // =============================================================================
 
 function initTabs() {
-  // Main tabs: metrics, workouts, learn, profile
-  createTabController('.tabs > .tab', 'main > section.page', {
+  // Main tabs: metrics, workouts, profile (and learn/about via footer)
+  const mainTabs = createTabController('.tabs > .tab', 'main > section.page', {
     storageKey: 'activeTab',
     tabAttr: 'data-tab',
     onActivate: (tabId) => {
@@ -152,12 +152,21 @@ function initTabs() {
     }
   );
 
-  // Sub-tabs: Learn
-  createTabController(
-    '#learn > .sub-tabs > .sub-tab',
-    '#learn > .sub-page',
-    { tabAttr: 'data-subtab' }
-  );
+  // Footer navigation links
+  document.querySelectorAll('.footer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const tabId = link.dataset.tab;
+      const subtabId = link.dataset.subtab;
+
+      // Activate the main page (or sub-page for learn sections)
+      if (subtabId && tabId === 'learn') {
+        // For learn sub-pages, activate the sub-page directly
+        document.querySelectorAll('#learn > .sub-page').forEach(p => p.classList.remove('active'));
+        document.getElementById(subtabId)?.classList.add('active');
+      }
+      mainTabs.activate(tabId);
+    });
+  });
 }
 
 // =============================================================================

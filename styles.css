@@ -2926,3 +2926,99 @@ input::placeholder {
     --color-tertiary-light: rgba(249, 168, 212, 0.25);
   }
 }
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+
+.site-footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.footer-link {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* =============================================================================
+   ABOUT PAGE
+   ============================================================================= */
+
+#about h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.about-intro {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.about-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.about-section:last-child {
+  margin-bottom: 0;
+}
+
+.about-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.about-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.about-section ul {
+  margin: 0;
+  padding-inline-start: 20px;
+}
+
+.about-section li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-section li:last-child {
+  margin-bottom: 0;
+}
