@@ -1,3 +1,28 @@
+/* =============================================================================
+   CASCADE LAYERS
+   ============================================================================= */
+
+@layer reset, tokens, base, components, utilities, overrides;
+
+/* =============================================================================
+   TOKENS
+   ============================================================================= */
+
+@layer tokens {
+
+/* Typed custom properties for animatable values (85% browser support) */
+@property --color-primary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c4b5fd;
+}
+
+@property --color-secondary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fbbf24;
+}
+
 :root {
   /* Slate Purple + Amber theme */
   --color-bg: #14131a;
@@ -43,13 +68,37 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease-out;
+  --transition-slow: 0.3s ease;
+
+  /* Additional radius */
+  --radius-xs: 3px;
+
+  /* Focus ring (for consistency) */
+  --focus-ring: 2px solid var(--color-secondary);
+  --focus-offset: 2px;
 }
+
+} /* end @layer tokens */
+
+/* =============================================================================
+   RESET
+   ============================================================================= */
+
+@layer reset {
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+} /* end @layer reset */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+@layer base {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -65,6 +114,14 @@ body {
   scroll-margin-top: 80px;
   scroll-margin-bottom: 20px;
 }
+
+} /* end @layer base */
+
+/* =============================================================================
+   COMPONENTS
+   ============================================================================= */
+
+@layer components {
 
 /* =============================================================================
    LAYOUT
@@ -134,7 +191,7 @@ header {
 }
 
 main {
-  padding: 16px;
+  padding: var(--spacing-xl);
   max-width: 500px;
   margin: 0 auto;
 }
@@ -145,19 +202,23 @@ main {
   }
 }
 
-.hidden { display: none !important; }
-.page { display: none; }
-.page.active { display: block; }
+} /* end @layer components (layout section) */
 
 /* =============================================================================
    UTILITIES
    ============================================================================= */
 
+@layer utilities {
+
+.hidden { display: none !important; }
+.page { display: none; }
+.page.active { display: block; }
+
 /* Flex row utility */
 .row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .row--gap-sm { gap: var(--spacing-sm); }
@@ -168,7 +229,7 @@ main {
 .data-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .data-row label {
@@ -196,6 +257,10 @@ main {
   letter-spacing: 0.5px;
 }
 
+} /* end @layer utilities */
+
+@layer components {
+
 /* =============================================================================
    CARDS (shared)
    ============================================================================= */
@@ -204,14 +269,14 @@ main {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: var(--spacing-xl);
 
   &--inset {
     background: var(--color-bg);
   }
 
   &--compact {
-    padding: 12px;
+    padding: var(--spacing-lg);
   }
 
   &--active {
@@ -223,7 +288,7 @@ main {
 /* Card-specific overrides (base styles from .card class) */
 .exercise-card {
   box-shadow: var(--shadow);
-  padding: 12px;
+  padding: var(--spacing-lg);
 }
 
 .edit-exercise-btn {
@@ -341,13 +406,13 @@ button {
 form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-xl);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-xs);
 }
 
 label {
@@ -378,6 +443,12 @@ select:focus {
   box-shadow: 0 0 0 2px var(--color-secondary-light);
 }
 
+input:focus-visible,
+select:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
 input::placeholder {
   color: var(--color-text-muted);
 }
@@ -389,7 +460,7 @@ input::placeholder {
 
 .form-buttons {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .form-buttons .btn:first-child {
@@ -433,15 +504,15 @@ input::placeholder {
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: -2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 /* Sub-tabs */
 .sub-tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .sub-tab {
@@ -456,7 +527,7 @@ input::placeholder {
 
 @media (max-width: 360px) {
   .sub-tabs {
-    gap: 4px;
+    gap: var(--spacing-xs);
   }
 
   .sub-tab {
@@ -477,8 +548,8 @@ input::placeholder {
 }
 
 .sub-tab:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .sub-page { display: none; }
@@ -496,41 +567,50 @@ input::placeholder {
 
 .field-group {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-sm) var(--gap-grid);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm) var(--spacing-md);
+  align-items: end;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
+  .field-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 320px) {
   .field-group {
     grid-template-columns: 1fr;
   }
 }
 
 .field-group .data-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .field-group .data-row label {
-  width: auto;
-  text-align: start;
-  justify-self: start;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-align: center;
 }
 
 .field-group .data-row input {
-  width: 70px;
-  justify-self: end;
+  width: 100%;
 }
 
 .field-group-label {
   font-weight: 500;
-  margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
 }
 
 .field-group-label:first-child {
   margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .measurements-form {
@@ -556,7 +636,7 @@ input::placeholder {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 #measurement-fields-container .data-row label {
@@ -587,9 +667,9 @@ input::placeholder {
 
 .exercise-header {
   display: flex;
-  gap: 10px;
+  gap: var(--spacing-lg);
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .exercise-card.collapsed .exercise-header {
@@ -660,7 +740,7 @@ input::placeholder {
 .sets-container {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-xs);
   background: var(--color-surface);
   border-radius: var(--radius);
   padding: 8px;
@@ -671,7 +751,7 @@ input::placeholder {
 .set-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-sm);
 }
 
 .set-label {
@@ -714,7 +794,7 @@ input::placeholder {
 
 .set-actions {
   display: flex;
-  gap: 4px;
+  gap: var(--spacing-xs);
   flex: 0 0 64px;
 }
 
@@ -727,7 +807,7 @@ input::placeholder {
   cursor: pointer;
   font-size: 16px;
   opacity: 0.4;
-  transition: opacity 0.15s ease;
+  transition: opacity var(--transition-fast);
 }
 
 .notes-btn:hover,
@@ -748,7 +828,7 @@ input::placeholder {
   background: transparent;
   cursor: pointer;
   font-size: 18px;
-  transition: opacity 0.15s ease;
+  transition: opacity var(--transition-fast);
 }
 
 .save-set-btn:hover,
@@ -806,12 +886,12 @@ input::placeholder {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 12px 16px;
+  padding: var(--spacing-lg) var(--spacing-xl);
   width: 100%;
   max-width: 320px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-lg);
 }
 
 .set-notes-header {
@@ -870,18 +950,18 @@ input::placeholder {
    ============================================================================= */
 
 .program-selector {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-xl);
 }
 
 .program-selector .form-group {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .program-selector .form-group > label {
@@ -898,7 +978,7 @@ input::placeholder {
 .day-selector {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-sm);
 }
 
 @media (max-width: 400px) {
@@ -932,7 +1012,7 @@ input::placeholder {
 }
 
 .program-card {
-  padding: 12px 16px;
+  padding: var(--spacing-lg) var(--spacing-xl);
 }
 
 .program-card.active {
@@ -941,8 +1021,8 @@ input::placeholder {
 }
 
 .program-card:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .program-card .program-header {
@@ -955,7 +1035,7 @@ input::placeholder {
 .program-card .program-header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-lg);
 }
 
 .program-card .expand-icon {
@@ -983,7 +1063,7 @@ input::placeholder {
   color: var(--color-text-muted);
   background: var(--color-bg);
   padding: 4px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .program-card .program-details {
@@ -997,7 +1077,7 @@ input::placeholder {
 
 .program-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-md);
   margin-top: 12px;
 }
 
@@ -1006,14 +1086,14 @@ input::placeholder {
 }
 
 #create-program h3 {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
   font-size: 16px;
   font-weight: 600;
   color: var(--color-secondary);
 }
 
 #create-program .form-group {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 #create-program fieldset {
@@ -1026,21 +1106,21 @@ input::placeholder {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-md);
 }
 
 .checkbox-group,
 .radio-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  gap: var(--spacing-md) var(--spacing-xl);
 }
 
 .checkbox-label,
 .radio-label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-sm);
   font-size: 14px;
   cursor: pointer;
 }
@@ -1066,19 +1146,19 @@ input::placeholder {
 
 /* Program days builder */
 .program-days-builder {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .program-days-builder > label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-lg);
 }
 
 #program-days-container {
   display: flex;
   flex-direction: column;
   gap: var(--gap-grid);
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-lg);
 }
 
 #program-days-container:empty {
@@ -1094,7 +1174,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .program-day-label {
@@ -1106,19 +1186,19 @@ input::placeholder {
 .program-day-exercises {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
   min-height: 22px;
 }
 
 .exercise-tag {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-xs);
   background: var(--color-primary);
   color: var(--color-bg);
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 500;
   min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
@@ -1162,7 +1242,7 @@ input::placeholder {
 .exercise-tag--detailed .exercise-tag-header {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-xs);
 }
 
 .exercise-tag--detailed .exercise-name {
@@ -1195,10 +1275,10 @@ input::placeholder {
 
 /* Program preview */
 .program-days-preview {
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .program-day-preview {
@@ -1207,7 +1287,7 @@ input::placeholder {
   padding: 10px 12px;
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: var(--spacing-lg);
 }
 
 .program-day-preview strong {
@@ -1230,12 +1310,12 @@ input::placeholder {
 .section-desc {
   font-size: 14px;
   color: var(--color-text-muted);
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .data-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .data-actions button {
@@ -1321,7 +1401,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  padding: var(--spacing-xl);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -1336,8 +1416,8 @@ input::placeholder {
   font-size: 11px;
   font-weight: 500;
   padding: 2px 6px;
-  border-radius: 3px;
-  margin-left: 6px;
+  border-radius: var(--radius-xs);
+  margin-inline-start: var(--spacing-sm);
   vertical-align: middle;
 }
 
@@ -1380,8 +1460,8 @@ input::placeholder {
 
 .modal-filters {
   display: flex;
-  gap: 8px;
-  padding: 12px 16px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
   border-bottom: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
@@ -1394,7 +1474,7 @@ input::placeholder {
 }
 
 .modal-search {
-  padding: 12px 16px;
+  padding: var(--spacing-lg) var(--spacing-xl);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -1447,14 +1527,14 @@ input::placeholder {
 
 .exercise-picker-meta {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-md);
   flex-wrap: wrap;
 }
 
 .exercise-picker-tag {
   font-size: 11px;
   padding: 2px 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   text-transform: capitalize;
 }
 
@@ -1508,7 +1588,7 @@ input::placeholder {
 }
 
 .dialog-message {
-  padding: 16px;
+  padding: var(--spacing-xl);
   color: var(--color-text);
   font-size: 14px;
   line-height: 1.5;
@@ -1517,7 +1597,7 @@ input::placeholder {
 .dialog-actions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-md);
   padding: 0 16px 16px;
 }
 
@@ -1530,22 +1610,22 @@ input::placeholder {
    ============================================================================= */
 
 .edit-program-form {
-  padding: 16px;
+  padding: var(--spacing-xl);
   overflow-y: auto;
   max-height: calc(85vh - 60px);
 }
 
 .edit-program-form .form-group {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .edit-program-form .program-days-builder {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .edit-program-form .form-buttons {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .edit-program-form .form-buttons .btn {
@@ -1557,7 +1637,7 @@ input::placeholder {
    ============================================================================= */
 
 .exercise-info-content {
-  padding: 16px;
+  padding: var(--spacing-xl);
   overflow-y: auto;
   max-height: calc(85vh - 60px);
 }
@@ -1565,8 +1645,8 @@ input::placeholder {
 .exercise-info-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 16px;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
 }
 
 .exercise-meta-tag {
@@ -1577,7 +1657,7 @@ input::placeholder {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 4px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background: var(--color-bg);
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
@@ -1597,7 +1677,7 @@ input::placeholder {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-lg);
   padding-bottom: 6px;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1623,7 +1703,7 @@ input::placeholder {
 .exercise-info-section li {
   font-size: 14px;
   line-height: 1.5;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-md);
   color: var(--color-text);
 }
 
@@ -1642,20 +1722,20 @@ input::placeholder {
 .action-sheet-actions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-md);
   padding: 8px 16px;
 }
 
 .action-sheet-btn {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-lg);
   width: 100%;
-  padding: 12px 16px;
+  padding: var(--spacing-lg) var(--spacing-xl);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   transition: background var(--transition-fast);
 }
@@ -1691,7 +1771,7 @@ input::placeholder {
 }
 
 .action-sheet-btn .action-desc {
-  margin-left: auto;
+  margin-inline-start: auto;
   font-size: 13px;
   color: var(--color-text-muted);
 }
@@ -1701,7 +1781,7 @@ input::placeholder {
    ============================================================================= */
 
 .glossary-content {
-  padding: 16px;
+  padding: var(--spacing-xl);
   overflow-y: auto;
   max-height: calc(85vh - 60px);
 }
@@ -1710,7 +1790,7 @@ input::placeholder {
   font-size: 15px;
   line-height: 1.6;
   color: var(--color-text);
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .glossary-category {
@@ -1723,15 +1803,15 @@ input::placeholder {
   color: var(--color-text-muted);
   background: var(--color-surface);
   padding: 4px 8px;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-lg);
   min-height: 24px;  /* WCAG 2.5.8: Target size minimum */
 }
 
 .glossary-aliases {
   font-size: 13px;
   color: var(--color-text-muted);
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .glossary-aliases strong {
@@ -1741,7 +1821,7 @@ input::placeholder {
 .glossary-details-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-md);
   width: 100%;
   padding: 12px 0;
   background: none;
@@ -1780,7 +1860,7 @@ input::placeholder {
   font-size: 14px;
   line-height: 1.6;
   color: var(--color-text);
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .glossary-references {
@@ -1793,7 +1873,7 @@ input::placeholder {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-text-muted);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-md);
 }
 
 .glossary-references ul {
@@ -1838,7 +1918,7 @@ input::placeholder {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-label);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-md);
 }
 
 .volume-guidance-details {
@@ -1932,8 +2012,8 @@ input::placeholder {
 /* Filters */
 .learn-filters {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .learn-filters input {
@@ -1952,7 +2032,7 @@ input::placeholder {
 .learn-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-lg);
 }
 
 .learn-list:empty {
@@ -1964,7 +2044,7 @@ input::placeholder {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 12px 16px;
+  padding: var(--spacing-lg) var(--spacing-xl);
 }
 
 .learn-card--interactive {
@@ -1980,7 +2060,7 @@ input::placeholder {
 .learn-card--collapsible .learn-card-header {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: var(--spacing-lg);
   cursor: pointer;
 }
 
@@ -2004,7 +2084,7 @@ input::placeholder {
 .learn-card--collapsible .learn-card-body {
   display: none;
   margin-top: 12px;
-  padding-left: 22px;
+  padding-inline-start: 22px;
 }
 
 .learn-card--collapsible.expanded .learn-card-body {
@@ -2056,7 +2136,7 @@ input::placeholder {
   align-items: center;
   font-size: 11px;
   padding: 2px 8px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   background: var(--color-tertiary-light);
   color: var(--color-tertiary);
   text-transform: capitalize;
@@ -2066,7 +2146,7 @@ input::placeholder {
 .learn-card-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--spacing-md);
   margin-top: 12px;
 }
 
@@ -2093,20 +2173,20 @@ input::placeholder {
 .article-meta {
   font-size: 13px;
   color: var(--color-text-muted);
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .article-summary {
   font-size: 14px;
   line-height: 1.6;
   color: var(--color-text);
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .article-takeaways {
   background: var(--color-bg);
   border-radius: var(--radius);
-  padding: 12px;
+  padding: var(--spacing-lg);
 }
 
 .article-takeaways-label {
@@ -2115,7 +2195,7 @@ input::placeholder {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-primary);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-md);
 }
 
 .article-takeaways ul {
@@ -2168,7 +2248,7 @@ input::placeholder {
   padding: 0 12px 12px;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 6px 12px;
+  gap: var(--spacing-sm) var(--spacing-lg);
   font-size: 13px;
 }
 
@@ -2305,7 +2385,7 @@ input::placeholder {
 .profile-details dt {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-xs);
   color: var(--color-text-muted);
   font-size: 14px;
 }
@@ -2504,7 +2584,7 @@ input::placeholder {
 .goal-progress-bar {
   height: 8px;
   background: var(--color-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   margin-bottom: var(--spacing-xs);
 }
@@ -2512,8 +2592,8 @@ input::placeholder {
 .goal-progress-fill {
   height: 100%;
   background: var(--color-primary);
-  border-radius: 4px;
-  transition: width 0.3s ease;
+  border-radius: var(--radius-sm);
+  transition: width var(--transition-slow);
 }
 
 .goal-progress-fill.complete {
@@ -2757,8 +2837,8 @@ input::placeholder {
 }
 
 .calendar-day:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .calendar-day:disabled {
@@ -2901,8 +2981,108 @@ input::placeholder {
 }
 
 /* =============================================================================
-   ACCESSIBILITY: WCAG 2.2 COMPLIANCE
+   FOOTER
    ============================================================================= */
+
+.site-footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.footer-link {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius);
+}
+
+/* =============================================================================
+   ABOUT PAGE
+   ============================================================================= */
+
+#about h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.about-intro {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.about-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.about-section:last-child {
+  margin-bottom: 0;
+}
+
+.about-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.about-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.about-section ul {
+  margin: 0;
+  padding-inline-start: 20px;
+}
+
+.about-section li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-section li:last-child {
+  margin-bottom: 0;
+}
+
+} /* end @layer components */
+
+/* =============================================================================
+   OVERRIDES: ACCESSIBILITY (WCAG 2.2 COMPLIANCE)
+   ============================================================================= */
+
+@layer overrides {
 
 /* WCAG 2.3.3: Animation from interactions - respect user preference */
 @media (prefers-reduced-motion: reduce) {
@@ -2926,3 +3106,5 @@ input::placeholder {
     --color-tertiary-light: rgba(249, 168, 212, 0.25);
   }
 }
+
+} /* end @layer overrides */

@@ -3,7 +3,7 @@
 // =============================================================================
 // Handles goal creation, tracking, and display.
 
-import { showToast } from './ui.js';
+import { showToast, createModalController } from './ui.js';
 import {
   createGoal,
   getAllGoalsPartitioned,
@@ -22,43 +22,23 @@ import { toImperial, toMetric, getDisplayUnit, getAgeFromBirthDate, getVolumeRec
 // CONSTANTS
 // =============================================================================
 
-export const DIRECTION_CONFIG = {
-  decrease: { symbol: '↓', label: 'Decrease to' },
-  increase: { symbol: '↑', label: 'Increase to' },
-  maintain: { symbol: '↔', label: 'Maintain at' }
-};
 
 const GOAL_METRIC_LABELS = {
-  weight: 'Weight',
   bodyFat: 'Body fat',
   waistToHeightRatio: 'Waist-to-height ratio',
-  steps: 'Steps',
-  fibre: 'Fibre',
-  water: 'Water'
 };
 
 const GOAL_METRIC_SOURCES = {
-  weight: 'body',
   bodyFat: 'body',
   waistToHeightRatio: 'body',
-  steps: 'daily',
-  calories: 'daily',
-  sleep: 'daily',
-  protein: 'daily',
-  fibre: 'daily',
-  water: 'daily'
 };
 
 // Tracking mode determines how goal progress is measured
 // point-in-time: Uses most recent recorded value
 // 30-day-average: Uses rolling average of last 30 days
 const GOAL_TRACKING_MODE = {
-  weight: 'point-in-time',
   bodyFat: 'point-in-time',
   waistToHeightRatio: 'point-in-time',
-  steps: '30-day-average',
-  fibre: '30-day-average',
-  water: '30-day-average'
 };
 
 // =============================================================================
@@ -326,10 +306,21 @@ export async function renderStats() {
 // GOALS FORM
 // =============================================================================
 
+let addGoalModal = null;
+
 function initGoalsForm() {
   const addGoalForm = document.getElementById('add-goal-form');
+  const addGoalBtn = document.getElementById('add-goal-btn');
   const metricSelect = document.getElementById('goal-metric');
   const unitSpan = document.getElementById('goal-target-unit');
+
+  // Initialize modal controller
+  addGoalModal = createModalController(document.getElementById('add-goal-modal'));
+
+  // Open modal when button is clicked
+  addGoalBtn.addEventListener('click', () => {
+    addGoalModal.open();
+  });
 
   // Update unit display when metric changes
   function updateTargetUnit() {
@@ -360,6 +351,7 @@ function initGoalsForm() {
     await createGoal(goalData);
     addGoalForm.reset();
     updateTargetUnit(); // Reset unit display
+    addGoalModal.close();
     showToast('Goal added');
     await renderGoalsList();
   });
@@ -538,7 +530,6 @@ export async function renderGoalsList() {
         return typeof v === 'number' ? v.toFixed(1) : v;
       };
 
-      const { symbol: directionSymbol } = DIRECTION_CONFIG[goal.direction] || DIRECTION_CONFIG.maintain;
       const isAverage = trackingMode === '30-day-average';
       const currentLabel = isAverage ? '30-day avg' : 'Current';
 
@@ -588,11 +579,9 @@ export async function renderGoalsList() {
   }
 
   // Render completed goals
-  completedSection.classList.remove('hidden');
   if (completedGoals.length > 0) {
     completedContainer.innerHTML = completedGoals.map(goal => {
       const metricLabel = GOAL_METRIC_LABELS[goal.metric] || goal.metric;
-      const { symbol: directionSymbol } = DIRECTION_CONFIG[goal.direction] || DIRECTION_CONFIG.maintain;
 
       // Get unit based on preference (waist-to-height ratio has no unit)
       const unit = goal.metric === 'waistToHeightRatio'

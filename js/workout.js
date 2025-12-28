@@ -154,13 +154,13 @@ export function initWorkoutForm(callbacks) {
         inactiveRow.classList.remove('inactive');
         inactiveRow.classList.add('editing');
       } else {
-        // Show next set row if it exists
+        // Show next set row if it exists and is hidden
         const nextRow = card.querySelector(`.set-row[data-set="${setIndex + 1}"]`);
         if (nextRow && nextRow.classList.contains('hidden')) {
           nextRow.classList.remove('hidden');
           nextRow.classList.add('editing');
-        } else {
-          // No more sets - mark exercise as complete, collapse and open next
+        } else if (!nextRow) {
+          // No more sets (this was the last one) - mark exercise as complete
           card.classList.add('completed');
           const nameInput = card.querySelector('.exercise-name');
           if (nameInput && !nameInput.value.includes('✅')) {
@@ -178,6 +178,7 @@ export function initWorkoutForm(callbacks) {
             }
           }
         }
+        // If nextRow exists but isn't hidden, it's already visible - do nothing
       }
       return;
     }

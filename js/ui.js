@@ -29,8 +29,10 @@ export function createTabController(tabsSelector, pagesSelector, options = {}) {
     const tab = document.querySelector(`${tabsSelector}[${tabAttr}="${targetId}"]`);
     const page = document.getElementById(targetId);
 
-    if (tab && page) {
-      tab.classList.add('active');
+    if (page) {
+      if (tab) {
+        tab.classList.add('active');
+      }
       page.classList.add('active');
 
       if (storageKey) {

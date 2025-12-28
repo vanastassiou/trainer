@@ -234,7 +234,7 @@ export function generateDailyFormRows(containerId) {
     html += fields.map(field => {
       const unitDisplay = field.unit ? ` (${field.unit})` : '';
       return `
-      <div class="data-row row row--gap-md">
+      <div class="data-row">
         <label for="${field.id}"><span data-term="${field.id}">${field.label}</span>${unitDisplay}</label>
         <input ${createInputAttrs(field)}>
       </div>

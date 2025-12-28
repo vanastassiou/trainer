@@ -639,6 +639,14 @@ validation:
 
 ## CSS architecture
 
+CSS is organized into cascade layers for explicit specificity management:
+
+```css
+@layer reset, tokens, base, components, utilities, overrides;
+```
+
+See `docs/architecture/css-style.md` for the full style guide.
+
 ### Base classes
 
 | Class | Purpose |
@@ -683,7 +691,8 @@ Form rows use `.data-row` base class:
 - Gap modifiers: `.row--gap-sm`, `.row--gap-md`, `.row--gap-lg`
 - Card modifiers: `.card--compact`, `.card--inset`, `.card--active`
 
-CSS custom properties for theming defined in `:root`.
+All spacing, colors, and transitions use CSS custom properties defined in
+`:root` within `@layer tokens`.
 
 ## Responsive design
 

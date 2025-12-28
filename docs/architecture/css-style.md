@@ -4,12 +4,33 @@ This document defines CSS conventions for the Health Tracker PWA.
 
 <!-- toc -->
 
+- [Cascade layers](#cascade-layers)
 - [Design tokens](#design-tokens)
 - [Component patterns](#component-patterns)
 - [Accessibility requirements](#accessibility-requirements)
 - [Naming conventions](#naming-conventions)
 
 <!-- tocstop -->
+
+## Cascade layers
+
+CSS is organized into cascade layers for explicit specificity management:
+
+```css
+@layer reset, tokens, base, components, utilities, overrides;
+```
+
+| Layer        | Purpose                                    |
+| ------------ | ------------------------------------------ |
+| `reset`      | Box-sizing, margin/padding reset           |
+| `tokens`     | `:root` custom properties, `@property`     |
+| `base`       | Element defaults (body, focus)             |
+| `components` | All component styles                       |
+| `utilities`  | Helper classes (.hidden, .row, .page)      |
+| `overrides`  | Accessibility media queries                |
+
+Layers eliminate specificity wars and make overrides predictable. Later layers
+take precedence over earlier ones regardless of selector specificity.
 
 ## Design tokens
 
@@ -49,6 +70,7 @@ Each color has `-hover` and `-light` variants for interactive states.
 
 | Variable       | Value | Usage                    |
 | -------------- | ----- | ------------------------ |
+| `--radius-xs`  | `3px` | Tiny elements, badges    |
 | `--radius-sm`  | `4px` | Small elements, tags     |
 | `--radius`     | `6px` | Default (buttons, cards) |
 | `--radius-md`  | `8px` | Medium elements          |
@@ -64,10 +86,33 @@ Each color has `-hover` and `-light` variants for interactive states.
 
 ### Transitions
 
-| Variable               | Value           | Usage               |
-| ---------------------- | --------------- | ------------------- |
-| `--transition-fast`    | `0.15s ease`    | Hover states        |
-| `--transition-normal`  | `0.2s ease-out` | Larger transitions  |
+| Variable               | Value           | Usage                      |
+| ---------------------- | --------------- | -------------------------- |
+| `--transition-fast`    | `0.15s ease`    | Hover states               |
+| `--transition-normal`  | `0.2s ease-out` | Larger transitions         |
+| `--transition-slow`    | `0.3s ease`     | Progress bars, animations  |
+
+### Focus ring
+
+| Variable          | Value                              | Usage              |
+| ----------------- | ---------------------------------- | ------------------ |
+| `--focus-ring`    | `2px solid var(--color-secondary)` | Focus outline      |
+| `--focus-offset`  | `2px`                              | Outline offset     |
+
+### Typed custom properties
+
+Colors are defined with `@property` for animation support:
+
+```css
+@property --color-primary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c4b5fd;
+}
+```
+
+This enables smooth color transitions and provides type safety. Browsers without
+`@property` support fall back to standard custom property behavior.
 
 ---
 
@@ -107,17 +152,17 @@ Base class: `.card`
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: var(--spacing-xl);
 }
 ```
 
 Modifiers:
 
-| Class            | Purpose                              |
-| ---------------- | ------------------------------------ |
-| `.card--inset`   | Darker background for nesting       |
-| `.card--compact` | Reduced padding (12px)               |
-| `.card--active`  | Highlighted border state             |
+| Class            | Purpose                                    |
+| ---------------- | ------------------------------------------ |
+| `.card--inset`   | Darker background for nesting              |
+| `.card--compact` | Reduced padding (`--spacing-lg`)           |
+| `.card--active`  | Highlighted border state                   |
 
 ### Forms
 
@@ -135,7 +180,7 @@ Structure:
 </form>
 ```
 
-Forms use flexbox with `gap: 16px` between groups.
+Forms use flexbox with `gap: var(--spacing-xl)` between groups.
 
 ### Tabs
 
@@ -149,12 +194,20 @@ Sub-tabs (`.sub-tab`): Segmented control style with border around active item.
 
 ### Focus states
 
-All interactive elements must have visible focus indicators:
+All interactive elements must have visible focus indicators using the focus
+ring tokens:
 
 ```css
 .btn:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Form inputs also support focus-visible */
+input:focus-visible,
+select:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 ```
 
@@ -223,13 +276,17 @@ Use double-dash for modifiers on base classes:
 
 ### Utility classes
 
-Reusable layout utilities:
+Reusable layout utilities defined in `@layer utilities`:
 
-| Class         | Purpose                        |
-| ------------- | ------------------------------ |
-| `.row`        | Flex row with centered items   |
-| `.data-row`   | Form field row layout          |
-| `.label-muted`| Muted text styling             |
+| Class          | Purpose                                       |
+| -------------- | --------------------------------------------- |
+| `.hidden`      | `display: none !important`                    |
+| `.page`        | Page visibility control                       |
+| `.row`         | Flex row with `gap: var(--spacing-md)`        |
+| `.row--gap-sm` | Row with `--spacing-sm` gap                   |
+| `.row--gap-lg` | Row with `--spacing-lg` gap                   |
+| `.data-row`    | Form field row with `gap: var(--spacing-md)`  |
+| `.label-muted` | Muted uppercase text styling                  |
 
 ### Color classes
 
