@@ -90,6 +90,12 @@ export function initWorkoutForm(callbacks) {
     const card = e.target.closest('.exercise-card');
     if (!card) return;
 
+    // Handle collapse toggle
+    if (e.target.closest('.collapse-toggle')) {
+      card.classList.toggle('collapsed');
+      return;
+    }
+
     // Handle edit button click
     if (e.target.closest('.edit-exercise-btn')) {
       openExerciseEditModal(card);
@@ -255,8 +261,13 @@ export function addExerciseCard(container, existingData = null, options = {}) {
     return '-';
   };
 
+  card.classList.add('collapsed');
+
   card.innerHTML = `
     <div class="exercise-header">
+      <button type="button" class="collapse-toggle" aria-label="Toggle exercise details">
+        <span class="collapse-icon"></span>
+      </button>
       <input type="text" class="exercise-name" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
       <button type="button" class="btn secondary edit-exercise-btn">Edit</button>
     </div>
