@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate,
     renderProgramsList
   });
-  initProgramsPage({ refreshProgramUI });
   initExportButton();
   initDailyForm(async () => {
     await updateDailyChart();
@@ -89,8 +88,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   initCharts();
 
-  // Load data - exercises must complete before picker init to avoid race
+  // Load exercises before programs page (needed for name lookups)
   await loadExercisesDB();
+  initProgramsPage({ refreshProgramUI });
   initExercisePicker();
   initExerciseInfoModal();
   initExerciseEditModal();
@@ -448,9 +448,9 @@ async function populateWorkoutsSelect() {
   const exercises = await getExercisesInPeriod(days);
 
   select.innerHTML = '';
-  for (const name of exercises) {
+  for (const { id, name } of exercises) {
     const option = document.createElement('option');
-    option.value = name;
+    option.value = id;
     option.textContent = name;
     select.appendChild(option);
   }

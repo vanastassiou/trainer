@@ -29,6 +29,10 @@ export async function loadExercisesDB() {
   state.exercisesDB = data.exercises || [];
 }
 
+export function getExerciseById(id) {
+  return state.exercisesById.get(id) || null;
+}
+
 export function getExerciseByName(name) {
   return state.exerciseByName.get(name.toLowerCase()) || null;
 }
@@ -231,6 +235,7 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   const card = document.createElement('div');
   card.className = 'exercise-card card';
   if (fromProgram) card.dataset.fromProgram = 'true';
+  if (existingData?.id) card.dataset.exerciseId = existingData.id;
 
   const unitPreference = state.unitPreference;
   const weightUnit = unitPreference === 'imperial' ? 'lbs' : 'kg';
@@ -335,12 +340,13 @@ export async function loadTemplate() {
   container.innerHTML = '';
   const templateExercises = program.days[dayNumber - 1].exercises || [];
 
-  templateExercises.forEach(exercise => {
-    // Handle both string names and object format {name: "..."}
-    const name = typeof exercise === 'string' ? exercise : exercise?.name;
+  templateExercises.forEach(exerciseId => {
+    // Look up exercise by ID to get display name
+    const exercise = getExerciseById(exerciseId);
+    const name = exercise?.name || exerciseId;
     if (!name) return;
-    const previousData = previousExercises.find(e => e.name === name);
-    addExerciseCard(container, { name, sets: [] }, {
+    const previousData = previousExercises.find(e => e.id === exerciseId);
+    addExerciseCard(container, { id: exerciseId, name, sets: [] }, {
       fromProgram: true,
       placeholderData: previousData
     });
@@ -371,9 +377,10 @@ export function initExercisePicker() {
   list.addEventListener('click', (e) => {
     const item = e.target.closest('.exercise-picker-item');
     if (item) {
+      const id = item.dataset.id;
       const name = item.dataset.name;
       if (state.exercisePickerCallback) {
-        state.exercisePickerCallback(name);
+        state.exercisePickerCallback({ id, name });
       }
       closeExercisePicker();
     }
@@ -443,6 +450,9 @@ export function openExercisePicker(callback, filters = {}) {
   if (filters.muscleGroup) {
     document.getElementById('filter-muscle-group').value = filters.muscleGroup;
   }
+  if (filters.movementPattern) {
+    document.getElementById('filter-movement').value = filters.movementPattern;
+  }
 
   updateExercisePicker();
   state.exercisePickerDialog.open();
@@ -464,7 +474,7 @@ function renderExerciseList() {
   }
 
   list.innerHTML = filtered.map(ex => `
-    <div class="exercise-picker-item" data-name="${ex.name}">
+    <div class="exercise-picker-item" data-id="${ex.id}" data-name="${ex.name}">
       <span class="exercise-picker-name">${ex.name}</span>
       <div class="exercise-picker-meta">
         <span class="exercise-picker-tag muscle">${formatLabel(ex.muscle_group)}</span>
@@ -485,8 +495,12 @@ export function initExerciseInfoModal() {
   );
 }
 
-export function showExerciseInfo(exerciseName) {
-  const exercise = getExerciseByName(exerciseName);
+export function showExerciseInfo(exerciseNameOrId) {
+  // Try lookup by name first, then by ID
+  let exercise = getExerciseByName(exerciseNameOrId);
+  if (!exercise) {
+    exercise = getExerciseById(exerciseNameOrId);
+  }
   if (!exercise) {
     showToast('Exercise info not found');
     return;
@@ -566,14 +580,16 @@ export function initExerciseEditModal() {
     const exerciseName = nameInput.value.trim();
     const exercise = getExerciseByName(exerciseName);
     const muscleGroup = exercise?.muscle_group || '';
+    const movementPattern = exercise?.movement_pattern || '';
 
     state.exerciseEditDialog.close();
 
-    openExercisePicker((newName) => {
-      nameInput.value = newName;
+    openExercisePicker(({ id, name }) => {
+      nameInput.value = name;
+      currentEditCard.dataset.exerciseId = id;
       updateWeightVisibility(currentEditCard);
       currentEditCard = null;
-    }, { muscleGroup });
+    }, { muscleGroup, movementPattern });
   });
 
   removeBtn.addEventListener('click', () => {

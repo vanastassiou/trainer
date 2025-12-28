@@ -1,4 +1,4 @@
-const CACHE_NAME = 'health-tracker-v92';
+const CACHE_NAME = 'health-tracker-v100';
 const ASSETS = [
   '/',
   '/index.html',
@@ -20,7 +20,7 @@ const ASSETS = [
   '/data/articles.json',
   '/data/exercises.json',
   '/data/glossary.json',
-  '/data/sources.json'
+  '/data/resources.json'
 ];
 
 self.addEventListener('install', (event) => {

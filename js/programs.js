@@ -143,7 +143,7 @@ export function generateProgram(daysPerWeek, equipment, difficulty, goal = 'grow
       );
 
       if (exercise) {
-        dayExercises.push(exercise.name);
+        dayExercises.push(exercise.id);
         usedExercises.add(exercise.id);
       }
     }
@@ -161,7 +161,7 @@ export function generateProgram(daysPerWeek, equipment, difficulty, goal = 'grow
       );
 
       if (exercise) {
-        dayExercises.push(exercise.name);
+        dayExercises.push(exercise.id);
         usedExercises.add(exercise.id);
       }
       muscleIndex++;
@@ -479,19 +479,22 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
   const exercisesContainer = card.querySelector('.program-day-exercises');
   const addExerciseBtn = card.querySelector('.add-exercise-btn');
 
-  const addExerciseTag = (exerciseName, locked = false) => {
-    const currentExercises = Array.from(exercisesContainer.querySelectorAll('.exercise-tag .exercise-name'))
-      .map(span => span.textContent.toLowerCase());
-    if (currentExercises.includes(exerciseName.toLowerCase())) {
+  const addExerciseTag = (exerciseId, locked = false) => {
+    // Check for duplicates by ID
+    const currentIds = Array.from(exercisesContainer.querySelectorAll('.exercise-tag'))
+      .map(tag => tag.dataset.exerciseId);
+    if (currentIds.includes(exerciseId)) {
       showToast('Exercise already added');
       return false;
     }
 
-    // Look up exercise details using index Map
-    const exerciseData = state.exerciseByName.get(exerciseName.toLowerCase()) || null;
+    // Look up exercise details by ID
+    const exerciseData = state.exercisesById.get(exerciseId) || null;
+    const exerciseName = exerciseData?.name || exerciseId;
 
     const exerciseTag = document.createElement('div');
     exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
+    exerciseTag.dataset.exerciseId = exerciseId;
     if (locked) exerciseTag.classList.add('locked');
 
     const lockButton = showLockButtons
@@ -551,16 +554,14 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
   };
 
   if (existingExercises) {
-    existingExercises.forEach(exercise => {
-      // Handle both string names and object format {name: "..."}
-      const name = typeof exercise === 'string' ? exercise : exercise?.name;
-      if (name) addExerciseTag(name, false);
+    existingExercises.forEach(exerciseId => {
+      if (exerciseId) addExerciseTag(exerciseId, false);
     });
   }
 
   addExerciseBtn.addEventListener('click', () => {
-    openExercisePicker((name) => {
-      addExerciseTag(name, false);
+    openExercisePicker(({ id }) => {
+      addExerciseTag(id, false);
     });
   });
 
@@ -598,12 +599,14 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
   const exercisesContainer = card.querySelector('.program-day-exercises');
   const addExerciseBtn = card.querySelector('.add-exercise-btn');
 
-  const addExerciseTag = (exerciseName, locked) => {
-    // Look up exercise details using index Map
-    const exerciseData = state.exerciseByName.get(exerciseName.toLowerCase()) || null;
+  const addExerciseTag = (exerciseId, locked) => {
+    // Look up exercise details by ID
+    const exerciseData = state.exercisesById.get(exerciseId) || null;
+    const exerciseName = exerciseData?.name || exerciseId;
 
     const exerciseTag = document.createElement('div');
     exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
+    exerciseTag.dataset.exerciseId = exerciseId;
     if (locked) exerciseTag.classList.add('locked');
 
     // Build detail rows if exercise data found
@@ -655,15 +658,13 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
     exercisesContainer.appendChild(exerciseTag);
   };
 
-  exercises.forEach((exercise, i) => {
-    // Handle both string names and object format {name: "..."}
-    const name = typeof exercise === 'string' ? exercise : exercise?.name;
-    if (name) addExerciseTag(name, lockedStates[i] || false);
+  exercises.forEach((exerciseId, i) => {
+    if (exerciseId) addExerciseTag(exerciseId, lockedStates[i] || false);
   });
 
   addExerciseBtn.addEventListener('click', () => {
-    openExercisePicker((name) => {
-      addExerciseTag(name, false);
+    openExercisePicker(({ id }) => {
+      addExerciseTag(id, false);
     });
   });
 
@@ -709,10 +710,9 @@ function regenerateWithLocks(settings, lockedDays) {
 
   // First pass: collect all locked exercise IDs to exclude them from selection
   lockedDays.forEach(day => {
-    day.exercises.forEach((name, i) => {
+    day.exercises.forEach((exerciseId, i) => {
       if (day.locked[i]) {
-        const ex = state.exerciseByName.get(name.toLowerCase());
-        if (ex) usedExercises.add(ex.id);
+        usedExercises.add(exerciseId);
       }
     });
   });
@@ -724,9 +724,9 @@ function regenerateWithLocks(settings, lockedDays) {
 
     // Keep locked exercises in their positions
     const lockedPositions = new Map();
-    existingDay.exercises.forEach((name, i) => {
+    existingDay.exercises.forEach((exerciseId, i) => {
       if (existingDay.locked[i]) {
-        lockedPositions.set(i, name);
+        lockedPositions.set(i, exerciseId);
       }
     });
 
@@ -764,7 +764,7 @@ function regenerateWithLocks(settings, lockedDays) {
       );
 
       if (exercise) {
-        dayExercises.push(exercise.name);
+        dayExercises.push(exercise.id);
         dayLocked.push(false);
         usedExercises.add(exercise.id);
       }
@@ -784,7 +784,7 @@ function regenerateWithLocks(settings, lockedDays) {
       );
 
       if (exercise) {
-        dayExercises.push(exercise.name);
+        dayExercises.push(exercise.id);
         dayLocked.push(false);
         usedExercises.add(exercise.id);
       }
@@ -817,8 +817,8 @@ export async function populateProgramSelector() {
   let activeProgram = await getActiveProgram();
 
   // Validate exercise references in all programs (logs warnings for stale references)
-  if (state.exerciseByName.size > 0) {
-    programs.forEach(p => validateProgramExercises(p, state.exerciseByName));
+  if (state.exercisesById.size > 0) {
+    programs.forEach(p => validateProgramExercises(p, state.exercisesById));
   }
 
   if (programs.length === 0) {
@@ -900,10 +900,13 @@ export async function renderProgramsList(refreshProgramUI) {
     const dayCount = getProgramDayCount(program);
     const daysPreview = program.days
       ? program.days.map((day, i) => {
-          const exerciseLinks = (day.exercises || []).map(ex => {
-            // Handle both string names and object format {name: "..."}
-            const name = typeof ex === 'string' ? ex : ex?.name;
-            return name ? `<span class="exercise-link" data-exercise="${name}">${name}</span>` : '';
+          const exerciseLinks = (day.exercises || []).map(exId => {
+            // Look up exercise by ID to get the display name
+            const id = typeof exId === 'string' ? exId : exId?.id || exId?.name;
+            if (!id) return '';
+            const exerciseData = state.exercisesById.get(id);
+            const displayName = exerciseData?.name || id;
+            return `<span class="exercise-link" data-exercise-id="${id}">${displayName}</span>`;
           }).filter(Boolean).join(', ');
           return `<div class="program-day-preview"><strong>Day ${i + 1}</strong><span class="exercises">${exerciseLinks}</span></div>`;
         }).join('')
@@ -940,7 +943,9 @@ export async function renderProgramsList(refreshProgramUI) {
       const exerciseLink = e.target.closest('.exercise-link');
       if (exerciseLink) {
         e.stopPropagation();
-        showExerciseInfo(exerciseLink.dataset.exercise);
+        const exerciseId = exerciseLink.dataset.exerciseId;
+        const exerciseData = state.exercisesById.get(exerciseId);
+        showExerciseInfo(exerciseData?.name || exerciseId);
         return;
       }
 
