@@ -242,7 +242,10 @@ export function initWorkoutForm(callbacks) {
   });
 
   addBtn.addEventListener('click', () => {
-    addExerciseCard(container);
+    openExercisePicker(({ id, name }) => {
+      if (!confirm(`Add ${name}?`)) return;
+      addExerciseCard(container, { id, name, sets: [] });
+    });
   });
 
   changeProgramBtn.addEventListener('click', () => {
