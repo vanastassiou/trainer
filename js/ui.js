@@ -43,11 +43,15 @@ export function createTabController(tabsSelector, pagesSelector, options = {}) {
     }
   }
 
-  // Restore saved state
+  // Restore saved state or activate default
   if (storageKey) {
     const savedTab = localStorage.getItem(storageKey);
-    if (savedTab) {
-      activate(savedTab);
+    // Default must match inline script in index.html
+    const defaultTab = storageKey === 'activeTab' ? 'workouts' : tabs[0]?.getAttribute(tabAttr);
+    activate(savedTab || defaultTab);
+    // Remove inline style helper now that JS has taken over
+    if (storageKey === 'activeTab') {
+      delete document.documentElement.dataset.tab;
     }
   }
 

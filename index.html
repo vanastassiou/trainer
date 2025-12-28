@@ -21,12 +21,34 @@
   <link rel="modulepreload" href="js/learn.js">
   <link rel="modulepreload" href="js/filters.js">
   <link rel="modulepreload" href="js/validation.js">
+  <!-- Prevent flash of wrong tab on load by storing saved tab for CSS -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('activeTab') || 'workouts';
+      document.documentElement.dataset.tab = t;
+    })();
+  </script>
+  <style>
+    /* Show correct tab/page before JS loads based on saved preference */
+    html[data-tab="metrics"] #metrics,
+    html[data-tab="workouts"] #workouts,
+    html[data-tab="learn"] #learn,
+    html[data-tab="profile"] #profile { display: block; }
+    html[data-tab="metrics"] .tab[data-tab="metrics"],
+    html[data-tab="workouts"] .tab[data-tab="workouts"],
+    html[data-tab="learn"] .tab[data-tab="learn"],
+    html[data-tab="profile"] .tab[data-tab="profile"] {
+      background: var(--color-secondary-light);
+      color: var(--color-secondary);
+      border-bottom-color: var(--color-secondary);
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav class="tabs">
       <button class="tab" data-tab="metrics">Metrics</button>
-      <button class="tab active" data-tab="workouts">Workouts</button>
+      <button class="tab" data-tab="workouts">Workouts</button>
       <button class="tab" data-tab="learn">Learn</button>
       <button class="tab" data-tab="profile">Profile</button>
     </nav>
@@ -149,7 +171,7 @@
       </div>
     </section>
 
-    <section id="workouts" class="page active">
+    <section id="workouts" class="page">
       <div class="date-header">
         <button type="button" class="nav-button date-nav prev" aria-label="Previous day">&lt;</button>
         <button type="button" class="date-display">
