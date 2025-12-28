@@ -1772,6 +1772,41 @@ input::placeholder {
   border-color: var(--color-secondary);
 }
 
+/* Collapsible cards */
+.learn-card--collapsible .learn-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.learn-card--collapsible .expand-icon {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  transition: transform var(--transition-normal);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.learn-card--collapsible.expanded .expand-icon {
+  transform: rotate(90deg);
+}
+
+.learn-card--collapsible .learn-card-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.learn-card--collapsible .learn-card-body {
+  display: none;
+  margin-top: 12px;
+  padding-left: 22px;
+}
+
+.learn-card--collapsible.expanded .learn-card-body {
+  display: block;
+}
+
 /* Card title */
 .learn-card-title {
   font-size: 15px;
@@ -1834,6 +1869,22 @@ input::placeholder {
 /* =============================================================================
    LEARN TAB - ARTICLES
    ============================================================================= */
+
+.article-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin: 0 0 4px 0;
+}
+
+.article-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  text-decoration: underline;
+}
 
 .article-meta {
   font-size: 13px;
