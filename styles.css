@@ -233,8 +233,6 @@ main {
 }
 
 .data-row label {
-  width: auto;
-  min-width: 70px;
   flex-shrink: 0;
 }
 
@@ -417,8 +415,8 @@ form {
 
 label {
   font-weight: 500;
-  font-size: 15px;
-  color: var(--color-label);
+  font-size: 14px;
+  color: var(--color-text-muted);
 }
 
 input[type="number"],
@@ -591,9 +589,12 @@ input::placeholder {
 }
 
 .field-group .data-row label {
-  font-size: 14px;
-  color: var(--color-text-muted);
   text-align: center;
+}
+
+.field-group .data-row label .label-unit {
+  display: block;
+  font-size: 12px;
 }
 
 .field-group .data-row input {
@@ -622,34 +623,44 @@ input::placeholder {
 
 #measurement-fields-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-sm) var(--gap-grid);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm) var(--spacing-md);
+  align-items: end;
 }
 
-@container (min-width: 300px) {
+@container (max-width: 400px) {
   #measurement-fields-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@container (max-width: 250px) {
+  #measurement-fields-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 #measurement-fields-container .data-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 #measurement-fields-container .data-row label {
-  width: auto;
-  text-align: start;
+  text-align: center;
+}
+
+#measurement-fields-container .data-row label .label-unit {
+  display: block;
+  font-size: 12px;
 }
 
 #measurement-fields-container .data-row input {
-  width: 70px;
+  width: 100%;
 }
 
 .grid-spacer {
-  display: block;
+  display: none;
 }
 
 .measurement-pair {
@@ -2298,10 +2309,6 @@ input::placeholder {
   margin-bottom: var(--spacing-md);
 }
 
-.date-selector label {
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
 
 .date-selector input[type="date"] {
   flex: 1;
@@ -2320,10 +2327,6 @@ input::placeholder {
   gap: var(--spacing-sm);
 }
 
-.notes-row label {
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
 
 .notes-row textarea {
   width: 100%;
@@ -2396,37 +2399,51 @@ input::placeholder {
 }
 
 .profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.profile-form .form-row {
   display: grid;
-  grid-template-columns: auto 1fr auto 1fr;
-  gap: var(--spacing-sm) var(--spacing-lg);
-  align-items: center;
-}
-
-.profile-form > label {
-  text-align: start;
-}
-
-.profile-form > label[for="profile-name"] {
-  grid-column: 1;
-}
-
-.profile-form > input[name="name"] {
-  grid-column: 2 / -1;
-}
-
-.profile-form > button {
-  grid-column: 1 / -1;
-  margin-top: var(--spacing-sm);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm) var(--spacing-md);
+  align-items: end;
 }
 
 @media (max-width: 480px) {
-  .profile-form {
-    grid-template-columns: auto 1fr;
+  .profile-form .form-row {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .profile-form > input[name="name"] {
-    grid-column: 2;
+@media (max-width: 320px) {
+  .profile-form .form-row {
+    grid-template-columns: 1fr;
   }
+}
+
+.profile-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.profile-form .form-group label {
+  text-align: center;
+}
+
+.profile-form .form-group label span[id$="-unit"] {
+  display: block;
+  font-size: 12px;
+}
+
+.profile-form .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.profile-form > button {
+  margin-top: var(--spacing-sm);
 }
 
 .input-with-unit {
@@ -2660,9 +2677,6 @@ input::placeholder {
   grid-column: 1 / -1;
 }
 
-.add-goal-form > label {
-  text-align: start;
-}
 
 .add-goal-form > label[for="goal-metric"] {
   grid-column: 1;

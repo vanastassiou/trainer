@@ -284,36 +284,50 @@
         </div>
 
         <form id="profile-form" class="profile-form">
-          <label for="profile-name">Name</label>
-          <input type="text" id="profile-name" name="name">
-
-          <label for="profile-birthdate"><span data-term="age">Birthdate</span></label>
-          <input type="date" id="profile-birthdate" name="birthDate">
-
-          <label for="profile-sex"><span data-term="sex">Sex</span></label>
-          <select id="profile-sex" name="sex">
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-          </select>
-
-          <label for="profile-height"><span data-term="height">Height</span> <span id="height-label-unit">(cm)</span></label>
-          <div class="height-inputs">
-            <div id="height-metric-input" class="input-with-unit">
-              <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0">
-            </div>
-            <div id="height-imperial-input" class="input-with-unit hidden">
-              <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">
-              <span class="unit">ft</span>
-              <input type="number" id="profile-height-in" name="height-in" inputmode="decimal" step="0.5" min="0" max="11.9" placeholder="10" class="height-in">
-              <span class="unit">in</span>
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="profile-name">Name</label>
+              <input type="text" id="profile-name" name="name">
             </div>
           </div>
 
-          <label for="profile-units">Units</label>
-          <select id="profile-units" name="unitPreference">
-            <option value="metric">Metric</option>
-            <option value="imperial">Imperial</option>
-          </select>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="profile-birthdate"><span data-term="age">Birthdate</span></label>
+              <input type="date" id="profile-birthdate" name="birthDate">
+            </div>
+
+            <div class="form-group">
+              <label for="profile-sex"><span data-term="sex">Sex</span></label>
+              <select id="profile-sex" name="sex">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="profile-height"><span data-term="height">Height</span> <span id="height-label-unit">(cm)</span></label>
+              <div class="height-inputs">
+                <div id="height-metric-input" class="input-with-unit">
+                  <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0">
+                </div>
+                <div id="height-imperial-input" class="input-with-unit hidden">
+                  <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">
+                  <span class="unit">ft</span>
+                  <input type="number" id="profile-height-in" name="height-in" inputmode="decimal" step="0.5" min="0" max="11.9" placeholder="10" class="height-in">
+                  <span class="unit">in</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="profile-units">Units</label>
+              <select id="profile-units" name="unitPreference">
+                <option value="metric">Metric</option>
+                <option value="imperial">Imperial</option>
+              </select>
+            </div>
+          </div>
 
           <button type="submit" class="btn accent">Save profile</button>
         </form>
