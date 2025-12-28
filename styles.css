@@ -707,15 +707,20 @@ input::placeholder {
   flex-wrap: wrap;
 }
 
-.col-label-notes {
-  flex: 0 0 32px;
-  min-width: 32px;
+.col-label-actions {
+  flex: 0 0 64px;
+  min-width: 64px;
+}
+
+.set-actions {
+  display: flex;
+  gap: 4px;
+  flex: 0 0 64px;
 }
 
 .notes-btn {
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border: none;
   background: transparent;
@@ -732,6 +737,68 @@ input::placeholder {
 
 .notes-btn.has-notes {
   opacity: 1;
+}
+
+.save-set-btn,
+.edit-set-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  transition: opacity 0.15s ease;
+}
+
+.save-set-btn:hover,
+.save-set-btn:focus,
+.edit-set-btn:hover,
+.edit-set-btn:focus {
+  opacity: 0.7;
+}
+
+/* Edit button hidden by default, shown when saved */
+.edit-set-btn {
+  display: none;
+}
+
+/* Hidden set rows */
+.set-row.hidden {
+  display: none !important;
+}
+
+/* Editing state - active and editable */
+.set-row.editing {
+  opacity: 1;
+}
+
+/* Saved set rows - dimmed, shows edit button */
+.set-row.saved {
+  opacity: 0.5;
+}
+
+.set-row.saved input {
+  pointer-events: none;
+}
+
+.set-row.saved .save-set-btn {
+  display: none;
+}
+
+.set-row.saved .edit-set-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inactive state - visible but dimmed when editing another row */
+.set-row.inactive {
+  opacity: 0.5;
+}
+
+.set-row.inactive input {
+  pointer-events: none;
 }
 
 /* Set notes modal card */

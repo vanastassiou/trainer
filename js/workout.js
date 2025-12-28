@@ -139,6 +139,87 @@ export function initWorkoutForm(callbacks) {
       return;
     }
 
+    // Handle save set button click
+    if (e.target.closest('.save-set-btn')) {
+      const row = e.target.closest('.set-row');
+      const setIndex = parseInt(row.dataset.set, 10);
+
+      // Mark current row as saved
+      row.classList.add('saved');
+      row.classList.remove('editing');
+
+      // Check if there's an inactive row to reactivate
+      const inactiveRow = card.querySelector('.set-row.inactive');
+      if (inactiveRow) {
+        inactiveRow.classList.remove('inactive');
+        inactiveRow.classList.add('editing');
+      } else {
+        // Show next set row if it exists
+        const nextRow = card.querySelector(`.set-row[data-set="${setIndex + 1}"]`);
+        if (nextRow && nextRow.classList.contains('hidden')) {
+          nextRow.classList.remove('hidden');
+          nextRow.classList.add('editing');
+        } else {
+          // No more sets - mark exercise as complete, collapse and open next
+          card.classList.add('completed');
+          const nameInput = card.querySelector('.exercise-name');
+          if (nameInput && !nameInput.value.includes('✅')) {
+            nameInput.value = nameInput.value + ' ✅';
+          }
+
+          card.classList.add('collapsed');
+          const nextCard = card.nextElementSibling;
+          if (nextCard && nextCard.classList.contains('exercise-card')) {
+            nextCard.classList.remove('collapsed');
+            // Ensure first set is in editing state
+            const firstSet = nextCard.querySelector('.set-row[data-set="0"]');
+            if (firstSet && !firstSet.classList.contains('saved')) {
+              firstSet.classList.add('editing');
+            }
+          }
+        }
+      }
+      return;
+    }
+
+    // Handle edit set button click
+    if (e.target.closest('.edit-set-btn')) {
+      const row = e.target.closest('.set-row');
+
+      // Handle currently editing row
+      const currentlyEditing = card.querySelector('.set-row.editing');
+      if (currentlyEditing && currentlyEditing !== row) {
+        currentlyEditing.classList.remove('editing');
+        // Check if it has data - if so, mark as saved; otherwise inactive
+        const hasData = currentlyEditing.querySelector('.reps-input').value ||
+                        currentlyEditing.querySelector('.weight-input').value ||
+                        currentlyEditing.querySelector('.rir-input').value;
+        if (hasData) {
+          currentlyEditing.classList.add('saved');
+        } else {
+          currentlyEditing.classList.add('inactive');
+        }
+      }
+
+      // Also convert any inactive row back to its proper state
+      const inactiveRow = card.querySelector('.set-row.inactive');
+      if (inactiveRow && inactiveRow !== row) {
+        inactiveRow.classList.remove('inactive');
+        const hasData = inactiveRow.querySelector('.reps-input').value ||
+                        inactiveRow.querySelector('.weight-input').value ||
+                        inactiveRow.querySelector('.rir-input').value;
+        if (hasData) {
+          inactiveRow.classList.add('saved');
+        }
+        // If no data, leave without special class (will be next to edit)
+      }
+
+      // Make clicked row editable
+      row.classList.remove('saved', 'inactive');
+      row.classList.add('editing');
+      return;
+    }
+
     // Handle exercise name click (show info)
     if (e.target.closest('.exercise-name')) {
       const nameInput = card.querySelector('.exercise-name');
@@ -314,28 +395,40 @@ export function addExerciseCard(container, existingData = null, options = {}) {
         <span class="col-label" data-term="repetition">Reps</span>
         <span class="col-label" data-term="intensity">Weight (${weightUnit})</span>
         <span class="col-label col-label-rir" data-term="reps in reserve">RIR</span>
-        <span class="col-label col-label-notes">Notes</span>
+        <span class="col-label col-label-actions"></span>
       </div>
-      <div class="set-row" data-set="0">
+      <div class="set-row editing" data-set="0">
         <span class="set-label">Set 1</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(0, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(0, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(0, 'rir')}" inputmode="numeric" min="0" max="5">
-        <button type="button" class="notes-btn" aria-label="Add notes for set 1">📝</button>
+        <span class="set-actions">
+          <button type="button" class="notes-btn" aria-label="Add notes for set 1">🗒️</button>
+          <button type="button" class="save-set-btn" aria-label="Save set 1">💾</button>
+          <button type="button" class="edit-set-btn" aria-label="Edit set 1">✏️</button>
+        </span>
       </div>
-      <div class="set-row" data-set="1">
+      <div class="set-row hidden" data-set="1">
         <span class="set-label">Set 2</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(1, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(1, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(1, 'rir')}" inputmode="numeric" min="0" max="5">
-        <button type="button" class="notes-btn" aria-label="Add notes for set 2">📝</button>
+        <span class="set-actions">
+          <button type="button" class="notes-btn" aria-label="Add notes for set 2">🗒️</button>
+          <button type="button" class="save-set-btn" aria-label="Save set 2">💾</button>
+          <button type="button" class="edit-set-btn" aria-label="Edit set 2">✏️</button>
+        </span>
       </div>
-      <div class="set-row" data-set="2">
+      <div class="set-row hidden" data-set="2">
         <span class="set-label">Set 3</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(2, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(2, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(2, 'rir')}" inputmode="numeric" min="0" max="5">
-        <button type="button" class="notes-btn" aria-label="Add notes for set 3">📝</button>
+        <span class="set-actions">
+          <button type="button" class="notes-btn" aria-label="Add notes for set 3">🗒️</button>
+          <button type="button" class="save-set-btn" aria-label="Save set 3">💾</button>
+          <button type="button" class="edit-set-btn" aria-label="Edit set 3">✏️</button>
+        </span>
       </div>
     </div>
   `;
@@ -343,9 +436,16 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   if (existingData) {
     card.querySelector('.exercise-name').value = existingData.name || '';
     const setRows = card.querySelectorAll('.set-row:not(.set-header)');
-    if (existingData.sets) {
+    if (existingData.sets && existingData.sets.length > 0) {
+      let lastSetWithData = -1;
+
       existingData.sets.forEach((set, i) => {
         if (setRows[i]) {
+          const hasData = set.reps !== null || set.weight !== null || set.rir !== null;
+          if (hasData) {
+            lastSetWithData = i;
+            setRows[i].classList.remove('hidden');
+          }
           if (set.reps !== null) setRows[i].querySelector('.reps-input').value = set.reps;
           if (set.weight !== null) {
             let displayWeight = set.weight;
@@ -361,6 +461,16 @@ export function addExerciseCard(container, existingData = null, options = {}) {
           }
         }
       });
+
+      // Make the last set with data the editing one, mark others as saved
+      for (let i = 0; i <= lastSetWithData; i++) {
+        if (i < lastSetWithData) {
+          setRows[i].classList.remove('editing');
+          setRows[i].classList.add('saved');
+        } else {
+          setRows[i].classList.add('editing');
+        }
+      }
     }
   }
 

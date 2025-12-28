@@ -97,7 +97,8 @@ export function collectWorkoutData(container) {
     const name = card.querySelector('.exercise-name').value.trim();
     const sets = [];
 
-    card.querySelectorAll('.set-row:not(.set-header)').forEach(row => {
+    // Only collect visible (non-hidden) set rows
+    card.querySelectorAll('.set-row:not(.set-header):not(.hidden)').forEach(row => {
       const reps = row.querySelector('.reps-input')?.value;
       const weightStr = row.querySelector('.weight-input')?.value;
       const rir = row.querySelector('.rir-input')?.value;
