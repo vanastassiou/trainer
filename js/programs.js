@@ -7,7 +7,7 @@ import { state } from './state.js';
 import { swapVisibility } from './utils.js';
 import { createModalController, showToast } from './ui.js';
 import { createTabController } from './ui.js';
-import { validateProgram, hasUnsavedWorkoutData, collectProgramDays } from './validation.js';
+import { validateProgram, validateProgramExercises, hasUnsavedWorkoutData, collectProgramDays } from './validation.js';
 import {
   createProgram,
   getAllPrograms,
@@ -487,10 +487,8 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
       return false;
     }
 
-    // Look up exercise details
-    const exerciseData = state.exercisesDB.find(
-      ex => ex.name.toLowerCase() === exerciseName.toLowerCase()
-    );
+    // Look up exercise details using index Map
+    const exerciseData = state.exerciseByName.get(exerciseName.toLowerCase()) || null;
 
     const exerciseTag = document.createElement('div');
     exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
@@ -553,7 +551,11 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
   };
 
   if (existingExercises) {
-    existingExercises.forEach(name => addExerciseTag(name, false));
+    existingExercises.forEach(exercise => {
+      // Handle both string names and object format {name: "..."}
+      const name = typeof exercise === 'string' ? exercise : exercise?.name;
+      if (name) addExerciseTag(name, false);
+    });
   }
 
   addExerciseBtn.addEventListener('click', () => {
@@ -597,10 +599,8 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
   const addExerciseBtn = card.querySelector('.add-exercise-btn');
 
   const addExerciseTag = (exerciseName, locked) => {
-    // Look up exercise details
-    const exerciseData = state.exercisesDB.find(
-      ex => ex.name.toLowerCase() === exerciseName.toLowerCase()
-    );
+    // Look up exercise details using index Map
+    const exerciseData = state.exerciseByName.get(exerciseName.toLowerCase()) || null;
 
     const exerciseTag = document.createElement('div');
     exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
@@ -655,8 +655,10 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
     exercisesContainer.appendChild(exerciseTag);
   };
 
-  exercises.forEach((name, i) => {
-    addExerciseTag(name, lockedStates[i] || false);
+  exercises.forEach((exercise, i) => {
+    // Handle both string names and object format {name: "..."}
+    const name = typeof exercise === 'string' ? exercise : exercise?.name;
+    if (name) addExerciseTag(name, lockedStates[i] || false);
   });
 
   addExerciseBtn.addEventListener('click', () => {
@@ -709,7 +711,7 @@ function regenerateWithLocks(settings, lockedDays) {
   lockedDays.forEach(day => {
     day.exercises.forEach((name, i) => {
       if (day.locked[i]) {
-        const ex = exercises.find(e => e.name.toLowerCase() === name.toLowerCase());
+        const ex = state.exerciseByName.get(name.toLowerCase());
         if (ex) usedExercises.add(ex.id);
       }
     });
@@ -814,6 +816,11 @@ export async function populateProgramSelector() {
   const programs = await getAllPrograms();
   let activeProgram = await getActiveProgram();
 
+  // Validate exercise references in all programs (logs warnings for stale references)
+  if (state.exerciseByName.size > 0) {
+    programs.forEach(p => validateProgramExercises(p, state.exerciseByName));
+  }
+
   if (programs.length === 0) {
     swapVisibility(noPrograms, programSelector);
     workoutForm.classList.add('hidden');
@@ -892,7 +899,14 @@ export async function renderProgramsList(refreshProgramUI) {
   container.innerHTML = programs.map(program => {
     const dayCount = getProgramDayCount(program);
     const daysPreview = program.days
-      ? program.days.map((day, i) => `<div class="program-day-preview"><strong>Day ${i + 1}</strong><span class="exercises">${day.exercises.map(ex => `<span class="exercise-link" data-exercise="${ex.name}">${ex.name}</span>`).join(', ')}</span></div>`).join('')
+      ? program.days.map((day, i) => {
+          const exerciseLinks = (day.exercises || []).map(ex => {
+            // Handle both string names and object format {name: "..."}
+            const name = typeof ex === 'string' ? ex : ex?.name;
+            return name ? `<span class="exercise-link" data-exercise="${name}">${name}</span>` : '';
+          }).filter(Boolean).join(', ');
+          return `<div class="program-day-preview"><strong>Day ${i + 1}</strong><span class="exercises">${exerciseLinks}</span></div>`;
+        }).join('')
       : '';
 
     const isActive = activeProgram?.id === program.id;

@@ -139,3 +139,26 @@ export function collectProgramDays(container) {
   });
   return days;
 }
+
+/**
+ * Validate that all exercise references in a program exist in the exercise database.
+ * @param {Object} program - Program object with days array
+ * @param {Map} exerciseIndex - Map of lowercase exercise names to exercise objects
+ * @returns {boolean} True if all references are valid
+ */
+export function validateProgramExercises(program, exerciseIndex) {
+  const invalid = [];
+  for (const day of program.days || []) {
+    for (const exercise of day.exercises || []) {
+      // Handle both string names and object format {name: "..."}
+      const exerciseName = typeof exercise === 'string' ? exercise : exercise?.name;
+      if (exerciseName && !exerciseIndex.has(exerciseName.toLowerCase())) {
+        invalid.push(exerciseName);
+      }
+    }
+  }
+  if (invalid.length) {
+    console.warn(`Program "${program.name}" has invalid exercise references:`, invalid);
+  }
+  return invalid.length === 0;
+}

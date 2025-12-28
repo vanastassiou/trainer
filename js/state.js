@@ -4,6 +4,7 @@
 
 // Private state variables
 let _exercisesDB = [];
+let _exerciseByName = new Map();
 let _articlesData = null;
 let _glossaryData = null;
 let _isInitializing = false;
@@ -27,7 +28,14 @@ let _unitPreference = 'metric';
 export const state = {
   // Exercise database
   get exercisesDB() { return _exercisesDB; },
-  set exercisesDB(v) { _exercisesDB = v; },
+  set exercisesDB(v) {
+    _exercisesDB = v;
+    // Build lookup index when exercises load
+    _exerciseByName = new Map(
+      v.map(ex => [ex.name.toLowerCase(), ex])
+    );
+  },
+  get exerciseByName() { return _exerciseByName; },
 
   // Articles data (lazy loaded)
   get articlesData() { return _articlesData; },

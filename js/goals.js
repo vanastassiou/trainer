@@ -6,8 +6,7 @@
 import { showToast } from './ui.js';
 import {
   createGoal,
-  getActiveGoals,
-  getCompletedGoals,
+  getAllGoalsPartitioned,
   completeGoal,
   uncompleteGoal,
   deleteGoal,
@@ -504,8 +503,8 @@ export async function renderGoalsList() {
   const completedSection = document.getElementById('completed-goals-section');
   const completedContainer = document.getElementById('completed-goals-list');
 
-  const activeGoals = await getActiveGoals();
-  const completedGoals = await getCompletedGoals();
+  // Single fetch for both active and completed goals
+  const { active: activeGoals, completed: completedGoals } = await getAllGoalsPartitioned();
 
   // Render active goals
   if (activeGoals.length === 0) {

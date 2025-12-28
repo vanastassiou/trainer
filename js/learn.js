@@ -4,9 +4,12 @@
 // Handles research articles, glossary, and references display.
 
 import { state } from './state.js';
-import { fetchJSON, formatLabel, renderListItems, getAgeFromBirthDate, getVolumeRecommendations } from './utils.js';
+import { fetchJSON, formatLabel, renderListItems, getAgeFromBirthDate, getVolumeRecommendations, escapeHtml } from './utils.js';
 import { createModalController } from './ui.js';
 import { getProfile } from './db.js';
+
+// Glossary term index for O(1) lookups
+let glossaryIndex = new Map();
 
 // =============================================================================
 // DATA LOADING
@@ -126,10 +129,10 @@ function renderGlossaryList(terms) {
   emptyMessage.classList.add('hidden');
   container.innerHTML = terms.map(term => `
     <div class="learn-card">
-      <div class="learn-card-title">${term.term}</div>
-      <div class="learn-card-meta">${categories[term.category] || term.category}</div>
-      <div class="learn-card-description">${term.description}</div>
-      ${term.aliases?.length ? `<div class="glossary-aliases">Also: ${term.aliases.join(', ')}</div>` : ''}
+      <div class="learn-card-title">${escapeHtml(term.term)}</div>
+      <div class="learn-card-meta">${escapeHtml(categories[term.category] || term.category)}</div>
+      <div class="learn-card-description">${escapeHtml(term.description)}</div>
+      ${term.aliases?.length ? `<div class="glossary-aliases">Also: ${escapeHtml(term.aliases.join(', '))}</div>` : ''}
     </div>
   `).join('');
 }
@@ -220,17 +223,26 @@ export async function initLearnPage() {
 export async function loadGlossary() {
   if (state.glossaryData) return state.glossaryData;
   state.glossaryData = await fetchJSON('data/glossary.json', { glossary: { terms: [], categories: {} } });
+  // Build lookup index for O(1) term lookups
+  buildGlossaryIndex(state.glossaryData.glossary.terms);
   return state.glossaryData;
+}
+
+function buildGlossaryIndex(terms) {
+  glossaryIndex = new Map();
+  for (const term of terms) {
+    glossaryIndex.set(term.term.toLowerCase(), term);
+    if (term.aliases) {
+      for (const alias of term.aliases) {
+        glossaryIndex.set(alias.toLowerCase(), term);
+      }
+    }
+  }
 }
 
 export function getGlossaryTerm(name) {
   if (!state.glossaryData) return null;
-
-  const searchName = name.toLowerCase();
-  return state.glossaryData.glossary.terms.find(term =>
-    term.term.toLowerCase() === searchName ||
-    (term.aliases && term.aliases.some(alias => alias.toLowerCase() === searchName))
-  );
+  return glossaryIndex.get(name.toLowerCase()) || null;
 }
 
 export function initGlossaryModal() {

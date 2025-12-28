@@ -596,7 +596,7 @@ input::placeholder {
 }
 
 .exercise-header .exercise-name::placeholder {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   font-weight: 400;
 }
 
@@ -1489,7 +1489,7 @@ input::placeholder {
 .action-sheet-btn .action-desc {
   margin-left: auto;
   font-size: 13px;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 /* =============================================================================
@@ -1551,7 +1551,7 @@ input::placeholder {
 }
 
 .glossary-details-toggle:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-primary-hover);
 }
 
 .glossary-details-toggle .expand-icon {

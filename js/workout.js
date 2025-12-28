@@ -30,9 +30,7 @@ export async function loadExercisesDB() {
 }
 
 export function getExerciseByName(name) {
-  return state.exercisesDB.find(ex =>
-    ex.name.toLowerCase() === name.toLowerCase()
-  );
+  return state.exerciseByName.get(name.toLowerCase()) || null;
 }
 
 function isBodyweightExercise(name) {
@@ -82,6 +80,37 @@ export function initWorkoutForm(callbacks) {
   state.workoutSwitchDialog = createModalController(
     document.getElementById('workout-switch-dialog')
   );
+
+  // Event delegation for exercise cards (attach once, not per card)
+  container.addEventListener('click', (e) => {
+    const card = e.target.closest('.exercise-card');
+    if (!card) return;
+
+    // Handle edit button click
+    if (e.target.closest('.edit-exercise-btn')) {
+      openExerciseEditModal(card);
+      return;
+    }
+
+    // Handle exercise name click (show info)
+    if (e.target.closest('.exercise-name')) {
+      const nameInput = card.querySelector('.exercise-name');
+      const name = nameInput.value.trim();
+      if (name) {
+        showExerciseInfo(name);
+      }
+    }
+  });
+
+  // Handle blur events for weight visibility updates (non-program cards)
+  container.addEventListener('focusout', (e) => {
+    if (e.target.classList.contains('exercise-name')) {
+      const card = e.target.closest('.exercise-card');
+      if (card && !card.dataset.fromProgram) {
+        updateWeightVisibility(card);
+      }
+    }
+  });
 
   addBtn.addEventListener('click', () => {
     addExerciseCard(container);
@@ -274,28 +303,10 @@ export function addExerciseCard(container, existingData = null, options = {}) {
     }
   }
 
-  const nameInput = card.querySelector('.exercise-name');
-
   // Update weight visibility based on exercise type
   updateWeightVisibility(card);
 
-  // Show exercise info when name is clicked (if it has a value)
-  nameInput.addEventListener('click', () => {
-    const name = nameInput.value.trim();
-    if (name) {
-      showExerciseInfo(name);
-    }
-  });
-
-  if (!fromProgram) {
-    // Update weight visibility when name changes for non-program cards
-    nameInput.addEventListener('blur', () => updateWeightVisibility(card));
-  }
-
-  const editBtn = card.querySelector('.edit-exercise-btn');
-  editBtn.addEventListener('click', () => {
-    openExerciseEditModal(card);
-  });
+  // Event listeners are handled by container-level delegation in initWorkoutForm()
 
   container.appendChild(card);
 }
@@ -322,9 +333,12 @@ export async function loadTemplate() {
   const previousExercises = previousJournal?.workout?.exercises || [];
 
   container.innerHTML = '';
-  const templateExercises = program.days[dayNumber - 1].exercises;
+  const templateExercises = program.days[dayNumber - 1].exercises || [];
 
-  templateExercises.forEach(name => {
+  templateExercises.forEach(exercise => {
+    // Handle both string names and object format {name: "..."}
+    const name = typeof exercise === 'string' ? exercise : exercise?.name;
+    if (!name) return;
     const previousData = previousExercises.find(e => e.name === name);
     addExerciseCard(container, { name, sets: [] }, {
       fromProgram: true,

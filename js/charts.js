@@ -71,11 +71,12 @@ function getMetricValue(journal, category, metric) {
  * @param {string} metric - Field name (e.g., 'weight', 'calories')
  * @param {string} category - 'body', 'daily', or 'workout'
  * @param {number|null} days - Number of days to look back, or null for all time
+ * @param {Array|null} cachedJournals - Optional pre-fetched journals to avoid redundant DB calls
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getChartData(metric, category, days = 28) {
+export async function getChartData(metric, category, days = 28, cachedJournals = null) {
   const endDate = getTodayDate();
-  const allJournals = await getRecentJournals(true);
+  const allJournals = cachedJournals || await getRecentJournals(true);
 
   let journals;
   if (days === null) {
@@ -95,13 +96,14 @@ export async function getChartData(metric, category, days = 28) {
 /**
  * Get unique exercise names from workouts in a time period
  * @param {number} days - Number of days to look back
+ * @param {Array|null} cachedJournals - Optional pre-fetched journals to avoid redundant DB calls
  * @returns {Promise<Array>} Sorted array of exercise names
  */
-export async function getExercisesInPeriod(days = 30) {
+export async function getExercisesInPeriod(days = 30, cachedJournals = null) {
   const endDate = getTodayDate();
   const startDate = subtractDays(endDate, days);
 
-  const allJournals = await getRecentJournals(true);
+  const allJournals = cachedJournals || await getRecentJournals(true);
   const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
 
   const exerciseNames = new Set();
@@ -120,11 +122,12 @@ export async function getExercisesInPeriod(days = 30) {
  * Get average weight per rep for a specific exercise over time
  * @param {string} exerciseName - Name of the exercise
  * @param {number|null} days - Number of days to look back, or null for all time
+ * @param {Array|null} cachedJournals - Optional pre-fetched journals to avoid redundant DB calls
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getExerciseAvgWeightData(exerciseName, days = 28) {
+export async function getExerciseAvgWeightData(exerciseName, days = 28, cachedJournals = null) {
   const endDate = getTodayDate();
-  const allJournals = await getRecentJournals(true);
+  const allJournals = cachedJournals || await getRecentJournals(true);
 
   let journals;
   if (days === null) {
