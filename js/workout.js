@@ -43,7 +43,7 @@ function isBodyweightExercise(name) {
 }
 
 function updateWeightVisibility(card) {
-  const name = card.querySelector('.exercise-name').value.trim();
+  const name = card.querySelector('.exercise-picker-name')?.textContent.trim() || '';
   if (name && isBodyweightExercise(name)) {
     card.classList.add('bodyweight');
   } else {
@@ -131,7 +131,7 @@ export function initWorkoutForm(callbacks) {
     if (e.target.closest('.notes-btn')) {
       const row = e.target.closest('.set-row');
       const setNum = parseInt(row.dataset.set, 10) + 1;
-      const exerciseName = card.querySelector('.exercise-name').value || 'Exercise';
+      const exerciseName = card.querySelector('.exercise-picker-name')?.textContent || 'Exercise';
       currentNotesRow = row;
       setNotesTitle.textContent = `${exerciseName} - Set ${setNum}`;
       setNotesInput.value = row.dataset.notes || '';
@@ -162,9 +162,9 @@ export function initWorkoutForm(callbacks) {
         } else if (!nextRow) {
           // No more sets (this was the last one) - mark exercise as complete
           card.classList.add('completed');
-          const nameInput = card.querySelector('.exercise-name');
-          if (nameInput && !nameInput.value.includes('✅')) {
-            nameInput.value = nameInput.value + ' ✅';
+          const nameSpan = card.querySelector('.exercise-picker-name');
+          if (nameSpan && !nameSpan.textContent.includes('✅')) {
+            nameSpan.textContent = nameSpan.textContent + ' ✅';
           }
 
           card.classList.add('collapsed');
@@ -222,18 +222,66 @@ export function initWorkoutForm(callbacks) {
     }
 
     // Handle exercise name click (show info)
-    if (e.target.closest('.exercise-name')) {
-      const nameInput = card.querySelector('.exercise-name');
-      const name = nameInput.value.trim();
+    if (e.target.closest('.exercise-picker-name')) {
+      const nameSpan = card.querySelector('.exercise-picker-name');
+      const name = nameSpan?.textContent.trim();
       if (name) {
         showExerciseInfo(name);
       }
+      return;
+    }
+
+    // Handle swap button click
+    if (e.target.closest('.swap-exercise-btn')) {
+      const nameSpan = card.querySelector('.exercise-picker-name');
+      const exerciseName = nameSpan?.textContent.trim() || '';
+      const exerciseId = card.dataset.exerciseId;
+      const exercise = exerciseId ? state.exercisesById.get(exerciseId) : null;
+      const muscleGroup = exercise?.muscle_group || '';
+      const movementPattern = exercise?.movement_pattern || '';
+
+      openExercisePicker(({ id, name }) => {
+        if (!confirm(`Swap ${exerciseName} for ${name}?`)) return;
+        nameSpan.textContent = name;
+        card.dataset.exerciseId = id;
+        // Update tags
+        const newExercise = state.exercisesById.get(id);
+        const tags = [];
+        if (newExercise?.muscle_group) {
+          tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(newExercise.muscle_group)}</span>`);
+        }
+        if (newExercise?.movement_pattern) {
+          tags.push(`<span class="exercise-picker-tag movement">${formatLabel(newExercise.movement_pattern)}</span>`);
+        }
+        if (newExercise?.equipment) {
+          tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(newExercise.equipment)}</span>`);
+        }
+        if (newExercise?.difficulty) {
+          tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(newExercise.difficulty)}</span>`);
+        }
+        const metaEl = card.querySelector('.exercise-picker-meta');
+        if (metaEl) {
+          metaEl.innerHTML = tags.join('');
+        }
+        updateWeightVisibility(card);
+      }, { muscleGroup, movementPattern, swapMode: true, exerciseName });
+      return;
+    }
+
+    // Handle remove button click
+    if (e.target.closest('.remove-exercise-btn')) {
+      const nameSpan = card.querySelector('.exercise-picker-name');
+      const exerciseName = nameSpan?.textContent.trim() || 'this exercise';
+      if (confirm(`Remove ${exerciseName}?`)) {
+        card.remove();
+      }
+      return;
     }
   });
 
   // Handle blur events for weight visibility updates (non-program cards)
   container.addEventListener('focusout', (e) => {
-    if (e.target.classList.contains('exercise-name')) {
+    if (e.target.classList.contains('exercise-picker-name')) {
       const card = e.target.closest('.exercise-card');
       if (card && !card.dataset.fromProgram) {
         updateWeightVisibility(card);
@@ -385,13 +433,37 @@ export function addExerciseCard(container, existingData = null, options = {}) {
 
   card.classList.add('collapsed');
 
+  // Build tags from exercise data
+  const exerciseId = existingData?.id;
+  const exerciseData = exerciseId ? state.exercisesById.get(exerciseId) : null;
+  const tags = [];
+  if (exerciseData?.muscle_group) {
+    tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
+  }
+  if (exerciseData?.movement_pattern) {
+    tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
+  }
+  if (exerciseData?.equipment) {
+    tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
+  }
+  if (exerciseData?.difficulty) {
+    tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
+  }
+  const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
+
   card.innerHTML = `
     <div class="exercise-header">
       <button type="button" class="collapse-toggle" aria-label="Toggle exercise details">
         <span class="collapse-icon"></span>
       </button>
-      <input type="text" class="exercise-name" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
-      <button type="button" class="btn secondary edit-exercise-btn">Edit</button>
+      <div class="exercise-picker-item">
+        <span class="exercise-picker-name">${existingData?.name || ''}</span>
+        <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
+        <div class="exercise-picker-row">
+          ${metaHtml}
+          <button type="button" class="remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
+        </div>
+      </div>
     </div>
     <div class="sets-container">
       <div class="set-row set-header">
@@ -438,7 +510,6 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   `;
 
   if (existingData) {
-    card.querySelector('.exercise-name').value = existingData.name || '';
     const setRows = card.querySelectorAll('.set-row:not(.set-header)');
     if (existingData.sets && existingData.sets.length > 0) {
       let lastSetWithData = -1;
@@ -800,8 +871,8 @@ export function initExerciseEditModal() {
 
   swapBtn.addEventListener('click', () => {
     if (!currentEditCard) return;
-    const nameInput = currentEditCard.querySelector('.exercise-name');
-    const exerciseName = nameInput.value.trim();
+    const nameSpan = currentEditCard.querySelector('.exercise-picker-name');
+    const exerciseName = nameSpan?.textContent.trim() || '';
     const exercise = getExerciseByName(exerciseName);
     const muscleGroup = exercise?.muscle_group || '';
     const movementPattern = exercise?.movement_pattern || '';
@@ -811,7 +882,7 @@ export function initExerciseEditModal() {
     openExercisePicker(({ id, name }) => {
       if (!confirm(`Swap out ${exerciseName} for ${name}?`)) return;
 
-      nameInput.value = name;
+      nameSpan.textContent = name;
       currentEditCard.dataset.exerciseId = id;
       updateWeightVisibility(currentEditCard);
       currentEditCard = null;
@@ -820,8 +891,8 @@ export function initExerciseEditModal() {
 
   removeBtn.addEventListener('click', () => {
     if (!currentEditCard) return;
-    const nameInput = currentEditCard.querySelector('.exercise-name');
-    const exerciseName = nameInput.value.trim();
+    const nameSpan = currentEditCard.querySelector('.exercise-picker-name');
+    const exerciseName = nameSpan?.textContent.trim() || '';
 
     if (!confirm(`Remove ${exerciseName} from today's workout?`)) return;
 
@@ -833,8 +904,8 @@ export function initExerciseEditModal() {
 
 function openExerciseEditModal(card) {
   currentEditCard = card;
-  const nameInput = card.querySelector('.exercise-name');
-  const exerciseName = nameInput.value.trim() || 'Exercise';
+  const nameSpan = card.querySelector('.exercise-picker-name');
+  const exerciseName = nameSpan?.textContent.trim() || 'Exercise';
   document.getElementById('exercise-edit-name').textContent = `Edit ${exerciseName}`;
   state.exerciseEditDialog.open();
 }

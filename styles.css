@@ -678,9 +678,22 @@ input::placeholder {
 
 .exercise-header {
   display: flex;
-  gap: var(--spacing-lg);
-  align-items: center;
+  gap: var(--spacing-md);
+  align-items: flex-start;
   margin-bottom: var(--spacing-lg);
+}
+
+.exercise-header .exercise-picker-item {
+  flex: 1;
+  margin-bottom: 0;
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.exercise-header .exercise-picker-item:hover {
+  border: none;
+  background: none;
 }
 
 .exercise-card.collapsed .exercise-header {
@@ -716,37 +729,6 @@ input::placeholder {
   transform: rotate(-90deg);
 }
 
-.exercise-header .exercise-name {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--color-secondary);
-  font-weight: 600;
-  font-size: 18px;
-  padding: 0;
-  letter-spacing: -0.3px;
-}
-
-.exercise-header .exercise-name::placeholder {
-  color: var(--color-text-muted);
-  font-weight: 400;
-}
-
-.exercise-header .exercise-name:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-.exercise-header .exercise-name[readonly] {
-  cursor: pointer;
-}
-
-.exercise-header .exercise-name:hover {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  color: var(--color-primary);
-  cursor: pointer;
-}
 
 .sets-container {
   display: flex;
@@ -1206,12 +1188,13 @@ input::placeholder {
   margin-bottom: 0;
 }
 
-.program-day-exercises .swap-exercise-btn {
+/* Swap/remove buttons in exercise items (shared across views) */
+.exercise-picker-item .swap-exercise-btn {
   margin-left: auto;
 }
 
-.program-day-exercises .swap-exercise-btn,
-.program-day-exercises .remove-exercise-btn {
+.exercise-picker-item .swap-exercise-btn,
+.exercise-picker-item .remove-exercise-btn {
   background: transparent;
   border: none;
   font-size: 16px;
@@ -1220,8 +1203,8 @@ input::placeholder {
   opacity: 0.7;
 }
 
-.program-day-exercises .swap-exercise-btn:hover,
-.program-day-exercises .remove-exercise-btn:hover {
+.exercise-picker-item .swap-exercise-btn:hover,
+.exercise-picker-item .remove-exercise-btn:hover {
   opacity: 1;
 }
 
