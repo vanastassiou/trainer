@@ -1930,6 +1930,60 @@ input::placeholder {
   margin-bottom: 0;
 }
 
+.article-methodology {
+  margin-top: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.article-methodology summary {
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  list-style: none;
+}
+
+.article-methodology summary::-webkit-details-marker {
+  display: none;
+}
+
+.article-methodology summary::before {
+  content: "▶ ";
+  font-size: 10px;
+  margin-inline-end: 6px;
+}
+
+.article-methodology[open] summary::before {
+  content: "▼ ";
+}
+
+.article-methodology dl {
+  margin: 0;
+  padding: 0 12px 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  font-size: 13px;
+}
+
+.article-methodology dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.article-methodology dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.article-methodology [data-term] {
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+  cursor: help;
+}
+
 /* =============================================================================
    LEARN TAB - GLOSSARY
    ============================================================================= */

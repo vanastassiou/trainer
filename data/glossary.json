@@ -12,10 +12,12 @@
       "nutrition": "Dietary intake and hydration concepts",
       "programming": "Workout structure and planning terms",
       "recovery": "Rest, sleep, and adaptation terminology",
+      "research": "Study design and evidence evaluation",
       "technique": "Advanced training methods"
     },
-    "terms": [
-      {
+    "terms": {
+      "repetition": {
+        "name": "repetition",
         "aliases": [
           "rep",
           "reps"
@@ -27,10 +29,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "repetition"
+        ]
       },
-      {
+      "set": {
+        "name": "set",
         "aliases": [],
         "category": "basic",
         "description": "A group of reps done without stopping. 3 sets of 10 means doing 10 reps, resting, then repeating twice more.",
@@ -39,10 +41,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "set"
+        ]
       },
-      {
+      "one-repetition-maximum": {
+        "name": "one repetition maximum",
         "aliases": [
           "1RM",
           "one-rep max"
@@ -54,10 +56,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Calculators/OneRepMax"
           }
-        ],
-        "term": "one repetition maximum"
+        ]
       },
-      {
+      "intensity": {
+        "name": "intensity",
         "aliases": [],
         "category": "basic",
         "description": "How heavy or hard the exercise is. Usually measured as weight lifted or percentage of your max.",
@@ -66,10 +68,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "intensity"
+        ]
       },
-      {
+      "volume": {
+        "name": "volume",
         "aliases": [],
         "category": "basic",
         "description": "Total work done, calculated as sets × reps × weight. More volume generally means more muscle growth.",
@@ -80,15 +82,12 @@
             "url": "https://exrx.net/WeightTraining/Volume"
           },
           {
-            "author": "Schoenfeld et al.",
-            "pmid": "27433992",
-            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass",
-            "year": 2017
+            "pmid": "27433992"
           }
-        ],
-        "term": "volume"
+        ]
       },
-      {
+      "frequency": {
+        "name": "frequency",
         "aliases": [],
         "category": "basic",
         "description": "How often you train. Can refer to workouts per week or how many times you hit each muscle per week.",
@@ -97,10 +96,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "frequency"
+        ]
       },
-      {
+      "range-of-motion": {
+        "name": "range of motion",
         "aliases": [
           "ROM"
         ],
@@ -111,10 +110,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Testing/JointROM"
           }
-        ],
-        "term": "range of motion"
+        ]
       },
-      {
+      "tempo": {
+        "name": "tempo",
         "aliases": [],
         "category": "basic",
         "description": "The speed of each rep. A 3/0/2/1 tempo means 3 seconds down, no pause, 2 seconds up, 1 second at top.",
@@ -123,10 +122,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "tempo"
+        ]
       },
-      {
+      "warm-up-set": {
+        "name": "warm-up set",
         "aliases": [],
         "category": "programming",
         "description": "A lighter set done before your main work to prepare muscles and joints. Usually about half the weight for 12-15 reps.",
@@ -135,10 +134,10 @@
             "source": "exrx",
             "url": "https://exrx.net/ExInfo/WarmUp"
           }
-        ],
-        "term": "warm-up set"
+        ]
       },
-      {
+      "working-set": {
+        "name": "working set",
         "aliases": [
           "work set"
         ],
@@ -149,10 +148,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "working set"
+        ]
       },
-      {
+      "compound-exercise": {
+        "name": "compound exercise",
         "aliases": [
           "multi-joint exercise"
         ],
@@ -163,10 +162,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "compound exercise"
+        ]
       },
-      {
+      "isolation-exercise": {
+        "name": "isolation exercise",
         "aliases": [
           "single-joint exercise"
         ],
@@ -177,10 +176,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "isolation exercise"
+        ]
       },
-      {
+      "basic-exercise": {
+        "name": "basic exercise",
         "aliases": [],
         "category": "movement",
         "description": "A main lift that works muscles with heavy loads. Usually compound movements like squat, bench, row, and press.",
@@ -189,10 +188,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "basic exercise"
+        ]
       },
-      {
+      "auxiliary-exercise": {
+        "name": "auxiliary exercise",
         "aliases": [
           "accessory exercise"
         ],
@@ -203,10 +202,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "auxiliary exercise"
+        ]
       },
-      {
+      "closed-chain-exercise": {
+        "name": "closed-chain exercise",
         "aliases": [],
         "category": "movement",
         "description": "An exercise where your hands or feet stay fixed. Squats, push-ups, and pull-ups are closed-chain because you push against a fixed surface.",
@@ -215,10 +214,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "closed-chain exercise"
+        ]
       },
-      {
+      "open-chain-exercise": {
+        "name": "open-chain exercise",
         "aliases": [],
         "category": "movement",
         "description": "An exercise where your hands or feet move freely through space. Leg extensions and biceps curls are open-chain.",
@@ -227,10 +226,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "open-chain exercise"
+        ]
       },
-      {
+      "concentric": {
+        "name": "concentric",
         "aliases": [
           "concentric contraction",
           "positive"
@@ -242,10 +241,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "concentric"
+        ]
       },
-      {
+      "eccentric": {
+        "name": "eccentric",
         "aliases": [
           "eccentric contraction",
           "negative"
@@ -257,10 +256,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "eccentric"
+        ]
       },
-      {
+      "isometric": {
+        "name": "isometric",
         "aliases": [
           "isometric contraction",
           "static hold"
@@ -272,10 +271,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "isometric"
+        ]
       },
-      {
+      "agonist": {
+        "name": "agonist",
         "aliases": [
           "prime mover"
         ],
@@ -286,10 +285,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "agonist"
+        ]
       },
-      {
+      "antagonist": {
+        "name": "antagonist",
         "aliases": [],
         "category": "anatomy",
         "description": "The muscle opposite the working muscle. During a biceps curl, the triceps is the antagonist and must relax to allow the movement.",
@@ -298,10 +297,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "antagonist"
+        ]
       },
-      {
+      "synergist": {
+        "name": "synergist",
         "aliases": [],
         "category": "anatomy",
         "description": "A helper muscle that assists the main muscle. During a biceps curl, the brachialis helps the biceps bend the elbow.",
@@ -310,10 +309,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "synergist"
+        ]
       },
-      {
+      "stabilizer": {
+        "name": "stabilizer",
         "aliases": [],
         "category": "anatomy",
         "description": "A muscle that holds a joint steady without moving. Your core stabilizes your spine during a squat.",
@@ -322,10 +321,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "stabilizer"
+        ]
       },
-      {
+      "dynamic-stabilizer": {
+        "name": "dynamic stabilizer",
         "aliases": [
           "fixator"
         ],
@@ -336,10 +335,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Questions/DynamicStabilizer"
           }
-        ],
-        "term": "dynamic stabilizer"
+        ]
       },
-      {
+      "flexion": {
+        "name": "flexion",
         "aliases": [],
         "category": "movement",
         "description": "Bending a joint to decrease the angle. Bending your elbow or bringing your thigh toward your chest is flexion.",
@@ -348,10 +347,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "flexion"
+        ]
       },
-      {
+      "extension": {
+        "name": "extension",
         "aliases": [],
         "category": "movement",
         "description": "Straightening a joint to increase the angle. Straightening your arm or kicking your leg back is extension.",
@@ -360,10 +359,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "extension"
+        ]
       },
-      {
+      "pronation": {
+        "name": "pronation",
         "aliases": [],
         "category": "movement",
         "description": "Rotating your forearm so the palm faces down, like pouring out water.",
@@ -372,10 +371,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "pronation"
+        ]
       },
-      {
+      "supination": {
+        "name": "supination",
         "aliases": [],
         "category": "movement",
         "description": "Rotating your forearm so the palm faces up, like holding a bowl of soup.",
@@ -384,10 +383,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "supination"
+        ]
       },
-      {
+      "abduction": {
+        "name": "abduction",
         "aliases": [],
         "category": "movement",
         "description": "Moving a limb away from your body's centerline. Raising your arm to the side is shoulder abduction.",
@@ -396,10 +395,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "abduction"
+        ]
       },
-      {
+      "adduction": {
+        "name": "adduction",
         "aliases": [],
         "category": "movement",
         "description": "Moving a limb toward your body's centerline. Lowering your arm back to your side is shoulder adduction.",
@@ -408,10 +407,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "adduction"
+        ]
       },
-      {
+      "hypertrophy": {
+        "name": "hypertrophy",
         "aliases": [
           "muscle growth"
         ],
@@ -422,10 +421,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Volume"
           }
-        ],
-        "term": "hypertrophy"
+        ]
       },
-      {
+      "atrophy": {
+        "name": "atrophy",
         "aliases": [
           "muscle loss"
         ],
@@ -436,10 +435,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "atrophy"
+        ]
       },
-      {
+      "doms": {
+        "name": "DOMS",
         "aliases": [
           "delayed onset muscle soreness"
         ],
@@ -450,10 +449,10 @@
             "source": "exrx",
             "url": "https://exrx.net/ExInfo/Tidbits"
           }
-        ],
-        "term": "DOMS"
+        ]
       },
-      {
+      "progressive-overload": {
+        "name": "progressive overload",
         "aliases": [],
         "category": "programming",
         "description": "Gradually making workouts harder over time by adding weight, reps, or sets. The key driver of long-term progress.",
@@ -462,10 +461,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Guidelines"
           }
-        ],
-        "term": "progressive overload"
+        ]
       },
-      {
+      "beginner-exercise": {
+        "name": "beginner exercise",
         "aliases": [],
         "category": "programming",
         "description": "An easy-to-learn exercise with simple technique. Machine exercises and basic bodyweight movements are beginner-friendly.",
@@ -475,10 +474,10 @@
             "source": "pubmed",
             "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
           }
-        ],
-        "term": "beginner exercise"
+        ]
       },
-      {
+      "intermediate-exercise": {
+        "name": "intermediate exercise",
         "aliases": [],
         "category": "programming",
         "description": "An exercise requiring some practice. Free weight barbell and dumbbell exercises need more skill than machines.",
@@ -488,10 +487,10 @@
             "source": "pubmed",
             "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
           }
-        ],
-        "term": "intermediate exercise"
+        ]
       },
-      {
+      "advanced-exercise": {
+        "name": "advanced exercise",
         "aliases": [],
         "category": "programming",
         "description": "A challenging exercise requiring significant strength or skill. Pistol squats and Olympic lifts take years to master.",
@@ -501,10 +500,10 @@
             "source": "pubmed",
             "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
           }
-        ],
-        "term": "advanced exercise"
+        ]
       },
-      {
+      "failure": {
+        "name": "failure",
         "aliases": [
           "muscular failure",
           "training to failure"
@@ -516,10 +515,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Techniques"
           }
-        ],
-        "term": "failure"
+        ]
       },
-      {
+      "superset": {
+        "name": "superset",
         "aliases": [],
         "category": "technique",
         "description": "Two exercises done back-to-back with no rest between them. Often pairs opposite muscles like chest and back.",
@@ -528,10 +527,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Techniques"
           }
-        ],
-        "term": "superset"
+        ]
       },
-      {
+      "drop-set": {
+        "name": "drop set",
         "aliases": [
           "descending set",
           "strip set"
@@ -543,10 +542,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Techniques"
           }
-        ],
-        "term": "drop set"
+        ]
       },
-      {
+      "forced-repetitions": {
+        "name": "forced repetitions",
         "aliases": [
           "assisted reps"
         ],
@@ -557,10 +556,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Techniques"
           }
-        ],
-        "term": "forced repetitions"
+        ]
       },
-      {
+      "pre-exhaustion": {
+        "name": "pre-exhaustion",
         "aliases": [],
         "category": "technique",
         "description": "Doing an isolation exercise before a compound movement for the same muscle. Like chest flies before bench press.",
@@ -569,10 +568,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Techniques"
           }
-        ],
-        "term": "pre-exhaustion"
+        ]
       },
-      {
+      "time-under-tension": {
+        "name": "time under tension",
         "aliases": [
           "TUT"
         ],
@@ -583,46 +582,46 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "time under tension"
+        ]
       },
-      {
+      "rate-of-perceived-exertion": {
+        "name": "rate of perceived exertion",
         "aliases": [
           "RPE"
         ],
         "category": "technique",
         "description": "A 1-10 scale for how hard a set feels. RPE 7 means you could do 3 more reps; RPE 10 means you had nothing left.",
-        "references": [],
-        "term": "rate of perceived exertion"
+        "references": []
       },
-      {
+      "push": {
+        "name": "push",
         "aliases": [
           "pushing movement"
         ],
         "category": "movement",
         "description": "Pushing weight away from you. Bench press, overhead press, and push-ups are push exercises.",
-        "references": [],
-        "term": "push"
+        "references": []
       },
-      {
+      "pull": {
+        "name": "pull",
         "aliases": [
           "pulling movement"
         ],
         "category": "movement",
         "description": "Pulling weight toward you. Rows, pull-ups, and curls are pull exercises.",
-        "references": [],
-        "term": "pull"
+        "references": []
       },
-      {
+      "hinge": {
+        "name": "hinge",
         "aliases": [
           "hip hinge"
         ],
         "category": "movement",
         "description": "Bending forward at the hips while keeping your back flat. Deadlifts, Romanian deadlifts, and good mornings use this pattern.",
-        "references": [],
-        "term": "hinge"
+        "references": []
       },
-      {
+      "squat-pattern": {
+        "name": "squat pattern",
         "aliases": [],
         "category": "movement",
         "description": "Sitting down and standing up - bending at the hips, knees, and ankles together while keeping your torso upright.",
@@ -631,10 +630,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Squats"
           }
-        ],
-        "term": "squat pattern"
+        ]
       },
-      {
+      "resistance-curve": {
+        "name": "resistance curve",
         "aliases": [],
         "category": "movement",
         "description": "How the difficulty changes through a lift's range of motion. Some exercises get harder at the top, bottom, or middle.",
@@ -643,17 +642,17 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "resistance curve"
+        ]
       },
-      {
+      "leg-drive": {
+        "name": "leg drive",
         "aliases": [],
         "category": "technique",
         "description": "Pushing your feet into the floor during bench press to create full-body tension and stability.",
-        "references": [],
-        "term": "leg drive"
+        "references": []
       },
-      {
+      "lockout": {
+        "name": "lockout",
         "aliases": [],
         "category": "movement",
         "description": "The end position where joints are fully straightened. The top of a squat or bench press.",
@@ -662,10 +661,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "lockout"
+        ]
       },
-      {
+      "sticking-point": {
+        "name": "sticking point",
         "aliases": [],
         "category": "movement",
         "description": "The hardest part of a lift where most people fail. On bench press, it's usually a few inches off the chest.",
@@ -674,10 +673,10 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "sticking point"
+        ]
       },
-      {
+      "spotter": {
+        "name": "spotter",
         "aliases": [],
         "category": "basic",
         "description": "Someone who watches your lift and helps if you get stuck. Essential for heavy bench press and squats.",
@@ -686,20 +685,20 @@
             "source": "exrx",
             "url": "https://exrx.net/WeightTraining/Glossary"
           }
-        ],
-        "term": "spotter"
+        ]
       },
-      {
+      "form": {
+        "name": "form",
         "aliases": [
           "technique",
           "proper form"
         ],
         "category": "basic",
         "description": "How you position and move your body during an exercise. Good form maximizes results and prevents injury.",
-        "references": [],
-        "term": "form"
+        "references": []
       },
-      {
+      "target": {
+        "name": "target",
         "aliases": [
           "target muscle"
         ],
@@ -710,10 +709,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "target"
+        ]
       },
-      {
+      "origin": {
+        "name": "origin",
         "aliases": [
           "muscle origin"
         ],
@@ -724,10 +723,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "origin"
+        ]
       },
-      {
+      "insertion": {
+        "name": "insertion",
         "aliases": [
           "muscle insertion"
         ],
@@ -738,10 +737,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "insertion"
+        ]
       },
-      {
+      "biarticulate": {
+        "name": "biarticulate",
         "aliases": [
           "biarticular",
           "two-joint muscle"
@@ -753,10 +752,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "biarticulate"
+        ]
       },
-      {
+      "active-insufficiency": {
+        "name": "active insufficiency",
         "aliases": [],
         "category": "kinesiology",
         "description": "When a two-joint muscle can't shorten enough to fully move both joints at once. Example: hamstrings can't fully extend the hip and flex the knee simultaneously.",
@@ -765,10 +764,10 @@
             "source": "exrx",
             "url": "https://exrx.net/ExInfo/Muscle"
           }
-        ],
-        "term": "active insufficiency"
+        ]
       },
-      {
+      "passive-insufficiency": {
+        "name": "passive insufficiency",
         "aliases": [],
         "category": "kinesiology",
         "description": "When a two-joint muscle can't stretch enough to allow full movement at both joints at once. Example: tight hamstrings limit hip flexion when the knee is straight.",
@@ -777,10 +776,10 @@
             "source": "exrx",
             "url": "https://exrx.net/ExInfo/Muscle"
           }
-        ],
-        "term": "passive insufficiency"
+        ]
       },
-      {
+      "isotonic": {
+        "name": "isotonic",
         "aliases": [
           "isotonic contraction",
           "dynamic contraction"
@@ -792,10 +791,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "isotonic"
+        ]
       },
-      {
+      "isokinetic": {
+        "name": "isokinetic",
         "aliases": [
           "isokinetic contraction"
         ],
@@ -806,10 +805,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "isokinetic"
+        ]
       },
-      {
+      "sagittal-plane": {
+        "name": "sagittal plane",
         "aliases": [
           "anterior-posterior plane"
         ],
@@ -820,10 +819,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "sagittal plane"
+        ]
       },
-      {
+      "frontal-plane": {
+        "name": "frontal plane",
         "aliases": [
           "coronal plane"
         ],
@@ -834,10 +833,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "frontal plane"
+        ]
       },
-      {
+      "transverse-plane": {
+        "name": "transverse plane",
         "aliases": [
           "horizontal plane",
           "xy plane"
@@ -849,10 +848,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "transverse plane"
+        ]
       },
-      {
+      "anterior": {
+        "name": "anterior",
         "aliases": [
           "ventral"
         ],
@@ -863,10 +862,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "anterior"
+        ]
       },
-      {
+      "posterior": {
+        "name": "posterior",
         "aliases": [
           "dorsal"
         ],
@@ -877,10 +876,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "posterior"
+        ]
       },
-      {
+      "medial": {
+        "name": "medial",
         "aliases": [],
         "category": "direction",
         "description": "Toward the center of the body. Your inner thigh is medial to your outer thigh.",
@@ -889,10 +888,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "medial"
+        ]
       },
-      {
+      "lateral": {
+        "name": "lateral",
         "aliases": [],
         "category": "direction",
         "description": "Away from the center of the body. Your outer thigh is lateral to your inner thigh.",
@@ -901,10 +900,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "lateral"
+        ]
       },
-      {
+      "proximal": {
+        "name": "proximal",
         "aliases": [],
         "category": "direction",
         "description": "Closer to the torso. Your shoulder is proximal to your elbow.",
@@ -913,10 +912,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "proximal"
+        ]
       },
-      {
+      "distal": {
+        "name": "distal",
         "aliases": [],
         "category": "direction",
         "description": "Farther from the torso. Your hand is distal to your elbow.",
@@ -925,10 +924,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "distal"
+        ]
       },
-      {
+      "superior": {
+        "name": "superior",
         "aliases": [
           "cranial"
         ],
@@ -939,10 +938,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "superior"
+        ]
       },
-      {
+      "inferior": {
+        "name": "inferior",
         "aliases": [
           "caudal"
         ],
@@ -953,10 +952,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "inferior"
+        ]
       },
-      {
+      "internal-rotation": {
+        "name": "internal rotation",
         "aliases": [
           "medial rotation"
         ],
@@ -967,10 +966,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "internal rotation"
+        ]
       },
-      {
+      "external-rotation": {
+        "name": "external rotation",
         "aliases": [
           "lateral rotation"
         ],
@@ -981,10 +980,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "external rotation"
+        ]
       },
-      {
+      "circumduction": {
+        "name": "circumduction",
         "aliases": [],
         "category": "movement",
         "description": "Moving a limb in a circle. Your arm drawing circles in the air is circumduction.",
@@ -993,10 +992,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "circumduction"
+        ]
       },
-      {
+      "dorsiflexion": {
+        "name": "dorsiflexion",
         "aliases": [],
         "category": "movement",
         "description": "Pulling your toes up toward your shin.",
@@ -1005,10 +1004,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "dorsiflexion"
+        ]
       },
-      {
+      "plantarflexion": {
+        "name": "plantarflexion",
         "aliases": [
           "plantar flexion"
         ],
@@ -1019,10 +1018,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "plantarflexion"
+        ]
       },
-      {
+      "inversion": {
+        "name": "inversion",
         "aliases": [],
         "category": "movement",
         "description": "Tilting the sole of your foot inward so it faces the other foot.",
@@ -1031,10 +1030,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "inversion"
+        ]
       },
-      {
+      "eversion": {
+        "name": "eversion",
         "aliases": [],
         "category": "movement",
         "description": "Tilting the sole of your foot outward away from the other foot.",
@@ -1043,10 +1042,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "eversion"
+        ]
       },
-      {
+      "torque": {
+        "name": "torque",
         "aliases": [
           "moment of force"
         ],
@@ -1057,10 +1056,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Torque"
           }
-        ],
-        "term": "torque"
+        ]
       },
-      {
+      "lever": {
+        "name": "lever",
         "aliases": [],
         "category": "kinesiology",
         "description": "A bone rotating around a joint. Your body uses lever systems to multiply force or speed depending on muscle attachment points.",
@@ -1069,10 +1068,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Levers"
           }
-        ],
-        "term": "lever"
+        ]
       },
-      {
+      "angle-of-pull": {
+        "name": "angle of pull",
         "aliases": [],
         "category": "kinesiology",
         "description": "The angle at which a muscle pulls on a bone. Muscles generate the most rotational force when pulling at 90 degrees to the bone.",
@@ -1081,10 +1080,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/AnglePull"
           }
-        ],
-        "term": "angle of pull"
+        ]
       },
-      {
+      "ascending-tension-curve": {
+        "name": "ascending tension curve",
         "aliases": [],
         "category": "kinesiology",
         "description": "Exercise gets easier as you complete the rep. Squats and bench press are hardest at the bottom and easiest at lockout.",
@@ -1093,10 +1092,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "ascending tension curve"
+        ]
       },
-      {
+      "descending-tension-curve": {
+        "name": "descending tension curve",
         "aliases": [],
         "category": "kinesiology",
         "description": "Exercise gets harder as you complete the rep. Rows and chin-ups are easiest at the bottom and hardest at the top.",
@@ -1105,10 +1104,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "descending tension curve"
+        ]
       },
-      {
+      "bell-shaped-tension-curve": {
+        "name": "bell-shaped tension curve",
         "aliases": [],
         "category": "kinesiology",
         "description": "Exercise is hardest in the middle of the rep. Biceps curls are toughest when your elbow is bent at 90 degrees.",
@@ -1117,10 +1116,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "bell-shaped tension curve"
+        ]
       },
-      {
+      "bilateral": {
+        "name": "bilateral",
         "aliases": [],
         "category": "movement",
         "description": "Using both sides at once. Barbell squats and bench press are bilateral - both legs or arms work together.",
@@ -1129,10 +1128,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Questions/MuscleMass"
           }
-        ],
-        "term": "bilateral"
+        ]
       },
-      {
+      "unilateral": {
+        "name": "unilateral",
         "aliases": [],
         "category": "movement",
         "description": "Using one side at a time. Single-leg squats and one-arm rows are unilateral - each limb works independently.",
@@ -1141,10 +1140,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Questions/MuscleMass"
           }
-        ],
-        "term": "unilateral"
+        ]
       },
-      {
+      "bilateral-deficit": {
+        "name": "bilateral deficit",
         "aliases": [
           "BLD"
         ],
@@ -1155,10 +1154,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Questions/MuscleMass"
           }
-        ],
-        "term": "bilateral deficit"
+        ]
       },
-      {
+      "articulation": {
+        "name": "articulation",
         "aliases": [
           "joint"
         ],
@@ -1169,10 +1168,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Lists/Articulations"
           }
-        ],
-        "term": "articulation"
+        ]
       },
-      {
+      "law-of-inertia": {
+        "name": "law of inertia",
         "aliases": [
           "Newton's first law"
         ],
@@ -1183,10 +1182,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "law of inertia"
+        ]
       },
-      {
+      "law-of-acceleration": {
+        "name": "law of acceleration",
         "aliases": [
           "Newton's second law"
         ],
@@ -1197,10 +1196,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "law of acceleration"
+        ]
       },
-      {
+      "law-of-reaction": {
+        "name": "law of reaction",
         "aliases": [
           "Newton's third law"
         ],
@@ -1211,10 +1210,10 @@
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Glossary"
           }
-        ],
-        "term": "law of reaction"
+        ]
       },
-      {
+      "calories": {
+        "name": "calories",
         "aliases": [
           "energy intake",
           "kcal",
@@ -1225,15 +1224,12 @@
         "details": "Low energy availability (LEA) occurs when caloric intake fails to meet the demands of exercise and bodily functions. Meta-analyses show LEA affects 45% of athletes and is linked to decreased endurance, coordination, and increased injury risk.",
         "references": [
           {
-            "author": "Statuta et al.",
-            "pmid": "39485653",
-            "title": "Low energy availability and relative energy deficiency in sport: a systematic review and meta-analysis",
-            "year": 2024
+            "pmid": "39485653"
           }
-        ],
-        "term": "calories"
+        ]
       },
-      {
+      "protein": {
+        "name": "protein",
         "aliases": [
           "dietary protein"
         ],
@@ -1242,15 +1238,12 @@
         "details": "Meta-analyses of 49 studies show protein supplementation augments resistance training gains in muscle mass and strength. Benefits plateau at ~1.6 g/kg/day total intake, with older adults potentially benefiting from 1.2-1.6 g/kg/day.",
         "references": [
           {
-            "author": "Morton et al.",
-            "pmid": "28698222",
-            "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
-            "year": 2018
+            "pmid": "28698222"
           }
-        ],
-        "term": "protein"
+        ]
       },
-      {
+      "fibre": {
+        "name": "fibre",
         "aliases": [
           "dietary fibre",
           "roughage"
@@ -1260,15 +1253,12 @@
         "details": "An umbrella review of 17 million individuals found convincing evidence linking fibre intake to reduced CVD mortality, pancreatic cancer, and diverticular disease. Benefits appear dose-dependent with no upper threshold identified.",
         "references": [
           {
-            "author": "Veronese et al.",
-            "pmid": "29566200",
-            "title": "Dietary fibre and health outcomes: an umbrella review of systematic reviews and meta-analyses",
-            "year": 2018
+            "pmid": "29566200"
           }
-        ],
-        "term": "fibre"
+        ]
       },
-      {
+      "water": {
+        "name": "water",
         "aliases": [
           "hydration",
           "fluid intake"
@@ -1278,15 +1268,12 @@
         "details": "Systematic reviews show fluid intake following dehydration improves continuous exercise performance, particularly at elevated temperatures. Pre-exercise hyperhydration may help delay adverse effects of fluid loss during prolonged exercise.",
         "references": [
           {
-            "author": "McCartney et al.",
-            "pmid": "28275997",
-            "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis",
-            "year": 2017
+            "pmid": "28275997"
           }
-        ],
-        "term": "water"
+        ]
       },
-      {
+      "steps": {
+        "name": "steps",
         "aliases": [
           "daily steps",
           "step count"
@@ -1296,15 +1283,12 @@
         "details": "A meta-analysis of 47,471 adults found that compared to the lowest step group (~3,500 steps/day), those averaging 10,900 steps had 40-53% lower mortality risk. Benefits plateau around 6,000-8,000 steps for adults over 60, and 8,000-10,000 for younger adults.",
         "references": [
           {
-            "author": "Paluch et al.",
-            "pmid": "35247352",
-            "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
-            "year": 2022
+            "pmid": "35247352"
           }
-        ],
-        "term": "steps"
+        ]
       },
-      {
+      "sleep": {
+        "name": "sleep",
         "aliases": [
           "sleep duration"
         ],
@@ -1313,15 +1297,12 @@
         "details": "Systematic reviews show sleep extension improves reaction time, sprint performance, and shooting accuracy in athletes. Collegiate basketball players extending sleep to 10 hours showed 9% improved free-throw accuracy and faster sprint times.",
         "references": [
           {
-            "author": "Cunha et al.",
-            "pmid": "37462808",
-            "title": "The impact of sleep interventions on athletic performance: a systematic review",
-            "year": 2023
+            "pmid": "37462808"
           }
-        ],
-        "term": "sleep"
+        ]
       },
-      {
+      "recovery": {
+        "name": "recovery",
         "aliases": [
           "perceived recovery",
           "recovery status"
@@ -1331,25 +1312,22 @@
         "details": "The Perceived Recovery Status (PRS) scale correlates with markers of muscle damage and performance decrements. Research shows it can effectively assess daily recovery following resistance exercise, though the relationship is individualized.",
         "references": [
           {
-            "author": "Sikorski et al.",
-            "pmid": "23287827",
-            "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise",
-            "year": 2013
+            "pmid": "23287827"
           }
-        ],
-        "term": "recovery"
+        ]
       },
-      {
+      "reps-in-reserve": {
+        "name": "reps in reserve",
         "aliases": [
           "RIR"
         ],
         "category": "technique",
         "description": "How many more reps you could have done. RIR 2 means you stopped with 2 reps left in the tank.",
         "details": "RIR provides a practical way to auto-regulate training intensity. Research suggests training within 0-3 RIR optimizes hypertrophy while managing fatigue. Higher RIR (4+) may be appropriate for technique practice or deload periods.",
-        "references": [],
-        "term": "reps in reserve"
+        "references": []
       },
-      {
+      "maintenance-volume": {
+        "name": "maintenance volume",
         "aliases": [
           "MV"
         ],
@@ -1358,21 +1336,15 @@
         "details": "Research shows young adults can maintain muscle with as few as 3 sets per muscle per week if intensity is preserved. Adults over 60 typically require 6-10 sets per week. Maintaining load (intensity) is more critical than maintaining volume.",
         "references": [
           {
-            "author": "Bickel et al.",
-            "pmid": "21131862",
-            "title": "Exercise dosing to retain resistance training adaptations in young and older adults",
-            "year": 2011
+            "pmid": "21131862"
           },
           {
-            "author": "Spiering et al.",
-            "pmid": "33629972",
-            "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time",
-            "year": 2021
+            "pmid": "33629972"
           }
-        ],
-        "term": "maintenance volume"
+        ]
       },
-      {
+      "minimum-effective-volume": {
+        "name": "minimum effective volume",
         "aliases": [
           "MEV"
         ],
@@ -1381,15 +1353,12 @@
         "details": "MEV varies by training status and muscle group. Beginners may see growth with fewer sets, while advanced trainees require more. Starting a training block at MEV allows room to progressively increase volume.",
         "references": [
           {
-            "author": "Schoenfeld et al.",
-            "pmid": "27433992",
-            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis",
-            "year": 2017
+            "pmid": "27433992"
           }
-        ],
-        "term": "minimum effective volume"
+        ]
       },
-      {
+      "maximum-adaptive-volume": {
+        "name": "maximum adaptive volume",
         "aliases": [
           "MAV"
         ],
@@ -1398,21 +1367,15 @@
         "details": "MAV represents the progression zone between MEV and MRV. Each session increases fatigue, requiring progressive volume increases to maintain optimal stimulus. The ideal volume varies by individual recovery capacity and training experience.",
         "references": [
           {
-            "author": "Schoenfeld et al.",
-            "pmid": "27433992",
-            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis",
-            "year": 2017
+            "pmid": "27433992"
           },
           {
-            "author": "Pelland et al.",
-            "pmid": "41343037",
-            "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains",
-            "year": 2025
+            "pmid": "41343037"
           }
-        ],
-        "term": "maximum adaptive volume"
+        ]
       },
-      {
+      "maximum-recoverable-volume": {
+        "name": "maximum recoverable volume",
         "aliases": [
           "MRV"
         ],
@@ -1427,36 +1390,27 @@
             "year": 2025
           },
           {
-            "author": "Pelland et al.",
-            "pmid": "41343037",
-            "title": "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains",
-            "year": 2025
+            "pmid": "41343037"
           }
-        ],
-        "term": "maximum recoverable volume"
+        ]
       },
-      {
+      "age": {
+        "name": "age",
         "aliases": [],
         "category": "biometrics",
         "description": "Affects recovery speed and training needs. Older adults may need more frequent sessions with more recovery time between them.",
         "details": "Adults 60+ show better hypertrophy outcomes when training each muscle 2-3 times per week rather than once. They may need 6-10 sets per muscle weekly for maintenance (vs 3-6 for younger adults) and benefit from longer rest periods. Age-related declines in muscle protein synthesis can be offset by adequate protein intake (1.2-1.6 g/kg/day) and progressive resistance training.",
         "references": [
           {
-            "author": "Bickel et al.",
-            "pmid": "21131862",
-            "title": "Exercise dosing to retain resistance training adaptations in young and older adults",
-            "year": 2011
+            "pmid": "21131862"
           },
           {
-            "author": "Schoenfeld et al.",
-            "pmid": "27433992",
-            "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass",
-            "year": 2017
+            "pmid": "27433992"
           }
-        ],
-        "term": "age"
+        ]
       },
-      {
+      "sex": {
+        "name": "sex",
         "aliases": [
           "biological sex"
         ],
@@ -1465,40 +1419,31 @@
         "details": "Males typically have higher absolute strength due to greater muscle mass and testosterone levels, but relative strength gains from training are similar between sexes. Females may recover faster between sets and sessions, potentially tolerating higher training frequencies. Sex also affects how body measurements predict health risk: males tend to accumulate visceral fat centrally while females store more subcutaneously, making waist circumference thresholds sex-specific (94 cm risk threshold for males vs 80 cm for females). Body fat percentage norms differ substantially (essential fat ~3% for males vs ~12% for females). Both sexes benefit equally from resistance training for health outcomes.",
         "references": [
           {
-            "author": "Roberts et al.",
-            "pmid": "32895897",
-            "title": "Sex differences in resistance training: a systematic review and meta-analysis",
-            "year": 2020
+            "pmid": "32895897"
           },
           {
-            "author": "Ashwell et al.",
-            "pmid": "21951360",
-            "title": "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors",
-            "year": 2012
+            "pmid": "21951360"
           }
-        ],
-        "term": "sex"
+        ]
       },
-      {
+      "height": {
+        "name": "height",
         "aliases": [],
         "category": "biometrics",
         "description": "Affects exercise mechanics and leverage. Also used to calculate waist-to-height ratio, a useful health indicator.",
         "details": "For exercise: longer limbs create longer moment arms, requiring more work through the same angular range. Taller lifters often benefit from wider stances and adjusted grip widths. For health assessment: waist-to-height ratio (WHtR) is a stronger predictor of cardiometabolic risk than BMI or waist circumference alone. A WHtR below 0.5 indicates lower risk regardless of sex or ethnicity, while values above 0.6 indicate substantially elevated risk. This ratio normalizes waist measurement across different body sizes, making it more universally applicable than fixed waist thresholds.",
         "references": [
           {
-            "author": "Ashwell et al.",
-            "pmid": "21951360",
-            "title": "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors",
-            "year": 2012
+            "pmid": "21951360"
           },
           {
             "source": "exrx",
             "url": "https://exrx.net/Kinesiology/Levers"
           }
-        ],
-        "term": "height"
+        ]
       },
-      {
+      "weight": {
+        "name": "weight",
         "aliases": [
           "body weight",
           "bodyweight"
@@ -1508,15 +1453,12 @@
         "details": "Daily weight fluctuates 1-2 kg due to hydration, food intake, and glycogen levels. Weekly averages provide more reliable trend data than single measurements. For body composition goals, the rate of weight change matters: muscle gain typically occurs at 0.25-0.5 kg/month for trained individuals, while fat loss of 0.5-1% bodyweight per week preserves muscle mass.",
         "references": [
           {
-            "author": "Helms et al.",
-            "pmid": "24864135",
-            "title": "Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation",
-            "year": 2014
+            "pmid": "24864135"
           }
-        ],
-        "term": "weight"
+        ]
       },
-      {
+      "resting-heart-rate": {
+        "name": "resting heart rate",
         "aliases": [
           "restingHR",
           "resting HR",
@@ -1527,14 +1469,217 @@
         "details": "Endurance training can reduce resting heart rate by 10-20 bpm over months. Elevated resting heart rate may indicate incomplete recovery, stress, or illness. Measure first thing in the morning before rising for consistent readings. Values below 60 bpm are common in trained athletes and generally not concerning without symptoms.",
         "references": [
           {
-            "author": "Reimers et al.",
-            "pmid": "26912360",
-            "title": "Effects of exercise on the resting heart rate: a systematic review and meta-analysis",
-            "year": 2018
+            "pmid": "26912360"
           }
+        ]
+      },
+      "evidence-level": {
+        "name": "Evidence level",
+        "aliases": [
+          "level of evidence",
+          "Oxford CEBM"
         ],
-        "term": "resting heart rate"
+        "category": "research",
+        "description": "A rating from 1 to 5 indicating how reliable a study's conclusions are. Level 1 (strongest) comes from well-designed trials; Level 5 (weakest) is expert opinion.",
+        "details": "The Oxford Centre for Evidence-Based Medicine scale rates evidence quality: Level 1a—systematic reviews of RCTs with consistent results; Level 1b—individual RCTs with narrow confidence intervals; Level 2a—systematic reviews of cohort studies; Level 2b—individual cohort studies or low-quality RCTs; Level 3a—systematic reviews of case-control studies; Level 3b—individual case-control studies; Level 4—case series or poor-quality cohort/case-control studies; Level 5—expert opinion without critical appraisal. Higher levels provide stronger confidence in cause-and-effect relationships.",
+        "references": [
+          {
+            "source": "Oxford CEBM",
+            "url": "https://www.cebm.ox.ac.uk/resources/levels-of-evidence/oxford-centre-for-evidence-based-medicine-levels-of-evidence-march-2009"
+          }
+        ]
+      },
+      "1a": {
+        "name": "Evidence level 1a",
+        "aliases": ["level 1a", "1a"],
+        "category": "research",
+        "description": "Systematic review of randomized controlled trials with consistent results across studies. The strongest level of evidence.",
+        "details": "Level 1a represents the gold standard of evidence. These reviews pool data from multiple high-quality RCTs, providing the most reliable conclusions about cause and effect. Consistency across studies increases confidence that findings are real rather than due to chance or bias."
+      },
+      "1b": {
+        "name": "Evidence level 1b",
+        "aliases": ["level 1b", "1b"],
+        "category": "research",
+        "description": "Individual randomized controlled trial with narrow confidence intervals. Very strong evidence from a single well-designed experiment.",
+        "details": "Level 1b studies randomly assign participants to groups, establishing causation rather than just correlation. Narrow confidence intervals indicate precise effect estimates. These trials are the building blocks of systematic reviews and provide strong evidence when well-conducted."
+      },
+      "2a": {
+        "name": "Evidence level 2a",
+        "aliases": ["level 2a", "2a"],
+        "category": "research",
+        "description": "Systematic review of cohort studies. Moderate-strength evidence pooled from observational research.",
+        "details": "Level 2a synthesizes multiple cohort studies that follow participants over time. While cohorts can't prove causation like RCTs, pooling them increases statistical power and can identify consistent patterns. Useful when randomization isn't ethical or practical."
+      },
+      "2b": {
+        "name": "Evidence level 2b",
+        "aliases": ["level 2b", "2b"],
+        "category": "research",
+        "description": "Individual cohort study or low-quality RCT. Moderate evidence from following a group over time.",
+        "details": "Level 2b includes prospective studies tracking participants forward in time, or RCTs with methodological limitations. These identify associations and risk factors but can't definitively prove causation due to potential confounding variables."
+      },
+      "3a": {
+        "name": "Evidence level 3a",
+        "aliases": ["level 3a", "3a"],
+        "category": "research",
+        "description": "Systematic review of case-control studies. Weaker evidence pooled from studies comparing people with and without an outcome.",
+        "details": "Level 3a combines multiple case-control studies, which look backward from outcomes to potential causes. While pooling increases power, the retrospective design makes these prone to recall bias and confounding. Useful for rare outcomes."
+      },
+      "3b": {
+        "name": "Evidence level 3b",
+        "aliases": ["level 3b", "3b"],
+        "category": "research",
+        "description": "Individual case-control study. Compares people with an outcome to similar people without it.",
+        "details": "Level 3b studies identify people with a condition (cases) and match them to similar people without it (controls), then look for differences in past exposures. Efficient for rare diseases but vulnerable to selection bias and inaccurate recall."
+      },
+      "4": {
+        "name": "Evidence level 4",
+        "aliases": ["level 4", "4"],
+        "category": "research",
+        "description": "Case series or poor-quality cohort/case-control studies. Weak evidence describing what happened to a group of patients.",
+        "details": "Level 4 evidence describes outcomes in a series of patients without a comparison group. Can generate hypotheses and document rare phenomena, but can't establish whether observed effects are due to treatment or other factors. Often the starting point for research on new interventions."
+      },
+      "5": {
+        "name": "Evidence level 5",
+        "aliases": ["level 5", "5"],
+        "category": "research",
+        "description": "Expert opinion without critical appraisal. The weakest evidence level, based on authority rather than research.",
+        "details": "Level 5 represents clinical experience, physiological reasoning, or consensus without systematic research support. Valuable for areas lacking research or for practical guidance, but should be superseded by higher-level evidence when available. Includes narrative reviews and position statements."
+      },
+      "meta-analysis": {
+        "name": "meta-analysis",
+        "aliases": [
+          "MA"
+        ],
+        "category": "research",
+        "description": "A study that combines data from multiple studies to find overall patterns. More reliable than single studies because it pools larger amounts of data.",
+        "details": "Meta-analyses statistically combine results from multiple studies, increasing sample size and statistical power. They can detect effects too small for individual studies to find. Quality depends on the included studies and methodology. Forest plots visually display individual study results and the combined effect."
+      },
+      "systematic-review": {
+        "name": "systematic review",
+        "aliases": [
+          "SR"
+        ],
+        "category": "research",
+        "description": "A study that finds and summarizes all research on a specific question using a rigorous, documented search method.",
+        "details": "Systematic reviews follow predefined protocols to minimize bias. They include comprehensive literature searches, quality assessment of included studies, and transparent reporting. When combined with meta-analysis, they provide the strongest evidence. Without meta-analysis, they synthesize findings qualitatively."
+      },
+      "umbrella-review": {
+        "name": "umbrella review",
+        "aliases": [
+          "review of reviews"
+        ],
+        "category": "research",
+        "description": "A review that summarizes multiple systematic reviews on a topic. Useful for getting the big picture when many reviews exist.",
+        "details": "Umbrella reviews compile evidence from existing systematic reviews and meta-analyses. They're useful when a topic has been extensively studied and multiple reviews exist. They help identify consensus across reviews and highlight areas of disagreement."
+      },
+      "randomized-controlled-trial": {
+        "name": "randomized controlled trial",
+        "aliases": [
+          "RCT",
+          "randomized trial"
+        ],
+        "category": "research",
+        "description": "An experiment where participants are randomly assigned to different groups (e.g., treatment vs. control). The gold standard for testing if something actually works.",
+        "details": "Randomization helps ensure groups are similar at baseline, so differences in outcomes can be attributed to the intervention. Double-blinding (neither participants nor researchers know who got what) further reduces bias. RCTs establish causation, not just correlation."
+      },
+      "intervention-study": {
+        "name": "intervention study",
+        "aliases": [
+          "experimental study"
+        ],
+        "category": "research",
+        "description": "A study where researchers actively change something (like diet or exercise) and measure the effects, rather than just observing.",
+        "details": "Intervention studies test specific changes in controlled conditions. Non-randomized intervention studies are weaker than RCTs but still provide causal evidence. Common in exercise science where blinding may be impossible (participants know if they're exercising)."
+      },
+      "cohort-study": {
+        "name": "cohort study",
+        "aliases": [
+          "prospective cohort",
+          "retrospective cohort"
+        ],
+        "category": "research",
+        "description": "A study that follows a group of people over time to see who develops certain outcomes. Good for studying long-term effects but can't prove cause and effect.",
+        "details": "Prospective cohorts follow participants forward in time; retrospective cohorts look back at historical data. They identify associations but can't establish causation due to confounding variables. Large cohorts like the Nurses' Health Study have provided valuable long-term health data."
+      },
+      "cross-sectional-study": {
+        "name": "cross-sectional study",
+        "aliases": [
+          "survey study"
+        ],
+        "category": "research",
+        "description": "A snapshot study that measures variables at one point in time. Quick and cheap but can't show what causes what.",
+        "details": "Cross-sectional studies capture data at a single timepoint, making them efficient but limited. They can identify correlations but not causation or temporal relationships. Useful for prevalence estimates and generating hypotheses for further research."
+      },
+      "narrative-review": {
+        "name": "narrative review",
+        "aliases": [
+          "literature review",
+          "traditional review"
+        ],
+        "category": "research",
+        "description": "An expert's summary of research on a topic. Useful for understanding a field but may be biased by the author's perspective.",
+        "details": "Narrative reviews lack the rigorous, predefined methodology of systematic reviews. Authors may selectively cite studies supporting their views. They're valuable for introducing topics and identifying research gaps but shouldn't be the sole basis for clinical decisions."
+      },
+      "position-statement": {
+        "name": "position statement",
+        "aliases": [
+          "consensus statement",
+          "guidelines"
+        ],
+        "category": "research",
+        "description": "Official recommendations from a professional organization based on their review of available evidence.",
+        "details": "Position statements represent expert consensus from organizations like ACSM, NSCA, or ISSN. They interpret research and provide practical recommendations. Quality varies based on the rigor of the underlying evidence review. They're updated periodically as new research emerges."
+      },
+      "study-design": {
+        "name": "study design",
+        "aliases": [
+          "research design",
+          "methodology"
+        ],
+        "category": "research",
+        "description": "The overall plan for how a study collects and analyzes data. Different designs answer different types of questions with varying levels of certainty.",
+        "details": "Common study designs from strongest to weakest evidence: Systematic review with meta-analysis—pools data from multiple studies statistically; Systematic review—comprehensive summary using rigorous search methods; Umbrella review—synthesizes multiple systematic reviews; Randomized controlled trial (RCT)—randomly assigns participants to test causation; Intervention study—tests changes without randomization; Prospective cohort—follows participants forward in time; Retrospective cohort—analyzes historical data; Cross-sectional—snapshot at one timepoint; Narrative review—expert summary without systematic methods; Position statement—organization's official recommendations."
+      },
+      "sample-size": {
+        "name": "sample size",
+        "aliases": [
+          "n",
+          "number of participants"
+        ],
+        "category": "research",
+        "description": "How many people were studied. Larger samples generally produce more reliable results and can detect smaller effects.",
+        "details": "Sample size affects statistical power—the ability to detect real effects. Small studies may miss true effects (false negatives) or find spurious ones (false positives). Meta-analyses pool samples across studies. For exercise studies, 20-30 participants per group is common; larger samples are needed to detect small effects."
+      },
+      "study-duration": {
+        "name": "study duration",
+        "aliases": [
+          "intervention length",
+          "follow-up period"
+        ],
+        "category": "research",
+        "description": "How long the study lasted. Longer studies can detect effects that take time to develop but are harder and more expensive to run.",
+        "details": "Duration matters for detecting adaptations. Strength gains appear within weeks, but muscle growth takes months to measure reliably. Long-term health outcomes require years of follow-up. Short studies may miss delayed effects or overestimate initial responses that plateau over time."
+      },
+      "study-population": {
+        "name": "study population",
+        "aliases": [
+          "participants",
+          "subjects"
+        ],
+        "category": "research",
+        "description": "Who was studied—their age, sex, training status, and health conditions. Results may not apply to people who differ from the study population.",
+        "details": "Generalizability depends on how similar you are to study participants. Research on young trained men may not apply to older untrained women. Look for studies matching your demographics. Population characteristics include: sex, age group, training experience (untrained to elite), and health status (healthy or clinical conditions)."
+      },
+      "study-limitations": {
+        "name": "study limitations",
+        "aliases": [
+          "methodological concerns",
+          "caveats"
+        ],
+        "category": "research",
+        "description": "Weaknesses or potential problems with a study that might affect how much you can trust its conclusions.",
+        "details": "Common limitations include: small sample sizes, short duration, lack of control group, self-reported data, industry funding bias, non-representative populations, and high dropout rates. No study is perfect—what matters is whether limitations are serious enough to undermine the main conclusions."
       }
-    ]
+    }
   }
 }

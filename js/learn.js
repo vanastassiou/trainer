@@ -74,6 +74,83 @@ function filterArticles() {
 // ARTICLE RENDERING
 // =============================================================================
 
+// Map study types to glossary term keys
+const STUDY_TYPE_TERMS = {
+  'systematic-review-with-meta-analysis': 'meta-analysis',
+  'systematic-review-with-meta-regression': 'meta-analysis',
+  'systematic-review': 'systematic-review',
+  'umbrella-review': 'umbrella-review',
+  'randomized-controlled-trial': 'randomized-controlled-trial',
+  'intervention-study': 'intervention-study',
+  'prospective-cohort': 'cohort-study',
+  'retrospective-cohort': 'cohort-study',
+  'cross-sectional': 'cross-sectional-study',
+  'narrative-review': 'narrative-review',
+  'position-statement': 'position-statement'
+};
+
+function renderMethodology(article) {
+  const m = article.methodology;
+  if (!m) return '';
+
+  const items = [];
+
+  // Evidence level
+  if (article.evidenceLevel) {
+    items.push(`<dt data-term="evidence-level">Evidence level</dt><dd><span data-term="${article.evidenceLevel}">${article.evidenceLevel}</span></dd>`);
+  }
+
+  // Study type
+  if (m.studyType) {
+    const termKey = STUDY_TYPE_TERMS[m.studyType] || null;
+    const label = formatLabel(m.studyType.replace(/-/g, ' '));
+    items.push(`<dt data-term="study-design">Design</dt><dd>${termKey ? `<span data-term="${termKey}">${label}</span>` : label}</dd>`);
+  }
+
+  // Sample size
+  if (m.sampleSize) {
+    items.push(`<dt data-term="sample-size">Sample</dt><dd>${m.sampleSize.toLocaleString()} participants</dd>`);
+  }
+
+  // Duration
+  if (m.duration) {
+    items.push(`<dt data-term="study-duration">Duration</dt><dd>${m.duration}</dd>`);
+  }
+
+  // Population
+  if (m.population) {
+    const pop = m.population;
+    const parts = [];
+    const sentenceCase = s => s.replace(/-/g, ' ').toLowerCase().replace(/^\w/, c => c.toUpperCase());
+    if (pop.sex?.length) parts.push(pop.sex.map(sentenceCase).join(', '));
+    if (pop.ageGroup?.length) parts.push(pop.ageGroup.map(sentenceCase).join(', '));
+    if (pop.trainingStatus?.length) parts.push(pop.trainingStatus.map(sentenceCase).join(', '));
+    if (pop.healthStatus?.length && !pop.healthStatus.every(h => h === 'healthy')) {
+      parts.push(pop.healthStatus.map(sentenceCase).join(', '));
+    }
+    if (parts.length) {
+      items.push(`<dt data-term="study-population">Population</dt><dd>${parts.join('; ')}</dd>`);
+    }
+  }
+
+  // Limitations
+  if (m.limitations?.length) {
+    const limitationsText = m.limitations
+      .map(s => s.toLowerCase().replace(/^\w/, c => c.toUpperCase()))
+      .join('; ');
+    items.push(`<dt data-term="study-limitations">Limitations</dt><dd>${limitationsText}</dd>`);
+  }
+
+  if (items.length === 0) return '';
+
+  return `
+    <details class="article-methodology">
+      <summary>Methodology</summary>
+      <dl>${items.join('')}</dl>
+    </details>
+  `;
+}
+
 function renderArticles(articles) {
   const container = document.getElementById('articles-container');
   const emptyMessage = document.getElementById('no-articles-message');
@@ -106,6 +183,7 @@ function renderArticles(articles) {
           <div class="article-takeaways-label">TL;DR</div>
           <ul>${renderListItems(article.takeaways)}</ul>
         </div>
+        ${renderMethodology(article)}
         ${article.tags?.length ? `<div class="learn-card-tags">${article.tags.map(tag => `<span class="learn-tag">${formatLabel(tag)}</span>`).join('')}</div>` : ''}
       </div>
     </div>
@@ -246,8 +324,20 @@ export async function initLearnPage() {
   renderReferencesList(sortedResources);
   document.getElementById('references-type-filter').addEventListener('change', filterReferences);
 
+  const learnTab = document.getElementById('learn');
+
+  // Glossary term links - must be before collapsible handler
+  learnTab.addEventListener('click', (e) => {
+    const termEl = e.target.closest('[data-term]');
+    if (termEl) {
+      e.preventDefault();
+      e.stopPropagation();
+      showGlossaryTerm(termEl.dataset.term);
+    }
+  });
+
   // Collapsible cards - delegate click handler
-  document.getElementById('learn').addEventListener('click', (e) => {
+  learnTab.addEventListener('click', (e) => {
     const header = e.target.closest('.learn-card-header');
     if (!header) return;
     // Don't toggle if clicking a link
@@ -306,16 +396,14 @@ export function initGlossaryModal() {
     document.getElementById('glossary-modal')
   );
 
-  // Delegate click handler for all elements with data-term attribute
+  // Global handler for data-term elements outside the learn tab
   document.body.addEventListener('click', (e) => {
+    // Skip if inside learn tab (handled separately)
+    if (e.target.closest('#learn')) return;
     const termEl = e.target.closest('[data-term]');
     if (termEl) {
       e.preventDefault();
-      e.stopPropagation();
-      const termName = termEl.dataset.term;
-      if (termName) {
-        showGlossaryTerm(termName);
-      }
+      showGlossaryTerm(termEl.dataset.term);
     }
   });
 }

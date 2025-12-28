@@ -5,6 +5,15 @@
   "type": "object",
   "required": ["glossary"],
   "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Schema version number"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "description": "Date of last update (YYYY-MM-DD)",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
     "glossary": {
       "type": "object",
       "required": ["categories", "terms"],
@@ -17,14 +26,15 @@
           }
         },
         "terms": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "description": "Map of term slug to term definition",
+          "additionalProperties": {
             "type": "object",
-            "required": ["term", "category", "description"],
+            "required": ["name", "category", "description"],
             "properties": {
-              "term": {
+              "name": {
                 "type": "string",
-                "description": "Primary term name"
+                "description": "Display name of the term"
               },
               "aliases": {
                 "type": "array",
@@ -36,7 +46,7 @@
               "category": {
                 "type": "string",
                 "description": "Term category",
-                "enum": ["basic", "anatomy", "movement", "programming", "technique", "kinesiology", "direction", "nutrition", "recovery"]
+                "enum": ["anatomy", "basic", "biometrics", "direction", "kinesiology", "movement", "nutrition", "programming", "recovery", "research", "technique"]
               },
               "description": {
                 "type": "string",
@@ -81,26 +91,14 @@
         },
         {
           "type": "object",
-          "description": "PubMed-indexed article reference",
-          "required": ["pmid", "author", "year", "title"],
+          "description": "Reference to article in articles.json by PMID",
+          "required": ["pmid"],
           "additionalProperties": false,
           "properties": {
             "pmid": {
               "type": "string",
-              "description": "PubMed ID",
+              "description": "PubMed ID (must exist in articles.json)",
               "pattern": "^[0-9]+$"
-            },
-            "author": {
-              "type": "string",
-              "description": "Author citation (e.g., 'Smith et al.')"
-            },
-            "year": {
-              "type": "integer",
-              "description": "Publication year"
-            },
-            "title": {
-              "type": "string",
-              "description": "Article title"
             }
           }
         },
