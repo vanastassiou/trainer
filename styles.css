@@ -221,7 +221,15 @@ main {
 }
 
 /* Card-specific overrides (base styles from .card class) */
-.exercise-card { box-shadow: var(--shadow); }
+.exercise-card {
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+
+.edit-exercise-btn {
+  padding: 4px 10px;
+  font-size: 13px;
+}
 
 /* =============================================================================
    BUTTONS

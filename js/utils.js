@@ -80,6 +80,19 @@ export function formatLabel(value) {
 }
 
 /**
+ * Format authors array as citation string (e.g., "Smith et al." or "Smith").
+ * @param {string[]} authors - Array of author names (e.g., ["Smith BJ", "Jones A"])
+ * @returns {string} Citation format author string
+ */
+export function getCitationAuthor(authors) {
+  if (!authors?.length) return '';
+  // Extract last name (last word before any suffix like Jr, Sr, III)
+  const firstAuthor = authors[0];
+  const lastName = firstAuthor.split(/\s+/)[0];
+  return authors.length > 1 ? `${lastName} et al.` : lastName;
+}
+
+/**
  * Get today's date as ISO string (YYYY-MM-DD).
  * @returns {string} Today's date
  */

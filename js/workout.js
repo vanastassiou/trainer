@@ -490,7 +490,7 @@ export function openExercisePicker(callback, options = {}) {
   if (swapMode) {
     muscleSelect.classList.add('hidden');
     movementSelect.classList.add('hidden');
-    titleEl.innerHTML = `Swapping ${exerciseName} <span class="exercise-picker-tag muscle">${formatLabel(muscleGroup)}</span> <span class="exercise-picker-tag movement">${formatLabel(movementPattern)}</span>`;
+    titleEl.innerHTML = `Swap ${exerciseName} <span class="exercise-picker-tag muscle">${formatLabel(muscleGroup)}</span> <span class="exercise-picker-tag movement">${formatLabel(movementPattern)}</span>`;
   } else {
     titleEl.textContent = 'Select exercise';
   }
@@ -642,6 +642,8 @@ export function initExerciseEditModal() {
     state.exerciseEditDialog.close();
 
     openExercisePicker(({ id, name }) => {
+      if (!confirm(`Swap out ${exerciseName} for ${name}?`)) return;
+
       nameInput.value = name;
       currentEditCard.dataset.exerciseId = id;
       updateWeightVisibility(currentEditCard);
@@ -651,6 +653,11 @@ export function initExerciseEditModal() {
 
   removeBtn.addEventListener('click', () => {
     if (!currentEditCard) return;
+    const nameInput = currentEditCard.querySelector('.exercise-name');
+    const exerciseName = nameInput.value.trim();
+
+    if (!confirm(`Remove ${exerciseName} from today's workout?`)) return;
+
     state.exerciseEditDialog.close();
     currentEditCard.remove();
     currentEditCard = null;
@@ -661,7 +668,7 @@ function openExerciseEditModal(card) {
   currentEditCard = card;
   const nameInput = card.querySelector('.exercise-name');
   const exerciseName = nameInput.value.trim() || 'Exercise';
-  document.getElementById('exercise-edit-name').textContent = exerciseName;
+  document.getElementById('exercise-edit-name').textContent = `Edit ${exerciseName}`;
   state.exerciseEditDialog.open();
 }
 
