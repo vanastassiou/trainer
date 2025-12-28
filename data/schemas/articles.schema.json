@@ -24,7 +24,6 @@
           "authors",
           "journal",
           "year",
-          "url",
           "tags",
           "question",
           "methodology",
@@ -65,7 +64,7 @@
           },
           "url": {
             "type": "string",
-            "description": "URL to the article (typically PubMed)",
+            "description": "Direct URL for articles not indexed in PubMed",
             "format": "uri"
           },
           "volume": {

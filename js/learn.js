@@ -95,9 +95,7 @@ function renderArticles(articles) {
       </div>
       <div class="learn-card-body">
         <h3 class="article-title">
-          ${article.doi || article.url
-            ? `<a href="${article.doi ? `https://doi.org/${article.doi}` : article.url}" target="_blank" rel="noopener">${article.title}</a>`
-            : article.title} (${article.year})
+          <a href="${article.pmid && article.pmid !== 'undefined' ? `https://pubmed.ncbi.nlm.nih.gov/${article.pmid}/` : article.url}" target="_blank" rel="noopener">${article.title}</a> (${article.year})
         </h3>
         <div class="article-meta">
           ${article.authors.length > 4
