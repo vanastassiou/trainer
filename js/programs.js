@@ -4,7 +4,7 @@
 // Handles program creation, editing, and listing.
 
 import { state } from './state.js';
-import { swapVisibility } from './utils.js';
+import { swapVisibility, formatLabel } from './utils.js';
 import { createModalController, showToast } from './ui.js';
 import { createTabController } from './ui.js';
 import { validateProgram, validateProgramExercises, hasUnsavedWorkoutData, collectProgramDays } from './validation.js';
@@ -481,7 +481,7 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
 
   const addExerciseTag = (exerciseId, locked = false) => {
     // Check for duplicates by ID
-    const currentIds = Array.from(exercisesContainer.querySelectorAll('.exercise-tag'))
+    const currentIds = Array.from(exercisesContainer.querySelectorAll('.exercise-picker-item'))
       .map(tag => tag.dataset.exerciseId);
     if (currentIds.includes(exerciseId)) {
       showToast('Exercise already added');
@@ -493,7 +493,7 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
     const exerciseName = exerciseData?.name || exerciseId;
 
     const exerciseTag = document.createElement('div');
-    exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
+    exerciseTag.className = 'exercise-picker-item';
     exerciseTag.dataset.exerciseId = exerciseId;
     if (locked) exerciseTag.classList.add('locked');
 
@@ -501,36 +501,32 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
       ? `<button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>`
       : '';
 
-    // Build detail rows if exercise data found
-    let detailsHtml = '';
-    if (exerciseData) {
-      const muscleGroup = exerciseData.muscle_group || '';
-      const primaryMuscles = (exerciseData.primary_muscles || []).join(', ');
-      const secondaryMuscles = (exerciseData.secondary_muscles || []).join(', ');
-      const movementPattern = exerciseData.movement_pattern || '';
-      const role = exerciseData.role || '';
-      const typeLabel = [movementPattern, role].filter(Boolean).join(', ');
-
-      detailsHtml = `
-        <div class="exercise-details">
-          <div class="exercise-detail"><span class="detail-label">Group:</span> ${muscleGroup}</div>
-          <div class="exercise-detail"><span class="detail-label">Primary:</span> ${primaryMuscles}</div>
-          ${secondaryMuscles ? `<div class="exercise-detail"><span class="detail-label">Secondary:</span> ${secondaryMuscles}</div>` : ''}
-          <div class="exercise-detail"><span class="detail-label">Type:</span> ${typeLabel}</div>
-        </div>
-      `;
+    const tags = [];
+    if (exerciseData?.muscle_group) {
+      tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
     }
+    if (exerciseData?.movement_pattern) {
+      tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
+    }
+    if (exerciseData?.equipment) {
+      tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
+    }
+    if (exerciseData?.difficulty) {
+      tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
+    }
+    const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
 
     exerciseTag.innerHTML = `
-      <div class="exercise-tag-header">
-        ${lockButton}
-        <span class="exercise-name">${exerciseName}</span>
-        <button type="button" class="remove-exercise-btn">&times;</button>
+      ${lockButton}
+      <span class="exercise-picker-name">${exerciseName}</span>
+      <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
+      <div class="exercise-picker-row">
+        ${metaHtml}
+        <button type="button" class="remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
       </div>
-      ${detailsHtml}
     `;
 
-    const nameSpan = exerciseTag.querySelector('.exercise-name');
+    const nameSpan = exerciseTag.querySelector('.exercise-picker-name');
     nameSpan.addEventListener('click', (e) => {
       e.stopPropagation();
       showExerciseInfo(exerciseName);
@@ -546,7 +542,39 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
     }
 
     exerciseTag.querySelector('.remove-exercise-btn').addEventListener('click', () => {
-      exerciseTag.remove();
+      if (confirm(`Remove ${exerciseName}?`)) {
+        exerciseTag.remove();
+      }
+    });
+
+    exerciseTag.querySelector('.swap-exercise-btn').addEventListener('click', () => {
+      const muscleGroup = exerciseData?.muscle_group || '';
+      const movementPattern = exerciseData?.movement_pattern || '';
+      const currentName = nameSpan.textContent;
+      openExercisePicker(({ id, name }) => {
+        if (!confirm(`Swap ${currentName} for ${name}?`)) return;
+        exerciseTag.dataset.exerciseId = id;
+        const newData = state.exercisesById.get(id) || null;
+        nameSpan.textContent = name;
+        // Update tags
+        const newTags = [];
+        if (newData?.muscle_group) {
+          newTags.push(`<span class="exercise-picker-tag muscle">${formatLabel(newData.muscle_group)}</span>`);
+        }
+        if (newData?.movement_pattern) {
+          newTags.push(`<span class="exercise-picker-tag movement">${formatLabel(newData.movement_pattern)}</span>`);
+        }
+        if (newData?.equipment) {
+          newTags.push(`<span class="exercise-picker-tag equipment">${formatLabel(newData.equipment)}</span>`);
+        }
+        if (newData?.difficulty) {
+          newTags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(newData.difficulty)}</span>`);
+        }
+        const metaEl = exerciseTag.querySelector('.exercise-picker-meta');
+        if (metaEl) {
+          metaEl.innerHTML = newTags.join('');
+        }
+      }, { muscleGroup, movementPattern, swapMode: true, exerciseName: currentName });
     });
 
     exercisesContainer.appendChild(exerciseTag);
@@ -605,40 +633,36 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
     const exerciseName = exerciseData?.name || exerciseId;
 
     const exerciseTag = document.createElement('div');
-    exerciseTag.className = 'exercise-tag exercise-tag--detailed tappable';
+    exerciseTag.className = 'exercise-picker-item';
     exerciseTag.dataset.exerciseId = exerciseId;
     if (locked) exerciseTag.classList.add('locked');
 
-    // Build detail rows if exercise data found
-    let detailsHtml = '';
-    if (exerciseData) {
-      const muscleGroup = exerciseData.muscle_group || '';
-      const primaryMuscles = (exerciseData.primary_muscles || []).join(', ');
-      const secondaryMuscles = (exerciseData.secondary_muscles || []).join(', ');
-      const movementPattern = exerciseData.movement_pattern || '';
-      const role = exerciseData.role || '';
-      const typeLabel = [movementPattern, role].filter(Boolean).join(', ');
-
-      detailsHtml = `
-        <div class="exercise-details">
-          <div class="exercise-detail"><span class="detail-label">Group:</span> ${muscleGroup}</div>
-          <div class="exercise-detail"><span class="detail-label">Primary:</span> ${primaryMuscles}</div>
-          ${secondaryMuscles ? `<div class="exercise-detail"><span class="detail-label">Secondary:</span> ${secondaryMuscles}</div>` : ''}
-          <div class="exercise-detail"><span class="detail-label">Type:</span> ${typeLabel}</div>
-        </div>
-      `;
+    const tags = [];
+    if (exerciseData?.muscle_group) {
+      tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
     }
+    if (exerciseData?.movement_pattern) {
+      tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
+    }
+    if (exerciseData?.equipment) {
+      tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
+    }
+    if (exerciseData?.difficulty) {
+      tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
+    }
+    const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
 
     exerciseTag.innerHTML = `
-      <div class="exercise-tag-header">
-        <button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>
-        <span class="exercise-name">${exerciseName}</span>
-        <button type="button" class="remove-exercise-btn">&times;</button>
+      <button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>
+      <span class="exercise-picker-name">${exerciseName}</span>
+      <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
+      <div class="exercise-picker-row">
+        ${metaHtml}
+        <button type="button" class="remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
       </div>
-      ${detailsHtml}
     `;
 
-    const nameSpan = exerciseTag.querySelector('.exercise-name');
+    const nameSpan = exerciseTag.querySelector('.exercise-picker-name');
     nameSpan.addEventListener('click', (e) => {
       e.stopPropagation();
       showExerciseInfo(exerciseName);
@@ -652,7 +676,39 @@ function addProgramDayCardWithLocks(container, exercises, lockedStates) {
     });
 
     exerciseTag.querySelector('.remove-exercise-btn').addEventListener('click', () => {
-      exerciseTag.remove();
+      if (confirm(`Remove ${exerciseName}?`)) {
+        exerciseTag.remove();
+      }
+    });
+
+    exerciseTag.querySelector('.swap-exercise-btn').addEventListener('click', () => {
+      const muscleGroup = exerciseData?.muscle_group || '';
+      const movementPattern = exerciseData?.movement_pattern || '';
+      const currentName = nameSpan.textContent;
+      openExercisePicker(({ id, name }) => {
+        if (!confirm(`Swap ${currentName} for ${name}?`)) return;
+        exerciseTag.dataset.exerciseId = id;
+        const newData = state.exercisesById.get(id) || null;
+        nameSpan.textContent = name;
+        // Update tags
+        const newTags = [];
+        if (newData?.muscle_group) {
+          newTags.push(`<span class="exercise-picker-tag muscle">${formatLabel(newData.muscle_group)}</span>`);
+        }
+        if (newData?.movement_pattern) {
+          newTags.push(`<span class="exercise-picker-tag movement">${formatLabel(newData.movement_pattern)}</span>`);
+        }
+        if (newData?.equipment) {
+          newTags.push(`<span class="exercise-picker-tag equipment">${formatLabel(newData.equipment)}</span>`);
+        }
+        if (newData?.difficulty) {
+          newTags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(newData.difficulty)}</span>`);
+        }
+        const metaEl = exerciseTag.querySelector('.exercise-picker-meta');
+        if (metaEl) {
+          metaEl.innerHTML = newTags.join('');
+        }
+      }, { muscleGroup, movementPattern, swapMode: true, exerciseName: currentName });
     });
 
     exercisesContainer.appendChild(exerciseTag);
@@ -685,8 +741,8 @@ function collectLockedExercises(container) {
   container.querySelectorAll('.program-day-card').forEach(card => {
     const exercises = [];
     const locked = [];
-    card.querySelectorAll('.exercise-tag').forEach(tag => {
-      const name = tag.querySelector('.exercise-name').textContent;
+    card.querySelectorAll('.exercise-picker-item').forEach(tag => {
+      const name = tag.querySelector('.exercise-picker-name').textContent;
       exercises.push(name);
       locked.push(tag.classList.contains('locked'));
     });

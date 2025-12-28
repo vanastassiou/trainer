@@ -679,16 +679,24 @@ function renderExerciseList() {
     return;
   }
 
-  // Only show equipment/difficulty tags when "all" is selected
+  // Only show tags when filter is set to "all" for that category
+  const showMuscle = !filters.muscleGroup;
+  const showMovement = !filters.movementPattern;
   const showEquipment = !filters.equipment;
   const showDifficulty = !filters.difficulty;
 
   list.innerHTML = filtered.map(ex => {
     const tags = [];
-    if (showEquipment) {
+    if (showMuscle && ex.muscle_group) {
+      tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(ex.muscle_group)}</span>`);
+    }
+    if (showMovement && ex.movement_pattern) {
+      tags.push(`<span class="exercise-picker-tag movement">${formatLabel(ex.movement_pattern)}</span>`);
+    }
+    if (showEquipment && ex.equipment) {
       tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(ex.equipment)}</span>`);
     }
-    if (showDifficulty) {
+    if (showDifficulty && ex.difficulty) {
       tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(ex.difficulty)}</span>`);
     }
     const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';

@@ -136,7 +136,7 @@ export function collectProgramDays(container) {
   const days = [];
   container.querySelectorAll('.program-day-card').forEach(card => {
     const exercises = [];
-    card.querySelectorAll('.exercise-tag').forEach(tag => {
+    card.querySelectorAll('.exercise-picker-item').forEach(tag => {
       const id = tag.dataset.exerciseId;
       if (id) exercises.push(id);
     });
