@@ -36,10 +36,8 @@
       "question": "How can young people avoid injuries when weight training?",
       "status": "current",
       "tags": [
-        "guidelines",
-        "injury-prevention",
-        "safety",
-        "youth"
+        "Age differences",
+        "Safety and injury"
       ],
       "takeaways": [
         "Always warm up before lifting",
@@ -83,12 +81,11 @@
       "peerReviewed": true,
       "question": "Does building muscle help prevent injuries in athletes?",
       "status": "current",
-      "summary": "Reviews how muscle and connective tissue adapt to resistance training, resulting in greater tissue mass and increased tensile strength. Proposes periodization as a training model to increase performance while reducing overtraining and injury.",
+      "summary": "Reviews how muscle and connective tissue adapt to resistance training, resulting in greater tissue mass and increased tensile strength. Proposes periodization as a training model to increase Performance while reducing overtraining and injury.",
       "tags": [
-        "conditioning",
-        "injury-prevention",
-        "periodization",
-        "safety"
+        "Performance",
+        "Safety and injury",
+        "Training programming"
       ],
       "takeaways": [
         "Pre-season and in-season strength training reduces injury rates",
@@ -135,11 +132,8 @@
       "question": "What types of weight training injuries happen most often in teens?",
       "status": "current",
       "tags": [
-        "epidemiology",
-        "football",
-        "injury-rates",
-        "safety",
-        "youth"
+        "Age differences",
+        "Safety and injury"
       ],
       "takeaways": [
         "Muscle strains are the most common injury (about 3 in 4 injuries)",
@@ -187,11 +181,8 @@
       "question": "Do older adults still get hormonal benefits from weight training?",
       "status": "current",
       "tags": [
-        "adaptations",
-        "aging",
-        "growth-hormone",
-        "hormones",
-        "testosterone"
+        "Age differences",
+        "Body composition"
       ],
       "takeaways": [
         "Weight training boosts growth hormone and testosterone at any age",
@@ -242,9 +233,8 @@
       "question": "Do women build muscle at the same rate as men?",
       "status": "current",
       "tags": [
-        "adaptations",
-        "body-composition",
-        "sex-differences"
+        "Body composition",
+        "Sex differences"
       ],
       "takeaways": [
         "Women and men gain muscle at similar percentage rates",
@@ -292,14 +282,13 @@
       "status": "current",
       "summary": "Reviews evidence supporting resistance training as part of cardiac rehabilitation programs, demonstrating safety and benefits for patients with heart disease.",
       "tags": [
-        "cardiac-rehab",
-        "cardiovascular",
-        "safety",
-        "special-populations"
+        "Mortality",
+        "Safety and injury",
+        "Special populations"
       ],
       "takeaways": [
         "Weight training has been part of heart rehab programs since the mid-1980s",
-        "Studies show it's safe in various stages of cardiac recovery",
+        "Studies show it's safe in various stages of cardiac Recovery",
         "Weight training actually had fewer complications than cardio alone",
         "Patients gain strength and better daily function"
       ],
@@ -345,11 +334,9 @@
       "question": "Do you need to do multiple sets per exercise, or is one set enough?",
       "status": "current",
       "tags": [
-        "hypertrophy",
-        "sets",
-        "strength",
-        "training-myths",
-        "volume"
+        "Body composition",
+        "Training myths",
+        "Training programming"
       ],
       "takeaways": [
         "One set works almost as well as three sets for building strength",
@@ -398,11 +385,9 @@
       "question": "Can weight training stunt a child's growth?",
       "status": "current",
       "tags": [
-        "growth",
-        "maturation",
-        "safety",
-        "special-populations",
-        "youth"
+        "Age differences",
+        "Safety and injury",
+        "Special populations"
       ],
       "takeaways": [
         "Supervised weight training is safe for kids before and during puberty",
@@ -458,14 +443,13 @@
       "status": "current",
       "summary": "NSCA position statement updating 1996 recommendations on youth resistance training, addressing risks, benefits, and program design for children and adolescents.",
       "tags": [
-        "position-statement",
-        "safety",
-        "special-populations",
-        "youth"
+        "Age differences",
+        "Safety and injury",
+        "Special populations"
       ],
       "takeaways": [
         "Yes - it's safe and effective with proper supervision and age-appropriate programs",
-        "Benefits include better strength, motor skills, and sports performance",
+        "Benefits include better strength, motor skills, and sports Performance",
         "Injury risk is low with qualified supervision and proper technique",
         "The NSCA supports resistance training for healthy kids and teens"
       ],
@@ -511,10 +495,7 @@
       "question": "What causes most weight training injuries in the US?",
       "status": "current",
       "tags": [
-        "emergency-medicine",
-        "epidemiology",
-        "injury-rates",
-        "safety"
+        "Safety and injury"
       ],
       "takeaways": [
         "About 90% of injuries happen with free weights (barbells and dumbbells)",
@@ -548,10 +529,7 @@
       "status": "current",
       "summary": "Reviews biomechanical literature on squat depth, knee position, and spinal loading. Addresses common concerns about deep squats and knees traveling past toes.",
       "tags": [
-        "biomechanics",
-        "squat",
-        "technique",
-        "training-myths"
+        "Training myths"
       ],
       "takeaways": [
         "Deep squats are safe when done with proper form",
@@ -559,7 +537,7 @@
         "Deeper squats work your glutes and hamstrings more",
         "Knees going past toes is fine and often necessary for good form"
       ],
-      "title": "Squatting kinematics and kinetics and their application to exercise performance",
+      "title": "Squatting kinematics and kinetics and their application to exercise Performance",
       "url": "https://pubmed.ncbi.nlm.nih.gov/20182386/",
       "year": 2010
     },
@@ -600,10 +578,8 @@
       "question": "Why do so many lifters hurt their shoulders?",
       "status": "current",
       "tags": [
-        "exercise-selection",
-        "injury-prevention",
-        "safety",
-        "shoulder"
+        "Safety and injury",
+        "Training programming"
       ],
       "takeaways": [
         "Up to 36% of weight training injuries happen to the shoulder",
@@ -654,11 +630,9 @@
       "question": "How little can you train and still keep your gains?",
       "status": "current",
       "tags": [
-        "aging",
-        "detraining",
-        "maintenance",
-        "muscle-preservation",
-        "volume"
+        "Age differences",
+        "Body composition",
+        "Training programming"
       ],
       "takeaways": [
         "Young adults kept muscle size training just 3 sets per week total",
@@ -707,16 +681,15 @@
       "question": "Is intense weight training safe for young elite athletes?",
       "status": "current",
       "tags": [
-        "elite",
-        "high-intensity",
-        "safety",
-        "special-populations",
-        "youth"
+        "Age differences",
+        "Performance",
+        "Safety and injury",
+        "Special populations"
       ],
       "takeaways": [
         "Weight training is safe and effective for building youth strength",
         "No problems when properly supervised with age-appropriate precautions",
-        "Benefits include better strength, power, and sports performance",
+        "Benefits include better strength, power, and sports Performance",
         "Programs must be designed for the athlete's age and development"
       ],
       "title": "High-intensity and resistance training and elite young athletes",
@@ -764,11 +737,8 @@
       "question": "Does menopause cause weight gain?",
       "status": "current",
       "tags": [
-        "body-composition",
-        "fat-loss",
-        "menopause",
-        "metabolism",
-        "special-populations"
+        "Body composition",
+        "Special populations"
       ],
       "takeaways": [
         "Weight gain is mostly due to aging, not menopause itself",
@@ -826,18 +796,15 @@
       "question": "Can you tell how recovered you are just by how you feel?",
       "status": "current",
       "tags": [
-        "monitoring",
-        "muscle-damage",
-        "perceived-recovery",
-        "recovery"
+        "Recovery"
       ],
       "takeaways": [
-        "Self-rated recovery dropped significantly after hard training",
+        "Self-rated Recovery dropped significantly after hard training",
         "How recovered you feel matches actual muscle damage markers",
-        "Your perceived recovery is a reliable indicator of actual recovery",
+        "Your perceived Recovery is a reliable indicator of actual Recovery",
         "Simple self-assessment can help guide when to train hard again"
       ],
-      "title": "Changes in perceived recovery status scale following high-volume muscle damaging resistance exercise",
+      "title": "Changes in perceived Recovery status scale following high-volume muscle damaging resistance exercise",
       "url": "https://pubmed.ncbi.nlm.nih.gov/23287827/",
       "year": 2013
     },
@@ -877,12 +844,7 @@
       "question": "How dangerous is powerlifting, weightlifting, or CrossFit?",
       "status": "current",
       "tags": [
-        "crossfit",
-        "epidemiology",
-        "injury-rates",
-        "powerlifting",
-        "safety",
-        "weightlifting"
+        "Safety and injury"
       ],
       "takeaways": [
         "Weight-training sports have lower injury rates than team sports",
@@ -934,11 +896,8 @@
       "question": "Do you build more muscle by doing more sets?",
       "status": "current",
       "tags": [
-        "dose-response",
-        "hypertrophy",
-        "meta-analysis",
-        "sets",
-        "volume"
+        "Body composition",
+        "Training programming"
       ],
       "takeaways": [
         "Yes - more weekly sets generally means more muscle growth",
@@ -964,7 +923,7 @@
         "duration": null,
         "limitations": [
           "heterogeneity in dehydration protocols",
-          "varied performance measures"
+          "varied Performance measures"
         ],
         "population": {
           "ageGroup": [
@@ -986,14 +945,11 @@
         "studyType": "systematic-review-with-meta-analysis"
       },
       "peerReviewed": true,
-      "question": "Does drinking water after sweating actually improve performance?",
+      "question": "Does drinking water after sweating actually improve Performance?",
       "status": "current",
       "tags": [
-        "cognition",
-        "dehydration",
-        "hydration",
-        "nutrition",
-        "performance"
+        "Nutrition and supplementation",
+        "Performance"
       ],
       "takeaways": [
         "Rehydrating helps most for longer, continuous exercise",
@@ -1001,7 +957,7 @@
         "The longer you exercise, the more important hydration becomes",
         "Losing more than 2% of body weight in sweat hurts endurance"
       ],
-      "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive performance: a systematic review and meta-analysis",
+      "title": "The effect of fluid intake following dehydration on subsequent athletic and cognitive Performance: a systematic review and meta-analysis",
       "url": "https://pubmed.ncbi.nlm.nih.gov/28275997/",
       "year": 2017
     },
@@ -1053,11 +1009,8 @@
       "question": "Does protein powder actually help build muscle?",
       "status": "current",
       "tags": [
-        "hypertrophy",
-        "nutrition",
-        "protein",
-        "strength",
-        "supplementation"
+        "Body composition",
+        "Nutrition and supplementation"
       ],
       "takeaways": [
         "Protein supplements add about 2.5 kg (5.5 lbs) to strength gains",
@@ -1114,11 +1067,8 @@
       "question": "Does eating more fiber really improve health?",
       "status": "current",
       "tags": [
-        "cancer",
-        "cardiovascular",
-        "fibre",
-        "mortality",
-        "nutrition"
+        "Mortality",
+        "Nutrition and supplementation"
       ],
       "takeaways": [
         "Strong evidence for reduced pancreatic cancer and heart disease death",
@@ -1175,10 +1125,9 @@
       "question": "Does it matter if you work out in the morning or evening?",
       "status": "current",
       "tags": [
-        "hypertrophy",
-        "programming",
-        "recovery",
-        "strength"
+        "Body composition",
+        "Recovery",
+        "Training programming"
       ],
       "takeaways": [
         "People tend to be slightly stronger in the evening naturally",
@@ -1227,9 +1176,8 @@
       "question": "Do men and women respond differently to weight training?",
       "status": "current",
       "tags": [
-        "adaptations",
-        "body-composition",
-        "sex-differences"
+        "Body composition",
+        "Sex differences"
       ],
       "takeaways": [
         "Men and women build muscle at essentially the same rate",
@@ -1282,10 +1230,7 @@
       "question": "Is it better to lose weight slowly or quickly?",
       "status": "current",
       "tags": [
-        "body-composition",
-        "dose-response",
-        "fat-loss",
-        "metabolism"
+        "Body composition"
       ],
       "takeaways": [
         "Slower weight loss leads to more fat loss than rapid dieting",
@@ -1342,14 +1287,12 @@
       },
       "pages": "1813-1827",
       "peerReviewed": true,
-      "question": "Does your menstrual cycle affect workout performance?",
+      "question": "Does your menstrual cycle affect workout Performance?",
       "status": "current",
       "tags": [
-        "menstrual-cycle",
-        "performance",
-        "sex-differences",
-        "special-populations",
-        "strength"
+        "Performance",
+        "Sex differences",
+        "Special populations"
       ],
       "takeaways": [
         "Performance is slightly lower during your period (very small effect)",
@@ -1405,11 +1348,9 @@
       "question": "Do older men and women respond differently to weight training?",
       "status": "current",
       "tags": [
-        "adaptations",
-        "aging",
-        "hypertrophy",
-        "sex-differences",
-        "strength"
+        "Age differences",
+        "Body composition",
+        "Sex differences"
       ],
       "takeaways": [
         "Older women gain relatively more lower-body strength than older men",
@@ -1464,15 +1405,13 @@
       "question": "Do female athletes actually perform worse during their period?",
       "status": "current",
       "tags": [
-        "elite",
-        "menstrual-cycle",
-        "performance",
-        "special-populations",
-        "strength"
+        "Performance",
+        "Sex differences",
+        "Special populations"
       ],
       "takeaways": [
         "Athletes often feel worse during their period and late in their cycle",
-        "Objective tests don't show consistent performance differences",
+        "Objective tests don't show consistent Performance differences",
         "Some athletes are affected more than others",
         "Both mental and physical factors play a role"
       ],
@@ -1526,11 +1465,8 @@
       "question": "Should you take diet breaks when trying to lose fat?",
       "status": "current",
       "tags": [
-        "body-composition",
-        "fat-loss",
-        "muscle-preservation",
-        "recovery",
-        "trained-individuals"
+        "Body composition",
+        "Recovery"
       ],
       "takeaways": [
         "Fat loss is similar whether you diet continuously or take breaks",
@@ -1581,11 +1517,8 @@
       "question": "How little exercise do you need to maintain your strength?",
       "status": "current",
       "tags": [
-        "aging",
-        "frequency",
-        "maintenance",
-        "minimal-dose",
-        "volume"
+        "Age differences",
+        "Training programming"
       ],
       "takeaways": [
         "Young adults can maintain strength with just 1 workout per week",
@@ -1593,7 +1526,7 @@
         "Keeping weights heavy is the most important factor",
         "You can cut way back on volume if you keep intensity high"
       ],
-      "title": "Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time",
+      "title": "Maintaining physical Performance: the minimal dose of exercise needed to preserve endurance and strength over time",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33629972/",
       "year": 2021
     },
@@ -1675,11 +1608,8 @@
       "question": "How many steps per day do you need to live longer?",
       "status": "current",
       "tags": [
-        "longevity",
-        "mortality",
-        "physical-activity",
-        "recovery",
-        "steps"
+        "Mortality",
+        "Recovery"
       ],
       "takeaways": [
         "More steps means lower death risk, up to a point",
@@ -1687,7 +1617,7 @@
         "For adults under 60, benefits continue up to 8,000-10,000 steps/day",
         "The most active people had 40-53% lower death risk"
       ],
-      "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+      "title": "Daily steps and all-cause Mortality: a meta-analysis of 15 international cohorts",
       "url": "https://pubmed.ncbi.nlm.nih.gov/35247352/",
       "year": 2022
     },
@@ -1733,15 +1663,13 @@
       "question": "Should women train differently during different parts of their cycle?",
       "status": "current",
       "tags": [
-        "hypertrophy",
-        "menstrual-cycle",
-        "programming",
-        "sex-differences",
-        "strength"
+        "Body composition",
+        "Sex differences",
+        "Training programming"
       ],
       "takeaways": [
         "Strength may peak during the first half of your cycle (before ovulation)",
-        "Estrogen helps with muscle recovery and protein use",
+        "Estrogen helps with muscle Recovery and protein use",
         "Training harder in the first half may produce better results",
         "More research is needed to give practical recommendations"
       ],
@@ -1796,11 +1724,8 @@
       "question": "Does weight training help with menopause symptoms?",
       "status": "current",
       "tags": [
-        "body-composition",
-        "hypertrophy",
-        "menopause",
-        "special-populations",
-        "strength"
+        "Body composition",
+        "Special populations"
       ],
       "takeaways": [
         "Weight training significantly reduces hot flash frequency",
@@ -1857,10 +1782,8 @@
       "question": "Do you need to train to complete failure to build muscle?",
       "status": "current",
       "tags": [
-        "dose-response",
-        "hypertrophy",
-        "programming",
-        "training-intensity"
+        "Body composition",
+        "Training programming"
       ],
       "takeaways": [
         "Training to failure provides only a tiny extra benefit for muscle growth",
@@ -1916,11 +1839,9 @@
       "question": "Can exercise improve bone density after menopause?",
       "status": "current",
       "tags": [
-        "bone-density",
-        "menopause",
-        "safety",
-        "special-populations",
-        "strength"
+        "Body composition",
+        "Safety and injury",
+        "Special populations"
       ],
       "takeaways": [
         "Exercise does improve bone density in postmenopausal women",
@@ -1976,10 +1897,8 @@
       "question": "Should women plan their training around their menstrual cycle?",
       "status": "current",
       "tags": [
-        "hypertrophy",
-        "menstrual-cycle",
-        "sex-differences",
-        "strength"
+        "Body composition",
+        "Sex differences"
       ],
       "takeaways": [
         "Current evidence doesn't show cycle phase affects strength",
@@ -1987,7 +1906,7 @@
         "Cycle-based training planning isn't practical due to individual variation",
         "Study quality on this topic is generally poor"
       ],
-      "title": "Current evidence shows no influence of women's menstrual cycle phase on acute strength performance or adaptations to resistance exercise training",
+      "title": "Current evidence shows no influence of women's menstrual cycle phase on acute strength Performance or adaptations to resistance exercise training",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37033884/",
       "volume": "5",
       "year": 2023
@@ -2042,11 +1961,8 @@
       "question": "Do diet breaks help women lose fat more effectively?",
       "status": "current",
       "tags": [
-        "body-composition",
-        "fat-loss",
-        "metabolism",
-        "sex-differences",
-        "trained-individuals"
+        "Body composition",
+        "Sex differences"
       ],
       "takeaways": [
         "Fat loss and muscle retention were the same with or without breaks",
@@ -2101,10 +2017,8 @@
       "question": "Does exercise help with sleep problems during menopause?",
       "status": "current",
       "tags": [
-        "menopause",
-        "recovery",
-        "sleep",
-        "special-populations"
+        "Recovery",
+        "Special populations"
       ],
       "takeaways": [
         "Exercise significantly reduces insomnia symptoms",
@@ -2162,12 +2076,9 @@
       "question": "How does exercise change body composition after menopause?",
       "status": "current",
       "tags": [
-        "body-composition",
-        "cardiovascular",
-        "fat-loss",
-        "menopause",
-        "special-populations",
-        "strength"
+        "Body composition",
+        "Mortality",
+        "Special populations"
       ],
       "takeaways": [
         "Exercise increases muscle mass and lean body mass",
@@ -2221,21 +2132,19 @@
         "studyType": "systematic-review"
       },
       "peerReviewed": true,
-      "question": "Can getting more sleep improve athletic performance?",
+      "question": "Can getting more sleep improve athletic Performance?",
       "status": "current",
       "tags": [
-        "performance",
-        "recovery",
-        "sleep",
-        "sleep-extension"
+        "Performance",
+        "Recovery"
       ],
       "takeaways": [
         "Extra sleep and napping show the most promise",
-        "All studies on sleep extension showed better performance",
+        "All studies on sleep extension showed better Performance",
         "Benefits include faster reactions, better sprinting, and sport skills",
         "Extending sleep to 10 hours improved basketball shooting by 9%"
       ],
-      "title": "The impact of sleep interventions on athletic performance: a systematic review",
+      "title": "The impact of sleep interventions on athletic Performance: a systematic review",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37462808/",
       "year": 2023
     },
@@ -2287,11 +2196,9 @@
       "question": "Is there a limit to how much protein your body can use after a workout?",
       "status": "current",
       "tags": [
-        "dose-response",
-        "hypertrophy",
-        "nutrition",
-        "protein",
-        "recovery"
+        "Body composition",
+        "Nutrition and supplementation",
+        "Recovery"
       ],
       "takeaways": [
         "100g of protein produced bigger and longer-lasting muscle-building effects than 25g",
@@ -2299,7 +2206,7 @@
         "Extra protein wasn't just burned off as fuel",
         "Previous limits on per-meal protein may have been too conservative"
       ],
-      "title": "The anabolic response to protein ingestion during recovery from exercise has no upper limit in magnitude and duration in vivo in humans",
+      "title": "The anabolic response to protein ingestion during Recovery from exercise has no upper limit in magnitude and duration in vivo in humans",
       "url": "https://pubmed.ncbi.nlm.nih.gov/38118410/",
       "volume": "4",
       "year": 2023
@@ -2350,10 +2257,8 @@
       "question": "When during your cycle are you strongest?",
       "status": "current",
       "tags": [
-        "menstrual-cycle",
-        "performance",
-        "sex-differences",
-        "strength"
+        "Performance",
+        "Sex differences"
       ],
       "takeaways": [
         "Late in the first half of your cycle (before ovulation) is optimal for static strength",
@@ -2407,10 +2312,8 @@
       "question": "How common is undereating in athletes, and what are the consequences?",
       "status": "current",
       "tags": [
-        "RED-S",
-        "energy-availability",
-        "nutrition",
-        "performance"
+        "Nutrition and supplementation",
+        "Performance"
       ],
       "takeaways": [
         "Nearly half (45%) of athletes studied were not eating enough",
@@ -2464,11 +2367,8 @@
       "question": "Is there a point of diminishing returns for training volume?",
       "status": "current",
       "tags": [
-        "dose-response",
-        "frequency",
-        "hypertrophy",
-        "meta-analysis",
-        "volume"
+        "Body composition",
+        "Training programming"
       ],
       "takeaways": [
         "Yes - more sets help, but gains slow down as volume increases",
@@ -2518,10 +2418,8 @@
       "question": "How much training volume do experienced lifters need?",
       "status": "current",
       "tags": [
-        "hormones",
-        "maintenance",
-        "trained-individuals",
-        "volume"
+        "Body composition",
+        "Training programming"
       ],
       "takeaways": [
         "Experienced lifters maintained muscle with just 3 sets per muscle per week",

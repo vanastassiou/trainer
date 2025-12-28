@@ -97,13 +97,15 @@ function renderArticles(articles) {
         <h3 class="article-title">
           ${article.doi || article.url
             ? `<a href="${article.doi ? `https://doi.org/${article.doi}` : article.url}" target="_blank" rel="noopener">${article.title}</a>`
-            : article.title}
+            : article.title} (${article.year})
         </h3>
         <div class="article-meta">
-          ${article.authors.join(', ')} · ${article.journal} (${article.year})
+          ${article.authors.length > 4
+            ? article.authors.slice(0, 4).join(', ') + ' et al.'
+            : article.authors.join(', ')}
         </div>
         <div class="article-takeaways">
-          <div class="article-takeaways-label">Key takeaways</div>
+          <div class="article-takeaways-label">TL;DR</div>
           <ul>${renderListItems(article.takeaways)}</ul>
         </div>
         ${article.tags?.length ? `<div class="learn-card-tags">${article.tags.map(tag => `<span class="learn-tag">${formatLabel(tag)}</span>`).join('')}</div>` : ''}

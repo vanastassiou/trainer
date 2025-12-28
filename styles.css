@@ -1873,7 +1873,7 @@ input::placeholder {
 .article-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-text);
   margin: 0 0 4px 0;
 }
 
