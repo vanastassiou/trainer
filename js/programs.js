@@ -956,15 +956,38 @@ export async function renderProgramsList(refreshProgramUI) {
     const dayCount = getProgramDayCount(program);
     const daysPreview = program.days
       ? program.days.map((day, i) => {
-          const exerciseLinks = (day.exercises || []).map(exId => {
-            // Look up exercise by ID to get the display name
+          const exerciseItems = (day.exercises || []).map(exId => {
+            // Look up exercise by ID to get the display name and metadata
             const id = typeof exId === 'string' ? exId : exId?.id || exId?.name;
             if (!id) return '';
             const exerciseData = state.exercisesById.get(id);
             const displayName = exerciseData?.name || id;
-            return `<span class="exercise-link" data-exercise-id="${id}">${displayName}</span>`;
-          }).filter(Boolean).join(', ');
-          return `<div class="program-day-preview"><strong>Day ${i + 1}</strong><span class="exercises">${exerciseLinks}</span></div>`;
+
+            const tags = [];
+            if (exerciseData?.muscle_group) {
+              tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
+            }
+            if (exerciseData?.movement_pattern) {
+              tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
+            }
+            if (exerciseData?.equipment) {
+              tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
+            }
+            if (exerciseData?.difficulty) {
+              tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
+            }
+            const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
+
+            return `
+              <div class="exercise-picker-item exercise-preview" data-exercise-id="${id}">
+                <span class="exercise-picker-name">${displayName}</span>
+                <div class="exercise-picker-row">
+                  ${metaHtml}
+                </div>
+              </div>
+            `;
+          }).filter(Boolean).join('');
+          return `<div class="program-day-preview"><strong>Day ${i + 1}</strong><div class="exercises">${exerciseItems}</div></div>`;
         }).join('')
       : '';
 
@@ -995,11 +1018,11 @@ export async function renderProgramsList(refreshProgramUI) {
   if (!programsListInitialized) {
     programsListInitialized = true;
     container.addEventListener('click', async (e) => {
-      // Exercise link click - show exercise info
-      const exerciseLink = e.target.closest('.exercise-link');
-      if (exerciseLink) {
+      // Exercise item click - show exercise info
+      const exerciseItem = e.target.closest('.exercise-preview');
+      if (exerciseItem) {
         e.stopPropagation();
-        const exerciseId = exerciseLink.dataset.exerciseId;
+        const exerciseId = exerciseItem.dataset.exerciseId;
         const exerciseData = state.exercisesById.get(exerciseId);
         showExerciseInfo(exerciseData?.name || exerciseId);
         return;
