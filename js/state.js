@@ -4,6 +4,8 @@
 
 // Private state variables
 let _exercisesDB = [];
+let _exercisesById = new Map();
+let _exerciseByName = new Map();
 let _articlesData = null;
 let _glossaryData = null;
 let _isInitializing = false;
@@ -25,9 +27,17 @@ let _unitPreference = 'metric';
 
 // State object with getters/setters for controlled access
 export const state = {
-  // Exercise database
+  // Exercise database (array for iteration, maps for lookup)
   get exercisesDB() { return _exercisesDB; },
-  set exercisesDB(v) { _exercisesDB = v; },
+  set exercisesDB(exercisesObj) {
+    // Convert object map to array, adding id to each exercise
+    _exercisesDB = Object.entries(exercisesObj).map(([id, ex]) => ({ id, ...ex }));
+    // Build lookup indexes
+    _exercisesById = new Map(_exercisesDB.map(ex => [ex.id, ex]));
+    _exerciseByName = new Map(_exercisesDB.map(ex => [ex.name.toLowerCase(), ex]));
+  },
+  get exercisesById() { return _exercisesById; },
+  get exerciseByName() { return _exerciseByName; },
 
   // Articles data (lazy loaded)
   get articlesData() { return _articlesData; },

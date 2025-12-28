@@ -17,7 +17,8 @@ export function filterExercises(exercises, filters = {}) {
     searchTerm = '',
     muscleGroup = '',
     movementPattern = '',
-    equipment = ''
+    equipment = '',
+    difficulty = ''
   } = filters;
 
   const search = searchTerm.toLowerCase();
@@ -27,6 +28,7 @@ export function filterExercises(exercises, filters = {}) {
     if (muscleGroup && ex.muscle_group !== muscleGroup) return false;
     if (movementPattern && ex.movement_pattern !== movementPattern) return false;
     if (equipment && ex.equipment !== equipment) return false;
+    if (difficulty && ex.difficulty !== difficulty) return false;
     return true;
   });
 }
@@ -40,7 +42,8 @@ export function getExerciseFilterValues() {
     searchTerm: document.getElementById('exercise-search')?.value || '',
     muscleGroup: document.getElementById('filter-muscle-group')?.value || '',
     movementPattern: document.getElementById('filter-movement')?.value || '',
-    equipment: document.getElementById('filter-equipment')?.value || ''
+    equipment: document.getElementById('filter-equipment')?.value || '',
+    difficulty: document.getElementById('filter-difficulty')?.value || ''
   };
 }
 
@@ -52,11 +55,13 @@ export function resetExerciseFilters() {
   const muscleSelect = document.getElementById('filter-muscle-group');
   const movementSelect = document.getElementById('filter-movement');
   const equipmentSelect = document.getElementById('filter-equipment');
+  const difficultySelect = document.getElementById('filter-difficulty');
 
   if (searchInput) searchInput.value = '';
   if (muscleSelect) muscleSelect.value = '';
   if (movementSelect) movementSelect.value = '';
   if (equipmentSelect) equipmentSelect.value = '';
+  if (difficultySelect) difficultySelect.value = '';
 }
 
 /**

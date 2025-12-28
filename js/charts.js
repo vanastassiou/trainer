@@ -71,11 +71,12 @@ function getMetricValue(journal, category, metric) {
  * @param {string} metric - Field name (e.g., 'weight', 'calories')
  * @param {string} category - 'body', 'daily', or 'workout'
  * @param {number|null} days - Number of days to look back, or null for all time
+ * @param {Array|null} cachedJournals - Optional pre-fetched journals to avoid redundant DB calls
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getChartData(metric, category, days = 28) {
+export async function getChartData(metric, category, days = 28, cachedJournals = null) {
   const endDate = getTodayDate();
-  const allJournals = await getRecentJournals(true);
+  const allJournals = cachedJournals || await getRecentJournals(true);
 
   let journals;
   if (days === null) {
@@ -93,38 +94,42 @@ export async function getChartData(metric, category, days = 28) {
 }
 
 /**
- * Get unique exercise names from workouts in a time period
+ * Get unique exercises from workouts in a time period
  * @param {number} days - Number of days to look back
- * @returns {Promise<Array>} Sorted array of exercise names
+ * @param {Array|null} cachedJournals - Optional pre-fetched journals to avoid redundant DB calls
+ * @returns {Promise<Array>} Sorted array of {id, name} objects
  */
-export async function getExercisesInPeriod(days = 30) {
+export async function getExercisesInPeriod(days = 30, cachedJournals = null) {
   const endDate = getTodayDate();
   const startDate = subtractDays(endDate, days);
 
-  const allJournals = await getRecentJournals(true);
+  const allJournals = cachedJournals || await getRecentJournals(true);
   const journals = allJournals.filter(j => j.date >= startDate && j.date <= endDate);
 
-  const exerciseNames = new Set();
+  const exercisesMap = new Map();
   for (const journal of journals) {
     if (journal.workout?.exercises) {
       for (const ex of journal.workout.exercises) {
-        if (ex.name) exerciseNames.add(ex.name);
+        if (ex.id && !exercisesMap.has(ex.id)) {
+          exercisesMap.set(ex.id, { id: ex.id, name: ex.name || ex.id });
+        }
       }
     }
   }
 
-  return [...exerciseNames].sort((a, b) => a.localeCompare(b));
+  return [...exercisesMap.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
  * Get average weight per rep for a specific exercise over time
- * @param {string} exerciseName - Name of the exercise
+ * @param {string} exerciseId - ID of the exercise
  * @param {number|null} days - Number of days to look back, or null for all time
+ * @param {Array|null} cachedJournals - Optional pre-fetched journals to avoid redundant DB calls
  * @returns {Promise<Array>} Array of {date, value} objects
  */
-export async function getExerciseAvgWeightData(exerciseName, days = 28) {
+export async function getExerciseAvgWeightData(exerciseId, days = 28, cachedJournals = null) {
   const endDate = getTodayDate();
-  const allJournals = await getRecentJournals(true);
+  const allJournals = cachedJournals || await getRecentJournals(true);
 
   let journals;
   if (days === null) {
@@ -135,9 +140,9 @@ export async function getExerciseAvgWeightData(exerciseName, days = 28) {
   }
 
   return journals
-    .filter(j => j.workout?.exercises?.some(ex => ex.name === exerciseName))
+    .filter(j => j.workout?.exercises?.some(ex => ex.id === exerciseId))
     .map(j => {
-      const exercise = j.workout.exercises.find(ex => ex.name === exerciseName);
+      const exercise = j.workout.exercises.find(ex => ex.id === exerciseId);
       let totalWeight = 0;
       let totalReps = 0;
       exercise.sets.forEach(set => {

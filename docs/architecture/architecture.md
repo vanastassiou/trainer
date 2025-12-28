@@ -185,11 +185,13 @@ index.html
 - Modal controller references
 - Cache stores (exercises, articles, journal dates)
 - Selected date tracking
+- `exerciseByName` Map for O(1) exercise lookups (built on load)
 
 **db.js** - Database operations:
-- Dexie database initialization
-- CRUD operations with error handling
+- Native IndexedDB initialization
+- CRUD operations with standardized error handling via `handleError()`
 - Transaction support for imports
+- `getAllGoalsPartitioned()` for efficient active/completed goal fetching
 - Designed for future sync service extensibility
 
 ```javascript
@@ -231,6 +233,7 @@ export async function getJournalForDate(date) {
 - Article rendering
 - Category filtering
 - Lazy loading on modal open
+- `glossaryIndex` Map for O(1) term lookups (built on load)
 
 **utils.js** - Generic utilities:
 - `fetchJSON(url)` - Fetch and parse JSON
@@ -238,6 +241,8 @@ export async function getJournalForDate(date) {
 - `formatLabel(str)` - Format snake_case to Title Case
 - `renderListItems(items)` - Generate list HTML
 - `swapVisibility(showEl, hideEl)` - Toggle element visibility
+- `escapeHtml(str)` - Escape HTML special characters for XSS prevention
+- `handleError(err, context, fallback)` - Standardized error logging
 
 **ui.js** - UI patterns:
 - `createTabController()` - Tab navigation with localStorage persistence
@@ -252,6 +257,7 @@ export async function getJournalForDate(date) {
 
 **validation.js** - Business rules:
 - `validateProgram(name, days)` - Program structure validation (3-6 exercises/day)
+- `validateProgramExercises(program, index)` - Referential integrity check
 - `hasUnsavedWorkoutData(container)` - Dirty form detection
 - `collectWorkoutData(container)` - Extract workout from form
 - `collectProgramDays(container)` - Extract program days from form
@@ -560,6 +566,75 @@ const DIRECTION_CONFIG = {
   increase: { symbol: '↑', label: 'Increase to' },
   maintain: { symbol: '↔', label: 'Maintain at' }
 };
+```
+
+### Performance patterns
+
+**Lookup indexes:** Frequently accessed collections build Map indexes on load for
+O(1) lookups instead of O(n) array searches:
+
+```javascript
+// state.js - exercise index built when exercisesDB is set
+set exercisesDB(v) {
+  _exercisesDB = v;
+  _exerciseByName = new Map(v.map(ex => [ex.name.toLowerCase(), ex]));
+}
+
+// learn.js - glossary index built on load
+glossaryIndex.set(term.term.toLowerCase(), term);
+term.aliases?.forEach(alias => glossaryIndex.set(alias.toLowerCase(), term));
+```
+
+**Data caching:** Functions accept optional pre-fetched data to avoid redundant
+database calls:
+
+```javascript
+// charts.js - journals passed through to avoid 3 separate fetches
+async function refreshAllCharts() {
+  const journals = await getRecentJournals(true);
+  await Promise.all([
+    updateDailyChart(journals),
+    updateMeasurementsChart(journals),
+    updateWorkoutsChart(journals)
+  ]);
+}
+```
+
+**Partitioned queries:** When multiple filtered views of the same data are
+needed, fetch once and partition:
+
+```javascript
+// db.js - single fetch for active and completed goals
+export async function getAllGoalsPartitioned() {
+  const goals = await getAllFromStore('goals');
+  return {
+    active: goals.filter(g => !g.completedAt),
+    completed: goals.filter(g => !!g.completedAt)
+  };
+}
+```
+
+### Data integrity
+
+**Referential integrity checks:** Programs reference exercises by name. The
+`validateProgramExercises()` function warns about stale references when the
+exercise database changes:
+
+```javascript
+// Called when programs are loaded
+programs.forEach(p => validateProgramExercises(p, state.exerciseByName));
+// Logs: 'Program "X" has invalid exercise references: ["deleted-exercise"]'
+```
+
+**Version metadata:** Static JSON files include version info for cache
+validation:
+
+```json
+{
+  "version": 1,
+  "lastUpdated": "2025-01-01",
+  "exercises": [...]
+}
 ```
 
 ## CSS architecture

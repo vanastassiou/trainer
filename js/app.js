@@ -13,7 +13,8 @@ import {
   getJournalForDate,
   exportAllData,
   importData,
-  loadJournalDatesForMonth
+  loadJournalDatesForMonth,
+  getRecentJournals
 } from './db.js';
 
 import {
@@ -80,7 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate,
     renderProgramsList
   });
-  initProgramsPage({ refreshProgramUI });
   initExportButton();
   initDailyForm(async () => {
     await updateDailyChart();
@@ -88,8 +88,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   initCharts();
 
-  // Load data - exercises must complete before picker init to avoid race
+  // Load exercises before programs page (needed for name lookups)
   await loadExercisesDB();
+  initProgramsPage({ refreshProgramUI });
   initExercisePicker();
   initExerciseInfoModal();
   initExerciseEditModal();
@@ -178,6 +179,16 @@ function initDateNavigation() {
   // Open calendar on date display click
   document.querySelectorAll('.date-display').forEach(btn => {
     btn.addEventListener('click', openCalendar);
+  });
+
+  // Calendar grid click delegation (attach once, not on every render)
+  const calendarGrid = document.querySelector('.calendar-grid');
+  calendarGrid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.calendar-day:not([disabled])');
+    if (btn && btn.dataset.date) {
+      selectDate(btn.dataset.date);
+      state.calendarDialog.close();
+    }
   });
 
   // Calendar month navigation
@@ -292,15 +303,6 @@ function renderCalendar() {
   }
 
   grid.innerHTML = html;
-
-  // Use event delegation
-  grid.addEventListener('click', (e) => {
-    const btn = e.target.closest('.calendar-day:not([disabled])');
-    if (btn && btn.dataset.date) {
-      selectDate(btn.dataset.date);
-      state.calendarDialog.close();
-    }
-  });
 }
 
 async function selectDate(date) {
@@ -446,15 +448,15 @@ async function populateWorkoutsSelect() {
   const exercises = await getExercisesInPeriod(days);
 
   select.innerHTML = '';
-  for (const name of exercises) {
+  for (const { id, name } of exercises) {
     const option = document.createElement('option');
-    option.value = name;
+    option.value = id;
     option.textContent = name;
     select.appendChild(option);
   }
 }
 
-async function updateDailyChart() {
+async function updateDailyChart(cachedJournals = null) {
   const chartSection = document.getElementById('daily-chart');
   if (!chartSection) return;
 
@@ -467,14 +469,14 @@ async function updateDailyChart() {
   const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
   const unit = METRIC_UNITS[metric] || '';
-  const data = await getChartData(metric, 'daily', days);
+  const data = await getChartData(metric, 'daily', days, cachedJournals);
   renderLineChart(canvas, data, { unit, metric });
 
   const summary = getChartSummary(data);
   summaryEl.innerHTML = formatSummaryHTML(summary, unit, metric);
 }
 
-async function updateMeasurementsChart() {
+async function updateMeasurementsChart(cachedJournals = null) {
   const chartSection = document.getElementById('measurements-chart');
   if (!chartSection) return;
 
@@ -487,14 +489,14 @@ async function updateMeasurementsChart() {
   const days = timespanValue === 'all' ? null : parseInt(timespanValue, 10);
 
   const unit = METRIC_UNITS[metric] || '';
-  const data = await getChartData(metric, 'body', days);
+  const data = await getChartData(metric, 'body', days, cachedJournals);
   renderLineChart(canvas, data, { unit, metric });
 
   const summary = getChartSummary(data);
   summaryEl.innerHTML = formatSummaryHTML(summary, unit, metric);
 }
 
-async function updateWorkoutsChart() {
+async function updateWorkoutsChart(cachedJournals = null) {
   const chartSection = document.getElementById('workouts-chart');
   if (!chartSection) return;
 
@@ -511,7 +513,7 @@ async function updateWorkoutsChart() {
     return;
   }
 
-  const data = await getExerciseAvgWeightData(exercise, days);
+  const data = await getExerciseAvgWeightData(exercise, days, cachedJournals);
   renderLineChart(canvas, data, { unit: 'kg', metric: 'weight' });
 
   const summary = getChartSummary(data);
@@ -519,10 +521,12 @@ async function updateWorkoutsChart() {
 }
 
 async function refreshAllCharts() {
+  // Fetch journals once for all charts
+  const journals = await getRecentJournals(true);
   await Promise.all([
-    updateDailyChart(),
-    updateMeasurementsChart(),
-    updateWorkoutsChart()
+    updateDailyChart(journals),
+    updateMeasurementsChart(journals),
+    updateWorkoutsChart(journals)
   ]);
 }
 

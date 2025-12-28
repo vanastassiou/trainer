@@ -1,21 +1,17 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Sources Database",
-  "description": "Authoritative sources for exercise and fitness information",
+  "title": "Resources Database",
+  "description": "Authoritative resources for exercise and fitness information",
   "type": "object",
-  "required": ["sources"],
+  "required": ["resources"],
   "properties": {
-    "sources": {
-      "type": "array",
-      "items": {
+    "resources": {
+      "type": "object",
+      "description": "Map of resource slug to resource definition",
+      "additionalProperties": {
         "type": "object",
-        "required": ["id", "name", "organization", "type", "country", "url", "categories", "content_type", "free_access"],
+        "required": ["name", "organization", "type", "country", "url", "categories", "content_type", "free_access"],
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier in slug format",
-            "pattern": "^[a-z0-9-]+$"
-          },
           "name": {
             "type": "string",
             "description": "Display name of the resource"
@@ -61,6 +57,9 @@
             "description": "Brief description of the resource"
           }
         }
+      },
+      "propertyNames": {
+        "pattern": "^[a-z0-9-]+$"
       }
     }
   }

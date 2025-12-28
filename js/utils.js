@@ -3,6 +3,35 @@
 // =============================================================================
 
 /**
+ * Escape HTML special characters to prevent XSS.
+ * @param {string} str - String to escape
+ * @returns {string} Escaped string
+ */
+export function escapeHtml(str) {
+  if (str == null) return '';
+  const escapeMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+  return String(str).replace(/[&<>"']/g, char => escapeMap[char]);
+}
+
+/**
+ * Standardized error handler with consistent logging.
+ * @param {Error} error - Error object
+ * @param {string} context - Description of what operation failed
+ * @param {*} fallbackValue - Value to return on error
+ * @returns {*} The fallback value
+ */
+export function handleError(error, context, fallbackValue = null) {
+  console.error(`[Error] ${context}:`, error.message || error);
+  return fallbackValue;
+}
+
+/**
  * Fetch JSON with error handling and default value fallback.
  * @param {string} url - URL to fetch
  * @param {*} defaultValue - Value to return on error
@@ -16,8 +45,7 @@ export async function fetchJSON(url, defaultValue = null) {
     }
     return await response.json();
   } catch (err) {
-    console.error(`Failed to load ${url}:`, err);
-    return defaultValue;
+    return handleError(err, `Failed to load ${url}`, defaultValue);
   }
 }
 
@@ -49,6 +77,19 @@ export function formatLabel(value) {
   return value
     .replace(/_/g, ' ')
     .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/**
+ * Format authors array as citation string (e.g., "Smith et al." or "Smith").
+ * @param {string[]} authors - Array of author names (e.g., ["Smith BJ", "Jones A"])
+ * @returns {string} Citation format author string
+ */
+export function getCitationAuthor(authors) {
+  if (!authors?.length) return '';
+  // Extract last name (last word before any suffix like Jr, Sr, III)
+  const firstAuthor = authors[0];
+  const lastName = firstAuthor.split(/\s+/)[0];
+  return authors.length > 1 ? `${lastName} et al.` : lastName;
 }
 
 /**

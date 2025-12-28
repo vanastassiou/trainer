@@ -5,7 +5,7 @@
 // Future: Could wrap external sync services (Google Health, Fitbit).
 
 import { state } from './state.js';
-import { getTodayDate } from './utils.js';
+import { getTodayDate, handleError } from './utils.js';
 import { showToast } from './ui.js';
 import { DAILY_FIELDS } from './measurements.js';
 
@@ -144,8 +144,7 @@ export async function getAllPrograms() {
   try {
     return await getAllFromStore('programs');
   } catch (err) {
-    console.error('Failed to get programs:', err);
-    return [];
+    return handleError(err, 'Failed to get programs', []);
   }
 }
 
@@ -153,8 +152,7 @@ export async function getProgram(id) {
   try {
     return await getByKey('programs', id);
   } catch (err) {
-    console.error('Failed to get program:', err);
-    return null;
+    return handleError(err, `Failed to get program ${id}`, null);
   }
 }
 
@@ -228,8 +226,7 @@ export async function getAllGoals() {
   try {
     return await getAllFromStore('goals');
   } catch (err) {
-    console.error('Failed to get goals:', err);
-    return [];
+    return handleError(err, 'Failed to get goals', []);
   }
 }
 
@@ -238,8 +235,7 @@ export async function getActiveGoals() {
     const goals = await getAllFromStore('goals');
     return goals.filter(g => !g.completedAt);
   } catch (err) {
-    console.error('Failed to get active goals:', err);
-    return [];
+    return handleError(err, 'Failed to get active goals', []);
   }
 }
 
@@ -248,8 +244,19 @@ export async function getCompletedGoals() {
     const goals = await getAllFromStore('goals');
     return goals.filter(g => !!g.completedAt);
   } catch (err) {
-    console.error('Failed to get completed goals:', err);
-    return [];
+    return handleError(err, 'Failed to get completed goals', []);
+  }
+}
+
+export async function getAllGoalsPartitioned() {
+  try {
+    const goals = await getAllFromStore('goals');
+    return {
+      active: goals.filter(g => !g.completedAt),
+      completed: goals.filter(g => !!g.completedAt)
+    };
+  } catch (err) {
+    return handleError(err, 'Failed to get goals', { active: [], completed: [] });
   }
 }
 
@@ -306,8 +313,7 @@ export async function getProfile() {
     const profile = await getByKey('profile', 'user');
     return profile || { ...DEFAULT_PROFILE };
   } catch (err) {
-    console.error('Failed to get profile:', err);
-    return { ...DEFAULT_PROFILE };
+    return handleError(err, 'Failed to get profile', { ...DEFAULT_PROFILE });
   }
 }
 
@@ -358,8 +364,7 @@ export async function getRecentJournals(includeToday = false) {
       : journals.filter(j => j.date < today);
     return filtered.sort((a, b) => b.date.localeCompare(a.date));
   } catch (err) {
-    console.error('Failed to get recent journals:', err);
-    return [];
+    return handleError(err, 'Failed to get recent journals', []);
   }
 }
 
@@ -370,7 +375,7 @@ export async function getJournalForDate(date) {
       return stored;
     }
   } catch (err) {
-    console.error('Failed to get journal:', err);
+    handleError(err, `Failed to get journal for ${date}`);
   }
   return {
     date: date,
@@ -412,7 +417,7 @@ export async function loadJournalDatesForMonth(year, month) {
       state.addToJournalDatesCache(j.date, completion);
     });
   } catch (err) {
-    console.error('Failed to load journal dates:', err);
+    handleError(err, `Failed to load journal dates for ${year}-${month + 1}`);
   }
 }
 
@@ -524,8 +529,7 @@ export async function getNextDayNumber(programId) {
 
     return 1;
   } catch (err) {
-    console.error('Failed to get next day number:', err);
-    return 1;
+    return handleError(err, `Failed to get next day number for program ${programId}`, 1);
   }
 }
 
@@ -564,8 +568,7 @@ export async function getMostRecentWorkout(programId = null, dayNumber = null) {
 
     return null;
   } catch (err) {
-    console.error('Failed to get recent workout:', err);
-    return null;
+    return handleError(err, 'Failed to get recent workout', null);
   }
 }
 

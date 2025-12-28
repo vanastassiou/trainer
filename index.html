@@ -21,12 +21,34 @@
   <link rel="modulepreload" href="js/learn.js">
   <link rel="modulepreload" href="js/filters.js">
   <link rel="modulepreload" href="js/validation.js">
+  <!-- Prevent flash of wrong tab on load by storing saved tab for CSS -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('activeTab') || 'workouts';
+      document.documentElement.dataset.tab = t;
+    })();
+  </script>
+  <style>
+    /* Show correct tab/page before JS loads based on saved preference */
+    html[data-tab="metrics"] #metrics,
+    html[data-tab="workouts"] #workouts,
+    html[data-tab="learn"] #learn,
+    html[data-tab="profile"] #profile { display: block; }
+    html[data-tab="metrics"] .tab[data-tab="metrics"],
+    html[data-tab="workouts"] .tab[data-tab="workouts"],
+    html[data-tab="learn"] .tab[data-tab="learn"],
+    html[data-tab="profile"] .tab[data-tab="profile"] {
+      background: var(--color-secondary-light);
+      color: var(--color-secondary);
+      border-bottom-color: var(--color-secondary);
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav class="tabs">
       <button class="tab" data-tab="metrics">Metrics</button>
-      <button class="tab active" data-tab="workouts">Workouts</button>
+      <button class="tab" data-tab="workouts">Workouts</button>
       <button class="tab" data-tab="learn">Learn</button>
       <button class="tab" data-tab="profile">Profile</button>
     </nav>
@@ -149,7 +171,7 @@
       </div>
     </section>
 
-    <section id="workouts" class="page active">
+    <section id="workouts" class="page">
       <div class="date-header">
         <button type="button" class="nav-button date-nav prev" aria-label="Previous day">&lt;</button>
         <button type="button" class="date-display">
@@ -461,7 +483,7 @@
         <button type="button" class="action-sheet-btn danger" id="exercise-remove-btn">
           <span class="action-icon">✕</span>
           <span class="action-text">Remove exercise</span>
-          <span class="action-desc">Delete from workout</span>
+          <span class="action-desc">Delete from today's workout</span>
         </button>
       </div>
     </div>
@@ -519,11 +541,23 @@
     </div>
   </dialog>
 
+  <!-- Set Notes Dialog -->
+  <dialog id="set-notes-modal" class="modal-dialog">
+    <div class="set-notes-card">
+      <div class="set-notes-header">
+        <h3 id="set-notes-title">Set notes</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <textarea id="set-notes-input" rows="4" placeholder="Add notes for this set..."></textarea>
+      <button type="button" id="set-notes-save-btn" class="btn accent">Save</button>
+    </div>
+  </dialog>
+
   <!-- Exercise Picker Dialog -->
   <dialog id="exercise-picker-modal" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>Select exercise</h3>
+        <h3 id="exercise-picker-title">Select exercise</h3>
         <button type="button" class="modal-close">&times;</button>
       </div>
       <div class="modal-filters">
@@ -535,6 +569,9 @@
         </select>
         <select id="filter-equipment">
           <option value="">All equipment</option>
+        </select>
+        <select id="filter-difficulty">
+          <option value="">All levels</option>
         </select>
       </div>
       <div class="modal-search">

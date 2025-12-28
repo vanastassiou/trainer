@@ -29,10 +29,12 @@ export async function loadExercisesDB() {
   state.exercisesDB = data.exercises || [];
 }
 
+export function getExerciseById(id) {
+  return state.exercisesById.get(id) || null;
+}
+
 export function getExerciseByName(name) {
-  return state.exercisesDB.find(ex =>
-    ex.name.toLowerCase() === name.toLowerCase()
-  );
+  return state.exerciseByName.get(name.toLowerCase()) || null;
 }
 
 function isBodyweightExercise(name) {
@@ -82,6 +84,161 @@ export function initWorkoutForm(callbacks) {
   state.workoutSwitchDialog = createModalController(
     document.getElementById('workout-switch-dialog')
   );
+
+  // Initialize set notes modal
+  const setNotesModal = document.getElementById('set-notes-modal');
+  const setNotesInput = document.getElementById('set-notes-input');
+  const setNotesSaveBtn = document.getElementById('set-notes-save-btn');
+  const setNotesTitle = document.getElementById('set-notes-title');
+  let currentNotesRow = null;
+
+  setNotesModal.querySelector('.modal-close').addEventListener('click', () => {
+    setNotesModal.close();
+  });
+
+  setNotesSaveBtn.addEventListener('click', () => {
+    if (currentNotesRow) {
+      currentNotesRow.dataset.notes = setNotesInput.value;
+      // Update button appearance based on whether notes exist
+      const notesBtn = currentNotesRow.querySelector('.notes-btn');
+      if (setNotesInput.value.trim()) {
+        notesBtn.classList.add('has-notes');
+      } else {
+        notesBtn.classList.remove('has-notes');
+      }
+    }
+    setNotesModal.close();
+  });
+
+  // Event delegation for exercise cards (attach once, not per card)
+  container.addEventListener('click', (e) => {
+    const card = e.target.closest('.exercise-card');
+    if (!card) return;
+
+    // Handle collapse toggle
+    if (e.target.closest('.collapse-toggle')) {
+      card.classList.toggle('collapsed');
+      return;
+    }
+
+    // Handle edit button click
+    if (e.target.closest('.edit-exercise-btn')) {
+      openExerciseEditModal(card);
+      return;
+    }
+
+    // Handle notes button click
+    if (e.target.closest('.notes-btn')) {
+      const row = e.target.closest('.set-row');
+      const setNum = parseInt(row.dataset.set, 10) + 1;
+      const exerciseName = card.querySelector('.exercise-name').value || 'Exercise';
+      currentNotesRow = row;
+      setNotesTitle.textContent = `${exerciseName} - Set ${setNum}`;
+      setNotesInput.value = row.dataset.notes || '';
+      setNotesModal.showModal();
+      return;
+    }
+
+    // Handle save set button click
+    if (e.target.closest('.save-set-btn')) {
+      const row = e.target.closest('.set-row');
+      const setIndex = parseInt(row.dataset.set, 10);
+
+      // Mark current row as saved
+      row.classList.add('saved');
+      row.classList.remove('editing');
+
+      // Check if there's an inactive row to reactivate
+      const inactiveRow = card.querySelector('.set-row.inactive');
+      if (inactiveRow) {
+        inactiveRow.classList.remove('inactive');
+        inactiveRow.classList.add('editing');
+      } else {
+        // Show next set row if it exists
+        const nextRow = card.querySelector(`.set-row[data-set="${setIndex + 1}"]`);
+        if (nextRow && nextRow.classList.contains('hidden')) {
+          nextRow.classList.remove('hidden');
+          nextRow.classList.add('editing');
+        } else {
+          // No more sets - mark exercise as complete, collapse and open next
+          card.classList.add('completed');
+          const nameInput = card.querySelector('.exercise-name');
+          if (nameInput && !nameInput.value.includes('✅')) {
+            nameInput.value = nameInput.value + ' ✅';
+          }
+
+          card.classList.add('collapsed');
+          const nextCard = card.nextElementSibling;
+          if (nextCard && nextCard.classList.contains('exercise-card')) {
+            nextCard.classList.remove('collapsed');
+            // Ensure first set is in editing state
+            const firstSet = nextCard.querySelector('.set-row[data-set="0"]');
+            if (firstSet && !firstSet.classList.contains('saved')) {
+              firstSet.classList.add('editing');
+            }
+          }
+        }
+      }
+      return;
+    }
+
+    // Handle edit set button click
+    if (e.target.closest('.edit-set-btn')) {
+      const row = e.target.closest('.set-row');
+
+      // Handle currently editing row
+      const currentlyEditing = card.querySelector('.set-row.editing');
+      if (currentlyEditing && currentlyEditing !== row) {
+        currentlyEditing.classList.remove('editing');
+        // Check if it has data - if so, mark as saved; otherwise inactive
+        const hasData = currentlyEditing.querySelector('.reps-input').value ||
+                        currentlyEditing.querySelector('.weight-input').value ||
+                        currentlyEditing.querySelector('.rir-input').value;
+        if (hasData) {
+          currentlyEditing.classList.add('saved');
+        } else {
+          currentlyEditing.classList.add('inactive');
+        }
+      }
+
+      // Also convert any inactive row back to its proper state
+      const inactiveRow = card.querySelector('.set-row.inactive');
+      if (inactiveRow && inactiveRow !== row) {
+        inactiveRow.classList.remove('inactive');
+        const hasData = inactiveRow.querySelector('.reps-input').value ||
+                        inactiveRow.querySelector('.weight-input').value ||
+                        inactiveRow.querySelector('.rir-input').value;
+        if (hasData) {
+          inactiveRow.classList.add('saved');
+        }
+        // If no data, leave without special class (will be next to edit)
+      }
+
+      // Make clicked row editable
+      row.classList.remove('saved', 'inactive');
+      row.classList.add('editing');
+      return;
+    }
+
+    // Handle exercise name click (show info)
+    if (e.target.closest('.exercise-name')) {
+      const nameInput = card.querySelector('.exercise-name');
+      const name = nameInput.value.trim();
+      if (name) {
+        showExerciseInfo(name);
+      }
+    }
+  });
+
+  // Handle blur events for weight visibility updates (non-program cards)
+  container.addEventListener('focusout', (e) => {
+    if (e.target.classList.contains('exercise-name')) {
+      const card = e.target.closest('.exercise-card');
+      if (card && !card.dataset.fromProgram) {
+        updateWeightVisibility(card);
+      }
+    }
+  });
 
   addBtn.addEventListener('click', () => {
     addExerciseCard(container);
@@ -202,6 +359,7 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   const card = document.createElement('div');
   card.className = 'exercise-card card';
   if (fromProgram) card.dataset.fromProgram = 'true';
+  if (existingData?.id) card.dataset.exerciseId = existingData.id;
 
   const unitPreference = state.unitPreference;
   const weightUnit = unitPreference === 'imperial' ? 'lbs' : 'kg';
@@ -221,8 +379,13 @@ export function addExerciseCard(container, existingData = null, options = {}) {
     return '-';
   };
 
+  card.classList.add('collapsed');
+
   card.innerHTML = `
     <div class="exercise-header">
+      <button type="button" class="collapse-toggle" aria-label="Toggle exercise details">
+        <span class="collapse-icon"></span>
+      </button>
       <input type="text" class="exercise-name" placeholder="Exercise name" ${fromProgram ? 'readonly' : ''}>
       <button type="button" class="btn secondary edit-exercise-btn">Edit</button>
     </div>
@@ -232,24 +395,40 @@ export function addExerciseCard(container, existingData = null, options = {}) {
         <span class="col-label" data-term="repetition">Reps</span>
         <span class="col-label" data-term="intensity">Weight (${weightUnit})</span>
         <span class="col-label col-label-rir" data-term="reps in reserve">RIR</span>
+        <span class="col-label col-label-actions"></span>
       </div>
-      <div class="set-row">
+      <div class="set-row editing" data-set="0">
         <span class="set-label">Set 1</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(0, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(0, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(0, 'rir')}" inputmode="numeric" min="0" max="5">
+        <span class="set-actions">
+          <button type="button" class="notes-btn" aria-label="Add notes for set 1">🗒️</button>
+          <button type="button" class="save-set-btn" aria-label="Save set 1">💾</button>
+          <button type="button" class="edit-set-btn" aria-label="Edit set 1">✏️</button>
+        </span>
       </div>
-      <div class="set-row">
+      <div class="set-row hidden" data-set="1">
         <span class="set-label">Set 2</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(1, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(1, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(1, 'rir')}" inputmode="numeric" min="0" max="5">
+        <span class="set-actions">
+          <button type="button" class="notes-btn" aria-label="Add notes for set 2">🗒️</button>
+          <button type="button" class="save-set-btn" aria-label="Save set 2">💾</button>
+          <button type="button" class="edit-set-btn" aria-label="Edit set 2">✏️</button>
+        </span>
       </div>
-      <div class="set-row">
+      <div class="set-row hidden" data-set="2">
         <span class="set-label">Set 3</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(2, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(2, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(2, 'rir')}" inputmode="numeric" min="0" max="5">
+        <span class="set-actions">
+          <button type="button" class="notes-btn" aria-label="Add notes for set 3">🗒️</button>
+          <button type="button" class="save-set-btn" aria-label="Save set 3">💾</button>
+          <button type="button" class="edit-set-btn" aria-label="Edit set 3">✏️</button>
+        </span>
       </div>
     </div>
   `;
@@ -257,9 +436,16 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   if (existingData) {
     card.querySelector('.exercise-name').value = existingData.name || '';
     const setRows = card.querySelectorAll('.set-row:not(.set-header)');
-    if (existingData.sets) {
+    if (existingData.sets && existingData.sets.length > 0) {
+      let lastSetWithData = -1;
+
       existingData.sets.forEach((set, i) => {
         if (setRows[i]) {
+          const hasData = set.reps !== null || set.weight !== null || set.rir !== null;
+          if (hasData) {
+            lastSetWithData = i;
+            setRows[i].classList.remove('hidden');
+          }
           if (set.reps !== null) setRows[i].querySelector('.reps-input').value = set.reps;
           if (set.weight !== null) {
             let displayWeight = set.weight;
@@ -269,33 +455,29 @@ export function addExerciseCard(container, existingData = null, options = {}) {
             setRows[i].querySelector('.weight-input').value = displayWeight;
           }
           if (set.rir !== null) setRows[i].querySelector('.rir-input').value = set.rir;
+          if (set.notes) {
+            setRows[i].dataset.notes = set.notes;
+            setRows[i].querySelector('.notes-btn').classList.add('has-notes');
+          }
         }
       });
+
+      // Make the last set with data the editing one, mark others as saved
+      for (let i = 0; i <= lastSetWithData; i++) {
+        if (i < lastSetWithData) {
+          setRows[i].classList.remove('editing');
+          setRows[i].classList.add('saved');
+        } else {
+          setRows[i].classList.add('editing');
+        }
+      }
     }
   }
-
-  const nameInput = card.querySelector('.exercise-name');
 
   // Update weight visibility based on exercise type
   updateWeightVisibility(card);
 
-  // Show exercise info when name is clicked (if it has a value)
-  nameInput.addEventListener('click', () => {
-    const name = nameInput.value.trim();
-    if (name) {
-      showExerciseInfo(name);
-    }
-  });
-
-  if (!fromProgram) {
-    // Update weight visibility when name changes for non-program cards
-    nameInput.addEventListener('blur', () => updateWeightVisibility(card));
-  }
-
-  const editBtn = card.querySelector('.edit-exercise-btn');
-  editBtn.addEventListener('click', () => {
-    openExerciseEditModal(card);
-  });
+  // Event listeners are handled by container-level delegation in initWorkoutForm()
 
   container.appendChild(card);
 }
@@ -322,11 +504,15 @@ export async function loadTemplate() {
   const previousExercises = previousJournal?.workout?.exercises || [];
 
   container.innerHTML = '';
-  const templateExercises = program.days[dayNumber - 1].exercises;
+  const templateExercises = program.days[dayNumber - 1].exercises || [];
 
-  templateExercises.forEach(name => {
-    const previousData = previousExercises.find(e => e.name === name);
-    addExerciseCard(container, { name, sets: [] }, {
+  templateExercises.forEach(exerciseId => {
+    // Look up exercise by ID to get display name
+    const exercise = getExerciseById(exerciseId);
+    const name = exercise?.name || exerciseId;
+    if (!name) return;
+    const previousData = previousExercises.find(e => e.id === exerciseId);
+    addExerciseCard(container, { id: exerciseId, name, sets: [] }, {
       fromProgram: true,
       placeholderData: previousData
     });
@@ -346,20 +532,33 @@ export function initExercisePicker() {
   const muscleFilter = document.getElementById('filter-muscle-group');
   const movementFilter = document.getElementById('filter-movement');
   const equipmentFilter = document.getElementById('filter-equipment');
+  const difficultyFilter = document.getElementById('filter-difficulty');
   const list = document.getElementById('exercise-picker-list');
 
   searchInput.addEventListener('input', updateExercisePicker);
   muscleFilter.addEventListener('change', updateExercisePicker);
   movementFilter.addEventListener('change', updateExercisePicker);
   equipmentFilter.addEventListener('change', updateExercisePicker);
+  difficultyFilter.addEventListener('change', updateExercisePicker);
 
-  // Use event delegation for exercise selection
+  // Use event delegation for exercise selection and info
   list.addEventListener('click', (e) => {
+    // Show exercise info when clicking the name
+    if (e.target.closest('.exercise-picker-name')) {
+      const item = e.target.closest('.exercise-picker-item');
+      if (item) {
+        showExerciseInfo(item.dataset.name);
+      }
+      return;
+    }
+
+    // Select exercise when clicking elsewhere on the item
     const item = e.target.closest('.exercise-picker-item');
     if (item) {
+      const id = item.dataset.id;
       const name = item.dataset.name;
       if (state.exercisePickerCallback) {
-        state.exercisePickerCallback(name);
+        state.exercisePickerCallback({ id, name });
       }
       closeExercisePicker();
     }
@@ -378,7 +577,8 @@ function updateFilterDropdown(selectId, field, currentFilters) {
     searchTerm: otherFilters.searchTerm || '',
     muscleGroup: otherFilters.muscle_group || '',
     movementPattern: otherFilters.movement_pattern || '',
-    equipment: otherFilters.equipment || ''
+    equipment: otherFilters.equipment || '',
+    difficulty: otherFilters.difficulty || ''
   };
 
   const matchingExercises = filterExercises(state.exercisesDB, mappedFilters);
@@ -387,7 +587,8 @@ function updateFilterDropdown(selectId, field, currentFilters) {
   const defaultLabel = {
     'muscle_group': 'All muscle groups',
     'movement_pattern': 'All movements',
-    'equipment': 'All equipment'
+    'equipment': 'All equipment',
+    'difficulty': 'All levels'
   }[field];
 
   select.innerHTML = `<option value="">${defaultLabel}</option>`;
@@ -395,13 +596,11 @@ function updateFilterDropdown(selectId, field, currentFilters) {
     const option = document.createElement('option');
     option.value = value;
     option.textContent = formatLabel(value);
-    if (value === currentValue) option.selected = true;
     select.appendChild(option);
   });
 
-  if (currentValue && !availableValues.includes(currentValue)) {
-    select.value = '';
-  }
+  // Restore selection if value is still available, otherwise reset
+  select.value = availableValues.includes(currentValue) ? currentValue : '';
 }
 
 function updateExercisePicker() {
@@ -411,32 +610,59 @@ function updateExercisePicker() {
     searchTerm: filters.searchTerm || null,
     muscle_group: filters.muscleGroup || null,
     movement_pattern: filters.movementPattern || null,
-    equipment: filters.equipment || null
+    equipment: filters.equipment || null,
+    difficulty: filters.difficulty || null
   };
 
   updateFilterDropdown('filter-muscle-group', 'muscle_group', currentFilters);
   updateFilterDropdown('filter-movement', 'movement_pattern', currentFilters);
   updateFilterDropdown('filter-equipment', 'equipment', currentFilters);
+  updateFilterDropdown('filter-difficulty', 'difficulty', currentFilters);
 
   renderExerciseList();
 }
 
-export function openExercisePicker(callback, filters = {}) {
+export function openExercisePicker(callback, options = {}) {
+  const { exerciseName, muscleGroup, movementPattern, swapMode = false } = options;
   state.exercisePickerCallback = callback;
   resetExerciseFilters();
 
-  // Apply any pre-set filters
-  if (filters.muscleGroup) {
-    document.getElementById('filter-muscle-group').value = filters.muscleGroup;
+  const muscleSelect = document.getElementById('filter-muscle-group');
+  const movementSelect = document.getElementById('filter-movement');
+  const titleEl = document.getElementById('exercise-picker-title');
+
+  // Build dropdowns first (with no filters applied)
+  updateExercisePicker();
+
+  // Now set filter values after dropdowns are populated
+  if (muscleGroup) {
+    muscleSelect.value = muscleGroup;
+  }
+  if (movementPattern) {
+    movementSelect.value = movementPattern;
   }
 
-  updateExercisePicker();
+  if (swapMode) {
+    muscleSelect.classList.add('hidden');
+    movementSelect.classList.add('hidden');
+    titleEl.innerHTML = `Swap ${exerciseName} <span class="exercise-picker-tag muscle">${formatLabel(muscleGroup)}</span> <span class="exercise-picker-tag movement">${formatLabel(movementPattern)}</span>`;
+  } else {
+    titleEl.textContent = 'Select exercise';
+  }
+
+  // Re-render list with the applied filters
+  renderExerciseList();
   state.exercisePickerDialog.open();
 }
 
 function closeExercisePicker() {
   state.exercisePickerDialog.close();
   state.exercisePickerCallback = null;
+
+  // Reset UI that may have been modified in swap mode
+  document.getElementById('filter-muscle-group').classList.remove('hidden');
+  document.getElementById('filter-movement').classList.remove('hidden');
+  document.getElementById('exercise-picker-title').textContent = 'Select exercise';
 }
 
 function renderExerciseList() {
@@ -449,16 +675,26 @@ function renderExerciseList() {
     return;
   }
 
-  list.innerHTML = filtered.map(ex => `
-    <div class="exercise-picker-item" data-name="${ex.name}">
-      <span class="exercise-picker-name">${ex.name}</span>
-      <div class="exercise-picker-meta">
-        <span class="exercise-picker-tag muscle">${formatLabel(ex.muscle_group)}</span>
-        <span class="exercise-picker-tag movement">${formatLabel(ex.movement_pattern)}</span>
-        <span class="exercise-picker-tag equipment">${formatLabel(ex.equipment)}</span>
+  // Only show equipment/difficulty tags when "all" is selected
+  const showEquipment = !filters.equipment;
+  const showDifficulty = !filters.difficulty;
+
+  list.innerHTML = filtered.map(ex => {
+    const tags = [];
+    if (showEquipment) {
+      tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(ex.equipment)}</span>`);
+    }
+    if (showDifficulty) {
+      tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(ex.difficulty)}</span>`);
+    }
+    const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
+    return `
+      <div class="exercise-picker-item" data-id="${ex.id}" data-name="${ex.name}">
+        <span class="exercise-picker-name">${ex.name}</span>
+        ${metaHtml}
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // =============================================================================
@@ -471,8 +707,12 @@ export function initExerciseInfoModal() {
   );
 }
 
-export function showExerciseInfo(exerciseName) {
-  const exercise = getExerciseByName(exerciseName);
+export function showExerciseInfo(exerciseNameOrId) {
+  // Try lookup by name first, then by ID
+  let exercise = getExerciseByName(exerciseNameOrId);
+  if (!exercise) {
+    exercise = getExerciseById(exerciseNameOrId);
+  }
   if (!exercise) {
     showToast('Exercise info not found');
     return;
@@ -552,18 +792,27 @@ export function initExerciseEditModal() {
     const exerciseName = nameInput.value.trim();
     const exercise = getExerciseByName(exerciseName);
     const muscleGroup = exercise?.muscle_group || '';
+    const movementPattern = exercise?.movement_pattern || '';
 
     state.exerciseEditDialog.close();
 
-    openExercisePicker((newName) => {
-      nameInput.value = newName;
+    openExercisePicker(({ id, name }) => {
+      if (!confirm(`Swap out ${exerciseName} for ${name}?`)) return;
+
+      nameInput.value = name;
+      currentEditCard.dataset.exerciseId = id;
       updateWeightVisibility(currentEditCard);
       currentEditCard = null;
-    }, { muscleGroup });
+    }, { exerciseName, muscleGroup, movementPattern, swapMode: true });
   });
 
   removeBtn.addEventListener('click', () => {
     if (!currentEditCard) return;
+    const nameInput = currentEditCard.querySelector('.exercise-name');
+    const exerciseName = nameInput.value.trim();
+
+    if (!confirm(`Remove ${exerciseName} from today's workout?`)) return;
+
     state.exerciseEditDialog.close();
     currentEditCard.remove();
     currentEditCard = null;
@@ -574,7 +823,7 @@ function openExerciseEditModal(card) {
   currentEditCard = card;
   const nameInput = card.querySelector('.exercise-name');
   const exerciseName = nameInput.value.trim() || 'Exercise';
-  document.getElementById('exercise-edit-name').textContent = exerciseName;
+  document.getElementById('exercise-edit-name').textContent = `Edit ${exerciseName}`;
   state.exerciseEditDialog.open();
 }
 

@@ -221,7 +221,15 @@ main {
 }
 
 /* Card-specific overrides (base styles from .card class) */
-.exercise-card { box-shadow: var(--shadow); }
+.exercise-card {
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+
+.edit-exercise-btn {
+  padding: 4px 10px;
+  font-size: 13px;
+}
 
 /* =============================================================================
    BUTTONS
@@ -584,6 +592,39 @@ input::placeholder {
   margin-bottom: 12px;
 }
 
+.exercise-card.collapsed .exercise-header {
+  margin-bottom: 0;
+}
+
+.exercise-card.collapsed .sets-container {
+  display: none;
+}
+
+.collapse-toggle {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  margin: -8px;
+  margin-right: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapse-icon {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--color-text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.exercise-card.collapsed .collapse-icon {
+  transform: rotate(-90deg);
+}
+
 .exercise-header .exercise-name {
   flex: 1;
   background: transparent;
@@ -596,7 +637,7 @@ input::placeholder {
 }
 
 .exercise-header .exercise-name::placeholder {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   font-weight: 400;
 }
 
@@ -613,6 +654,7 @@ input::placeholder {
   text-decoration: underline;
   text-decoration-style: dotted;
   color: var(--color-primary);
+  cursor: pointer;
 }
 
 .sets-container {
@@ -654,17 +696,157 @@ input::placeholder {
 .col-label {
   flex: 1;
   min-width: 0;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-label);
   text-align: center;
   display: inline-flex;
   align-items: baseline;
   justify-content: center;
   gap: 2px;
   flex-wrap: wrap;
+}
+
+.col-label-actions {
+  flex: 0 0 64px;
+  min-width: 64px;
+}
+
+.set-actions {
+  display: flex;
+  gap: 4px;
+  flex: 0 0 64px;
+}
+
+.notes-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+
+.notes-btn:hover,
+.notes-btn:focus {
+  opacity: 0.7;
+}
+
+.notes-btn.has-notes {
+  opacity: 1;
+}
+
+.save-set-btn,
+.edit-set-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  transition: opacity 0.15s ease;
+}
+
+.save-set-btn:hover,
+.save-set-btn:focus,
+.edit-set-btn:hover,
+.edit-set-btn:focus {
+  opacity: 0.7;
+}
+
+/* Edit button hidden by default, shown when saved */
+.edit-set-btn {
+  display: none;
+}
+
+/* Hidden set rows */
+.set-row.hidden {
+  display: none !important;
+}
+
+/* Editing state - active and editable */
+.set-row.editing {
+  opacity: 1;
+}
+
+/* Saved set rows - dimmed, shows edit button */
+.set-row.saved {
+  opacity: 0.5;
+}
+
+.set-row.saved input {
+  pointer-events: none;
+}
+
+.set-row.saved .save-set-btn {
+  display: none;
+}
+
+.set-row.saved .edit-set-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inactive state - visible but dimmed when editing another row */
+.set-row.inactive {
+  opacity: 0.5;
+}
+
+.set-row.inactive input {
+  pointer-events: none;
+}
+
+/* Set notes modal card */
+.set-notes-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.set-notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.set-notes-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+.set-notes-card textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.set-notes-card textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.set-notes-card .btn {
+  align-self: flex-end;
 }
 
 #exercises-container {
@@ -1150,6 +1332,15 @@ input::placeholder {
   margin: 0;
 }
 
+.modal-header h3 .exercise-picker-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
 .modal-close {
   background: transparent;
   border: none;
@@ -1220,8 +1411,9 @@ input::placeholder {
 
 .exercise-picker-item {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs) var(--spacing-md);
   padding: var(--spacing-lg);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -1244,6 +1436,13 @@ input::placeholder {
   font-weight: 600;
   font-size: 15px;
   color: var(--color-text);
+  cursor: pointer;
+}
+
+.exercise-picker-name:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 
 .exercise-picker-meta {
@@ -1272,6 +1471,11 @@ input::placeholder {
 .exercise-picker-tag.equipment {
   background: var(--color-secondary-light);
   color: var(--color-secondary);
+}
+
+.exercise-picker-tag.difficulty {
+  background: rgba(52, 211, 153, 0.10);
+  color: var(--color-success);
 }
 
 .exercise-picker-empty {
@@ -1489,7 +1693,7 @@ input::placeholder {
 .action-sheet-btn .action-desc {
   margin-left: auto;
   font-size: 13px;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 /* =============================================================================
@@ -1551,7 +1755,7 @@ input::placeholder {
 }
 
 .glossary-details-toggle:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-primary-hover);
 }
 
 .glossary-details-toggle .expand-icon {
@@ -1772,6 +1976,41 @@ input::placeholder {
   border-color: var(--color-secondary);
 }
 
+/* Collapsible cards */
+.learn-card--collapsible .learn-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.learn-card--collapsible .expand-icon {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  transition: transform var(--transition-normal);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.learn-card--collapsible.expanded .expand-icon {
+  transform: rotate(90deg);
+}
+
+.learn-card--collapsible .learn-card-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.learn-card--collapsible .learn-card-body {
+  display: none;
+  margin-top: 12px;
+  padding-left: 22px;
+}
+
+.learn-card--collapsible.expanded .learn-card-body {
+  display: block;
+}
+
 /* Card title */
 .learn-card-title {
   font-size: 15px;
@@ -1835,6 +2074,22 @@ input::placeholder {
    LEARN TAB - ARTICLES
    ============================================================================= */
 
+.article-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 4px 0;
+}
+
+.article-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  text-decoration: underline;
+}
+
 .article-meta {
   font-size: 13px;
   color: var(--color-text-muted);
@@ -1877,6 +2132,60 @@ input::placeholder {
 
 .article-takeaways li:last-child {
   margin-bottom: 0;
+}
+
+.article-methodology {
+  margin-top: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.article-methodology summary {
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  list-style: none;
+}
+
+.article-methodology summary::-webkit-details-marker {
+  display: none;
+}
+
+.article-methodology summary::before {
+  content: "▶ ";
+  font-size: 10px;
+  margin-inline-end: 6px;
+}
+
+.article-methodology[open] summary::before {
+  content: "▼ ";
+}
+
+.article-methodology dl {
+  margin: 0;
+  padding: 0 12px 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  font-size: 13px;
+}
+
+.article-methodology dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.article-methodology dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.article-methodology [data-term] {
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+  cursor: help;
 }
 
 /* =============================================================================
