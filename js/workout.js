@@ -85,6 +85,31 @@ export function initWorkoutForm(callbacks) {
     document.getElementById('workout-switch-dialog')
   );
 
+  // Initialize set notes modal
+  const setNotesModal = document.getElementById('set-notes-modal');
+  const setNotesInput = document.getElementById('set-notes-input');
+  const setNotesSaveBtn = document.getElementById('set-notes-save-btn');
+  const setNotesTitle = document.getElementById('set-notes-title');
+  let currentNotesRow = null;
+
+  setNotesModal.querySelector('.modal-close').addEventListener('click', () => {
+    setNotesModal.close();
+  });
+
+  setNotesSaveBtn.addEventListener('click', () => {
+    if (currentNotesRow) {
+      currentNotesRow.dataset.notes = setNotesInput.value;
+      // Update button appearance based on whether notes exist
+      const notesBtn = currentNotesRow.querySelector('.notes-btn');
+      if (setNotesInput.value.trim()) {
+        notesBtn.classList.add('has-notes');
+      } else {
+        notesBtn.classList.remove('has-notes');
+      }
+    }
+    setNotesModal.close();
+  });
+
   // Event delegation for exercise cards (attach once, not per card)
   container.addEventListener('click', (e) => {
     const card = e.target.closest('.exercise-card');
@@ -99,6 +124,18 @@ export function initWorkoutForm(callbacks) {
     // Handle edit button click
     if (e.target.closest('.edit-exercise-btn')) {
       openExerciseEditModal(card);
+      return;
+    }
+
+    // Handle notes button click
+    if (e.target.closest('.notes-btn')) {
+      const row = e.target.closest('.set-row');
+      const setNum = parseInt(row.dataset.set, 10) + 1;
+      const exerciseName = card.querySelector('.exercise-name').value || 'Exercise';
+      currentNotesRow = row;
+      setNotesTitle.textContent = `${exerciseName} - Set ${setNum}`;
+      setNotesInput.value = row.dataset.notes || '';
+      setNotesModal.showModal();
       return;
     }
 
@@ -277,24 +314,28 @@ export function addExerciseCard(container, existingData = null, options = {}) {
         <span class="col-label" data-term="repetition">Reps</span>
         <span class="col-label" data-term="intensity">Weight (${weightUnit})</span>
         <span class="col-label col-label-rir" data-term="reps in reserve">RIR</span>
+        <span class="col-label col-label-notes">Notes</span>
       </div>
-      <div class="set-row">
+      <div class="set-row" data-set="0">
         <span class="set-label">Set 1</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(0, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(0, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(0, 'rir')}" inputmode="numeric" min="0" max="5">
+        <button type="button" class="notes-btn" aria-label="Add notes for set 1">📝</button>
       </div>
-      <div class="set-row">
+      <div class="set-row" data-set="1">
         <span class="set-label">Set 2</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(1, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(1, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(1, 'rir')}" inputmode="numeric" min="0" max="5">
+        <button type="button" class="notes-btn" aria-label="Add notes for set 2">📝</button>
       </div>
-      <div class="set-row">
+      <div class="set-row" data-set="2">
         <span class="set-label">Set 3</span>
         <input type="number" class="reps-input" placeholder="${getPlaceholder(2, 'reps')}" inputmode="numeric" min="0">
         <input type="number" class="weight-input" placeholder="${getPlaceholder(2, 'weight')}" inputmode="decimal" step="0.1" min="0">
         <input type="number" class="rir-input" placeholder="${getPlaceholder(2, 'rir')}" inputmode="numeric" min="0" max="5">
+        <button type="button" class="notes-btn" aria-label="Add notes for set 3">📝</button>
       </div>
     </div>
   `;
@@ -314,6 +355,10 @@ export function addExerciseCard(container, existingData = null, options = {}) {
             setRows[i].querySelector('.weight-input').value = displayWeight;
           }
           if (set.rir !== null) setRows[i].querySelector('.rir-input').value = set.rir;
+          if (set.notes) {
+            setRows[i].dataset.notes = set.notes;
+            setRows[i].querySelector('.notes-btn').classList.add('has-notes');
+          }
         }
       });
     }

@@ -93,6 +93,7 @@ export function collectWorkoutData(container) {
   const unitPreference = state.unitPreference;
 
   cards.forEach(card => {
+    const id = card.dataset.exerciseId;
     const name = card.querySelector('.exercise-name').value.trim();
     const sets = [];
 
@@ -100,6 +101,7 @@ export function collectWorkoutData(container) {
       const reps = row.querySelector('.reps-input')?.value;
       const weightStr = row.querySelector('.weight-input')?.value;
       const rir = row.querySelector('.rir-input')?.value;
+      const notes = row.dataset.notes || null;
 
       let weight = weightStr !== '' ? parseFloat(weightStr) : null;
 
@@ -111,12 +113,13 @@ export function collectWorkoutData(container) {
       sets.push({
         reps: reps !== '' ? parseInt(reps, 10) : null,
         weight,
-        rir: rir !== '' ? parseInt(rir, 10) : null
+        rir: rir !== '' ? parseInt(rir, 10) : null,
+        notes: notes || null
       });
     });
 
-    if (name) {
-      exercises.push({ name, sets });
+    if (id || name) {
+      exercises.push({ id, name, sets });
     }
   });
 
@@ -132,8 +135,9 @@ export function collectProgramDays(container) {
   const days = [];
   container.querySelectorAll('.program-day-card').forEach(card => {
     const exercises = [];
-    card.querySelectorAll('.exercise-tag .exercise-name').forEach(span => {
-      exercises.push(span.textContent);
+    card.querySelectorAll('.exercise-tag').forEach(tag => {
+      const id = tag.dataset.exerciseId;
+      if (id) exercises.push(id);
     });
     days.push({ exercises });
   });
@@ -143,17 +147,15 @@ export function collectProgramDays(container) {
 /**
  * Validate that all exercise references in a program exist in the exercise database.
  * @param {Object} program - Program object with days array
- * @param {Map} exerciseIndex - Map of lowercase exercise names to exercise objects
+ * @param {Map} exercisesById - Map of exercise IDs to exercise objects
  * @returns {boolean} True if all references are valid
  */
-export function validateProgramExercises(program, exerciseIndex) {
+export function validateProgramExercises(program, exercisesById) {
   const invalid = [];
   for (const day of program.days || []) {
-    for (const exercise of day.exercises || []) {
-      // Handle both string names and object format {name: "..."}
-      const exerciseName = typeof exercise === 'string' ? exercise : exercise?.name;
-      if (exerciseName && !exerciseIndex.has(exerciseName.toLowerCase())) {
-        invalid.push(exerciseName);
+    for (const exerciseId of day.exercises || []) {
+      if (exerciseId && !exercisesById.has(exerciseId)) {
+        invalid.push(exerciseId);
       }
     }
   }
