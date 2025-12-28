@@ -366,15 +366,27 @@ export function initExercisePicker() {
   const muscleFilter = document.getElementById('filter-muscle-group');
   const movementFilter = document.getElementById('filter-movement');
   const equipmentFilter = document.getElementById('filter-equipment');
+  const difficultyFilter = document.getElementById('filter-difficulty');
   const list = document.getElementById('exercise-picker-list');
 
   searchInput.addEventListener('input', updateExercisePicker);
   muscleFilter.addEventListener('change', updateExercisePicker);
   movementFilter.addEventListener('change', updateExercisePicker);
   equipmentFilter.addEventListener('change', updateExercisePicker);
+  difficultyFilter.addEventListener('change', updateExercisePicker);
 
-  // Use event delegation for exercise selection
+  // Use event delegation for exercise selection and info
   list.addEventListener('click', (e) => {
+    // Show exercise info when clicking the name
+    if (e.target.closest('.exercise-picker-name')) {
+      const item = e.target.closest('.exercise-picker-item');
+      if (item) {
+        showExerciseInfo(item.dataset.name);
+      }
+      return;
+    }
+
+    // Select exercise when clicking elsewhere on the item
     const item = e.target.closest('.exercise-picker-item');
     if (item) {
       const id = item.dataset.id;
@@ -399,7 +411,8 @@ function updateFilterDropdown(selectId, field, currentFilters) {
     searchTerm: otherFilters.searchTerm || '',
     muscleGroup: otherFilters.muscle_group || '',
     movementPattern: otherFilters.movement_pattern || '',
-    equipment: otherFilters.equipment || ''
+    equipment: otherFilters.equipment || '',
+    difficulty: otherFilters.difficulty || ''
   };
 
   const matchingExercises = filterExercises(state.exercisesDB, mappedFilters);
@@ -408,7 +421,8 @@ function updateFilterDropdown(selectId, field, currentFilters) {
   const defaultLabel = {
     'muscle_group': 'All muscle groups',
     'movement_pattern': 'All movements',
-    'equipment': 'All equipment'
+    'equipment': 'All equipment',
+    'difficulty': 'All levels'
   }[field];
 
   select.innerHTML = `<option value="">${defaultLabel}</option>`;
@@ -416,13 +430,11 @@ function updateFilterDropdown(selectId, field, currentFilters) {
     const option = document.createElement('option');
     option.value = value;
     option.textContent = formatLabel(value);
-    if (value === currentValue) option.selected = true;
     select.appendChild(option);
   });
 
-  if (currentValue && !availableValues.includes(currentValue)) {
-    select.value = '';
-  }
+  // Restore selection if value is still available, otherwise reset
+  select.value = availableValues.includes(currentValue) ? currentValue : '';
 }
 
 function updateExercisePicker() {
@@ -432,35 +444,59 @@ function updateExercisePicker() {
     searchTerm: filters.searchTerm || null,
     muscle_group: filters.muscleGroup || null,
     movement_pattern: filters.movementPattern || null,
-    equipment: filters.equipment || null
+    equipment: filters.equipment || null,
+    difficulty: filters.difficulty || null
   };
 
   updateFilterDropdown('filter-muscle-group', 'muscle_group', currentFilters);
   updateFilterDropdown('filter-movement', 'movement_pattern', currentFilters);
   updateFilterDropdown('filter-equipment', 'equipment', currentFilters);
+  updateFilterDropdown('filter-difficulty', 'difficulty', currentFilters);
 
   renderExerciseList();
 }
 
-export function openExercisePicker(callback, filters = {}) {
+export function openExercisePicker(callback, options = {}) {
+  const { exerciseName, muscleGroup, movementPattern, swapMode = false } = options;
   state.exercisePickerCallback = callback;
   resetExerciseFilters();
 
-  // Apply any pre-set filters
-  if (filters.muscleGroup) {
-    document.getElementById('filter-muscle-group').value = filters.muscleGroup;
+  const muscleSelect = document.getElementById('filter-muscle-group');
+  const movementSelect = document.getElementById('filter-movement');
+  const titleEl = document.getElementById('exercise-picker-title');
+
+  // Build dropdowns first (with no filters applied)
+  updateExercisePicker();
+
+  // Now set filter values after dropdowns are populated
+  if (muscleGroup) {
+    muscleSelect.value = muscleGroup;
   }
-  if (filters.movementPattern) {
-    document.getElementById('filter-movement').value = filters.movementPattern;
+  if (movementPattern) {
+    movementSelect.value = movementPattern;
   }
 
-  updateExercisePicker();
+  if (swapMode) {
+    muscleSelect.classList.add('hidden');
+    movementSelect.classList.add('hidden');
+    titleEl.innerHTML = `Swapping ${exerciseName} <span class="exercise-picker-tag muscle">${formatLabel(muscleGroup)}</span> <span class="exercise-picker-tag movement">${formatLabel(movementPattern)}</span>`;
+  } else {
+    titleEl.textContent = 'Select exercise';
+  }
+
+  // Re-render list with the applied filters
+  renderExerciseList();
   state.exercisePickerDialog.open();
 }
 
 function closeExercisePicker() {
   state.exercisePickerDialog.close();
   state.exercisePickerCallback = null;
+
+  // Reset UI that may have been modified in swap mode
+  document.getElementById('filter-muscle-group').classList.remove('hidden');
+  document.getElementById('filter-movement').classList.remove('hidden');
+  document.getElementById('exercise-picker-title').textContent = 'Select exercise';
 }
 
 function renderExerciseList() {
@@ -473,16 +509,26 @@ function renderExerciseList() {
     return;
   }
 
-  list.innerHTML = filtered.map(ex => `
-    <div class="exercise-picker-item" data-id="${ex.id}" data-name="${ex.name}">
-      <span class="exercise-picker-name">${ex.name}</span>
-      <div class="exercise-picker-meta">
-        <span class="exercise-picker-tag muscle">${formatLabel(ex.muscle_group)}</span>
-        <span class="exercise-picker-tag movement">${formatLabel(ex.movement_pattern)}</span>
-        <span class="exercise-picker-tag equipment">${formatLabel(ex.equipment)}</span>
+  // Only show equipment/difficulty tags when "all" is selected
+  const showEquipment = !filters.equipment;
+  const showDifficulty = !filters.difficulty;
+
+  list.innerHTML = filtered.map(ex => {
+    const tags = [];
+    if (showEquipment) {
+      tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(ex.equipment)}</span>`);
+    }
+    if (showDifficulty) {
+      tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(ex.difficulty)}</span>`);
+    }
+    const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
+    return `
+      <div class="exercise-picker-item" data-id="${ex.id}" data-name="${ex.name}">
+        <span class="exercise-picker-name">${ex.name}</span>
+        ${metaHtml}
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // =============================================================================
@@ -589,7 +635,7 @@ export function initExerciseEditModal() {
       currentEditCard.dataset.exerciseId = id;
       updateWeightVisibility(currentEditCard);
       currentEditCard = null;
-    }, { muscleGroup, movementPattern });
+    }, { exerciseName, muscleGroup, movementPattern, swapMode: true });
   });
 
   removeBtn.addEventListener('click', () => {

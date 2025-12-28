@@ -483,7 +483,7 @@
         <button type="button" class="action-sheet-btn danger" id="exercise-remove-btn">
           <span class="action-icon">✕</span>
           <span class="action-text">Remove exercise</span>
-          <span class="action-desc">Delete from workout</span>
+          <span class="action-desc">Delete from today's workout</span>
         </button>
       </div>
     </div>
@@ -545,7 +545,7 @@
   <dialog id="exercise-picker-modal" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>Select exercise</h3>
+        <h3 id="exercise-picker-title">Select exercise</h3>
         <button type="button" class="modal-close">&times;</button>
       </div>
       <div class="modal-filters">
@@ -557,6 +557,9 @@
         </select>
         <select id="filter-equipment">
           <option value="">All equipment</option>
+        </select>
+        <select id="filter-difficulty">
+          <option value="">All levels</option>
         </select>
       </div>
       <div class="modal-search">
