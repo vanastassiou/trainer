@@ -987,7 +987,7 @@ export async function renderProgramsList(refreshProgramUI) {
               </div>
             `;
           }).filter(Boolean).join('');
-          return `<div class="program-day-preview"><span class="exercise-picker-name">Day ${i + 1}</span><div class="exercises">${exerciseItems}</div></div>`;
+          return `<div class="program-day-preview"><h5 class="day-heading">Day ${i + 1}</h5><div class="exercises">${exerciseItems}</div></div>`;
         }).join('')
       : '';
 
@@ -1018,14 +1018,16 @@ export async function renderProgramsList(refreshProgramUI) {
   if (!programsListInitialized) {
     programsListInitialized = true;
     container.addEventListener('click', async (e) => {
-      // Exercise item click - show exercise info
-      const exerciseItem = e.target.closest('.exercise-preview');
-      if (exerciseItem) {
-        e.stopPropagation();
-        const exerciseId = exerciseItem.dataset.exerciseId;
-        const exerciseData = state.exercisesById.get(exerciseId);
-        showExerciseInfo(exerciseData?.name || exerciseId);
-        return;
+      // Exercise name click - show exercise info
+      if (e.target.closest('.exercise-picker-name')) {
+        const exerciseItem = e.target.closest('.exercise-preview');
+        if (exerciseItem) {
+          e.stopPropagation();
+          const exerciseId = exerciseItem.dataset.exerciseId;
+          const exerciseData = state.exercisesById.get(exerciseId);
+          showExerciseInfo(exerciseData?.name || exerciseId);
+          return;
+        }
       }
 
       const card = e.target.closest('.program-card');

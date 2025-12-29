@@ -703,11 +703,6 @@ input::placeholder {
   background: none;
 }
 
-.exercise-header .exercise-picker-item:hover {
-  border: none;
-  background: none;
-}
-
 .exercise-card.collapsed .exercise-header {
   margin-bottom: 0;
 }
@@ -1316,19 +1311,13 @@ input::placeholder {
   padding: var(--spacing-lg);
 }
 
-.program-day-preview > .exercise-picker-name {
-  display: block;
-  margin-bottom: var(--spacing-md);
+.day-heading {
+  margin: 0 0 var(--spacing-md) 0;
   font-weight: 600;
-  font-size: 15px;
-  color: var(--color-text);
-  cursor: pointer;
-}
-
-.program-day-preview > .exercise-picker-name:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
-  text-decoration-style: dotted;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .program-day-preview .exercises {
@@ -1537,14 +1526,8 @@ input::placeholder {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   margin-bottom: var(--spacing-md);
-  cursor: pointer;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
-.exercise-picker-item:hover {
-  border-color: var(--color-secondary);
-  background: var(--color-secondary-light);
-}
 
 .exercise-picker-item:last-child {
   margin-bottom: 0;
