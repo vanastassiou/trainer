@@ -358,7 +358,7 @@ function populateEditModal(program, isGeneratorMode) {
 
   if (program.days) {
     program.days.forEach(day => {
-      addProgramDayCard(daysContainer, day.exercises, { showLockButtons: isGeneratorMode });
+      addProgramDayCard(daysContainer, day.exercises);
     });
   }
 
@@ -390,22 +390,21 @@ function initEditProgramModal(refreshProgramUI) {
   const daysContainer = document.getElementById('edit-program-days-container');
 
   addDayBtn.addEventListener('click', () => {
-    addProgramDayCard(daysContainer, null, { showLockButtons: !!generatorSettings });
+    addProgramDayCard(daysContainer, null);
   });
 
   regenerateBtn.addEventListener('click', () => {
     if (!generatorSettings) return;
 
-    const lockedExercises = collectLockedExercises(daysContainer);
-    const program = regenerateWithLocks(generatorSettings, lockedExercises);
+    const { daysPerWeek, equipment, difficulty, goal } = generatorSettings;
+    const program = generateProgram(daysPerWeek, equipment, difficulty, goal);
 
-    // Re-populate with new exercises, preserving locks
     const nameInput = document.getElementById('edit-program-name');
     nameInput.value = program.name;
     daysContainer.innerHTML = '';
 
     program.days.forEach(day => {
-      addProgramDayCardWithLocks(daysContainer, day.exercises, day.locked);
+      addProgramDayCard(daysContainer, day.exercises);
     });
 
     showToast('Program regenerated');
@@ -450,8 +449,7 @@ function initEditProgramModal(refreshProgramUI) {
 // PROGRAM DAY CARDS
 // =============================================================================
 
-function addProgramDayCard(container, existingExercises = null, options = {}) {
-  const { showLockButtons = false } = options;
+function addProgramDayCard(container, existingExercises = null) {
   const dayNumber = container.children.length + 1;
   const card = document.createElement('div');
   card.className = 'program-day-card card card--inset';
@@ -468,7 +466,7 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
   const exercisesContainer = card.querySelector('.program-day-exercises');
   const addExerciseBtn = card.querySelector('.add-exercise-btn');
 
-  const addExerciseTag = (exerciseId, locked = false) => {
+  const addExerciseTag = (exerciseId) => {
     // Check for duplicates by ID
     const currentIds = Array.from(exercisesContainer.querySelectorAll('.exercise-picker-item'))
       .map(tag => tag.dataset.exerciseId);
@@ -484,11 +482,6 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
     const exerciseTag = document.createElement('div');
     exerciseTag.className = 'exercise-picker-item';
     exerciseTag.dataset.exerciseId = exerciseId;
-    if (locked) exerciseTag.classList.add('locked');
-
-    const lockButton = showLockButtons
-      ? `<button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>`
-      : '';
 
     const tags = [];
     if (exerciseData?.muscle_group) {
@@ -506,7 +499,6 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
     const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
 
     exerciseTag.innerHTML = `
-      ${lockButton}
       <span class="exercise-picker-name">${exerciseName}</span>
       <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
       <div class="exercise-picker-row">
@@ -520,15 +512,6 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
       e.stopPropagation();
       showExerciseInfo(exerciseName);
     });
-
-    if (showLockButtons) {
-      const lockBtn = exerciseTag.querySelector('.lock-exercise-btn');
-      lockBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        exerciseTag.classList.toggle('locked');
-        lockBtn.textContent = exerciseTag.classList.contains('locked') ? '🔒' : '🔓';
-      });
-    }
 
     exerciseTag.querySelector('.remove-exercise-btn').addEventListener('click', () => {
       if (confirm(`Remove ${exerciseName}?`)) {
@@ -572,13 +555,13 @@ function addProgramDayCard(container, existingExercises = null, options = {}) {
 
   if (existingExercises) {
     existingExercises.forEach(exerciseId => {
-      if (exerciseId) addExerciseTag(exerciseId, false);
+      if (exerciseId) addExerciseTag(exerciseId);
     });
   }
 
   addExerciseBtn.addEventListener('click', () => {
     openExercisePicker(({ id }) => {
-      addExerciseTag(id, false);
+      addExerciseTag(id);
     });
   });
 
@@ -594,258 +577,6 @@ function renumberProgramDays(container) {
   container.querySelectorAll('.program-day-card').forEach((card, index) => {
     card.querySelector('.program-day-label').textContent = `Day ${index + 1}`;
   });
-}
-
-/**
- * Add a program day card with lock state for each exercise.
- */
-function addProgramDayCardWithLocks(container, exercises, lockedStates) {
-  const dayNumber = container.children.length + 1;
-  const card = document.createElement('div');
-  card.className = 'program-day-card card card--inset';
-
-  card.innerHTML = `
-    <div class="program-day-header">
-      <span class="program-day-label">Day ${dayNumber}</span>
-      <button type="button" class="btn danger sm">Remove</button>
-    </div>
-    <div class="program-day-exercises"></div>
-    <button type="button" class="btn outline-accent full add-exercise-btn">+ Add exercise</button>
-  `;
-
-  const exercisesContainer = card.querySelector('.program-day-exercises');
-  const addExerciseBtn = card.querySelector('.add-exercise-btn');
-
-  const addExerciseTag = (exerciseId, locked) => {
-    // Look up exercise details by ID
-    const exerciseData = state.exercisesById.get(exerciseId) || null;
-    const exerciseName = exerciseData?.name || exerciseId;
-
-    const exerciseTag = document.createElement('div');
-    exerciseTag.className = 'exercise-picker-item';
-    exerciseTag.dataset.exerciseId = exerciseId;
-    if (locked) exerciseTag.classList.add('locked');
-
-    const tags = [];
-    if (exerciseData?.muscle_group) {
-      tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
-    }
-    if (exerciseData?.movement_pattern) {
-      tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
-    }
-    if (exerciseData?.equipment) {
-      tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
-    }
-    if (exerciseData?.difficulty) {
-      tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
-    }
-    const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
-
-    exerciseTag.innerHTML = `
-      <button type="button" class="lock-exercise-btn" title="Lock exercise">${locked ? '🔒' : '🔓'}</button>
-      <span class="exercise-picker-name">${exerciseName}</span>
-      <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
-      <div class="exercise-picker-row">
-        ${metaHtml}
-        <button type="button" class="remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
-      </div>
-    `;
-
-    const nameSpan = exerciseTag.querySelector('.exercise-picker-name');
-    nameSpan.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showExerciseInfo(exerciseName);
-    });
-
-    const lockBtn = exerciseTag.querySelector('.lock-exercise-btn');
-    lockBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      exerciseTag.classList.toggle('locked');
-      lockBtn.textContent = exerciseTag.classList.contains('locked') ? '🔒' : '🔓';
-    });
-
-    exerciseTag.querySelector('.remove-exercise-btn').addEventListener('click', () => {
-      if (confirm(`Remove ${exerciseName}?`)) {
-        exerciseTag.remove();
-      }
-    });
-
-    exerciseTag.querySelector('.swap-exercise-btn').addEventListener('click', () => {
-      const muscleGroup = exerciseData?.muscle_group || '';
-      const movementPattern = exerciseData?.movement_pattern || '';
-      const currentName = nameSpan.textContent;
-      openExercisePicker(({ id, name }) => {
-        if (!confirm(`Swap ${currentName} for ${name}?`)) return;
-        exerciseTag.dataset.exerciseId = id;
-        const newData = state.exercisesById.get(id) || null;
-        nameSpan.textContent = name;
-        // Update tags
-        const newTags = [];
-        if (newData?.muscle_group) {
-          newTags.push(`<span class="exercise-picker-tag muscle">${formatLabel(newData.muscle_group)}</span>`);
-        }
-        if (newData?.movement_pattern) {
-          newTags.push(`<span class="exercise-picker-tag movement">${formatLabel(newData.movement_pattern)}</span>`);
-        }
-        if (newData?.equipment) {
-          newTags.push(`<span class="exercise-picker-tag equipment">${formatLabel(newData.equipment)}</span>`);
-        }
-        if (newData?.difficulty) {
-          newTags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(newData.difficulty)}</span>`);
-        }
-        const metaEl = exerciseTag.querySelector('.exercise-picker-meta');
-        if (metaEl) {
-          metaEl.innerHTML = newTags.join('');
-        }
-      }, { muscleGroup, movementPattern, swapMode: true, exerciseName: currentName });
-    });
-
-    exercisesContainer.appendChild(exerciseTag);
-  };
-
-  exercises.forEach((exerciseId, i) => {
-    if (exerciseId) addExerciseTag(exerciseId, lockedStates[i] || false);
-  });
-
-  addExerciseBtn.addEventListener('click', () => {
-    openExercisePicker(({ id }) => {
-      addExerciseTag(id, false);
-    });
-  });
-
-  card.querySelector('.btn.danger').addEventListener('click', () => {
-    card.remove();
-    renumberProgramDays(container);
-  });
-
-  container.appendChild(card);
-}
-
-/**
- * Collect locked exercises from the current modal state.
- * Returns array of { exercises: string[], locked: boolean[] } per day.
- */
-function collectLockedExercises(container) {
-  const days = [];
-  container.querySelectorAll('.program-day-card').forEach(card => {
-    const exercises = [];
-    const locked = [];
-    card.querySelectorAll('.exercise-picker-item').forEach(tag => {
-      const name = tag.querySelector('.exercise-picker-name').textContent;
-      exercises.push(name);
-      locked.push(tag.classList.contains('locked'));
-    });
-    days.push({ exercises, locked });
-  });
-  return days;
-}
-
-/**
- * Regenerate program keeping locked exercises in place.
- */
-function regenerateWithLocks(settings, lockedDays) {
-  const { daysPerWeek, equipment, difficulty, goal = 'growth' } = settings;
-  const template = PROGRAM_TEMPLATES[daysPerWeek];
-  if (!template) {
-    throw new Error(`Invalid days per week: ${daysPerWeek}`);
-  }
-
-  const exercises = state.exercisesDB;
-  const usedExercises = new Set();
-
-  // First pass: collect all locked exercise IDs to exclude them from selection
-  lockedDays.forEach(day => {
-    day.exercises.forEach((exerciseId, i) => {
-      if (day.locked[i]) {
-        usedExercises.add(exerciseId);
-      }
-    });
-  });
-
-  const days = template.days.map((dayTemplate, dayIndex) => {
-    const existingDay = lockedDays[dayIndex] || { exercises: [], locked: [] };
-    const dayExercises = [];
-    const dayLocked = [];
-
-    // Keep locked exercises in their positions
-    const lockedPositions = new Map();
-    existingDay.exercises.forEach((exerciseId, i) => {
-      if (existingDay.locked[i]) {
-        lockedPositions.set(i, exerciseId);
-      }
-    });
-
-    // Sort muscles by the defined order
-    const sortedMuscles = [...dayTemplate.muscles].sort(
-      (a, b) => MUSCLE_ORDER.indexOf(a) - MUSCLE_ORDER.indexOf(b)
-    );
-
-    // Target based on goal and muscle count (see docs/volume-guidelines.md)
-    const muscleCount = dayTemplate.muscles.length;
-    const targetExercises = goal === 'maintenance'
-      ? Math.max(3, muscleCount)
-      : Math.min(6, muscleCount + 2);
-    const maxExercises = 6;
-
-    // First pass: select compound/basic exercises for each muscle group
-    let positionIndex = 0;
-    for (const muscle of sortedMuscles) {
-      if (dayExercises.length >= maxExercises) break;
-
-      // Check if this position has a locked exercise
-      if (lockedPositions.has(positionIndex)) {
-        dayExercises.push(lockedPositions.get(positionIndex));
-        dayLocked.push(true);
-        positionIndex++;
-        continue;
-      }
-
-      const exercise = selectExercise(
-        exercises,
-        muscle,
-        equipment,
-        difficulty,
-        usedExercises
-      );
-
-      if (exercise) {
-        dayExercises.push(exercise.id);
-        dayLocked.push(false);
-        usedExercises.add(exercise.id);
-      }
-      positionIndex++;
-    }
-
-    // Second pass: fill to target with auxiliary/isolation exercises
-    let muscleIndex = 0;
-    while (dayExercises.length < targetExercises && dayExercises.length < maxExercises) {
-      const muscle = sortedMuscles[muscleIndex % sortedMuscles.length];
-      const exercise = selectAuxiliaryExercise(
-        exercises,
-        muscle,
-        equipment,
-        difficulty,
-        usedExercises
-      );
-
-      if (exercise) {
-        dayExercises.push(exercise.id);
-        dayLocked.push(false);
-        usedExercises.add(exercise.id);
-      }
-      muscleIndex++;
-
-      // Prevent infinite loop if no more exercises available
-      if (muscleIndex >= sortedMuscles.length * 3) break;
-    }
-
-    return { name: dayTemplate.name, exercises: dayExercises, locked: dayLocked };
-  });
-
-  return {
-    name: template.name,
-    days
-  };
 }
 
 // =============================================================================
