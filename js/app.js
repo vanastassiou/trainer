@@ -5,7 +5,7 @@
 
 import { state } from './state.js';
 import { getTodayDate } from './utils.js';
-import { createTabController, createModalController } from './ui.js';
+import { createTabController, createModalController, showToast } from './ui.js';
 import { getChartData, getExercisesInPeriod, getExerciseAvgWeightData, renderLineChart, getChartSummary, formatSummaryHTML } from './charts.js';
 
 // Domain modules
@@ -13,6 +13,7 @@ import {
   getJournalForDate,
   exportAllData,
   importData,
+  mergeData,
   loadJournalDatesForMonth,
   getRecentJournals
 } from './db.js';
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate,
     renderProgramsList
   });
-  initExportButton();
+  initDataBackup();
   initDailyForm(async () => {
     await updateDailyChart();
     await renderGoalsList();
@@ -561,43 +562,215 @@ async function refreshAllCharts() {
 // DATA IMPORT/EXPORT
 // =============================================================================
 
-function initExportButton() {
+const BACKUP_TIMESTAMP_KEY = 'lastBackupTimestamp';
+const BACKUP_REMINDER_DAYS = 7;
+
+function initDataBackup() {
   const exportBtn = document.getElementById('export-btn');
   const importBtn = document.getElementById('import-btn');
   const importFile = document.getElementById('import-file');
+  const backupBadge = document.getElementById('backup-badge');
+  const backupStatus = document.getElementById('backup-status');
+  const importDialog = document.getElementById('import-mode-modal');
 
+  // Initialize modal controller for import dialog
+  const importModalController = createModalController(importDialog);
+
+  // Check backup status on load
+  updateBackupStatus();
+  checkBackupReminder();
+
+  // Export button click
   exportBtn.addEventListener('click', async () => {
     const data = await exportAllData();
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+    const filename = `health-tracker-backup-${getTodayDate()}.json`;
 
+    // Try Web Share API for mobile (with file sharing)
+    const file = new File([blob], filename, { type: 'application/json' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: 'Health Tracker Backup',
+          text: `Backup from ${getTodayDate()}`
+        });
+        recordBackupTimestamp();
+        updateBackupStatus();
+        showToast('Backup shared');
+        return;
+      } catch (err) {
+        // User cancelled or share failed, fall through to download
+        if (err.name !== 'AbortError') {
+          console.warn('Share failed, falling back to download:', err);
+        }
+      }
+    }
+
+    // Fallback: traditional download
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `health-tracker-backup-${getTodayDate()}.json`;
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+
+    recordBackupTimestamp();
+    updateBackupStatus();
+    showToast('Backup downloaded');
   });
 
+  // Import button click - trigger file picker
   importBtn.addEventListener('click', () => {
     importFile.click();
   });
+
+  // File selected - show import mode dialog
+  let pendingImportData = null;
 
   importFile.addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (confirm('This will replace all existing data. Continue?')) {
-      try {
-        const text = await file.text();
-        const data = JSON.parse(text);
-        await importData(data);
-        location.reload();
-      } catch (err) {
-        alert('Import failed: ' + err.message);
+    try {
+      const text = await file.text();
+      pendingImportData = JSON.parse(text);
+
+      // Validate backup structure before showing dialog
+      if (!pendingImportData.version || !pendingImportData.programs || !pendingImportData.journals) {
+        throw new Error('Invalid backup file structure');
       }
+
+      // Show import mode selection dialog
+      const replaceWarning = document.getElementById('import-replace-warning');
+      replaceWarning.classList.add('hidden');
+      importModalController.open();
+    } catch (err) {
+      showToast('Invalid backup file: ' + err.message);
+      pendingImportData = null;
     }
     importFile.value = '';
   });
+
+  // Merge button
+  const mergeBtn = importDialog.querySelector('.import-merge-btn');
+  mergeBtn.addEventListener('click', async () => {
+    if (!pendingImportData) return;
+    importModalController.close();
+    try {
+      await mergeData(pendingImportData);
+      showToast('Data merged successfully');
+      location.reload();
+    } catch (err) {
+      showToast('Import failed: ' + err.message);
+    }
+    pendingImportData = null;
+  });
+
+  // Replace button - show warning first, then execute on second click
+  let replaceConfirmed = false;
+  const replaceBtn = importDialog.querySelector('.import-replace-btn');
+  const replaceWarning = document.getElementById('import-replace-warning');
+
+  replaceBtn.addEventListener('click', async () => {
+    if (!pendingImportData) return;
+
+    if (!replaceConfirmed) {
+      // First click: show warning
+      replaceWarning.classList.remove('hidden');
+      replaceBtn.textContent = 'Confirm replace';
+      replaceConfirmed = true;
+      return;
+    }
+
+    // Second click: execute replace
+    importModalController.close();
+    try {
+      await importData(pendingImportData);
+      showToast('Data replaced successfully');
+      location.reload();
+    } catch (err) {
+      showToast('Import failed: ' + err.message);
+    }
+    pendingImportData = null;
+    replaceConfirmed = false;
+  });
+
+  // Cancel button
+  const cancelBtn = importDialog.querySelector('.import-cancel-btn');
+  cancelBtn.addEventListener('click', () => {
+    importModalController.close();
+    pendingImportData = null;
+    resetImportDialog();
+  });
+
+  // Reset state when dialog closes
+  importDialog.addEventListener('close', () => {
+    resetImportDialog();
+  });
+
+  function resetImportDialog() {
+    replaceConfirmed = false;
+    replaceWarning.classList.add('hidden');
+    replaceBtn.textContent = 'Replace';
+  }
+}
+
+function recordBackupTimestamp() {
+  localStorage.setItem(BACKUP_TIMESTAMP_KEY, new Date().toISOString());
+  checkBackupReminder();
+}
+
+function getLastBackupTimestamp() {
+  const timestamp = localStorage.getItem(BACKUP_TIMESTAMP_KEY);
+  return timestamp ? new Date(timestamp) : null;
+}
+
+function updateBackupStatus() {
+  const backupStatus = document.getElementById('backup-status');
+  if (!backupStatus) return;
+
+  const lastBackup = getLastBackupTimestamp();
+  if (!lastBackup) {
+    backupStatus.textContent = 'Never backed up';
+    backupStatus.classList.add('overdue');
+    return;
+  }
+
+  const daysSince = Math.floor((Date.now() - lastBackup.getTime()) / (1000 * 60 * 60 * 24));
+
+  if (daysSince === 0) {
+    backupStatus.textContent = 'Backed up today';
+    backupStatus.classList.remove('overdue');
+  } else if (daysSince === 1) {
+    backupStatus.textContent = 'Backed up yesterday';
+    backupStatus.classList.remove('overdue');
+  } else if (daysSince < BACKUP_REMINDER_DAYS) {
+    backupStatus.textContent = `Backed up ${daysSince} days ago`;
+    backupStatus.classList.remove('overdue');
+  } else {
+    backupStatus.textContent = `${daysSince} days since backup`;
+    backupStatus.classList.add('overdue');
+  }
+}
+
+function checkBackupReminder() {
+  const backupBadge = document.getElementById('backup-badge');
+  if (!backupBadge) return;
+
+  const lastBackup = getLastBackupTimestamp();
+  if (!lastBackup) {
+    // Never backed up - show badge
+    backupBadge.classList.remove('hidden');
+    return;
+  }
+
+  const daysSince = Math.floor((Date.now() - lastBackup.getTime()) / (1000 * 60 * 60 * 24));
+  if (daysSince >= BACKUP_REMINDER_DAYS) {
+    backupBadge.classList.remove('hidden');
+  } else {
+    backupBadge.classList.add('hidden');
+  }
 }
