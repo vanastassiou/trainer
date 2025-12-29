@@ -30,8 +30,15 @@ export const state = {
   // Exercise database (array for iteration, maps for lookup)
   get exercisesDB() { return _exercisesDB; },
   set exercisesDB(exercisesObj) {
-    // Convert object map to array, adding id to each exercise
-    _exercisesDB = Object.entries(exercisesObj).map(([id, ex]) => ({ id, ...ex }));
+    // Convert object map to array, adding id and flattening nested properties
+    _exercisesDB = Object.entries(exercisesObj).map(([id, ex]) => ({
+      id,
+      ...ex,
+      // Flatten nested properties for filtering/program generation
+      muscle_group: ex.muscles?.target,
+      movement_pattern: ex.movement?.pattern,
+      joint_type: ex.movement?.joint_type
+    }));
     // Build lookup indexes
     _exercisesById = new Map(_exercisesDB.map(ex => [ex.id, ex]));
     _exerciseByName = new Map(_exercisesDB.map(ex => [ex.name.toLowerCase(), ex]));

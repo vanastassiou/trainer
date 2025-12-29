@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/exercises.schema.json",
-  "version": 1,
+  "version": 2,
   "lastUpdated": "2025-12-29",
   "exercises": {
     "archer-pull-up": {
@@ -32,24 +32,20 @@
       },
       "equipment": "bodyweight",
       "difficulty": "advanced",
-      "instructions": [
-        "Wide grip hang; pull toward one arm",
-        "Working arm bends fully, assisting arm stays straight",
-        "Lower with control, alternate sides"
-      ],
-      "tips": [
-        "Master 15+ regular pull-ups first",
-        "Keep straight arm engaged, not passive"
-      ],
-      "avoid": [
-        "Attempting before mastering regular pull-ups"
-      ],
+      "instructions": {
+        "starting_position": "Wide grip hang; pull toward one arm",
+        "movement": "Working arm bends fully, assisting arm stays straight Keep straight arm engaged, not passive.",
+        "return": "Lower with control, alternate sides"
+      },
       "references": [
         {
           "source": "exrx",
           "url": "https://exrx.net/WeightExercises/LatissimusDorsi/BWArcherPullup"
         }
-      ]
+      ],
+      "prerequisites": {
+        "notes": "Master 15+ regular pull-ups first"
+      }
     },
     "barbell-row": {
       "name": "Barbell row",
@@ -84,19 +80,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hinge at hips, soft knees; grip just outside shoulders",
-        "Pull bar to lower chest",
-        "Lower to full arm extension"
-      ],
-      "tips": [
-        "Keep torso angle constant",
-        "Drive elbows past torso at top"
-      ],
-      "avoid": [
-        "Heaving with lower back",
-        "Torso rising during the row"
-      ],
+      "instructions": {
+        "starting_position": "Hinge at hips, soft knees; grip just outside shoulders",
+        "movement": "Pull bar to lower chest Keep torso angle constant. Drive elbows past torso at top.",
+        "return": "Lower to full arm extension Use controlled movement. Maintain constant torso angle."
+      },
       "references": [
         {
           "source": "exrx",
@@ -131,19 +119,11 @@
       },
       "equipment": "barbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hold barbell at arm's length, overhand grip",
-        "Shrug shoulders toward ears, arms straight",
-        "Hold briefly at top, lower with control"
-      ],
-      "tips": [
-        "Lift straight up, don't roll shoulders",
-        "Hold 1-2 seconds at top"
-      ],
-      "avoid": [
-        "Rolling shoulders",
-        "Bending elbows"
-      ],
+      "instructions": {
+        "starting_position": "Hold barbell at arm's length, overhand grip",
+        "movement": "Shrug shoulders toward ears, arms straight Lift straight up, don't roll shoulders. Hold 1-2 seconds at top.",
+        "return": "Hold briefly at top, lower with control Lift straight up without rolling. Keep arms straight."
+      },
       "references": [
         {
           "source": "exrx",
@@ -178,18 +158,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Close-grip handle on high pulley; sit and grasp with palms facing",
-        "Pull to upper chest, squeezing shoulder blades",
-        "Return to full arm extension"
-      ],
-      "tips": [
-        "Lean back slightly",
-        "Drive elbows down and back"
-      ],
-      "avoid": [
-        "Pulling behind head"
-      ],
+      "instructions": {
+        "starting_position": "Close-grip handle on high pulley; sit and grasp with palms facing",
+        "movement": "Pull to upper chest, squeezing shoulder blades Lean back slightly. Drive elbows down and back.",
+        "return": "Return to full arm extension Pulling behind head."
+      },
       "references": [
         {
           "source": "exrx",
@@ -224,18 +197,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Underhand grip, shoulder-width; thighs secured",
-        "Pull bar to upper chest, squeezing back",
-        "Return to full extension"
-      ],
-      "tips": [
-        "Lean back slightly, chest up",
-        "Pull with back, not just arms"
-      ],
-      "avoid": [
-        "Excessive lean-back"
-      ],
+      "instructions": {
+        "starting_position": "Underhand grip, shoulder-width; thighs secured",
+        "movement": "Pull bar to upper chest, squeezing back Lean back slightly, chest up. Pull with back, not just arms.",
+        "return": "Return to full extension Excessive lean-back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -272,19 +238,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hang with palms facing you, shoulder-width",
-        "Pull up until chin clears bar",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Lead with chest, not chin",
-        "Keep elbows forward"
-      ],
-      "avoid": [
-        "Shrugging at the hang",
-        "Craning neck to clear bar"
-      ],
+      "instructions": {
+        "starting_position": "Hang with palms facing you, shoulder-width",
+        "movement": "Pull up until chin clears bar Lead with chest, not chin. Keep elbows forward.",
+        "return": "Lower to full extension Keep shoulders down and back. Craning neck to clear bar."
+      },
       "references": [
         {
           "source": "exrx",
@@ -326,28 +284,20 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar over mid-foot; grip just outside knees",
-        "Back flat, chest up; drive through floor",
-        "Stand tall, hips and knees locked",
-        "Lower by hinging hips first, then knees"
-      ],
-      "tips": [
-        "Squeeze lats to keep bar against body",
-        "Push floor away rather than pulling bar",
-        "Take slack out before initiating"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Bar drifting forward",
-        "Jerking off floor"
-      ],
+      "instructions": {
+        "starting_position": "Bar over mid-foot; grip just outside knees",
+        "movement": "Back flat, chest up; drive through floor Squeeze lats to keep bar against body. Push floor away rather than pulling bar.",
+        "return": "Stand tall, hips and knees locked Lower by hinging hips first, then knees Maintain neutral spine. Keep bar close to body. Use smooth, controlled movement."
+      },
       "references": [
         {
           "source": "exrx",
           "url": "https://exrx.net/WeightExercises/GluteusMaximus/BBDeadlift"
         }
-      ]
+      ],
+      "prerequisites": {
+        "notes": "Take slack out before initiating"
+      }
     },
     "dumbbell-pullover": {
       "name": "Dumbbell pullover",
@@ -378,20 +328,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Lie across bench, shoulders on pad, hips unsupported",
-        "Hold dumbbell overhead, slight elbow bend",
-        "Lower behind head until deep lat stretch",
-        "Pull back over chest"
-      ],
-      "tips": [
-        "Keep hips low for maximum stretch",
-        "Maintain elbow angle throughout"
-      ],
-      "avoid": [
-        "Bending elbows more as weight lowers",
-        "Raising hips"
-      ],
+      "instructions": {
+        "starting_position": "Lie across bench, shoulders on pad, hips unsupported",
+        "movement": "Hold dumbbell overhead, slight elbow bend Keep hips low for maximum stretch. Maintain elbow angle throughout.",
+        "return": "Lower behind head until deep lat stretch Pull back over chest Keep arms straight. Raising hips."
+      },
       "references": [
         {
           "source": "exrx",
@@ -431,19 +372,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hand and knee on bench; dumbbell in opposite hand",
-        "Pull to hip",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Row toward hip, not armpit",
-        "Keep back flat and parallel"
-      ],
-      "avoid": [
-        "Rotating torso to heave the weight up",
-        "Cutting the rep short at the top"
-      ],
+      "instructions": {
+        "starting_position": "Hand and knee on bench; dumbbell in opposite hand",
+        "movement": "Pull to hip Row toward hip, not armpit. Keep back flat and parallel.",
+        "return": "Lower to full extension Rotating torso to heave the weight up. Cutting the rep short at the top."
+      },
       "references": [
         {
           "source": "exrx",
@@ -483,19 +416,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Bar at waist height; hang underneath, heels on ground",
-        "Pull chest to bar",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Body rigid from ankles to shoulders",
-        "Retract shoulder blades before pulling"
-      ],
-      "avoid": [
-        "Hips sagging or piking",
-        "Leading with chin"
-      ],
+      "instructions": {
+        "starting_position": "Bar at waist height; hang underneath, heels on ground",
+        "movement": "Pull chest to bar Body rigid from ankles to shoulders.",
+        "return": "Lower to full extension Hips sagging or piking. Leading with chin."
+      },
       "references": [
         {
           "source": "exrx",
@@ -531,19 +456,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Thighs secured; grip wider than shoulders",
-        "Pull bar to upper chest, slight lean-back",
-        "Return to full extension overhead"
-      ],
-      "tips": [
-        "Pull elbows toward back pockets",
-        "Chest up to meet the bar"
-      ],
-      "avoid": [
-        "Pulling behind neck",
-        "Excessive lean-back"
-      ],
+      "instructions": {
+        "starting_position": "Thighs secured; grip wider than shoulders",
+        "movement": "Pull bar to upper chest, slight lean-back Pull elbows toward back pockets. Chest up to meet the bar.",
+        "return": "Return to full extension overhead Pulling behind neck. Excessive lean-back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -582,25 +499,20 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hang with palms away, wider than shoulders",
-        "Pull up until chin clears bar",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Pull shoulder blades down and back first",
-        "Drive elbows toward hips"
-      ],
-      "avoid": [
-        "Shrugging during the pull",
-        "Kicking or swinging"
-      ],
+      "instructions": {
+        "starting_position": "Hang with palms away, wider than shoulders",
+        "movement": "Pull up until chin clears bar Drive elbows toward hips.",
+        "return": "Lower to full extension Keep shoulders down and back. Use strict form without momentum."
+      },
       "references": [
         {
           "source": "exrx",
           "url": "https://exrx.net/WeightExercises/LatissimusDorsi/BWPullup"
         }
-      ]
+      ],
+      "prerequisites": {
+        "notes": "Pull shoulder blades down and back first"
+      }
     },
     "resistance-band-lat-pulldown": {
       "name": "Resistance band lat pulldown",
@@ -629,19 +541,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Anchor overhead; kneel or stand gripping band",
-        "Pull to shoulder level, elbows to sides",
-        "Return overhead with control"
-      ],
-      "tips": [
-        "Depress shoulder blades before pulling",
-        "Lean back slightly for better angle"
-      ],
-      "avoid": [
-        "Elbows flaring wide",
-        "Shrugging on return"
-      ],
+      "instructions": {
+        "starting_position": "Anchor overhead; kneel or stand gripping band",
+        "movement": "Pull to shoulder level, elbows to sides Lean back slightly for better angle.",
+        "return": "Return overhead with control Elbows flaring wide. Keep shoulders down and back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -678,19 +582,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Anchor at chest height; arms extended",
-        "Pull elbows back, hands to ribs",
-        "Return under tension"
-      ],
-      "tips": [
-        "Squeeze shoulder blades at contraction",
-        "Keep elbows close"
-      ],
-      "avoid": [
-        "Letting band snap back",
-        "Shrugging shoulders"
-      ],
+      "instructions": {
+        "starting_position": "Anchor at chest height; arms extended",
+        "movement": "Pull elbows back, hands to ribs Squeeze shoulder blades at contraction. Keep elbows close.",
+        "return": "Return under tension Letting band snap back. Keep shoulders down and back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -729,19 +625,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Feet on platform, knees slightly bent; grip handle",
-        "Pull to lower chest, squeeze shoulder blades",
-        "Return to arm extension with slight protraction"
-      ],
-      "tips": [
-        "Chest tall throughout",
-        "Elbows straight back, not out"
-      ],
-      "avoid": [
-        "Excessive torso rocking",
-        "Hunching at extension"
-      ],
+      "instructions": {
+        "starting_position": "Feet on platform, knees slightly bent; grip handle",
+        "movement": "Pull to lower chest, squeeze shoulder blades Chest tall throughout. Elbows straight back, not out.",
+        "return": "Return to arm extension with slight protraction Excessive torso rocking. Hunching at extension."
+      },
       "references": [
         {
           "source": "exrx",
@@ -775,19 +663,11 @@
       },
       "equipment": "barbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Underhand grip, arms extended",
-        "Curl toward shoulders",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Keep elbows pinned at sides",
-        "EZ bar reduces wrist strain"
-      ],
-      "avoid": [
-        "Swinging hips or leaning back",
-        "Elbows drifting forward"
-      ],
+      "instructions": {
+        "starting_position": "Underhand grip, arms extended",
+        "movement": "Curl toward shoulders Keep elbows pinned at sides. EZ bar reduces wrist strain.",
+        "return": "Lower to full extension Use strict form without momentum. Elbows drifting forward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -821,19 +701,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Armpits on pad top; arms extended",
-        "Curl toward shoulders",
-        "Lower to near-full extension"
-      ],
-      "tips": [
-        "Keep upper arms pressed into pad",
-        "Stop short of lockout for tension"
-      ],
-      "avoid": [
-        "Lifting off the pad",
-        "Hyperextending elbows"
-      ],
+      "instructions": {
+        "starting_position": "Armpits on pad top; arms extended",
+        "movement": "Curl toward shoulders Keep upper arms pressed into pad. Stop short of lockout for tension.",
+        "return": "Lower to near-full extension Lifting off the pad. Maintain neutral alignment."
+      },
       "references": [
         {
           "source": "exrx",
@@ -867,19 +739,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Bar at waist height; supinated grip, body angled",
-        "Curl up bending only at elbows",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Body rigid from head to heels",
-        "Feet closer to bar = harder"
-      ],
-      "avoid": [
-        "Pulling with shoulders",
-        "Hips piking or sagging"
-      ],
+      "instructions": {
+        "starting_position": "Bar at waist height; supinated grip, body angled",
+        "movement": "Curl up bending only at elbows Body rigid from head to heels. Feet closer to bar = harder.",
+        "return": "Lower to full extension Pulling with shoulders. Hips piking or sagging."
+      },
       "references": [
         {
           "source": "exrx",
@@ -912,19 +776,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Low pulley; face machine, grip bar",
-        "Curl toward shoulders",
-        "Lower maintaining tension"
-      ],
-      "tips": [
-        "Elbows pinned at sides",
-        "Constant tension - no rest at bottom"
-      ],
-      "avoid": [
-        "Leaning back",
-        "Elbows drifting forward"
-      ],
+      "instructions": {
+        "starting_position": "Low pulley; face machine, grip bar",
+        "movement": "Curl toward shoulders Elbows pinned at sides. Constant tension - no rest at bottom.",
+        "return": "Lower maintaining tension Elbows drifting forward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -958,19 +814,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Dumbbells at sides, palms forward",
-        "Curl toward shoulders",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Elbows pinned; only forearms move",
-        "Supinate as you curl for peak contraction"
-      ],
-      "avoid": [
-        "Elbows drifting",
-        "Swinging torso"
-      ],
+      "instructions": {
+        "starting_position": "Dumbbells at sides, palms forward",
+        "movement": "Curl toward shoulders Elbows pinned; only forearms move. Supinate as you curl for peak contraction.",
+        "return": "Lower to full extension Elbows drifting. Use strict form without momentum."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1004,19 +852,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Sit with legs spread; elbow braced on inner thigh",
-        "Curl toward shoulder",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Upper arm locked against thigh",
-        "Go lighter than regular curls"
-      ],
-      "avoid": [
-        "Elbow lifting off thigh",
-        "Leaning torso"
-      ],
+      "instructions": {
+        "starting_position": "Sit with legs spread; elbow braced on inner thigh",
+        "movement": "Curl toward shoulder Upper arm locked against thigh. Go lighter than regular curls.",
+        "return": "Lower to full extension Elbow lifting off thigh. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1050,19 +890,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Dumbbells at sides, palms facing each other",
-        "Curl toward shoulders, neutral grip",
-        "Lower with control"
-      ],
-      "tips": [
-        "Wrists locked neutral, no rotation",
-        "Emphasizes brachialis and forearms"
-      ],
-      "avoid": [
-        "Rotating wrists during curl",
-        "Swinging body"
-      ],
+      "instructions": {
+        "starting_position": "Dumbbells at sides, palms facing each other",
+        "movement": "Curl toward shoulders, neutral grip Wrists locked neutral, no rotation. Emphasizes brachialis and forearms.",
+        "return": "Lower with control Rotating wrists during curl. Use strict form without momentum."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1096,19 +928,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Incline 45-60 degrees; arms hanging",
-        "Curl toward shoulders, upper arms stationary",
-        "Lower to full extension"
-      ],
-      "tips": [
-        "Arms hang straight for full stretch",
-        "Keep upper arms stationary"
-      ],
-      "avoid": [
-        "Elbows coming forward",
-        "Swinging weights"
-      ],
+      "instructions": {
+        "starting_position": "Incline 45-60 degrees; arms hanging",
+        "movement": "Curl toward shoulders, upper arms stationary Arms hang straight for full stretch. Keep upper arms stationary.",
+        "return": "Lower to full extension Elbows coming forward. Use strict form without momentum."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1141,19 +965,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Armpits on pad; grip handles",
-        "Curl toward shoulders",
-        "Lower to near-full extension"
-      ],
-      "tips": [
-        "Upper arms pressed into pad",
-        "Stop short of lockout"
-      ],
-      "avoid": [
-        "Lifting off pad",
-        "Hyperextending elbows"
-      ],
+      "instructions": {
+        "starting_position": "Armpits on pad; grip handles",
+        "movement": "Curl toward shoulders Upper arms pressed into pad. Stop short of lockout.",
+        "return": "Lower to near-full extension Lifting off pad. Maintain neutral alignment."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1186,19 +1002,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band; palms up",
-        "Curl toward shoulders",
-        "Lower with control"
-      ],
-      "tips": [
-        "Elbows pinned to sides",
-        "Control the eccentric"
-      ],
-      "avoid": [
-        "Elbows drifting forward",
-        "Body swing"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band; palms up",
+        "movement": "Curl toward shoulders Elbows pinned to sides. Control the eccentric.",
+        "return": "Lower with control Elbows drifting forward. Body swing."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1231,19 +1039,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band; palms facing each other",
-        "Curl toward shoulders, neutral wrist",
-        "Lower with control"
-      ],
-      "tips": [
-        "Neutral wrist throughout",
-        "Elbows pinned"
-      ],
-      "avoid": [
-        "Rotating wrists",
-        "Swinging torso"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band; palms facing each other",
+        "movement": "Curl toward shoulders, neutral wrist Neutral wrist throughout. Elbows pinned.",
+        "return": "Lower with control Rotating wrists. Use strict form without momentum."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1277,19 +1077,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar on upper back; heels hanging off platform",
-        "Rise onto toes as high as possible",
-        "Lower heels below platform for full stretch"
-      ],
-      "tips": [
-        "Torso upright throughout",
-        "Pause at top for contraction"
-      ],
-      "avoid": [
-        "Bar shifting",
-        "Bouncing at bottom"
-      ],
+      "instructions": {
+        "starting_position": "Bar on upper back; heels hanging off platform",
+        "movement": "Rise onto toes as high as possible Torso upright throughout. Pause at top for contraction.",
+        "return": "Lower heels below platform for full stretch Bar shifting. Use controlled tempo."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1321,19 +1113,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Heels hanging off platform; dumbbell in one hand",
-        "Rise onto toes as high as possible",
-        "Lower heels below platform"
-      ],
-      "tips": [
-        "Switch dumbbell hand each set",
-        "Pause at top"
-      ],
-      "avoid": [
-        "Bouncing at bottom",
-        "Bending knees"
-      ],
+      "instructions": {
+        "starting_position": "Heels hanging off platform; dumbbell in one hand",
+        "movement": "Rise onto toes as high as possible Switch dumbbell hand each set. Pause at top.",
+        "return": "Lower heels below platform Use controlled tempo. Bending knees."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1366,17 +1150,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Heels on platform, toes hanging off",
-        "Raise toes as high as possible",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hold contraction at top"
-      ],
-      "avoid": [
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Heels on platform, toes hanging off",
+        "movement": "Raise toes as high as possible Hold contraction at top.",
+        "return": "Lower with control Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1408,19 +1186,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Sit with balls of feet on block; dumbbells on lower thighs",
-        "Push through toes to raise heels",
-        "Lower heels below platform"
-      ],
-      "tips": [
-        "Pad under dumbbells for comfort",
-        "Weight centered over knee"
-      ],
-      "avoid": [
-        "Dumbbells rolling forward",
-        "Leaning back"
-      ],
+      "instructions": {
+        "starting_position": "Sit with balls of feet on block; dumbbells on lower thighs",
+        "movement": "Push through toes to raise heels Pad under dumbbells for comfort. Weight centered over knee.",
+        "return": "Lower heels below platform Dumbbells rolling forward. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1452,19 +1222,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band, balls of feet",
-        "Rise onto toes against resistance",
-        "Lower with control"
-      ],
-      "tips": [
-        "Handles at shoulder height for tension",
-        "Pause and squeeze at top"
-      ],
-      "avoid": [
-        "Band going slack",
-        "Bending knees"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band, balls of feet",
+        "movement": "Rise onto toes against resistance Handles at shoulder height for tension. Pause and squeeze at top.",
+        "return": "Lower with control Band going slack. Bending knees."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1496,19 +1258,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Balls of feet on platform, knees under pad",
-        "Release safety; lower heels",
-        "Raise heels as high as possible; lower for stretch"
-      ],
-      "tips": [
-        "Pad snug on lower thighs",
-        "Full range - drop heels fully"
-      ],
-      "avoid": [
-        "Bouncing at bottom",
-        "Partial reps"
-      ],
+      "instructions": {
+        "starting_position": "Balls of feet on platform, knees under pad",
+        "movement": "Release safety; lower heels Pad snug on lower thighs. Full range - drop heels fully.",
+        "return": "Raise heels as high as possible; lower for stretch Use controlled tempo. Partial reps."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1540,19 +1294,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Sit; band under balls of feet, hold ends",
-        "Push through toes to raise heels",
-        "Lower with control"
-      ],
-      "tips": [
-        "Knees at 90 degrees",
-        "Band taut throughout"
-      ],
-      "avoid": [
-        "Band going slack",
-        "Straightening legs"
-      ],
+      "instructions": {
+        "starting_position": "Sit; band under balls of feet, hold ends",
+        "movement": "Push through toes to raise heels Knees at 90 degrees. Band taut throughout.",
+        "return": "Lower with control Band going slack. Straightening legs."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1584,19 +1330,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "One leg on step edge",
-        "Rise onto toes; lower heel below step",
-        "Complete all reps before switching"
-      ],
-      "tips": [
-        "Wall for balance only",
-        "Lower slowly for eccentric stretch"
-      ],
-      "avoid": [
-        "Using wall for lift assistance",
-        "Bending knee"
-      ],
+      "instructions": {
+        "starting_position": "One leg on step edge",
+        "movement": "Rise onto toes; lower heel below step Wall for balance only. Lower slowly for eccentric stretch.",
+        "return": "Complete all reps before switching Using wall for lift assistance. Bending knee."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1628,19 +1366,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Heels hanging off step edge",
-        "Rise onto toes; squeeze at top",
-        "Lower heels below step for stretch"
-      ],
-      "tips": [
-        "Pause 1-2 seconds at top",
-        "Full range both directions"
-      ],
-      "avoid": [
-        "Bouncing at bottom",
-        "Bending knees"
-      ],
+      "instructions": {
+        "starting_position": "Heels hanging off step edge",
+        "movement": "Rise onto toes; squeeze at top Pause 1-2 seconds at top. Full range both directions.",
+        "return": "Lower heels below step for stretch Use controlled tempo. Bending knees."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1672,19 +1402,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Shoulders under pads; balls of feet on platform",
-        "Rise onto toes as high as possible",
-        "Lower heels below platform for stretch"
-      ],
-      "tips": [
-        "Soft knee bend",
-        "Pause at top, full drop at bottom"
-      ],
-      "avoid": [
-        "Locking knees",
-        "Bouncing at bottom"
-      ],
+      "instructions": {
+        "starting_position": "Shoulders under pads; balls of feet on platform",
+        "movement": "Rise onto toes as high as possible Soft knee bend. Pause at top, full drop at bottom.",
+        "return": "Lower heels below platform for stretch Locking knees. Use controlled tempo."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1720,19 +1442,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Eyes under bar; grip wider than shoulders",
-        "Unrack; lower to mid-chest",
-        "Press until lockout"
-      ],
-      "tips": [
-        "Shoulder blades squeezed together",
-        "Feet driving into floor"
-      ],
-      "avoid": [
-        "Bouncing off chest",
-        "Elbows flaring to 90 degrees"
-      ],
+      "instructions": {
+        "starting_position": "Eyes under bar; grip wider than shoulders",
+        "movement": "Unrack; lower to mid-chest Shoulder blades squeezed together. Feet driving into floor.",
+        "return": "Press until lockout Use controlled tempo. Elbows flaring to 90 degrees."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1768,19 +1482,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Decline bench, feet secured; grip wider than shoulders",
-        "Lower bar to lower chest",
-        "Press to full extension"
-      ],
-      "tips": [
-        "Shoulder blades retracted",
-        "Touch lower chest"
-      ],
-      "avoid": [
-        "Excessive elbow flare",
-        "Bouncing off chest"
-      ],
+      "instructions": {
+        "starting_position": "Decline bench, feet secured; grip wider than shoulders",
+        "movement": "Lower bar to lower chest Shoulder blades retracted. Touch lower chest.",
+        "return": "Press to full extension Excessive elbow flare. Use controlled tempo."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1813,19 +1519,11 @@
       },
       "equipment": "machine",
       "difficulty": "intermediate",
-      "instructions": [
-        "Pulleys at shoulder height; step forward",
-        "Arms wide, slight elbow bend",
-        "Bring hands together; return wide"
-      ],
-      "tips": [
-        "Fixed elbow angle throughout",
-        "Squeeze chest when hands meet"
-      ],
-      "avoid": [
-        "Bending elbows more (becomes a press)",
-        "Cables pulling you back"
-      ],
+      "instructions": {
+        "starting_position": "Pulleys at shoulder height; step forward",
+        "movement": "Arms wide, slight elbow bend Fixed elbow angle throughout. Squeeze chest when hands meet.",
+        "return": "Bring hands together; return wide Keep arms straight. Cables pulling you back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1861,19 +1559,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Grip bars; lean forward ~30 degrees",
-        "Lower until chest stretch",
-        "Press back up"
-      ],
-      "tips": [
-        "Forward lean targets chest",
-        "Deep enough for stretch, not shoulder strain"
-      ],
-      "avoid": [
-        "Staying upright (becomes tricep-dominant)",
-        "Bouncing at bottom"
-      ],
+      "instructions": {
+        "starting_position": "Grip bars; lean forward ~30 degrees",
+        "movement": "Lower until chest stretch Forward lean targets chest. Deep enough for stretch, not shoulder strain.",
+        "return": "Press back up Staying upright (becomes tricep-dominant). Use controlled tempo."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1909,19 +1599,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Feet on elevated surface; hands wider than shoulders",
-        "Lower chest toward floor",
-        "Press back up"
-      ],
-      "tips": [
-        "Higher feet = harder",
-        "Body in straight line"
-      ],
-      "avoid": [
-        "Hips sagging or piking",
-        "Elbows flaring to 90 degrees"
-      ],
+      "instructions": {
+        "starting_position": "Feet on elevated surface; hands wider than shoulders",
+        "movement": "Lower chest toward floor Higher feet = harder. Body in straight line.",
+        "return": "Press back up Hips sagging or piking. Elbows flaring to 90 degrees."
+      },
       "references": [
         {
           "source": "exrx",
@@ -1957,19 +1639,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hands together in diamond shape under chest",
-        "Lower chest to hands",
-        "Press back up"
-      ],
-      "tips": [
-        "Elbows track along sides",
-        "Touch chest to hands"
-      ],
-      "avoid": [
-        "Elbows flaring wide",
-        "Hands too far forward"
-      ],
+      "instructions": {
+        "starting_position": "Hands together in diamond shape under chest",
+        "movement": "Lower chest to hands Elbows track along sides. Touch chest to hands.",
+        "return": "Press back up Elbows flaring wide. Hands too far forward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2005,19 +1679,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Dumbbells at chest level; feet flat",
-        "Press up until arms extend",
-        "Lower until upper arms parallel"
-      ],
-      "tips": [
-        "Wrists stacked over elbows",
-        "Shoulder blades squeezed into bench"
-      ],
-      "avoid": [
-        "Bouncing off chest",
-        "Dumbbells drifting"
-      ],
+      "instructions": {
+        "starting_position": "Dumbbells at chest level; feet flat",
+        "movement": "Press up until arms extend Wrists stacked over elbows. Shoulder blades squeezed into bench.",
+        "return": "Lower until upper arms parallel Use controlled tempo. Dumbbells drifting."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2051,19 +1717,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Dumbbells above chest, palms facing",
-        "Lower wide with slight elbow bend until stretch",
-        "Squeeze chest to bring together"
-      ],
-      "tips": [
-        "Fixed elbow angle throughout",
-        "Hugging a tree motion"
-      ],
-      "avoid": [
-        "Lowering below shoulder level",
-        "Bending elbows more (becomes press)"
-      ],
+      "instructions": {
+        "starting_position": "Dumbbells above chest, palms facing",
+        "movement": "Lower wide with slight elbow bend until stretch Fixed elbow angle throughout. Hugging a tree motion.",
+        "return": "Squeeze chest to bring together Lowering below shoulder level. Keep arms straight."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2097,19 +1755,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Incline 30-45 degrees; dumbbells above chest",
-        "Lower wide with slight elbow bend until stretch",
-        "Squeeze chest to bring together"
-      ],
-      "tips": [
-        "Fixed elbow angle throughout",
-        "Squeeze at top"
-      ],
-      "avoid": [
-        "Too heavy, bending elbows",
-        "Dropping too fast"
-      ],
+      "instructions": {
+        "starting_position": "Incline 30-45 degrees; dumbbells above chest",
+        "movement": "Lower wide with slight elbow bend until stretch Fixed elbow angle throughout. Squeeze at top.",
+        "return": "Squeeze chest to bring together Keep arms straight. Dropping too fast."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2145,19 +1795,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bench 30-45 degrees; grip wider than shoulders",
-        "Lower to upper chest near clavicle",
-        "Press to lockout"
-      ],
-      "tips": [
-        "Shoulder blades retracted",
-        "Bar path slightly diagonal"
-      ],
-      "avoid": [
-        "Lowering to lower chest",
-        "Incline too steep (shoulder press)"
-      ],
+      "instructions": {
+        "starting_position": "Bench 30-45 degrees; grip wider than shoulders",
+        "movement": "Lower to upper chest near clavicle Shoulder blades retracted. Bar path slightly diagonal.",
+        "return": "Press to lockout Lowering to lower chest. Incline too steep (shoulder press)."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2193,19 +1835,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Bench 30-45 degrees; dumbbells at shoulder level",
-        "Press until arms extend",
-        "Lower to shoulder level"
-      ],
-      "tips": [
-        "Shoulder blades pinched",
-        "Feet driving into floor"
-      ],
-      "avoid": [
-        "Incline above 45 degrees",
-        "Lower back arching"
-      ],
+      "instructions": {
+        "starting_position": "Bench 30-45 degrees; dumbbells at shoulder level",
+        "movement": "Press until arms extend Shoulder blades pinched. Feet driving into floor.",
+        "return": "Lower to shoulder level Incline above 45 degrees. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2239,19 +1873,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Handles at chest level",
-        "Press forward until arms extend",
-        "Return to start"
-      ],
-      "tips": [
-        "Back flat against pad",
-        "Push with chest"
-      ],
-      "avoid": [
-        "Seat too high (shoulders work)",
-        "Seat too low (strains shoulders)"
-      ],
+      "instructions": {
+        "starting_position": "Handles at chest level",
+        "movement": "Press forward until arms extend Back flat against pad. Push with chest.",
+        "return": "Return to start Seat too high (shoulders work)."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2288,19 +1914,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Hands wider than shoulders",
-        "Lower chest to floor",
-        "Press back up"
-      ],
-      "tips": [
-        "Elbows at 45 degrees",
-        "Rigid plank from head to heels"
-      ],
-      "avoid": [
-        "Hips sagging or piking",
-        "Leading with head"
-      ],
+      "instructions": {
+        "starting_position": "Hands wider than shoulders",
+        "movement": "Lower chest to floor Elbows at 45 degrees. Rigid plank from head to heels.",
+        "return": "Press back up Hips sagging or piking. Leading with head."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2334,19 +1952,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Band at chest height or around back",
-        "Press forward until arms extend",
-        "Return maintaining tension"
-      ],
-      "tips": [
-        "Shoulder blades together",
-        "Shoulders down"
-      ],
-      "avoid": [
-        "Band going slack",
-        "Shrugging shoulders"
-      ],
+      "instructions": {
+        "starting_position": "Band at chest height or around back",
+        "movement": "Press forward until arms extend Shoulder blades together. Shoulders down.",
+        "return": "Return maintaining tension Band going slack. Keep shoulders down and back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2379,19 +1989,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Band behind at chest height; arms wide",
-        "Bring hands together, hugging motion",
-        "Return wide"
-      ],
-      "tips": [
-        "Fixed elbow angle throughout",
-        "Squeeze when hands meet"
-      ],
-      "avoid": [
-        "Straightening arms fully",
-        "Bending elbows more as hands meet"
-      ],
+      "instructions": {
+        "starting_position": "Band behind at chest height; arms wide",
+        "movement": "Bring hands together, hugging motion Fixed elbow angle throughout. Squeeze when hands meet.",
+        "return": "Return wide Straightening arms fully. Keep arms straight."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2422,19 +2024,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Exhale fully",
-        "Pull belly button toward spine",
-        "Hold 10-20 seconds, breathing shallowly"
-      ],
-      "tips": [
-        "Practice on empty stomach",
-        "Pull navel inward, not just sucking in"
-      ],
-      "avoid": [
-        "Holding breath completely",
-        "Pushing abs out"
-      ],
+      "instructions": {
+        "starting_position": "Exhale fully",
+        "movement": "Pull belly button toward spine Practice on empty stomach. Pull navel inward, not just sucking in.",
+        "return": "Hold 10-20 seconds, breathing shallowly Holding breath completely. Pushing abs out."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2470,20 +2064,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Feet hip-width; bar over mid-foot",
-        "Hinge and grip just outside legs",
-        "Drive through heels to stand; reverse to lower"
-      ],
-      "tips": [
-        "Bar close to body",
-        "Neutral spine throughout"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Bar drifting away",
-        "Jerking off floor"
-      ],
+      "instructions": {
+        "starting_position": "Feet hip-width; bar over mid-foot",
+        "movement": "Hinge and grip just outside legs Bar close to body. Neutral spine throughout.",
+        "return": "Drive through heels to stand; reverse to lower Maintain neutral spine. Bar drifting away. Use smooth, controlled movement."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2518,19 +2103,11 @@
       },
       "equipment": "barbell",
       "difficulty": "advanced",
-      "instructions": [
-        "Kneel behind loaded bar; hands shoulder-width",
-        "Roll forward, extending body toward floor",
-        "Use core to pull back"
-      ],
-      "tips": [
-        "Squeeze glutes throughout",
-        "Only go as far as you can return"
-      ],
-      "avoid": [
-        "Lower back arching",
-        "Going too far and collapsing"
-      ],
+      "instructions": {
+        "starting_position": "Kneel behind loaded bar; hands shoulder-width",
+        "movement": "Roll forward, extending body toward floor Squeeze glutes throughout. Only go as far as you can return.",
+        "return": "Use core to pull back Maintain neutral spine. Going too far and collapsing."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2564,19 +2141,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie on back; hands behind head, legs lifted",
-        "Bring knee to chest while extending opposite leg",
-        "Rotate elbow toward bent knee; alternate sides"
-      ],
-      "tips": [
-        "Rotate ribcage, not just elbows",
-        "Lower back pressed to floor"
-      ],
-      "avoid": [
-        "Pulling on neck",
-        "Rushing without full rotation"
-      ],
+      "instructions": {
+        "starting_position": "Lie on back; hands behind head, legs lifted",
+        "movement": "Bring knee to chest while extending opposite leg Rotate ribcage, not just elbows. Lower back pressed to floor.",
+        "return": "Rotate elbow toward bent knee; alternate sides Pulling on neck. Rushing without full rotation."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2610,19 +2179,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Hands and knees, neutral spine",
-        "Extend opposite arm and leg simultaneously",
-        "Hold briefly; alternate sides"
-      ],
-      "tips": [
-        "Hips level throughout",
-        "Move slowly"
-      ],
-      "avoid": [
-        "Rotating hips",
-        "Lower back arching"
-      ],
+      "instructions": {
+        "starting_position": "Hands and knees, neutral spine",
+        "movement": "Extend opposite arm and leg simultaneously Hips level throughout. Move slowly.",
+        "return": "Hold briefly; alternate sides Rotating hips. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2653,19 +2214,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Kneel facing cable; rope at sides of head",
-        "Crunch by flexing spine, elbows toward thighs",
-        "Return with control"
-      ],
-      "tips": [
-        "Curl spine, don't hinge at hips",
-        "Arms fixed; abs do the work"
-      ],
-      "avoid": [
-        "Pulling with arms",
-        "Sitting back instead of crunching"
-      ],
+      "instructions": {
+        "starting_position": "Kneel facing cable; rope at sides of head",
+        "movement": "Crunch by flexing spine, elbows toward thighs Curl spine, don't hinge at hips. Arms fixed; abs do the work.",
+        "return": "Return with control Pulling with arms. Sitting back instead of crunching."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2696,19 +2249,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand sideways to low pulley; handle in far hand",
-        "Bend away from cable",
-        "Return to upright; complete side before switching"
-      ],
-      "tips": [
-        "Strictly lateral, no rotation",
-        "Control the return"
-      ],
-      "avoid": [
-        "Twisting torso",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Stand sideways to low pulley; handle in far hand",
+        "movement": "Bend away from cable Strictly lateral, no rotation. Control the return.",
+        "return": "Return to upright; complete side before switching Twisting torso. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2742,19 +2287,11 @@
       },
       "equipment": "machine",
       "difficulty": "intermediate",
-      "instructions": [
-        "Cable high or low; stand sideways",
-        "Arms extended; rotate torso diagonally",
-        "Return with control"
-      ],
-      "tips": [
-        "Rotate through hips and core",
-        "Pivot on back foot"
-      ],
-      "avoid": [
-        "Moving arms without torso rotation",
-        "Rounding spine during rotation"
-      ],
+      "instructions": {
+        "starting_position": "Cable high or low; stand sideways",
+        "movement": "Arms extended; rotate torso diagonally Rotate through hips and core. Pivot on back foot.",
+        "return": "Return with control Moving arms without torso rotation. Rounding spine during rotation."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2785,19 +2322,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie on back; knees bent, feet flat",
-        "Hands behind head or across chest",
-        "Curl shoulders off floor; lower with control"
-      ],
-      "tips": [
-        "Curl ribcage toward pelvis",
-        "Lower back pressed to floor"
-      ],
-      "avoid": [
-        "Pulling on neck",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Lie on back; knees bent, feet flat",
+        "movement": "Hands behind head or across chest Curl ribcage toward pelvis. Lower back pressed to floor.",
+        "return": "Curl shoulders off floor; lower with control Pulling on neck. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2830,19 +2359,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie on back; arms up, knees bent 90 degrees",
-        "Lower opposite arm and leg toward floor",
-        "Return; alternate sides"
-      ],
-      "tips": [
-        "Lower back pressed to floor",
-        "Only go as far as back stays flat"
-      ],
-      "avoid": [
-        "Lower back arching",
-        "Moving too fast"
-      ],
+      "instructions": {
+        "starting_position": "Lie on back; arms up, knees bent 90 degrees",
+        "movement": "Lower opposite arm and leg toward floor Lower back pressed to floor. Only go as far as back stays flat.",
+        "return": "Return; alternate sides Maintain neutral spine. Moving too fast."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2876,19 +2397,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Sit; lean back, hold dumbbell with both hands",
-        "Rotate side to side, touching floor each side",
-        "Core braced, chest up"
-      ],
-      "tips": [
-        "Lift feet to increase difficulty",
-        "Rotate ribcage, not just arms"
-      ],
-      "avoid": [
-        "Arms swinging without torso rotation",
-        "Rounding back"
-      ],
+      "instructions": {
+        "starting_position": "Sit; lean back, hold dumbbell with both hands",
+        "movement": "Rotate side to side, touching floor each side Lift feet to increase difficulty. Rotate ribcage, not just arms.",
+        "return": "Core braced, chest up Use strict form without momentum. Rounding back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2921,19 +2434,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Dumbbell in one hand at side",
-        "Bend sideways toward weight",
-        "Return by contracting opposite oblique"
-      ],
-      "tips": [
-        "Strictly lateral plane",
-        "One dumbbell only"
-      ],
-      "avoid": [
-        "Leaning forward or back",
-        "Dumbbells in both hands"
-      ],
+      "instructions": {
+        "starting_position": "Dumbbell in one hand at side",
+        "movement": "Bend sideways toward weight Strictly lateral plane. One dumbbell only.",
+        "return": "Return by contracting opposite oblique Maintain upright posture. Dumbbells in both hands."
+      },
       "references": [
         {
           "source": "exrx",
@@ -2967,19 +2472,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "advanced",
-      "instructions": [
-        "Hang with arms extended; legs straight",
-        "Raise legs to parallel or higher",
-        "Lower with control"
-      ],
-      "tips": [
-        "Curl pelvis up, not just legs",
-        "Shoulders down from ears"
-      ],
-      "avoid": [
-        "Swinging or kipping",
-        "Dropping legs quickly"
-      ],
+      "instructions": {
+        "starting_position": "Hang with arms extended; legs straight",
+        "movement": "Raise legs to parallel or higher Curl pelvis up, not just legs. Shoulders down from ears.",
+        "return": "Lower with control Use strict form without momentum. Dropping legs quickly."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3012,19 +2509,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie on back; hands at sides or under lower back",
-        "Raise straight legs toward ceiling",
-        "Lower with control; stop before touching floor"
-      ],
-      "tips": [
-        "Lower back pressed to floor",
-        "Bend knees if too difficult"
-      ],
-      "avoid": [
-        "Lower back arching",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Lie on back; hands at sides or under lower back",
+        "movement": "Raise straight legs toward ceiling Lower back pressed to floor. Bend knees if too difficult.",
+        "return": "Lower with control; stop before touching floor Maintain neutral spine. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3059,19 +2548,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "High plank; hands under shoulders",
-        "Drive knee to chest; quickly switch legs",
-        "Keep hips low and level"
-      ],
-      "tips": [
-        "Flat back throughout",
-        "Knees toward elbows for oblique focus"
-      ],
-      "avoid": [
-        "Hips piking or bouncing",
-        "Knees stopping short"
-      ],
+      "instructions": {
+        "starting_position": "High plank; hands under shoulders",
+        "movement": "Drive knee to chest; quickly switch legs Flat back throughout. Knees toward elbows for oblique focus.",
+        "return": "Keep hips low and level Use controlled tempo. Knees stopping short."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3106,19 +2587,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Forearms and toes; elbows under shoulders",
-        "Straight line from head to heels",
-        "Brace core, squeeze glutes, hold"
-      ],
-      "tips": [
-        "Tuck pelvis slightly",
-        "Push floor away through forearms"
-      ],
-      "avoid": [
-        "Hips sagging",
-        "Hips piking up"
-      ],
+      "instructions": {
+        "starting_position": "Forearms and toes; elbows under shoulders",
+        "movement": "Straight line from head to heels Tuck pelvis slightly. Push floor away through forearms.",
+        "return": "Brace core, squeeze glutes, hold Hips sagging."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3151,19 +2624,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Band at chest height; hold at chest",
-        "Stand perpendicular to anchor",
-        "Press hands out; resist rotation; return"
-      ],
-      "tips": [
-        "Hips and shoulders square",
-        "Brace core before pressing"
-      ],
-      "avoid": [
-        "Rotating toward anchor",
-        "Arms drifting toward band"
-      ],
+      "instructions": {
+        "starting_position": "Band at chest height; hold at chest",
+        "movement": "Stand perpendicular to anchor Hips and shoulders square.",
+        "return": "Press hands out; resist rotation; return Rotating toward anchor. Arms drifting toward band."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3197,19 +2662,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Anchor high or low; arms extended",
-        "Rotate torso diagonally",
-        "Return with control"
-      ],
-      "tips": [
-        "Rotate through hips and core",
-        "Pivot on back foot"
-      ],
-      "avoid": [
-        "Arms moving without torso",
-        "Band snapping back uncontrolled"
-      ],
+      "instructions": {
+        "starting_position": "Anchor high or low; arms extended",
+        "movement": "Rotate torso diagonally Rotate through hips and core. Pivot on back foot.",
+        "return": "Return with control Arms moving without torso. Band snapping back uncontrolled."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3243,19 +2700,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "On side; elbow under shoulder, feet stacked",
-        "Lift hips, straight line head to feet",
-        "Hold; switch sides"
-      ],
-      "tips": [
-        "Body in straight line",
-        "Breathe normally"
-      ],
-      "avoid": [
-        "Hips dropping",
-        "Torso rotating"
-      ],
+      "instructions": {
+        "starting_position": "On side; elbow under shoulder, feet stacked",
+        "movement": "Lift hips, straight line head to feet Body in straight line. Breathe normally.",
+        "return": "Hold; switch sides Hips dropping. Torso rotating."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3288,21 +2737,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie on your back with knees bent and feet secured or held down",
-        "Place hands behind your head or across your chest",
-        "Curl up through your spine until your torso is upright",
-        "Lower with control back to the floor"
-      ],
-      "tips": [
-        "Initiate the movement with your abs, not hip flexors",
-        "Keep your feet on the floor throughout",
-        "Control the descent"
-      ],
-      "avoid": [
-        "Pulling on your neck",
-        "Using momentum to swing up"
-      ],
+      "instructions": {
+        "starting_position": "Lie on your back with knees bent and feet secured or held down",
+        "movement": "Place hands behind your head or across your chest Initiate the movement with your abs, not hip flexors. Keep your feet on the floor throughout. Control the descent.",
+        "return": "Curl up through your spine until your torso is upright Lower with control back to the floor Pulling on your neck. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3335,21 +2774,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie face down with arms extended overhead and legs straight",
-        "Simultaneously lift your arms, chest, and legs off the floor",
-        "Hold briefly at the top, squeezing your back and glutes",
-        "Lower with control and repeat"
-      ],
-      "tips": [
-        "Keep your neck in a neutral position",
-        "Don't hyperextend your lower back",
-        "Squeeze your glutes at the top"
-      ],
-      "avoid": [
-        "Looking up and straining your neck",
-        "Jerking into the movement"
-      ],
+      "instructions": {
+        "starting_position": "Lie face down with arms extended overhead and legs straight",
+        "movement": "Simultaneously lift your arms, chest, and legs off the floor Keep your neck in a neutral position. Don't hyperextend your lower back. Squeeze your glutes at the top.",
+        "return": "Hold briefly at the top, squeezing your back and glutes Lower with control and repeat Looking up and straining your neck. Use smooth, controlled movement."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3384,19 +2813,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Upper back against bench; bar over hips with pad",
-        "Drive heels to lift hips until thighs parallel",
-        "Squeeze glutes at top; lower with control"
-      ],
-      "tips": [
-        "Chin tucked, ribs down",
-        "Shins vertical at lockout"
-      ],
-      "avoid": [
-        "Hyperextending lower back",
-        "Looking up (causes arching)"
-      ],
+      "instructions": {
+        "starting_position": "Upper back against bench; bar over hips with pad",
+        "movement": "Drive heels to lift hips until thighs parallel Chin tucked, ribs down. Shins vertical at lockout.",
+        "return": "Squeeze glutes at top; lower with control Maintain neutral alignment."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3432,19 +2853,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar at thigh level; legs nearly straight",
-        "Push hips back; lower bar close to legs",
-        "Drive hips forward to stand"
-      ],
-      "tips": [
-        "Slight knee bend throughout",
-        "Feel hamstring stretch at bottom"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Excessive knee bend"
-      ],
+      "instructions": {
+        "starting_position": "Bar at thigh level; legs nearly straight",
+        "movement": "Push hips back; lower bar close to legs Slight knee bend throughout. Feel hamstring stretch at bottom.",
+        "return": "Drive hips forward to stand Maintain neutral spine. Excessive knee bend."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3482,19 +2895,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Wide stance, toes out; bar over mid-foot",
-        "Grip inside legs; drive through floor, knees out",
-        "Stand upright; lower with control"
-      ],
-      "tips": [
-        "Push knees out throughout",
-        "Chest proud, squeeze glutes at lockout"
-      ],
-      "avoid": [
-        "Knees caving inward",
-        "Hips shooting up first"
-      ],
+      "instructions": {
+        "starting_position": "Wide stance, toes out; bar over mid-foot",
+        "movement": "Grip inside legs; drive through floor, knees out Push knees out throughout. Chest proud, squeeze glutes at lockout.",
+        "return": "Stand upright; lower with control Knees caving inward. Hips shooting up first."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3529,19 +2934,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Ankle cuff on low pulley; face machine",
-        "Kick leg back, keeping it straight",
-        "Squeeze glute at top; return with control"
-      ],
-      "tips": [
-        "Leg straight or slightly bent",
-        "Focus on glute contraction"
-      ],
-      "avoid": [
-        "Swinging leg",
-        "Hyperextending lower back"
-      ],
+      "instructions": {
+        "starting_position": "Ankle cuff on low pulley; face machine",
+        "movement": "Kick leg back, keeping it straight Leg straight or slightly bent. Focus on glute contraction.",
+        "return": "Squeeze glute at top; return with control Use strict form without momentum. Maintain neutral alignment."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3575,19 +2972,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Ankle cuff on low pulley; stand sideways",
-        "Pull leg across body past standing leg",
-        "Return with control; switch sides"
-      ],
-      "tips": [
-        "Torso upright",
-        "Control both directions"
-      ],
-      "avoid": [
-        "Swinging leg",
-        "Rotating hips"
-      ],
+      "instructions": {
+        "starting_position": "Ankle cuff on low pulley; stand sideways",
+        "movement": "Pull leg across body past standing leg Torso upright. Control both directions.",
+        "return": "Return with control; switch sides Use strict form without momentum. Rotating hips."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3622,19 +3011,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Ankle strap on low pulley; face machine",
-        "Kick leg straight back",
-        "Squeeze glute at top; return with control"
-      ],
-      "tips": [
-        "Drive through heel",
-        "Limit range to what glute controls"
-      ],
-      "avoid": [
-        "Arching back to kick higher",
-        "Rotating hips open"
-      ],
+      "instructions": {
+        "starting_position": "Ankle strap on low pulley; face machine",
+        "movement": "Kick leg straight back Drive through heel. Limit range to what glute controls.",
+        "return": "Squeeze glute at top; return with control Maintain neutral spine. Rotating hips open."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3669,19 +3050,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Ankle cuff on low pulley; face machine",
-        "Extend leg straight back",
-        "Return with control"
-      ],
-      "tips": [
-        "Torso upright",
-        "Squeeze glute at extension"
-      ],
-      "avoid": [
-        "Arching lower back",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Ankle cuff on low pulley; face machine",
+        "movement": "Extend leg straight back Torso upright. Squeeze glute at extension.",
+        "return": "Return with control Maintain neutral spine. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3716,19 +3089,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Upper back against bench; dumbbell on hips",
-        "Drive heels to lift hips to straight line",
-        "Lower with control"
-      ],
-      "tips": [
-        "Chin tucked, look forward",
-        "Shins vertical at top"
-      ],
-      "avoid": [
-        "Hyperextending lower back",
-        "Looking up"
-      ],
+      "instructions": {
+        "starting_position": "Upper back against bench; dumbbell on hips",
+        "movement": "Drive heels to lift hips to straight line Chin tucked, look forward. Shins vertical at top.",
+        "return": "Lower with control Maintain neutral alignment. Looking up."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3764,19 +3129,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Wide stance, toes out 30-45 degrees; dumbbell hanging",
-        "Squat down, chest up, knees over toes",
-        "Drive through heels to stand"
-      ],
-      "tips": [
-        "Push knees out",
-        "Thighs to parallel or below"
-      ],
-      "avoid": [
-        "Knees caving inward",
-        "Rising onto toes"
-      ],
+      "instructions": {
+        "starting_position": "Wide stance, toes out 30-45 degrees; dumbbell hanging",
+        "movement": "Squat down, chest up, knees over toes Push knees out. Thighs to parallel or below.",
+        "return": "Drive through heels to stand Knees caving inward. Rising onto toes."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3812,19 +3169,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Tabletop position; knee bent 90 degrees",
-        "Lift one leg out to side, thigh parallel to floor",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hips level and square",
-        "Initiate from glute"
-      ],
-      "avoid": [
-        "Rotating hips or torso",
-        "Leaning away to lift higher"
-      ],
+      "instructions": {
+        "starting_position": "Tabletop position; knee bent 90 degrees",
+        "movement": "Lift one leg out to side, thigh parallel to floor Hips level and square. Initiate from glute.",
+        "return": "Lower with control Rotating hips or torso. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3860,19 +3209,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Lie on back; knees bent, feet flat",
-        "Drive heels to lift hips",
-        "Squeeze glutes at top; lower with control"
-      ],
-      "tips": [
-        "Push through heels",
-        "Stop at straight line shoulder to knee"
-      ],
-      "avoid": [
-        "Hyperextending lower back",
-        "Knees caving"
-      ],
+      "instructions": {
+        "starting_position": "Lie on back; knees bent, feet flat",
+        "movement": "Drive heels to lift hips Push through heels. Stop at straight line shoulder to knee.",
+        "return": "Squeeze glutes at top; lower with control Maintain neutral alignment. Knees caving."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3905,19 +3246,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Legs together; pads on outer thighs",
-        "Push legs apart; squeeze at widest point",
-        "Return with control"
-      ],
-      "tips": [
-        "Lean forward for glute emphasis",
-        "Pause at full abduction"
-      ],
-      "avoid": [
-        "Jerking weight open",
-        "Leaning back"
-      ],
+      "instructions": {
+        "starting_position": "Legs together; pads on outer thighs",
+        "movement": "Push legs apart; squeeze at widest point Lean forward for glute emphasis. Pause at full abduction.",
+        "return": "Return with control Use smooth, controlled movement. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3950,19 +3283,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Side-lying; band above knees, feet together",
-        "Raise top knee, feet pressed together",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hips stacked vertically",
-        "Initiate from glute"
-      ],
-      "avoid": [
-        "Rolling hips backward",
-        "Separating feet"
-      ],
+      "instructions": {
+        "starting_position": "Side-lying; band above knees, feet together",
+        "movement": "Raise top knee, feet pressed together Hips stacked vertically. Initiate from glute.",
+        "return": "Lower with control Rolling hips backward. Separating feet."
+      },
       "references": [
         {
           "source": "exrx",
@@ -3998,19 +3323,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Band above knees; lie on back, feet flat",
-        "Press knees out while bridging up",
-        "Squeeze glutes; lower with control"
-      ],
-      "tips": [
-        "Outward knee pressure throughout",
-        "Drive through heels"
-      ],
-      "avoid": [
-        "Knees caving inward",
-        "Losing band tension"
-      ],
+      "instructions": {
+        "starting_position": "Band above knees; lie on back, feet flat",
+        "movement": "Press knees out while bridging up Outward knee pressure throughout. Drive through heels.",
+        "return": "Squeeze glutes; lower with control Knees caving inward. Losing band tension."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4047,19 +3364,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "One knee bent, other leg extended",
-        "Drive heel to lift hips; keep level",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hips square throughout",
-        "Push through planted heel"
-      ],
-      "avoid": [
-        "Pelvis rotating",
-        "Hip dropping"
-      ],
+      "instructions": {
+        "starting_position": "One knee bent, other leg extended",
+        "movement": "Drive heel to lift hips; keep level Hips square throughout. Push through planted heel.",
+        "return": "Lower with control Pelvis rotating. Hip dropping."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4095,19 +3404,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Hips on pad; arms crossed",
-        "Lower torso by hinging at hips",
-        "Raise to straight line"
-      ],
-      "tips": [
-        "Squeeze glutes and hamstrings at top",
-        "Don't hyperextend past neutral"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Hyperextending beyond straight"
-      ],
+      "instructions": {
+        "starting_position": "Hips on pad; arms crossed",
+        "movement": "Lower torso by hinging at hips Squeeze glutes and hamstrings at top. Don't hyperextend past neutral.",
+        "return": "Raise to straight line Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4145,19 +3446,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar on upper back; feet hip-width",
-        "Hinge at hips until torso near parallel",
-        "Drive hips forward to return"
-      ],
-      "tips": [
-        "Slight knee bend, don't squat",
-        "Push hips back, not torso forward"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Descending beyond flexibility"
-      ],
+      "instructions": {
+        "starting_position": "Bar on upper back; feet hip-width",
+        "movement": "Hinge at hips until torso near parallel Slight knee bend, don't squat. Push hips back, not torso forward.",
+        "return": "Drive hips forward to return Maintain neutral spine. Descending beyond flexibility."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4196,19 +3489,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar at hip level; overhand grip",
-        "Hinge at hips with slight knee bend",
-        "Lower along legs until stretch; drive hips to stand"
-      ],
-      "tips": [
-        "Bar in contact with legs",
-        "Stop descent when back rounds"
-      ],
-      "avoid": [
-        "Bar drifting forward",
-        "Rounding lower back"
-      ],
+      "instructions": {
+        "starting_position": "Bar at hip level; overhand grip",
+        "movement": "Hinge at hips with slight knee bend Bar in contact with legs. Stop descent when back rounds.",
+        "return": "Lower along legs until stretch; drive hips to stand Keep bar close to body. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4243,19 +3528,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Face down; ankles under pad",
-        "Curl heels toward glutes; squeeze at top",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hips pressed down throughout",
-        "Control eccentric"
-      ],
-      "avoid": [
-        "Lifting hips",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Face down; ankles under pad",
+        "movement": "Curl heels toward glutes; squeeze at top Hips pressed down throughout. Control eccentric.",
+        "return": "Lower with control Lifting hips. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4291,19 +3568,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Ankle cuff on low pulley; face machine",
-        "Curl heel toward glute",
-        "Lower with control; switch legs"
-      ],
-      "tips": [
-        "Thigh in line with standing leg",
-        "Control throughout"
-      ],
-      "avoid": [
-        "Swinging leg",
-        "Leaning forward"
-      ],
+      "instructions": {
+        "starting_position": "Ankle cuff on low pulley; face machine",
+        "movement": "Curl heel toward glute Thigh in line with standing leg. Control throughout.",
+        "return": "Lower with control; switch legs Use strict form without momentum. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4341,19 +3610,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Dumbbells in front of thighs",
-        "Hinge at hips with slight knee bend",
-        "Lower along legs until stretch; drive hips to stand"
-      ],
-      "tips": [
-        "Dumbbells slide along legs",
-        "Squeeze glutes at top"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Excessive knee bend"
-      ],
+      "instructions": {
+        "starting_position": "Dumbbells in front of thighs",
+        "movement": "Hinge at hips with slight knee bend Dumbbells slide along legs. Squeeze glutes at top.",
+        "return": "Lower along legs until stretch; drive hips to stand Maintain neutral spine. Excessive knee bend."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4393,19 +3654,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "One leg; dumbbell in opposite hand",
-        "Hinge, extending free leg behind",
-        "Lower until torso near parallel; return"
-      ],
-      "tips": [
-        "Hips square to ground",
-        "Torso and back leg move as unit"
-      ],
-      "avoid": [
-        "Rotating pelvis open",
-        "Rounding lower back"
-      ],
+      "instructions": {
+        "starting_position": "One leg; dumbbell in opposite hand",
+        "movement": "Hinge, extending free leg behind Hips square to ground. Torso and back leg move as unit.",
+        "return": "Lower until torso near parallel; return Rotating pelvis open. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4441,19 +3694,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "advanced",
-      "instructions": [
-        "GHD with feet secured, knees on pad",
-        "Lower torso by extending knees",
-        "Curl back up by flexing knees"
-      ],
-      "tips": [
-        "Hips extended throughout",
-        "Pull heels toward glutes"
-      ],
-      "avoid": [
-        "Bending at hips",
-        "Hyperextending back"
-      ],
+      "instructions": {
+        "starting_position": "GHD with feet secured, knees on pad",
+        "movement": "Lower torso by extending knees Hips extended throughout. Pull heels toward glutes.",
+        "return": "Curl back up by flexing knees Bending at hips. Maintain neutral alignment."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4488,19 +3733,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Face down; pad on lower calves",
-        "Curl heels toward glutes",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hips pressed into pad",
-        "Plantarflex to reduce calf involvement"
-      ],
-      "avoid": [
-        "Lifting hips",
-        "Stopping short of full flexion"
-      ],
+      "instructions": {
+        "starting_position": "Face down; pad on lower calves",
+        "movement": "Curl heels toward glutes Hips pressed into pad. Plantarflex to reduce calf involvement.",
+        "return": "Lower with control Lifting hips. Stopping short of full flexion."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4536,19 +3773,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "advanced",
-      "instructions": [
-        "Kneel; ankles secured",
-        "Lower forward by extending knees",
-        "Pull back up with hamstrings"
-      ],
-      "tips": [
-        "Straight line knee to shoulder",
-        "Only lower as far as you can control"
-      ],
-      "avoid": [
-        "Breaking at hips",
-        "Falling forward uncontrolled"
-      ],
+      "instructions": {
+        "starting_position": "Kneel; ankles secured",
+        "movement": "Lower forward by extending knees Straight line knee to shoulder. Only lower as far as you can control.",
+        "return": "Pull back up with hamstrings Breaking at hips. Falling forward uncontrolled."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4586,19 +3815,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Band under feet, looped behind neck",
-        "Hinge at hips, push butt back",
-        "Drive hips forward to stand"
-      ],
-      "tips": [
-        "Slight knee bend, don't squat",
-        "Neutral spine throughout"
-      ],
-      "avoid": [
-        "Rounding lower back",
-        "Squatting instead of hinging"
-      ],
+      "instructions": {
+        "starting_position": "Band under feet, looped behind neck",
+        "movement": "Hinge at hips, push butt back Slight knee bend, don't squat. Neutral spine throughout.",
+        "return": "Drive hips forward to stand Maintain neutral spine. Squatting instead of hinging."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4631,19 +3852,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Band anchored low; around ankles, face down",
-        "Curl heels toward glutes",
-        "Lower with control"
-      ],
-      "tips": [
-        "Hips pressed to floor",
-        "Squeeze at peak contraction"
-      ],
-      "avoid": [
-        "Lifting hips",
-        "Band snapping legs down"
-      ],
+      "instructions": {
+        "starting_position": "Band anchored low; around ankles, face down",
+        "movement": "Curl heels toward glutes Hips pressed to floor. Squeeze at peak contraction.",
+        "return": "Lower with control Lifting hips. Band snapping legs down."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4676,19 +3889,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Pad on lower calves; legs extended",
-        "Curl heels under seat",
-        "Return with control"
-      ],
-      "tips": [
-        "Back against pad",
-        "Pause at peak contraction"
-      ],
-      "avoid": [
-        "Leaning forward",
-        "Stopping short of full flexion"
-      ],
+      "instructions": {
+        "starting_position": "Pad on lower calves; legs extended",
+        "movement": "Curl heels under seat Back against pad. Pause at peak contraction.",
+        "return": "Return with control Maintain upright posture. Stopping short of full flexion."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4725,19 +3930,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar on upper back (high bar) or rear delts (low bar)",
-        "Unrack, feet shoulder-width; squat to parallel or below",
-        "Drive through feet to stand"
-      ],
-      "tips": [
-        "Push knees out in direction toes point",
-        "Keep bar path vertical over mid-foot"
-      ],
-      "avoid": [
-        "Hips shooting up first (good-morning squat)",
-        "Knees caving inward out of the hole"
-      ],
+      "instructions": {
+        "starting_position": "Bar on upper back (high bar) or rear delts (low bar)",
+        "movement": "Unrack, feet shoulder-width; squat to parallel or below Push knees out in direction toes point. Keep bar path vertical over mid-foot.",
+        "return": "Drive through feet to stand Hips shooting up first (good-morning squat). Knees caving inward out of the hole."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4772,19 +3969,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar on front delts, elbows high",
-        "Squat down while staying upright",
-        "Drive through feet to stand"
-      ],
-      "tips": [
-        "Keep elbows high throughout",
-        "Push knees forward to hit depth"
-      ],
-      "avoid": [
-        "Elbows dropping (bar rolls forward)",
-        "Leaning forward excessively"
-      ],
+      "instructions": {
+        "starting_position": "Bar on front delts, elbows high",
+        "movement": "Squat down while staying upright Keep elbows high throughout. Push knees forward to hit depth.",
+        "return": "Drive through feet to stand Elbows dropping (bar rolls forward). Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4820,19 +4009,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar across upper back; step forward into lunge",
-        "Lower until rear knee nearly touches floor",
-        "Push through front foot to stand"
-      ],
-      "tips": [
-        "Keep torso upright",
-        "Drive through front heel"
-      ],
-      "avoid": [
-        "Leaning too far forward",
-        "Letting the front knee cave inward"
-      ],
+      "instructions": {
+        "starting_position": "Bar across upper back; step forward into lunge",
+        "movement": "Lower until rear knee nearly touches floor Keep torso upright. Drive through front heel.",
+        "return": "Push through front foot to stand Maintain upright posture. Letting the front knee cave inward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4868,19 +4049,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar across upper back; split stance",
-        "Lower until rear knee nearly touches floor",
-        "Push through front foot to stand"
-      ],
-      "tips": [
-        "Most weight on front foot",
-        "Maintain upright torso"
-      ],
-      "avoid": [
-        "Letting the front knee cave inward",
-        "Bouncing at the bottom"
-      ],
+      "instructions": {
+        "starting_position": "Bar across upper back; split stance",
+        "movement": "Lower until rear knee nearly touches floor Most weight on front foot. Maintain upright torso.",
+        "return": "Push through front foot to stand Letting the front knee cave inward. Use controlled tempo."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4915,19 +4088,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar across upper back; face box at knee height",
-        "Step up, driving through heel",
-        "Step down with control"
-      ],
-      "tips": [
-        "Don't push off with back foot",
-        "Keep torso upright"
-      ],
-      "avoid": [
-        "Using the back leg to push up",
-        "Leaning forward excessively"
-      ],
+      "instructions": {
+        "starting_position": "Bar across upper back; face box at knee height",
+        "movement": "Step up, driving through heel Don't push off with back foot. Keep torso upright.",
+        "return": "Step down with control Using the back leg to push up. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -4963,19 +4128,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Feet shoulder-width, toes slightly out",
-        "Squat to parallel or below",
-        "Drive through feet to stand"
-      ],
-      "tips": [
-        "Push knees out in direction toes point",
-        "Weight distributed across whole foot"
-      ],
-      "avoid": [
-        "Knees collapsing inward",
-        "Shifting weight onto toes"
-      ],
+      "instructions": {
+        "starting_position": "Feet shoulder-width, toes slightly out",
+        "movement": "Squat to parallel or below Push knees out in direction toes point. Weight distributed across whole foot.",
+        "return": "Drive through feet to stand Knees collapsing inward. Shifting weight onto toes."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5011,19 +4168,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hold dumbbell vertically at chest, cupping top end",
-        "Squat down, keeping weight close to chest",
-        "Drive through feet to stand"
-      ],
-      "tips": [
-        "Let elbows track inside knees at bottom",
-        "Use weight as counterbalance to sit deeper"
-      ],
-      "avoid": [
-        "Dumbbell drifting forward",
-        "Rounding upper back"
-      ],
+      "instructions": {
+        "starting_position": "Hold dumbbell vertically at chest, cupping top end",
+        "movement": "Squat down, keeping weight close to chest Let elbows track inside knees at bottom. Use weight as counterbalance to sit deeper.",
+        "return": "Drive through feet to stand Dumbbell drifting forward. Rounding upper back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5059,19 +4208,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hold dumbbells at sides; step forward into lunge",
-        "Lower until back knee nearly touches floor",
-        "Push through front foot to stand"
-      ],
-      "tips": [
-        "Step far enough for both knees to reach 90 degrees",
-        "Drive through heel, not ball of foot"
-      ],
-      "avoid": [
-        "Step too short (knee tracks too far forward)",
-        "Back knee slamming into ground"
-      ],
+      "instructions": {
+        "starting_position": "Hold dumbbells at sides; step forward into lunge",
+        "movement": "Lower until back knee nearly touches floor Step far enough for both knees to reach 90 degrees. Drive through heel, not ball of foot.",
+        "return": "Push through front foot to stand Step too short (knee tracks too far forward). Back knee slamming into ground."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5106,19 +4247,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Stand on box holding dumbbells at sides",
-        "Lower one foot by bending standing leg",
-        "Touch heel lightly, then push back up"
-      ],
-      "tips": [
-        "Control descent with standing leg",
-        "Keep hips level"
-      ],
-      "avoid": [
-        "Letting the knee cave inward",
-        "Dropping down without control"
-      ],
+      "instructions": {
+        "starting_position": "Stand on box holding dumbbells at sides",
+        "movement": "Lower one foot by bending standing leg Control descent with standing leg. Keep hips level.",
+        "return": "Touch heel lightly, then push back up Letting the knee cave inward. Dropping down without control."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5154,19 +4287,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hold dumbbells at sides; face platform",
-        "Step up, driving through that foot",
-        "Step down with control"
-      ],
-      "tips": [
-        "Don't push off with trailing foot",
-        "Place entire foot on box"
-      ],
-      "avoid": [
-        "Using back leg to push off",
-        "Knee caving inward"
-      ],
+      "instructions": {
+        "starting_position": "Hold dumbbells at sides; face platform",
+        "movement": "Step up, driving through that foot Don't push off with trailing foot. Place entire foot on box.",
+        "return": "Step down with control Using back leg to push off. Knee caving inward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5202,19 +4327,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Squat to parallel, then explode upward",
-        "Fully extend hips, knees, and ankles",
-        "Land softly and immediately descend"
-      ],
-      "tips": [
-        "Absorb landing through ankles, knees, hips",
-        "Swing arms up for added power"
-      ],
-      "avoid": [
-        "Landing with locked-out legs",
-        "Knees collapsing inward on landing"
-      ],
+      "instructions": {
+        "starting_position": "Squat to parallel, then explode upward",
+        "movement": "Fully extend hips, knees, and ankles Absorb landing through ankles, knees, hips. Swing arms up for added power.",
+        "return": "Land softly and immediately descend Landing with locked-out legs. Knees collapsing inward on landing."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5245,19 +4362,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Pad on lower shins; back against seat",
-        "Extend legs until straight",
-        "Lower with control"
-      ],
-      "tips": [
-        "Squeeze quads at lockout",
-        "Dorsiflex toes for more quad activation"
-      ],
-      "avoid": [
-        "Lifting hips off seat",
-        "Hyperextending knees at top"
-      ],
+      "instructions": {
+        "starting_position": "Pad on lower shins; back against seat",
+        "movement": "Extend legs until straight Squeeze quads at lockout. Dorsiflex toes for more quad activation.",
+        "return": "Lower with control Lifting hips off seat. Maintain neutral alignment."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5292,19 +4401,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Feet shoulder-width on platform",
-        "Lower until 90 degrees at knee",
-        "Press back up without full lockout"
-      ],
-      "tips": [
-        "Keep lower back flat against pad",
-        "Feet high = glutes; feet low = quads"
-      ],
-      "avoid": [
-        "Lower back rounding off pad",
-        "Bouncing out of bottom"
-      ],
+      "instructions": {
+        "starting_position": "Feet shoulder-width on platform",
+        "movement": "Lower until 90 degrees at knee Keep lower back flat against pad. Feet high = glutes; feet low = quads.",
+        "return": "Press back up without full lockout Lower back rounding off pad. Use controlled tempo."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5342,19 +4443,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "advanced",
-      "instructions": [
-        "Stand on one leg, other extended forward",
-        "Lower until hamstring touches calf",
-        "Drive through standing foot to rise"
-      ],
-      "tips": [
-        "Reach arms forward as counterbalance",
-        "Keep standing heel on ground"
-      ],
-      "avoid": [
-        "Standing heel lifting",
-        "Extended leg touching ground"
-      ],
+      "instructions": {
+        "starting_position": "Stand on one leg, other extended forward",
+        "movement": "Lower until hamstring touches calf Reach arms forward as counterbalance. Keep standing heel on ground.",
+        "return": "Drive through standing foot to rise Extended leg touching ground."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5385,19 +4478,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Sit with band anchored behind; loop around ankle",
-        "Extend knee until leg is straight",
-        "Return with control"
-      ],
-      "tips": [
-        "Thigh pressed against seat",
-        "Dorsiflex toe for more quad engagement"
-      ],
-      "avoid": [
-        "Thigh lifting off seat",
-        "Band snapping back uncontrolled"
-      ],
+      "instructions": {
+        "starting_position": "Sit with band anchored behind; loop around ankle",
+        "movement": "Extend knee until leg is straight Thigh pressed against seat. Dorsiflex toe for more quad engagement.",
+        "return": "Return with control Thigh lifting off seat. Band snapping back uncontrolled."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5432,19 +4517,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band, feet shoulder-width",
-        "Hold handles at shoulders; squat to parallel",
-        "Stand against band's resistance"
-      ],
-      "tips": [
-        "Maintain tension even at bottom",
-        "Accelerate through sticking point"
-      ],
-      "avoid": [
-        "Band going slack at bottom",
-        "Handles pulling you forward"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band, feet shoulder-width",
+        "movement": "Hold handles at shoulders; squat to parallel Maintain tension even at bottom. Accelerate through sticking point.",
+        "return": "Stand against band's resistance Handles pulling you forward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5478,19 +4555,11 @@
       },
       "equipment": "barbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Bar at thigh level; overhand grip",
-        "Raise in front to shoulder height",
-        "Lower with control"
-      ],
-      "tips": [
-        "Slight elbow bend",
-        "Shoulder height, not higher"
-      ],
-      "avoid": [
-        "Swinging weight up",
-        "Arching back"
-      ],
+      "instructions": {
+        "starting_position": "Bar at thigh level; overhand grip",
+        "movement": "Raise in front to shoulder height Slight elbow bend. Shoulder height, not higher.",
+        "return": "Lower with control Use strict form without momentum. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5527,19 +4596,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar at collarbone; grip just outside shoulders",
-        "Press overhead; head moves back then forward",
-        "Lock out over mid-foot; lower to collarbone"
-      ],
-      "tips": [
-        "Squeeze glutes and brace core",
-        "Shrug at lockout"
-      ],
-      "avoid": [
-        "Excessive layback",
-        "Pressing forward"
-      ],
+      "instructions": {
+        "starting_position": "Bar at collarbone; grip just outside shoulders",
+        "movement": "Press overhead; head moves back then forward Squeeze glutes and brace core. Shrug at lockout.",
+        "return": "Lock out over mid-foot; lower to collarbone Excessive layback. Pressing forward."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5575,19 +4636,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bent over; wide grip",
-        "Pull to upper chest, elbows flared",
-        "Lower with control"
-      ],
-      "tips": [
-        "Elbows high and outward",
-        "Focus on rear delt contraction"
-      ],
-      "avoid": [
-        "Elbows close to body",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Bent over; wide grip",
+        "movement": "Pull to upper chest, elbows flared Elbows high and outward. Focus on rear delt contraction.",
+        "return": "Lower with control Elbows close to body. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5624,19 +4677,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Bar at thighs; shoulder-width grip",
-        "Pull along body until upper arms parallel",
-        "Lower with control"
-      ],
-      "tips": [
-        "Lead with elbows, higher than wrists",
-        "Wider grip reduces impingement"
-      ],
-      "avoid": [
-        "Pulling above chest level",
-        "Narrow grip if discomfort"
-      ],
+      "instructions": {
+        "starting_position": "Bar at thighs; shoulder-width grip",
+        "movement": "Pull along body until upper arms parallel Lead with elbows, higher than wrists. Wider grip reduces impingement.",
+        "return": "Lower with control Pulling above chest level. Narrow grip if discomfort."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5670,19 +4715,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Low pulley; stand sideways, handle in far hand",
-        "Raise arm to parallel",
-        "Lower with control"
-      ],
-      "tips": [
-        "Fixed elbow bend throughout",
-        "Lead with elbow"
-      ],
-      "avoid": [
-        "Shrugging shoulder",
-        "Raising above parallel"
-      ],
+      "instructions": {
+        "starting_position": "Low pulley; stand sideways, handle in far hand",
+        "movement": "Raise arm to parallel Fixed elbow bend throughout. Lead with elbow.",
+        "return": "Lower with control Keep shoulders down and back. Raising above parallel."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5716,19 +4753,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Between pulleys at shoulder height; cross-grip",
-        "Pull outward in arc with slight elbow bend",
-        "Squeeze rear delts; return with control"
-      ],
-      "tips": [
-        "Slight elbow bend throughout",
-        "Focus on rear delt squeeze"
-      ],
-      "avoid": [
-        "Using momentum",
-        "Excessive elbow bend"
-      ],
+      "instructions": {
+        "starting_position": "Between pulleys at shoulder height; cross-grip",
+        "movement": "Pull outward in arc with slight elbow bend Slight elbow bend throughout. Focus on rear delt squeeze.",
+        "return": "Squeeze rear delts; return with control Use controlled movement throughout. Excessive elbow bend."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5762,19 +4791,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Low cables; cross-grip handles",
-        "Raise arms to Y shape",
-        "Lower with control"
-      ],
-      "tips": [
-        "Slight elbow bend",
-        "Use shoulders, not traps"
-      ],
-      "avoid": [
-        "Shrugging",
-        "Excessive weight"
-      ],
+      "instructions": {
+        "starting_position": "Low cables; cross-grip handles",
+        "movement": "Raise arms to Y shape Slight elbow bend. Use shoulders, not traps.",
+        "return": "Lower with control Keep shoulders down and back. Excessive weight."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5810,19 +4831,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hold dumbbells at shoulder height, palms facing you",
-        "Press up while rotating palms to face forward at top",
-        "Reverse motion as you lower"
-      ],
-      "tips": [
-        "Rotate smoothly throughout",
-        "Press directly overhead, not forward"
-      ],
-      "avoid": [
-        "Rushing the rotation",
-        "Using momentum"
-      ],
+      "instructions": {
+        "starting_position": "Hold dumbbells at shoulder height, palms facing you",
+        "movement": "Press up while rotating palms to face forward at top Rotate smoothly throughout. Press directly overhead, not forward.",
+        "return": "Reverse motion as you lower Rushing the rotation. Use controlled movement throughout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5856,20 +4869,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand with dumbbells at thighs, palms facing back",
-        "Raise arms forward to shoulder height",
-        "Lower with control"
-      ],
-      "tips": [
-        "Keep a slight bend in elbows throughout",
-        "Stop at shoulder height; higher shifts work to traps",
-        "Keep torso still; avoid swaying backward"
-      ],
-      "avoid": [
-        "Leaning back to swing weight up",
-        "Letting dumbbells drift inward toward midline"
-      ],
+      "instructions": {
+        "starting_position": "Stand with dumbbells at thighs, palms facing back",
+        "movement": "Raise arms forward to shoulder height Keep a slight bend in elbows throughout. Stop at shoulder height; higher shifts work to traps. Keep torso still; avoid swaying backward.",
+        "return": "Lower with control Maintain upright posture. Letting dumbbells drift inward toward midline."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5904,20 +4908,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand with dumbbells at sides, palms facing in",
-        "Raise arms out to the sides until parallel to floor",
-        "Lower with control"
-      ],
-      "tips": [
-        "Lead with elbows, keeping them slightly higher than wrists",
-        "Tilt pinkies up as if pouring water from a pitcher",
-        "Use a weight that allows strict form for 10+ reps"
-      ],
-      "avoid": [
-        "Shrugging traps to lift heavier weight",
-        "Raising arms above shoulder level"
-      ],
+      "instructions": {
+        "starting_position": "Stand with dumbbells at sides, palms facing in",
+        "movement": "Raise arms out to the sides until parallel to floor Lead with elbows, keeping them slightly higher than wrists. Tilt pinkies up as if pouring water from a pitcher. Use a weight that allows strict form for 10+ reps.",
+        "return": "Lower with control Keep shoulders down and back. Raising arms above shoulder level."
+      },
       "references": [
         {
           "source": "exrx",
@@ -5953,21 +4948,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hinge forward until torso is near parallel to floor",
-        "Let dumbbells hang below chest with slight elbow bend",
-        "Raise arms out to sides, squeezing rear delts at top",
-        "Lower with control"
-      ],
-      "tips": [
-        "Keep torso angle constant; don't rise as you lift",
-        "Think about leading with elbows, not hands",
-        "Pause briefly at the top to feel rear delts contract"
-      ],
-      "avoid": [
-        "Rising up to make the lift easier",
-        "Pulling with traps instead of rear delts"
-      ],
+      "instructions": {
+        "starting_position": "Hinge forward until torso is near parallel to floor",
+        "movement": "Let dumbbells hang below chest with slight elbow bend Keep torso angle constant; don't rise as you lift. Think about leading with elbows, not hands. Pause briefly at the top to feel rear delts contract.",
+        "return": "Raise arms out to sides, squeezing rear delts at top Lower with control Rising up to make the lift easier. Pulling with traps instead of rear delts."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6003,20 +4988,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hold dumbbells at shoulder height, palms forward",
-        "Press overhead until arms fully extend",
-        "Lower to shoulder height"
-      ],
-      "tips": [
-        "Bring dumbbells slightly together at the top",
-        "Keep wrists stacked over elbows throughout",
-        "Sit with back supported to isolate shoulders more"
-      ],
-      "avoid": [
-        "Excessive lower back arch to cheat the weight up",
-        "Flaring elbows too far behind the torso"
-      ],
+      "instructions": {
+        "starting_position": "Hold dumbbells at shoulder height, palms forward",
+        "movement": "Press overhead until arms fully extend Bring dumbbells slightly together at the top. Keep wrists stacked over elbows throughout. Sit with back supported to isolate shoulders more.",
+        "return": "Lower to shoulder height Excessive lower back arch to cheat the weight up. Keep elbows tucked."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6052,19 +5028,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hold dumbbells at thighs, palms facing body",
-        "Pull up along body, leading with elbows",
-        "Raise until elbows at shoulder height, then lower"
-      ],
-      "tips": [
-        "Keep elbows higher than hands",
-        "Keep weights close to body"
-      ],
-      "avoid": [
-        "Pulling too high (shoulder impingement risk)",
-        "Using too narrow a grip"
-      ],
+      "instructions": {
+        "starting_position": "Hold dumbbells at thighs, palms facing body",
+        "movement": "Pull up along body, leading with elbows Keep elbows higher than hands. Keep weights close to body.",
+        "return": "Raise until elbows at shoulder height, then lower Pulling too high (shoulder impingement risk). Using too narrow a grip."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6101,20 +5069,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "advanced",
-      "instructions": [
-        "Kick up into a handstand against a wall, hands shoulder-width plus",
-        "Lower until head gently touches the floor",
-        "Press back up to full arm extension"
-      ],
-      "tips": [
-        "Point fingers slightly outward for wrist comfort",
-        "Keep ribs stacked over hips; avoid banana-back arch",
-        "Push head through at the top for full lockout"
-      ],
-      "avoid": [
-        "Losing contact with the wall and falling off balance",
-        "Arching excessively to make the rep easier"
-      ],
+      "instructions": {
+        "starting_position": "Kick up into a handstand against a wall, hands shoulder-width plus",
+        "movement": "Lower until head gently touches the floor Point fingers slightly outward for wrist comfort. Keep ribs stacked over hips; avoid banana-back arch. Push head through at the top for full lockout.",
+        "return": "Press back up to full arm extension Losing contact with the wall and falling off balance. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6150,19 +5109,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Hands on elevated surface; raise hips into inverted V",
-        "Lower head toward surface by bending elbows",
-        "Press back up"
-      ],
-      "tips": [
-        "Higher surface = easier; progress to lower over time",
-        "Keep legs straight throughout"
-      ],
-      "avoid": [
-        "Letting hips sag",
-        "Using an unstable surface"
-      ],
+      "instructions": {
+        "starting_position": "Hands on elevated surface; raise hips into inverted V",
+        "movement": "Lower head toward surface by bending elbows Higher surface = easier; progress to lower over time. Keep legs straight throughout.",
+        "return": "Press back up Letting hips sag. Using an unstable surface."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6196,20 +5147,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Adjust seat so handles align with shoulders",
-        "Press handles overhead until arms fully extend",
-        "Lower to starting position"
-      ],
-      "tips": [
-        "Keep back pressed firmly against the pad",
-        "Press handles straight up, not forward",
-        "Focus on feeling deltoids work, not just pushing"
-      ],
-      "avoid": [
-        "Arching lower back away from pad",
-        "Stopping short of full lockout"
-      ],
+      "instructions": {
+        "starting_position": "Adjust seat so handles align with shoulders",
+        "movement": "Press handles overhead until arms fully extend Keep back pressed firmly against the pad. Press handles straight up, not forward. Focus on feeling deltoids work, not just pushing.",
+        "return": "Lower to starting position Maintain neutral spine. Stopping short of full lockout."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6245,19 +5187,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "From push-up position, raise hips into inverted V",
-        "Lower head toward floor between hands",
-        "Press back up"
-      ],
-      "tips": [
-        "Keep legs straight to maximize shoulder angle",
-        "Hands slightly wider than shoulder-width"
-      ],
-      "avoid": [
-        "Letting hips drop during press",
-        "Flaring elbows straight out"
-      ],
+      "instructions": {
+        "starting_position": "From push-up position, raise hips into inverted V",
+        "movement": "Lower head toward floor between hands Keep legs straight to maximize shoulder angle. Hands slightly wider than shoulder-width.",
+        "return": "Press back up Letting hips drop during press. Keep elbows tucked."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6291,19 +5225,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band; hold handles at sides",
-        "Raise arms out until parallel to floor",
-        "Lower with control"
-      ],
-      "tips": [
-        "Lead with elbows, not hands",
-        "Tilt pinkies higher than thumbs at top"
-      ],
-      "avoid": [
-        "Shrugging shoulders toward ears",
-        "Bending elbows more as arms rise"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band; hold handles at sides",
+        "movement": "Raise arms out until parallel to floor Lead with elbows, not hands. Tilt pinkies higher than thumbs at top.",
+        "return": "Lower with control Keep shoulders down and back."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6337,19 +5263,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band center; hold handles at shoulders",
-        "Press overhead until lockout",
-        "Lower to shoulder height"
-      ],
-      "tips": [
-        "Press straight up, not forward",
-        "Stack wrists over elbows at start"
-      ],
-      "avoid": [
-        "Leaning back to compensate for weak shoulders",
-        "Pressing the handles forward instead of overhead"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band center; hold handles at shoulders",
+        "movement": "Press overhead until lockout Press straight up, not forward. Stack wrists over elbows at start.",
+        "return": "Lower to shoulder height Maintain upright posture. Pressing the handles forward instead of overhead."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6380,20 +5298,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Lie on bench; hold bar with narrow grip, arms extended",
-        "Lower bar toward forehead by bending elbows",
-        "Extend arms to return to start"
-      ],
-      "tips": [
-        "Keep upper arms vertical throughout",
-        "Lower to forehead or just behind head for full stretch",
-        "An EZ bar reduces wrist strain"
-      ],
-      "avoid": [
-        "Flaring elbows out wide",
-        "Letting bar drift too far back, turning it into a pullover"
-      ],
+      "instructions": {
+        "starting_position": "Lie on bench; hold bar with narrow grip, arms extended",
+        "movement": "Lower bar toward forehead by bending elbows Keep upper arms vertical throughout. Lower to forehead or just behind head for full stretch. An EZ bar reduces wrist strain.",
+        "return": "Extend arms to return to start Keep elbows tucked. Letting bar drift too far back, turning it into a pullover."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6424,19 +5333,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Hold barbell overhead, arms extended",
-        "Lower bar behind head by bending elbows",
-        "Extend arms back overhead"
-      ],
-      "tips": [
-        "Keep elbows pointed forward",
-        "Upper arms stay close to head"
-      ],
-      "avoid": [
-        "Arching lower back excessively",
-        "Letting elbows flare wide"
-      ],
+      "instructions": {
+        "starting_position": "Hold barbell overhead, arms extended",
+        "movement": "Lower bar behind head by bending elbows Keep elbows pointed forward. Upper arms stay close to head.",
+        "return": "Extend arms back overhead Maintain neutral spine. Letting elbows flare wide."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6471,20 +5372,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "beginner",
-      "instructions": [
-        "Place hands on bench edge behind you, fingers forward",
-        "Walk feet out and lower by bending elbows to 90 degrees",
-        "Push back up to full extension"
-      ],
-      "tips": [
-        "Keep back close to bench throughout",
-        "Extend legs straight for more difficulty; bend knees for less",
-        "Lock elbows fully at the top"
-      ],
-      "avoid": [
-        "Descending past 90 degrees, stressing shoulders",
-        "Letting body drift too far from the bench"
-      ],
+      "instructions": {
+        "starting_position": "Place hands on bench edge behind you, fingers forward",
+        "movement": "Walk feet out and lower by bending elbows to 90 degrees Keep back close to bench throughout. Extend legs straight for more difficulty; bend knees for less. Lock elbows fully at the top.",
+        "return": "Push back up to full extension Descending past 90 degrees, stressing shoulders. Letting body drift too far from the bench."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6515,20 +5407,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Set pulley low; face away and hold rope overhead",
-        "Start with elbows bent, hands behind head",
-        "Extend arms overhead, then return with control"
-      ],
-      "tips": [
-        "Keep upper arms vertical and stationary",
-        "Lean slightly forward for balance and stretch",
-        "Cable tension emphasizes the stretched position"
-      ],
-      "avoid": [
-        "Arching back excessively",
-        "Letting elbows flare wide"
-      ],
+      "instructions": {
+        "starting_position": "Set pulley low; face away and hold rope overhead",
+        "movement": "Start with elbows bent, hands behind head Keep upper arms vertical and stationary. Lean slightly forward for balance and stretch. Cable tension emphasizes the stretched position.",
+        "return": "Extend arms overhead, then return with control Maintain neutral spine. Letting elbows flare wide."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6559,20 +5442,11 @@
       },
       "equipment": "machine",
       "difficulty": "beginner",
-      "instructions": [
-        "Set pulley high; face machine and grip bar or rope",
-        "Pin elbows at sides and push down until arms fully extend",
-        "Return to 90 degrees with control"
-      ],
-      "tips": [
-        "Keep elbows stationary throughout",
-        "Squeeze triceps at lockout",
-        "Try different attachments: straight bar, V-bar, rope"
-      ],
-      "avoid": [
-        "Letting elbows drift forward or back",
-        "Leaning into the push to use body weight"
-      ],
+      "instructions": {
+        "starting_position": "Set pulley high; face machine and grip bar or rope",
+        "movement": "Pin elbows at sides and push down until arms fully extend Keep elbows stationary throughout. Squeeze triceps at lockout. Try different attachments: straight bar, V-bar, rope.",
+        "return": "Return to 90 degrees with control Letting elbows drift forward or back. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6607,20 +5481,11 @@
       },
       "equipment": "barbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Lie on bench; grip bar shoulder-width or slightly narrower",
-        "Lower bar to lower chest, keeping elbows close to sides",
-        "Press back up to full lockout"
-      ],
-      "tips": [
-        "Keep elbows tucked at about 30-45 degrees",
-        "Touch lower on chest than regular bench press",
-        "Don't go too narrow; shoulder-width is effective"
-      ],
-      "avoid": [
-        "Flaring elbows wide, which shifts work to chest",
-        "Grip so narrow it strains wrists"
-      ],
+      "instructions": {
+        "starting_position": "Lie on bench; grip bar shoulder-width or slightly narrower",
+        "movement": "Lower bar to lower chest, keeping elbows close to sides Keep elbows tucked at about 30-45 degrees. Touch lower on chest than regular bench press. Don't go too narrow; shoulder-width is effective.",
+        "return": "Press back up to full lockout Keep elbows tucked. Grip so narrow it strains wrists."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6655,20 +5520,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Start in push-up position with hands close together or forming a diamond",
-        "Lower chest toward hands, keeping elbows close to sides",
-        "Push back up to full extension"
-      ],
-      "tips": [
-        "Keep elbows tracking back along your ribs",
-        "Maintain rigid body from head to heels",
-        "The closer your hands, the more tricep emphasis"
-      ],
-      "avoid": [
-        "Flaring elbows out wide",
-        "Letting hips sag or pike up"
-      ],
+      "instructions": {
+        "starting_position": "Start in push-up position with hands close together or forming a diamond",
+        "movement": "Lower chest toward hands, keeping elbows close to sides Keep elbows tracking back along your ribs. Maintain rigid body from head to heels. The closer your hands, the more tricep emphasis.",
+        "return": "Push back up to full extension Keep elbows tucked. Letting hips sag or pike up."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6699,20 +5555,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hold one dumbbell overhead with both hands",
-        "Lower weight behind head by bending elbows",
-        "Extend arms back to start"
-      ],
-      "tips": [
-        "Keep elbows pointing up and close to head",
-        "Upper arms stay stationary; only forearms move",
-        "Feel the stretch at the bottom before extending"
-      ],
-      "avoid": [
-        "Flaring elbows out to the sides",
-        "Arching lower back as weight gets heavy"
-      ],
+      "instructions": {
+        "starting_position": "Hold one dumbbell overhead with both hands",
+        "movement": "Lower weight behind head by bending elbows Keep elbows pointing up and close to head. Upper arms stay stationary; only forearms move.",
+        "return": "Extend arms back to start Keep elbows tucked. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6743,20 +5590,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "intermediate",
-      "instructions": [
-        "Lie on bench; hold dumbbells with arms extended over chest",
-        "Lower weights toward forehead by bending only at elbows",
-        "Extend back to start"
-      ],
-      "tips": [
-        "Keep upper arms vertical and stationary",
-        "Lower to forehead or just past for full stretch",
-        "Control the descent to protect elbow joints"
-      ],
-      "avoid": [
-        "Letting upper arms drift back during the movement",
-        "Flaring elbows wide"
-      ],
+      "instructions": {
+        "starting_position": "Lie on bench; hold dumbbells with arms extended over chest",
+        "movement": "Lower weights toward forehead by bending only at elbows Keep upper arms vertical and stationary. Lower to forehead or just past for full stretch. Control the descent to protect elbow joints.",
+        "return": "Extend back to start Letting upper arms drift back during the movement. Keep elbows tucked."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6787,20 +5625,11 @@
       },
       "equipment": "dumbbell",
       "difficulty": "beginner",
-      "instructions": [
-        "Hinge forward; hold dumbbell with elbow bent 90 degrees, upper arm parallel to floor",
-        "Extend arm back until straight",
-        "Return to 90 degrees"
-      ],
-      "tips": [
-        "Keep upper arm locked parallel to floor; only forearm moves",
-        "Squeeze tricep hard at full extension",
-        "Use lighter weight for strict form"
-      ],
-      "avoid": [
-        "Dropping the elbow as you extend",
-        "Swinging weight using body momentum"
-      ],
+      "instructions": {
+        "starting_position": "Hinge forward; hold dumbbell with elbow bent 90 degrees, upper arm parallel to floor",
+        "movement": "Extend arm back until straight Keep upper arm locked parallel to floor; only forearm moves. Squeeze tricep hard at full extension. Use lighter weight for strict form.",
+        "return": "Return to 90 degrees Dropping the elbow as you extend. Use strict form without momentum."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6831,20 +5660,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Stand on band; hold other end overhead with elbows bent",
-        "Extend arms straight up",
-        "Lower behind head with control"
-      ],
-      "tips": [
-        "Keep elbows pointing forward and close to head",
-        "Upper arms should stay stationary; only forearms move",
-        "Overhead position stretches the long head of triceps"
-      ],
-      "avoid": [
-        "Flaring elbows out wide",
-        "Arching lower back to compensate"
-      ],
+      "instructions": {
+        "starting_position": "Stand on band; hold other end overhead with elbows bent",
+        "movement": "Extend arms straight up Keep elbows pointing forward and close to head. Upper arms should stay stationary; only forearms move. Overhead position stretches the long head of triceps.",
+        "return": "Lower behind head with control Keep elbows tucked. Maintain neutral spine."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6875,20 +5695,11 @@
       },
       "equipment": "resistance_band",
       "difficulty": "beginner",
-      "instructions": [
-        "Anchor band above head; grip with both hands, elbows at 90 degrees",
-        "Extend arms down until elbows lock out",
-        "Return to 90 degrees with control"
-      ],
-      "tips": [
-        "Pin elbows at your sides; only forearms move",
-        "Squeeze triceps hard at full extension",
-        "Don't let band snap back; control the return"
-      ],
-      "avoid": [
-        "Letting elbows drift forward during extension",
-        "Leaning excessively to help push down"
-      ],
+      "instructions": {
+        "starting_position": "Anchor band above head; grip with both hands, elbows at 90 degrees",
+        "movement": "Extend arms down until elbows lock out Pin elbows at your sides; only forearms move. Squeeze triceps hard at full extension. Don't let band snap back; control the return.",
+        "return": "Return to 90 degrees with control Letting elbows drift forward during extension. Maintain upright posture."
+      },
       "references": [
         {
           "source": "exrx",
@@ -6923,20 +5734,11 @@
       },
       "equipment": "bodyweight",
       "difficulty": "intermediate",
-      "instructions": [
-        "Support yourself on parallel bars with arms locked out",
-        "Lower by bending elbows until upper arms are parallel to floor",
-        "Push back up to full arm extension"
-      ],
-      "tips": [
-        "Stay upright to emphasize triceps; lean forward for more chest",
-        "Keep elbows pointing back, not flared out",
-        "Lock out fully at the top of each rep"
-      ],
-      "avoid": [
-        "Descending too deep, stressing the shoulder capsule",
-        "Flaring elbows wide to the sides"
-      ],
+      "instructions": {
+        "starting_position": "Support yourself on parallel bars with arms locked out",
+        "movement": "Lower by bending elbows until upper arms are parallel to floor Stay upright to emphasize triceps; lean forward for more chest. Keep elbows pointing back, not flared out. Lock out fully at the top of each rep.",
+        "return": "Push back up to full arm extension Descending too deep, stressing the shoulder capsule. Keep elbows tucked."
+      },
       "references": [
         {
           "source": "exrx",

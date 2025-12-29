@@ -811,29 +811,25 @@ export function showExerciseInfo(exerciseNameOrId) {
   }
   html += '</div>';
 
-  if (exercise.instructions?.length) {
+  if (exercise.instructions) {
+    const { starting_position, movement, return: returnPhase } = exercise.instructions;
     html += `
       <div class="exercise-info-section instructions">
         <h4>Instructions</h4>
-        <ol>${renderListItems(exercise.instructions)}</ol>
+        <ol>
+          <li><strong>Setup:</strong> ${starting_position}</li>
+          <li><strong>Movement:</strong> ${movement}</li>
+          <li><strong>Return:</strong> ${returnPhase}</li>
+        </ol>
       </div>
     `;
   }
 
-  if (exercise.tips?.length) {
+  if (exercise.prerequisites?.notes) {
     html += `
-      <div class="exercise-info-section tips">
-        <h4>Tips</h4>
-        <ul>${renderListItems(exercise.tips)}</ul>
-      </div>
-    `;
-  }
-
-  if (exercise.avoid?.length) {
-    html += `
-      <div class="exercise-info-section mistakes">
-        <h4>Avoid</h4>
-        <ul>${renderListItems(exercise.avoid)}</ul>
+      <div class="exercise-info-section prerequisites">
+        <h4>Prerequisites</h4>
+        <p>${exercise.prerequisites.notes}</p>
       </div>
     `;
   }

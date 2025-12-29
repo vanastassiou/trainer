@@ -1,148 +1,305 @@
-// Sample exercise data for testing
+// Sample exercise data for testing (matches new nested schema)
 export const sampleExercises = [
   {
     id: 'barbell-row',
     name: 'Barbell row',
-    muscle_group: 'back',
-    movement_pattern: 'pull',
-    direction: 'horizontal',
+    muscles: {
+      target: 'back',
+      primary: ['latissimus dorsi', 'trapezius', 'rhomboideus'],
+      synergists: ['biceps brachii', 'deltoideus posterior'],
+      stabilizers: ['core', 'erector spinae']
+    },
+    movement: {
+      pattern: 'horizontal_pull',
+      joint_type: 'compound',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
     equipment: 'barbell',
-    difficulty: 'intermediate',
-    joint_type: 'compound',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'basic',
-    primary_muscles: ['latissimus dorsi', 'trapezius', 'rhomboideus'],
-    secondary_muscles: ['biceps brachii', 'deltoideus posterior']
+    difficulty: 'intermediate'
   },
   {
     id: 'bench-press',
     name: 'Bench press',
-    muscle_group: 'chest',
-    movement_pattern: 'push',
-    direction: 'horizontal',
+    muscles: {
+      target: 'chest',
+      primary: ['pectoralis major'],
+      synergists: ['deltoideus anterior', 'triceps brachii'],
+      stabilizers: ['core', 'rotator cuff']
+    },
+    movement: {
+      pattern: 'horizontal_push',
+      joint_type: 'compound',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
     equipment: 'barbell',
-    difficulty: 'intermediate',
-    joint_type: 'compound',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'basic',
-    primary_muscles: ['pectoralis major'],
-    secondary_muscles: ['deltoideus anterior', 'triceps brachii']
+    difficulty: 'intermediate'
   },
   {
     id: 'bicep-curl',
     name: 'Bicep curl',
-    muscle_group: 'biceps',
-    movement_pattern: 'pull',
+    muscles: {
+      target: 'biceps',
+      primary: ['biceps brachii'],
+      synergists: ['brachialis'],
+      stabilizers: ['forearm flexors']
+    },
+    movement: {
+      pattern: 'isolation',
+      joint_type: 'isolation',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
     equipment: 'dumbbell',
-    difficulty: 'beginner',
-    joint_type: 'isolation',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'auxiliary',
-    primary_muscles: ['biceps brachii'],
-    secondary_muscles: ['brachialis']
+    difficulty: 'beginner'
   },
   {
     id: 'barbell-squat',
     name: 'Barbell squat',
-    muscle_group: 'quadriceps',
-    movement_pattern: 'squat',
+    muscles: {
+      target: 'quadriceps',
+      primary: ['quadriceps femoris'],
+      synergists: ['gluteus maximus', 'biceps femoris'],
+      stabilizers: ['core', 'erector spinae']
+    },
+    movement: {
+      pattern: 'squat',
+      joint_type: 'compound',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'n/a'
+    },
     equipment: 'barbell',
-    difficulty: 'intermediate',
-    joint_type: 'compound',
-    kinetic_chain: 'closed',
-    laterality: 'bilateral',
-    role: 'basic',
-    primary_muscles: ['quadriceps'],
-    secondary_muscles: ['gluteus maximus', 'hamstrings']
+    difficulty: 'intermediate'
   },
   {
     id: 'pull-up',
     name: 'Pull-up',
-    muscle_group: 'back',
-    movement_pattern: 'pull',
-    direction: 'vertical',
+    muscles: {
+      target: 'back',
+      primary: ['latissimus dorsi'],
+      synergists: ['biceps brachii', 'rhomboideus'],
+      stabilizers: ['core', 'scapular stabilizers']
+    },
+    movement: {
+      pattern: 'vertical_pull',
+      joint_type: 'compound',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
     equipment: 'bodyweight',
-    difficulty: 'intermediate',
-    joint_type: 'compound',
-    kinetic_chain: 'closed',
-    laterality: 'bilateral',
-    role: 'basic',
-    primary_muscles: ['latissimus dorsi'],
-    secondary_muscles: ['biceps brachii', 'rhomboideus']
+    difficulty: 'intermediate'
   },
   {
     id: 'push-up',
     name: 'Push-up',
-    muscle_group: 'chest',
-    movement_pattern: 'push',
-    direction: 'horizontal',
+    muscles: {
+      target: 'chest',
+      primary: ['pectoralis major'],
+      synergists: ['deltoideus anterior', 'triceps brachii'],
+      stabilizers: ['core', 'scapular stabilizers']
+    },
+    movement: {
+      pattern: 'horizontal_push',
+      joint_type: 'compound',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
     equipment: 'bodyweight',
-    difficulty: 'beginner',
-    joint_type: 'compound',
-    kinetic_chain: 'closed',
-    laterality: 'bilateral',
-    role: 'basic',
-    primary_muscles: ['pectoralis major'],
-    secondary_muscles: ['deltoideus anterior', 'triceps brachii']
+    difficulty: 'beginner'
   },
   {
     id: 'tricep-pushdown',
     name: 'Tricep pushdown',
-    muscle_group: 'triceps',
-    movement_pattern: 'push',
+    muscles: {
+      target: 'triceps',
+      primary: ['triceps brachii'],
+      synergists: [],
+      stabilizers: ['core']
+    },
+    movement: {
+      pattern: 'isolation',
+      joint_type: 'isolation',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
     equipment: 'machine',
-    difficulty: 'beginner',
-    joint_type: 'isolation',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'auxiliary',
-    primary_muscles: ['triceps brachii'],
-    secondary_muscles: []
+    difficulty: 'beginner'
   },
   {
     id: 'romanian-deadlift',
     name: 'Romanian deadlift',
-    muscle_group: 'hamstrings',
-    movement_pattern: 'hinge',
+    muscles: {
+      target: 'hamstrings',
+      primary: ['biceps femoris', 'gluteus maximus'],
+      synergists: ['erector spinae'],
+      stabilizers: ['core', 'forearm flexors']
+    },
+    movement: {
+      pattern: 'hinge',
+      joint_type: 'compound',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'straight'
+    },
     equipment: 'barbell',
-    difficulty: 'intermediate',
-    joint_type: 'compound',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'basic',
-    primary_muscles: ['hamstrings', 'gluteus maximus'],
-    secondary_muscles: ['erector spinae']
+    difficulty: 'intermediate'
   },
   {
     id: 'lateral-raise',
     name: 'Lateral raise',
-    muscle_group: 'shoulders',
-    movement_pattern: 'push',
+    muscles: {
+      target: 'shoulders',
+      primary: ['deltoideus lateralis'],
+      synergists: ['trapezius'],
+      stabilizers: ['core', 'rotator cuff']
+    },
+    movement: {
+      pattern: 'isolation',
+      joint_type: 'isolation',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'straight'
+    },
     equipment: 'dumbbell',
-    difficulty: 'beginner',
-    joint_type: 'isolation',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'auxiliary',
-    primary_muscles: ['deltoideus lateral'],
-    secondary_muscles: ['trapezius']
+    difficulty: 'beginner'
   },
   {
     id: 'leg-curl',
     name: 'Leg curl',
-    muscle_group: 'hamstrings',
-    movement_pattern: 'pull',
+    muscles: {
+      target: 'hamstrings',
+      primary: ['biceps femoris'],
+      synergists: ['gastrocnemius'],
+      stabilizers: ['core']
+    },
+    movement: {
+      pattern: 'isolation',
+      joint_type: 'isolation',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'n/a'
+    },
     equipment: 'machine',
-    difficulty: 'beginner',
-    joint_type: 'isolation',
-    kinetic_chain: 'open',
-    laterality: 'bilateral',
-    role: 'auxiliary',
-    primary_muscles: ['hamstrings'],
-    secondary_muscles: ['gastrocnemius']
+    difficulty: 'beginner'
+  },
+  // Additional exercises to ensure coverage for all muscle groups
+  {
+    id: 'glute-bridge',
+    name: 'Glute bridge',
+    muscles: {
+      target: 'glutes',
+      primary: ['gluteus maximus'],
+      synergists: ['biceps femoris'],
+      stabilizers: ['core']
+    },
+    movement: {
+      pattern: 'hinge',
+      joint_type: 'compound',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'n/a'
+    },
+    equipment: 'bodyweight',
+    difficulty: 'beginner'
+  },
+  {
+    id: 'calf-raise',
+    name: 'Calf raise',
+    muscles: {
+      target: 'calves',
+      primary: ['gastrocnemius', 'soleus'],
+      synergists: [],
+      stabilizers: ['core']
+    },
+    movement: {
+      pattern: 'isolation',
+      joint_type: 'isolation',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'n/a'
+    },
+    equipment: 'bodyweight',
+    difficulty: 'beginner'
+  },
+  {
+    id: 'plank',
+    name: 'Plank',
+    muscles: {
+      target: 'core',
+      primary: ['rectus abdominis', 'transversus abdominis'],
+      synergists: ['obliquus externus abdominis'],
+      stabilizers: ['erector spinae', 'gluteus maximus']
+    },
+    movement: {
+      pattern: 'isolation',
+      joint_type: 'isolation',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'isometric',
+      arm_position: 'bent'
+    },
+    equipment: 'bodyweight',
+    difficulty: 'beginner'
+  },
+  {
+    id: 'overhead-press',
+    name: 'Overhead press',
+    muscles: {
+      target: 'shoulders',
+      primary: ['deltoideus anterior'],
+      synergists: ['triceps brachii', 'trapezius'],
+      stabilizers: ['core', 'scapular stabilizers']
+    },
+    movement: {
+      pattern: 'vertical_push',
+      joint_type: 'compound',
+      kinetic_chain: 'open',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'bent'
+    },
+    equipment: 'barbell',
+    difficulty: 'intermediate'
+  },
+  {
+    id: 'bodyweight-squat',
+    name: 'Bodyweight squat',
+    muscles: {
+      target: 'quadriceps',
+      primary: ['quadriceps femoris'],
+      synergists: ['gluteus maximus'],
+      stabilizers: ['core']
+    },
+    movement: {
+      pattern: 'squat',
+      joint_type: 'compound',
+      kinetic_chain: 'closed',
+      laterality: 'bilateral',
+      contraction: 'dynamic',
+      arm_position: 'n/a'
+    },
+    equipment: 'bodyweight',
+    difficulty: 'beginner'
   }
 ];
 

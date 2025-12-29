@@ -253,26 +253,22 @@
             },
             "additionalProperties": false
           },
-          "tips": {
-            "type": "array",
-            "description": "Form and technique tips",
-            "items": {
-              "type": "string"
-            }
-          },
-          "avoid": {
-            "type": "array",
-            "description": "Common mistakes and form errors to avoid",
-            "items": {
-              "type": "string"
-            }
-          },
           "prerequisites": {
-            "type": "array",
-            "description": "Exercise IDs to master before attempting this exercise",
-            "items": {
-              "type": "string",
-              "pattern": "^[a-z0-9-]+$"
+            "type": "object",
+            "description": "Requirements and progression path for non-beginner exercises",
+            "properties": {
+              "exercises": {
+                "type": "array",
+                "description": "Exercise IDs to master before attempting",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]+$"
+                }
+              },
+              "notes": {
+                "type": "string",
+                "description": "Guidance on progression path and readiness indicators"
+              }
             }
           },
           "image_url": {
