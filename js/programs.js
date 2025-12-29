@@ -982,7 +982,11 @@ export async function renderProgramsList(refreshProgramUI) {
               </div>
             `;
           }).filter(Boolean).join('');
-          return `<div class="program-day-preview"><h3 class="day-heading">Day ${i + 1}</h3><div class="exercises">${exerciseItems}</div></div>`;
+          const exerciseCount = (day.exercises || []).length;
+          return `<div class="program-day-preview">
+            <h3 class="day-heading"><span class="expand-icon">▶</span>Day ${i + 1}<span class="exercise-count">${exerciseCount}</span></h3>
+            <div class="day-exercises">${exerciseItems}</div>
+          </div>`;
         }).join('')
       : '';
 
@@ -1026,18 +1030,32 @@ export async function renderProgramsList(refreshProgramUI) {
         }
       }
 
+      // Day heading click - toggle day expanded
+      if (e.target.closest('.day-heading')) {
+        const dayPreview = e.target.closest('.program-day-preview');
+        if (dayPreview) {
+          e.stopPropagation();
+          dayPreview.classList.toggle('expanded');
+          return;
+        }
+      }
+
       const card = e.target.closest('.program-card');
       if (!card) return;
 
       const id = card.dataset.id;
 
-      // Header click - toggle expand
-      if (e.target.closest('.program-header')) {
-        card.classList.toggle('expanded');
+      // Edit button (check before header)
+      if (e.target.closest('.edit-btn')) {
+        e.stopPropagation();
+        const program = await getProgram(id);
+        if (program) {
+          openEditProgramModal(program);
+        }
         return;
       }
 
-      // Activate button
+      // Activate button (check before header)
       if (e.target.closest('.activate-btn')) {
         e.stopPropagation();
 
@@ -1060,13 +1078,10 @@ export async function renderProgramsList(refreshProgramUI) {
         return;
       }
 
-      // Edit button
-      if (e.target.closest('.edit-btn')) {
-        e.stopPropagation();
-        const program = await getProgram(id);
-        if (program) {
-          openEditProgramModal(program);
-        }
+      // Header click - toggle expand
+      if (e.target.closest('.program-header')) {
+        card.classList.toggle('expanded');
+        return;
       }
     });
   }
