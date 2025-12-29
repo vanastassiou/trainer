@@ -1071,13 +1071,6 @@ input::placeholder {
 
 .program-card .program-name {
   margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-.program-card.active .program-name {
-  color: var(--color-secondary);
 }
 
 .program-card .program-days {
@@ -1328,11 +1321,6 @@ input::placeholder {
 
 .day-heading {
   margin: 0 0 var(--spacing-md) 0;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .program-day-preview .exercises {
