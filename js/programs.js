@@ -6,7 +6,6 @@
 import { state } from './state.js';
 import { swapVisibility, formatLabel } from './utils.js';
 import { createModalController, showToast } from './ui.js';
-import { createTabController } from './ui.js';
 import { validateProgram, validateProgramExercises, hasUnsavedWorkoutData, collectProgramDays } from './validation.js';
 import {
   createProgram,
@@ -290,12 +289,12 @@ function getGeneratorFormValues() {
 export function initProgramsPage(callbacks) {
   const { refreshProgramUI } = callbacks;
 
-  // Initialize sub-tabs using createTabController
-  createTabController(
-    '#programs > .sub-tabs > .sub-tab',
-    '#programs > .sub-page',
-    { tabAttr: 'data-subtab' }
-  );
+  // Toggle create-program section visibility
+  const createBtn = document.getElementById('create-program-btn');
+  const createSection = document.getElementById('create-program');
+  createBtn.addEventListener('click', () => {
+    createSection.classList.toggle('active');
+  });
 
   initEditProgramModal(refreshProgramUI);
 
@@ -324,20 +323,10 @@ export function initProgramsPage(callbacks) {
 }
 
 export function switchToProgramsSubTab(tabId) {
-  const programsPage = document.getElementById('programs');
-  if (!programsPage) return;
-
-  const tabs = programsPage.querySelectorAll(':scope > .sub-tabs > .sub-tab');
-  const pages = programsPage.querySelectorAll(':scope > .sub-page');
-
-  tabs.forEach(t => t.classList.remove('active'));
-  pages.forEach(p => p.classList.remove('active'));
-
-  const tab = programsPage.querySelector(`.sub-tab[data-subtab="${tabId}"]`);
-  const page = document.getElementById(tabId);
-  if (tab && page) {
-    tab.classList.add('active');
-    page.classList.add('active');
+  // Hide create-program section when switching to list view
+  if (tabId === 'list-programs') {
+    const createSection = document.getElementById('create-program');
+    if (createSection) createSection.classList.remove('active');
   }
 }
 
@@ -960,7 +949,6 @@ export async function renderProgramsList(refreshProgramUI) {
   }
 
   container.innerHTML = programs.map(program => {
-    const dayCount = getProgramDayCount(program);
     const daysPreview = program.days
       ? program.days.map((day, i) => {
           const exerciseItems = (day.exercises || []).map(exId => {
@@ -999,6 +987,10 @@ export async function renderProgramsList(refreshProgramUI) {
       : '';
 
     const isActive = activeProgram?.id === program.id;
+    const activeStatus = isActive
+      ? '<span class="active-badge">Active</span>'
+      : '<button class="btn outline-accent sm activate-btn">Set active</button>';
+
     return `
       <div class="program-card card ${isActive ? 'card--active expanded' : ''}" data-id="${program.id}">
         <div class="program-header">
@@ -1006,16 +998,13 @@ export async function renderProgramsList(refreshProgramUI) {
             <span class="expand-icon">▶</span>
             <h2 class="program-name">${program.name}</h2>
           </div>
-          <span class="program-days">${dayCount} day${dayCount !== 1 ? 's' : ''}</span>
+          <div class="program-header-right">
+            ${activeStatus}
+            <button class="edit-btn" aria-label="Edit program">✏️</button>
+          </div>
         </div>
         <div class="program-details">
           ${daysPreview ? `<div class="program-days-preview">${daysPreview}</div>` : ''}
-          <div class="program-actions">
-            <button class="btn accent activate-btn" ${isActive ? 'disabled' : ''}>
-              ${isActive ? 'Active' : 'Set active'}
-            </button>
-            <button class="btn edit-btn">Edit</button>
-          </div>
         </div>
       </div>
     `;

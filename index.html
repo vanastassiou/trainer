@@ -200,7 +200,10 @@
         <div class="chart-summary"></div>
       </div>
 
-      <h1 id="workout-heading">Today's workout</h1>
+      <div class="section-header">
+        <h1 id="workout-heading">Today's workout</h1>
+        <button type="button" id="add-exercise" class="btn outline-accent">+ Add exercise</button>
+      </div>
 
       <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the Profile tab.</p>
       <div class="program-selector">
@@ -223,8 +226,6 @@
 
       <form id="workout-form">
         <div id="exercises-container"></div>
-
-        <button type="button" id="add-exercise" class="btn outline-accent full">+ Add exercise</button>
 
         <button type="submit" class="btn accent full">Save workout</button>
       </form>
@@ -339,7 +340,10 @@
       </div>
 
       <div class="profile-section">
-        <h1>Goals</h1>
+        <div class="section-header">
+          <h1>Goals</h1>
+          <button type="button" id="add-goal-btn" class="btn outline-accent">+ Add goal</button>
+        </div>
 
         <h2>In progress</h2>
         <div id="goals-list" class="goals-list">
@@ -348,22 +352,17 @@
           </p>
         </div>
 
-        <button type="button" id="add-goal-btn" class="btn outline-accent full">+ Add goal</button>
-
         <h2>Completed</h2>
         <div id="completed-goals-list" class="goals-list"></div>
       </div>
 
       <div id="programs" class="profile-section">
-        <h1>Programs</h1>
-        <nav class="sub-tabs">
-          <button class="sub-tab active" data-subtab="list-programs">List</button>
-          <button class="sub-tab" data-subtab="create-program">Create new</button>
-        </nav>
-
-        <div id="list-programs" class="sub-page active">
-          <div id="programs-list"></div>
+        <div class="section-header">
+          <h1>Programs</h1>
+          <button type="button" id="create-program-btn" class="btn outline-accent">+ Create new</button>
         </div>
+
+        <div id="programs-list"></div>
 
         <div id="create-program" class="sub-page">
           <h4>Generate program</h4>

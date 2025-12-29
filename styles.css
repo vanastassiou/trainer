@@ -1072,6 +1072,12 @@ input::placeholder {
   gap: var(--spacing-lg);
 }
 
+.program-card .program-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
 .program-card .expand-icon {
   color: var(--color-text-muted);
   font-size: 12px;
@@ -1086,12 +1092,26 @@ input::placeholder {
   margin: 0;
 }
 
-.program-card .program-days {
+.program-card .active-badge {
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--color-secondary);
   background: var(--color-bg);
   padding: 4px 8px;
   border-radius: var(--radius-sm);
+}
+
+.program-card .edit-btn {
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.program-card .edit-btn:hover {
+  opacity: 1;
 }
 
 .program-card .program-details {
@@ -1101,16 +1121,6 @@ input::placeholder {
 
 .program-card.expanded .program-details {
   display: block;
-}
-
-.program-actions {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-top: 12px;
-}
-
-.program-actions button {
-  flex: 1;
 }
 
 #create-program .form-group {
@@ -2397,6 +2407,20 @@ input::placeholder {
   padding-bottom: 0;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-header h1 {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .profile-section h4 {
   font-size: 13px;
   font-weight: 500;
@@ -2419,7 +2443,7 @@ input::placeholder {
 
 .profile-details dt {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: var(--spacing-xs);
   color: var(--color-text-muted);
   font-size: 14px;
@@ -2440,7 +2464,6 @@ input::placeholder {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-sm) var(--spacing-md);
-  align-items: end;
 }
 
 @media (max-width: 480px) {
@@ -2458,6 +2481,7 @@ input::placeholder {
 .profile-form .form-group {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--spacing-xs);
 }
 
