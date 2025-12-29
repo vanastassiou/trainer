@@ -297,20 +297,23 @@ export function initWorkoutForm(callbacks) {
   });
 
   changeProgramBtn.addEventListener('click', () => {
-    if (programSelect.classList.contains('hidden')) {
-      swapVisibility(programSelect, programName.parentElement);
-    } else {
-      confirmProgramChange();
-    }
+    // Show select dropdown
+    swapVisibility(programSelect, programName.parentElement);
+    programSelect.focus();
   });
 
-  programSelect.addEventListener('change', () => {
+  programSelect.addEventListener('change', async () => {
     if (state.isInitializing) return;
-    confirmProgramChange();
-  });
 
-  async function confirmProgramChange() {
     const previousProgramId = localStorage.getItem('activeProgramId');
+    const selectedOption = programSelect.options[programSelect.selectedIndex];
+    const newName = selectedOption.text;
+
+    if (!confirm(`Switch to ${newName}?`)) {
+      programSelect.value = previousProgramId || '';
+      swapVisibility(programName.parentElement, programSelect);
+      return;
+    }
 
     if (hasUnsavedWorkoutData(container)) {
       const result = await showWorkoutSwitchDialogPromise();
@@ -325,8 +328,7 @@ export function initWorkoutForm(callbacks) {
     }
 
     swapVisibility(programName.parentElement, programSelect);
-    const selectedOption = programSelect.options[programSelect.selectedIndex];
-    programName.textContent = selectedOption.text;
+    programName.textContent = newName;
 
     await setActiveProgram(programSelect.value || null);
     await onProgramChange();
@@ -335,28 +337,39 @@ export function initWorkoutForm(callbacks) {
     if (programSelect.value) {
       await loadTemplate();
     }
-  }
+  });
+
+  programSelect.addEventListener('blur', () => {
+    // Hide select if user clicks away without changing
+    setTimeout(() => {
+      if (!programSelect.matches(':focus')) {
+        swapVisibility(programName.parentElement, programSelect);
+      }
+    }, 150);
+  });
 
   changeDayBtn.addEventListener('click', () => {
-    if (daySelect.classList.contains('hidden')) {
-      swapVisibility(daySelect, suggestedDay.parentElement);
-    } else {
-      confirmDayChange();
-    }
+    // Show select dropdown
+    swapVisibility(daySelect, suggestedDay.parentElement);
+    daySelect.focus();
   });
 
-  daySelect.addEventListener('change', () => {
+  daySelect.addEventListener('change', async () => {
     if (state.isInitializing) return;
-    confirmDayChange();
-  });
 
-  async function confirmDayChange() {
+    const previousDay = suggestedDay.dataset.day;
     const newDay = daySelect.value;
+
+    if (!confirm(`Switch to Day ${newDay}?`)) {
+      daySelect.value = previousDay;
+      swapVisibility(suggestedDay.parentElement, daySelect);
+      return;
+    }
 
     if (hasUnsavedWorkoutData(container)) {
       const result = await showWorkoutSwitchDialogPromise();
       if (result === 'cancel') {
-        daySelect.value = suggestedDay.dataset.day;
+        daySelect.value = previousDay;
         swapVisibility(suggestedDay.parentElement, daySelect);
         return;
       }
@@ -366,14 +379,23 @@ export function initWorkoutForm(callbacks) {
     }
 
     swapVisibility(suggestedDay.parentElement, daySelect);
-    suggestedDay.textContent = `Day ${newDay}`;
+    suggestedDay.textContent = newDay;
     suggestedDay.dataset.day = newDay;
 
     container.innerHTML = '';
     if (programSelect.value) {
       await loadTemplate();
     }
-  }
+  });
+
+  daySelect.addEventListener('blur', () => {
+    // Hide select if user clicks away without changing
+    setTimeout(() => {
+      if (!daySelect.matches(':focus')) {
+        swapVisibility(suggestedDay.parentElement, daySelect);
+      }
+    }, 150);
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

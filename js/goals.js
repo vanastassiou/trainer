@@ -492,7 +492,6 @@ function formatDeadline(dateStr) {
 
 export async function renderGoalsList() {
   const container = document.getElementById('goals-list');
-  const completedSection = document.getElementById('completed-goals-section');
   const completedContainer = document.getElementById('completed-goals-list');
 
   // Single fetch for both active and completed goals

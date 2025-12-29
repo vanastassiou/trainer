@@ -6,6 +6,7 @@ This document defines CSS conventions for the Health Tracker PWA.
 
 - [Cascade layers](#cascade-layers)
 - [Design tokens](#design-tokens)
+- [Typography](#typography)
 - [Component patterns](#component-patterns)
 - [Accessibility requirements](#accessibility-requirements)
 - [Naming conventions](#naming-conventions)
@@ -113,6 +114,52 @@ Colors are defined with `@property` for animation support:
 
 This enables smooth color transitions and provides type safety. Browsers without
 `@property` support fall back to standard custom property behavior.
+
+---
+
+## Typography
+
+### Header hierarchy
+
+Semantic HTML headers (h1-h3) are styled in `@layer base` with a clear visual
+hierarchy:
+
+| Level | Size | Weight | Color     | Spacing           | Extras        |
+| ----- | ---- | ------ | --------- | ----------------- | ------------- |
+| h1    | 20px | 700    | amber     | 0 0 12px 0        | bottom border |
+| h2    | 16px | 600    | purple    | 16px 0 8px 0      | -             |
+| h3    | 14px | 500    | text      | 0 0 6px 0         | -             |
+
+Notes:
+- h2 has `margin-top: 16px` for spacing between sections (reset to 0 for
+  `:first-child`)
+- h1 border is removed in `.profile-section` where section borders exist
+
+Design decisions:
+
+- **Semantic HTML over styled divs**: Use `<h1>`, `<h2>`, `<h3>` elements for
+  accessibility and document structure, not `<div>` or `<span>` with heading
+  classes
+- **Color differentiation**: Each level uses a distinct color (amber → purple →
+  text) to reinforce hierarchy without relying solely on size
+- **h1 border**: Bottom border on h1 provides visual separation for major
+  sections
+- **Component overrides**: Modal headers retain amber color for prominence in
+  dialog contexts
+
+### Contextual overrides
+
+Some components override base header styles for specific contexts:
+
+| Selector             | Override                    | Reason                      |
+| -------------------- | --------------------------- | --------------------------- |
+| `.profile-section h1`| no border                   | Section borders exist       |
+| `.modal-header h3`   | 16px, amber                 | Modal titles need emphasis  |
+| `.profile-section h4`| 13px, muted, uppercase      | Subsection labels           |
+| `.field-group-label` | spacing only                | Section dividers in forms   |
+
+Prefer semantic class names (`.field-group-label`) over presentational names
+(`.label-muted`) for structural elements.
 
 ---
 

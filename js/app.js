@@ -357,7 +357,7 @@ async function loadDataForDate(date) {
       if (journal.workout.dayNumber) {
         const suggestedDay = document.getElementById('suggested-day');
         const daySelect = document.getElementById('current-day');
-        suggestedDay.textContent = `Day ${journal.workout.dayNumber}`;
+        suggestedDay.textContent = journal.workout.dayNumber;
         suggestedDay.dataset.day = journal.workout.dayNumber;
         daySelect.value = journal.workout.dayNumber;
       }
@@ -408,6 +408,12 @@ function updateDateHeaders(date) {
   document.querySelectorAll('.date-nav.next').forEach(btn => {
     btn.disabled = date >= today;
   });
+
+  // Update workout heading
+  const workoutHeading = document.getElementById('workout-heading');
+  if (workoutHeading) {
+    workoutHeading.textContent = date === today ? "Today's workout" : `Workout for ${formatted}`;
+  }
 }
 
 // =============================================================================

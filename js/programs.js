@@ -866,6 +866,7 @@ function regenerateWithLocks(settings, lockedDays) {
 export async function populateProgramSelector() {
   const select = document.getElementById('current-program');
   const programName = document.getElementById('current-program-name');
+  const changeProgramBtn = document.getElementById('change-program-btn');
   const workoutForm = document.getElementById('workout-form');
   const programSelector = document.querySelector('.program-selector');
   const noPrograms = document.getElementById('no-programs-message');
@@ -897,6 +898,9 @@ export async function populateProgramSelector() {
 
   select.value = activeProgram.id;
   programName.textContent = activeProgram.name;
+
+  // Show swap button only if multiple programs
+  changeProgramBtn.classList.toggle('hidden', programs.length <= 1);
 }
 
 export async function updateDaySelector() {
@@ -904,6 +908,7 @@ export async function updateDaySelector() {
   const daySelectorGroup = document.getElementById('day-selector-group');
   const suggestedDay = document.getElementById('suggested-day');
   const daySelect = document.getElementById('current-day');
+  const changeDayBtn = document.getElementById('change-day-btn');
 
   const programId = programSelect.value;
 
@@ -918,7 +923,7 @@ export async function updateDaySelector() {
   if (!program) return;
 
   const nextDay = await getNextDayNumber(programId);
-  suggestedDay.textContent = `Day ${nextDay}`;
+  suggestedDay.textContent = nextDay;
   suggestedDay.dataset.day = nextDay;
 
   const dayCount = getProgramDayCount(program);
@@ -933,7 +938,9 @@ export async function updateDaySelector() {
 
   daySelect.classList.add('hidden');
   suggestedDay.parentElement.classList.remove('hidden');
-  document.getElementById('change-day-btn').textContent = 'Change';
+
+  // Show swap button only if multiple days
+  changeDayBtn.classList.toggle('hidden', dayCount <= 1);
 }
 
 // =============================================================================
@@ -987,7 +994,7 @@ export async function renderProgramsList(refreshProgramUI) {
               </div>
             `;
           }).filter(Boolean).join('');
-          return `<div class="program-day-preview"><h5 class="day-heading">Day ${i + 1}</h5><div class="exercises">${exerciseItems}</div></div>`;
+          return `<div class="program-day-preview"><h3 class="day-heading">Day ${i + 1}</h3><div class="exercises">${exerciseItems}</div></div>`;
         }).join('')
       : '';
 
@@ -997,7 +1004,7 @@ export async function renderProgramsList(refreshProgramUI) {
         <div class="program-header">
           <div class="program-header-left">
             <span class="expand-icon">▶</span>
-            <h4 class="program-name">${program.name}</h4>
+            <h2 class="program-name">${program.name}</h2>
           </div>
           <span class="program-days">${dayCount} day${dayCount !== 1 ? 's' : ''}</span>
         </div>

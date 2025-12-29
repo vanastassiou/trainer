@@ -126,7 +126,7 @@
           <div id="daily-fields-container"></div>
 
           <div class="notes-row">
-            <label for="notes">Notes</label>
+            <h2><label for="notes">Notes</label></h2>
             <textarea id="notes" name="notes" rows="3" placeholder="How are you feeling today?"></textarea>
           </div>
 
@@ -195,22 +195,22 @@
         <div class="chart-summary"></div>
       </div>
 
+      <h1 id="workout-heading">Today's workout</h1>
+
       <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the Profile tab.</p>
       <div class="program-selector">
         <div class="form-group" id="program-selector-group">
-          <label>Program</label>
           <div class="program-display">
-            <span id="current-program-name">-</span>
-            <button type="button" id="change-program-btn" class="btn ghost">Change</button>
+            <h2>Program: <span id="current-program-name">-</span></h2>
+            <button type="button" id="change-program-btn" class="swap-btn hidden" aria-label="Change program">🔄</button>
           </div>
           <select id="current-program" class="hidden">
           </select>
         </div>
         <div class="form-group" id="day-selector-group">
-          <label>Day</label>
           <div class="day-selector">
-            <span id="suggested-day" data-day="">-</span>
-            <button type="button" id="change-day-btn" class="btn ghost">Change</button>
+            <h3>Day: <span id="suggested-day" data-day="">-</span></h3>
+            <button type="button" id="change-day-btn" class="swap-btn hidden" aria-label="Change day">🔄</button>
           </div>
           <select id="current-day" class="hidden"></select>
         </div>
@@ -265,7 +265,7 @@
 
     <section id="profile" class="page">
       <div class="profile-section">
-        <h3>Profile</h3>
+        <h1>Profile</h1>
 
         <div id="profile-display" class="profile-display hidden">
           <dl class="profile-details">
@@ -334,7 +334,9 @@
       </div>
 
       <div class="profile-section">
-        <h3>Goals</h3>
+        <h1>Goals</h1>
+
+        <h2>In progress</h2>
         <div id="goals-list" class="goals-list">
           <p id="no-goals-message" class="empty-message">
             No goals set. Add a goal to start tracking your progress.
@@ -343,14 +345,12 @@
 
         <button type="button" id="add-goal-btn" class="btn outline-accent full">+ Add goal</button>
 
-        <details id="completed-goals-section" class="completed-goals">
-          <summary>Completed</summary>
-          <div id="completed-goals-list"></div>
-        </details>
+        <h2>Completed</h2>
+        <div id="completed-goals-list" class="goals-list"></div>
       </div>
 
       <div id="programs" class="profile-section">
-        <h3>Programs</h3>
+        <h1>Programs</h1>
         <nav class="sub-tabs">
           <button class="sub-tab active" data-subtab="list-programs">List</button>
           <button class="sub-tab" data-subtab="create-program">Create new</button>
@@ -440,7 +440,7 @@
       </div>
 
       <div class="profile-section">
-        <h3>Data</h3>
+        <h1>Data</h1>
         <p class="section-desc">Back up or restore your health data.</p>
         <div class="data-actions">
           <button type="button" id="export-btn" class="btn">Export data</button>
@@ -451,11 +451,11 @@
     </section>
 
     <section id="about" class="page">
-      <h2>About</h2>
+      <h1>About</h1>
       <p class="about-intro">Health Tracker is a privacy-focused fitness app that runs entirely in your browser.</p>
 
       <div class="about-section">
-        <h3>Features</h3>
+        <h2>Features</h2>
         <ul>
           <li>Track workouts, body measurements, and daily metrics</li>
           <li>Create and manage training programs</li>
@@ -465,12 +465,12 @@
       </div>
 
       <div class="about-section">
-        <h3>Privacy</h3>
+        <h2>Privacy</h2>
         <p>All your data stays on your device. Nothing is sent to any server. You can export your data anytime from the Profile tab.</p>
       </div>
 
       <div class="about-section">
-        <h3>Version</h3>
+        <h2>Version</h2>
         <p>v1.0.0</p>
       </div>
     </section>
