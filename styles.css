@@ -300,6 +300,14 @@ main {
   border-radius: var(--radius);
   padding: var(--spacing-xl);
 
+  & > p:first-child {
+    margin-top: 0;
+  }
+
+  & > p:last-child {
+    margin-bottom: 0;
+  }
+
   &--inset {
     background: var(--color-bg);
   }
@@ -312,6 +320,10 @@ main {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 1px var(--color-primary-light);
   }
+}
+
+.card + form {
+  margin-top: var(--spacing-xl);
 }
 
 /* Card-specific overrides (base styles from .card class) */
