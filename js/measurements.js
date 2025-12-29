@@ -226,7 +226,7 @@ export function generateDailyFormRows(containerId) {
     groups[group].push(field);
   }
 
-  let html = '<h1>Daily</h1>';
+  let html = '<h1 id="daily-heading">Today\'s journal</h1>';
   for (const [groupId, fields] of Object.entries(groups)) {
     const label = DAILY_GROUP_LABELS[groupId] || groupId;
     html += `<h2 class="field-group-label">${label}</h2>`;

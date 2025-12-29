@@ -414,6 +414,16 @@ function updateDateHeaders(date) {
   if (workoutHeading) {
     workoutHeading.textContent = date === today ? "Today's workout" : `Workout for ${formatted}`;
   }
+
+  // Update daily/journal heading
+  const dailyHeading = document.getElementById('daily-heading');
+  if (dailyHeading) {
+    const year = dateObj.getFullYear();
+    const month = dateObj.toLocaleDateString('en-US', { month: 'short' });
+    const day = dateObj.getDate();
+    const weekday = dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+    dailyHeading.textContent = date === today ? "Today's journal" : `Journal for ${year} ${month} ${day} (${weekday})`;
+  }
 }
 
 // =============================================================================
