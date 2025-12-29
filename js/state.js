@@ -99,3 +99,28 @@ export const state = {
   get unitPreference() { return _unitPreference; },
   set unitPreference(v) { _unitPreference = v; }
 };
+
+/**
+ * Reset all state to initial values (for testing).
+ */
+export function resetState() {
+  _exercisesDB = [];
+  _exercisesById = new Map();
+  _exerciseByName = new Map();
+  _articlesData = null;
+  _glossaryData = null;
+  _isInitializing = false;
+  _editingProgramId = null;
+  _exercisePickerCallback = null;
+  _selectedDate = null;
+  _calendarMonth = null;
+  _journalDatesCache = new Map();
+  _workoutSwitchDialog = null;
+  _editProgramDialog = null;
+  _exercisePickerDialog = null;
+  _exerciseInfoDialog = null;
+  _calendarDialog = null;
+  _researchDialog = null;
+  _glossaryDialog = null;
+  _unitPreference = 'metric';
+}

@@ -18,6 +18,13 @@ const DB_VERSION = 41;
 
 let dbInstance = null;
 
+/**
+ * Reset the database instance (for testing).
+ */
+export function resetDB() {
+  dbInstance = null;
+}
+
 function openDB() {
   if (dbInstance) return Promise.resolve(dbInstance);
 
