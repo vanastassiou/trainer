@@ -350,6 +350,7 @@ main {
 
 /* Expandable icon pattern */
 .expand-icon {
+  display: inline-block;
   transition: transform var(--transition-normal);
 }
 
@@ -1133,9 +1134,11 @@ input::placeholder {
 }
 
 .program-card > .program-header .expand-icon {
+  display: inline-block;
   color: var(--color-text-muted);
   font-size: var(--font-size-2xs);
   transition: transform var(--transition-normal);
+  transform: rotate(0deg);
 }
 
 .program-card.expanded > .program-header .expand-icon {
@@ -1379,13 +1382,15 @@ input::placeholder {
   cursor: pointer;
 }
 
-.program-day-preview > .day-heading .expand-icon {
+.program-day-preview > .day-heading > .expand-icon {
+  display: inline-block;
   color: var(--color-text-muted);
   font-size: var(--font-size-2xs);
   transition: transform var(--transition-normal);
+  transform: rotate(0deg);
 }
 
-.program-day-preview.expanded > .day-heading .expand-icon {
+.program-day-preview.expanded > .day-heading > .expand-icon {
   transform: rotate(90deg);
 }
 
@@ -3309,6 +3314,23 @@ input::placeholder {
     --color-secondary-light: rgba(251, 191, 36, 0.25);
     --color-tertiary-light: rgba(249, 168, 212, 0.25);
   }
+}
+
+/* Expand icon rotation - must be in overrides to beat utilities layer */
+.program-card > .program-header .expand-icon {
+  transform: rotate(0deg);
+}
+
+.program-card.expanded > .program-header .expand-icon {
+  transform: rotate(90deg);
+}
+
+.program-day-preview > .day-heading > .expand-icon {
+  transform: rotate(0deg);
+}
+
+.program-day-preview.expanded > .day-heading > .expand-icon {
+  transform: rotate(90deg);
 }
 
 } /* end @layer overrides */
