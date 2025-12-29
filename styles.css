@@ -178,9 +178,10 @@ header {
 .stats-header {
   width: 100%;
   text-align: center;
-  font-size: 11px;
-  color: var(--color-text-muted);
-  margin-bottom: calc(-1 * var(--spacing-xs));
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
 }
 
 .stat-item {
