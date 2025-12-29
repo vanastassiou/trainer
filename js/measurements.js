@@ -226,13 +226,13 @@ export function generateDailyFormRows(containerId) {
     groups[group].push(field);
   }
 
-  let html = '';
+  let html = '<h1 id="daily-heading">Today\'s journal</h1>';
   for (const [groupId, fields] of Object.entries(groups)) {
     const label = DAILY_GROUP_LABELS[groupId] || groupId;
-    html += `<div class="label-muted field-group-label">${label}</div>`;
+    html += `<h2 class="field-group-label">${label}</h2>`;
     html += `<div class="field-group">`;
     html += fields.map(field => {
-      const unitDisplay = field.unit ? ` (${field.unit})` : '';
+      const unitDisplay = field.unit ? `<span class="label-unit">(${field.unit})</span>` : '';
       return `
       <div class="data-row">
         <label for="${field.id}"><span data-term="${field.id}">${field.label}</span>${unitDisplay}</label>
@@ -256,7 +256,7 @@ export function generateMeasurementFormRows(containerId) {
 
   for (const field of MEASUREMENT_FIELD_CONFIG) {
     const unit = METRIC_UNITS[field.id] || '';
-    const unitDisplay = unit ? ` (${unit})` : '';
+    const unitDisplay = unit ? `<span class="label-unit">(${unit})</span>` : '';
 
     if (field.pair) {
       if (processedPairs.has(field.pair)) continue;
@@ -268,9 +268,9 @@ export function generateMeasurementFormRows(containerId) {
         <div class="measurement-pair">
           ${pairFields.map(f => {
             const pairUnit = METRIC_UNITS[f.id] || '';
-            const pairUnitDisplay = pairUnit ? ` (${pairUnit})` : '';
+            const pairUnitDisplay = pairUnit ? `<span class="label-unit">(${pairUnit})</span>` : '';
             return `
-            <div class="data-row row">
+            <div class="data-row">
               <label for="${f.id}">${f.label}${pairUnitDisplay}</label>
               <input ${createInputAttrs(f)}>
             </div>
@@ -280,7 +280,7 @@ export function generateMeasurementFormRows(containerId) {
       `;
     } else {
       html += `
-        <div class="data-row row">
+        <div class="data-row">
           <label for="${field.id}">${field.label}${unitDisplay}</label>
           <input ${createInputAttrs(field)}>
         </div>

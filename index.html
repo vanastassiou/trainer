@@ -52,7 +52,7 @@
       <button class="tab" data-tab="profile">Profile</button>
     </nav>
     <div id="profile-stats" class="stats-bar">
-      <div class="stats-header">30-day averages</div>
+      <h3 class="stats-header">30-day averages</h3>
       <div class="stat-item">
         <span class="stat-value" id="stat-avg-steps">--</span>
         <span class="stat-label">Steps</span>
@@ -126,7 +126,7 @@
           <div id="daily-fields-container"></div>
 
           <div class="notes-row">
-            <label for="notes">Notes</label>
+            <h2 class="field-group-label">Notes</h2>
             <textarea id="notes" name="notes" rows="3" placeholder="How are you feeling today?"></textarea>
           </div>
 
@@ -163,6 +163,11 @@
           <div class="chart-summary"></div>
         </div>
 
+        <h1>Measurements</h1>
+        <div class="card">
+          <p>Take measurements every 28 days, in the morning before eating. Use a flexible tape measure against bare skin, keeping it level and snug without compressing.</p>
+        </div>
+
         <form id="measurements-form" class="measurements-form">
           <div id="measurement-fields-container"></div>
           <button type="submit" class="btn accent">Save measurements</button>
@@ -195,22 +200,25 @@
         <div class="chart-summary"></div>
       </div>
 
+      <div class="section-header">
+        <h1 id="workout-heading">Today's workout</h1>
+        <button type="button" id="add-exercise" class="btn outline-accent">+ Add exercise</button>
+      </div>
+
       <p id="no-programs-message" class="empty-message hidden">No programs yet. Create one in the Profile tab.</p>
       <div class="program-selector">
         <div class="form-group" id="program-selector-group">
-          <label>Program</label>
           <div class="program-display">
-            <span id="current-program-name">-</span>
-            <button type="button" id="change-program-btn" class="btn ghost">Change</button>
+            <h2>Program: <span id="current-program-name">-</span></h2>
+            <button type="button" id="change-program-btn" class="swap-btn hidden" aria-label="Change program">🔄</button>
           </div>
           <select id="current-program" class="hidden">
           </select>
         </div>
         <div class="form-group" id="day-selector-group">
-          <label>Day</label>
           <div class="day-selector">
-            <span id="suggested-day" data-day="">-</span>
-            <button type="button" id="change-day-btn" class="btn ghost">Change</button>
+            <h3>Day: <span id="suggested-day" data-day="">-</span></h3>
+            <button type="button" id="change-day-btn" class="swap-btn hidden" aria-label="Change day">🔄</button>
           </div>
           <select id="current-day" class="hidden"></select>
         </div>
@@ -218,8 +226,6 @@
 
       <form id="workout-form">
         <div id="exercises-container"></div>
-
-        <button type="button" id="add-exercise" class="btn outline-accent full">+ Add exercise</button>
 
         <button type="submit" class="btn accent full">Save workout</button>
       </form>
@@ -265,7 +271,7 @@
 
     <section id="profile" class="page">
       <div class="profile-section">
-        <h3>Profile</h3>
+        <h1>Profile</h1>
 
         <div id="profile-display" class="profile-display hidden">
           <dl class="profile-details">
@@ -284,67 +290,79 @@
         </div>
 
         <form id="profile-form" class="profile-form">
-          <label for="profile-name">Name</label>
-          <input type="text" id="profile-name" name="name">
-
-          <label for="profile-birthdate"><span data-term="age">Birthdate</span></label>
-          <input type="date" id="profile-birthdate" name="birthDate">
-
-          <label for="profile-sex"><span data-term="sex">Sex</span></label>
-          <select id="profile-sex" name="sex">
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-          </select>
-
-          <label for="profile-height"><span data-term="height">Height</span> <span id="height-label-unit">(cm)</span></label>
-          <div class="height-inputs">
-            <div id="height-metric-input" class="input-with-unit">
-              <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0">
-            </div>
-            <div id="height-imperial-input" class="input-with-unit hidden">
-              <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">
-              <span class="unit">ft</span>
-              <input type="number" id="profile-height-in" name="height-in" inputmode="decimal" step="0.5" min="0" max="11.9" placeholder="10" class="height-in">
-              <span class="unit">in</span>
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="profile-name">Name</label>
+              <input type="text" id="profile-name" name="name">
             </div>
           </div>
 
-          <label for="profile-units">Units</label>
-          <select id="profile-units" name="unitPreference">
-            <option value="metric">Metric</option>
-            <option value="imperial">Imperial</option>
-          </select>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="profile-birthdate"><span data-term="age">Birthdate</span></label>
+              <input type="date" id="profile-birthdate" name="birthDate">
+            </div>
+
+            <div class="form-group">
+              <label for="profile-sex"><span data-term="sex">Sex</span></label>
+              <select id="profile-sex" name="sex">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="profile-height"><span data-term="height">Height</span> <span id="height-label-unit">(cm)</span></label>
+              <div class="height-inputs">
+                <div id="height-metric-input" class="input-with-unit">
+                  <input type="number" id="profile-height" name="height" inputmode="decimal" step="0.1" min="0">
+                </div>
+                <div id="height-imperial-input" class="input-with-unit hidden">
+                  <input type="number" id="profile-height-ft" name="height-ft" inputmode="numeric" min="0" max="8" placeholder="5" class="height-ft">
+                  <span class="unit">ft</span>
+                  <input type="number" id="profile-height-in" name="height-in" inputmode="decimal" step="0.5" min="0" max="11.9" placeholder="10" class="height-in">
+                  <span class="unit">in</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="profile-units">Units</label>
+              <select id="profile-units" name="unitPreference">
+                <option value="metric">Metric</option>
+                <option value="imperial">Imperial</option>
+              </select>
+            </div>
+          </div>
 
           <button type="submit" class="btn accent">Save profile</button>
         </form>
       </div>
 
       <div class="profile-section">
-        <h3>Goals</h3>
+        <div class="section-header">
+          <h1>Goals</h1>
+          <button type="button" id="add-goal-btn" class="btn outline-accent">+ Add goal</button>
+        </div>
+
+        <h2>In progress</h2>
         <div id="goals-list" class="goals-list">
           <p id="no-goals-message" class="empty-message">
             No goals set. Add a goal to start tracking your progress.
           </p>
         </div>
 
-        <button type="button" id="add-goal-btn" class="btn outline-accent full">+ Add goal</button>
-
-        <details id="completed-goals-section" class="completed-goals">
-          <summary>Completed</summary>
-          <div id="completed-goals-list"></div>
-        </details>
+        <h2>Completed</h2>
+        <div id="completed-goals-list" class="goals-list"></div>
       </div>
 
       <div id="programs" class="profile-section">
-        <h3>Programs</h3>
-        <nav class="sub-tabs">
-          <button class="sub-tab active" data-subtab="list-programs">List</button>
-          <button class="sub-tab" data-subtab="create-program">Create new</button>
-        </nav>
-
-        <div id="list-programs" class="sub-page active">
-          <div id="programs-list"></div>
+        <div class="section-header">
+          <h1>Programs</h1>
+          <button type="button" id="create-program-btn" class="btn outline-accent">+ Create new</button>
         </div>
+
+        <div id="programs-list"></div>
 
         <div id="create-program" class="sub-page">
           <h4>Generate program</h4>
@@ -426,7 +444,7 @@
       </div>
 
       <div class="profile-section">
-        <h3>Data</h3>
+        <h1>Data</h1>
         <p class="section-desc">Back up or restore your health data.</p>
         <div class="data-actions">
           <button type="button" id="export-btn" class="btn">Export data</button>
@@ -437,11 +455,11 @@
     </section>
 
     <section id="about" class="page">
-      <h2>About</h2>
+      <h1>About</h1>
       <p class="about-intro">Health Tracker is a privacy-focused fitness app that runs entirely in your browser.</p>
 
       <div class="about-section">
-        <h3>Features</h3>
+        <h2>Features</h2>
         <ul>
           <li>Track workouts, body measurements, and daily metrics</li>
           <li>Create and manage training programs</li>
@@ -451,12 +469,12 @@
       </div>
 
       <div class="about-section">
-        <h3>Privacy</h3>
+        <h2>Privacy</h2>
         <p>All your data stays on your device. Nothing is sent to any server. You can export your data anytime from the Profile tab.</p>
       </div>
 
       <div class="about-section">
-        <h3>Version</h3>
+        <h2>Version</h2>
         <p>v1.0.0</p>
       </div>
     </section>

@@ -115,6 +115,36 @@ body {
   scroll-margin-bottom: 20px;
 }
 
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 var(--spacing-lg) 0;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: var(--spacing-2xl) 0 var(--spacing-md) 0;
+  line-height: 1.3;
+}
+
+h2:first-child {
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.4;
+}
+
 } /* end @layer base */
 
 /* =============================================================================
@@ -148,9 +178,10 @@ header {
 .stats-header {
   width: 100%;
   text-align: center;
-  font-size: 11px;
-  color: var(--color-text-muted);
-  margin-bottom: calc(-1 * var(--spacing-xs));
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
 }
 
 .stat-item {
@@ -233,8 +264,6 @@ main {
 }
 
 .data-row label {
-  width: auto;
-  min-width: 70px;
   flex-shrink: 0;
 }
 
@@ -271,6 +300,14 @@ main {
   border-radius: var(--radius);
   padding: var(--spacing-xl);
 
+  & > p:first-child {
+    margin-top: 0;
+  }
+
+  & > p:last-child {
+    margin-bottom: 0;
+  }
+
   &--inset {
     background: var(--color-bg);
   }
@@ -283,6 +320,10 @@ main {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 1px var(--color-primary-light);
   }
+}
+
+.card + form {
+  margin-top: var(--spacing-xl);
 }
 
 /* Card-specific overrides (base styles from .card class) */
@@ -416,9 +457,16 @@ form {
 }
 
 label {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
-  color: var(--color-label);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+label:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 
 input[type="number"],
@@ -591,9 +639,12 @@ input::placeholder {
 }
 
 .field-group .data-row label {
-  font-size: 14px;
-  color: var(--color-text-muted);
   text-align: center;
+}
+
+.field-group .data-row label .label-unit {
+  display: block;
+  font-size: 12px;
 }
 
 .field-group .data-row input {
@@ -601,16 +652,11 @@ input::placeholder {
 }
 
 .field-group-label {
-  font-weight: 500;
   margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--color-border);
 }
 
 .field-group-label:first-child {
   margin-top: 0;
-  padding-top: 0;
-  border-top: none;
 }
 
 .measurements-form {
@@ -622,34 +668,44 @@ input::placeholder {
 
 #measurement-fields-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-sm) var(--gap-grid);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm) var(--spacing-md);
+  align-items: end;
 }
 
-@container (min-width: 300px) {
+@container (max-width: 400px) {
   #measurement-fields-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@container (max-width: 250px) {
+  #measurement-fields-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 #measurement-fields-container .data-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 #measurement-fields-container .data-row label {
-  width: auto;
-  text-align: start;
+  text-align: center;
+}
+
+#measurement-fields-container .data-row label .label-unit {
+  display: block;
+  font-size: 12px;
 }
 
 #measurement-fields-container .data-row input {
-  width: 70px;
+  width: 100%;
 }
 
 .grid-spacer {
-  display: block;
+  display: none;
 }
 
 .measurement-pair {
@@ -667,9 +723,22 @@ input::placeholder {
 
 .exercise-header {
   display: flex;
-  gap: var(--spacing-lg);
-  align-items: center;
+  gap: var(--spacing-md);
+  align-items: flex-start;
   margin-bottom: var(--spacing-lg);
+}
+
+.exercise-header .collapse-toggle {
+  margin-top: 4px;  /* Align with exercise name text */
+}
+
+.exercise-header .exercise-picker-item {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+  border: none;
+  padding: 0;
+  background: none;
 }
 
 .exercise-card.collapsed .exercise-header {
@@ -705,37 +774,6 @@ input::placeholder {
   transform: rotate(-90deg);
 }
 
-.exercise-header .exercise-name {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--color-secondary);
-  font-weight: 600;
-  font-size: 18px;
-  padding: 0;
-  letter-spacing: -0.3px;
-}
-
-.exercise-header .exercise-name::placeholder {
-  color: var(--color-text-muted);
-  font-weight: 400;
-}
-
-.exercise-header .exercise-name:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-.exercise-header .exercise-name[readonly] {
-  cursor: pointer;
-}
-
-.exercise-header .exercise-name:hover {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  color: var(--color-primary);
-  cursor: pointer;
-}
 
 .sets-container {
   display: flex;
@@ -951,10 +989,6 @@ input::placeholder {
 
 .program-selector {
   margin-bottom: var(--spacing-xl);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--spacing-xl);
 }
 
 .program-selector .form-group {
@@ -964,10 +998,23 @@ input::placeholder {
   gap: var(--spacing-md);
 }
 
-.program-selector .form-group > label {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-secondary);
+/* h2 program name and h3 day name in workout selector */
+.program-display h2,
+.day-selector h3 {
+  margin: 0;
+}
+
+.swap-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.7;
+}
+
+.swap-btn:hover {
+  opacity: 1;
 }
 
 .program-selector .form-group > select {
@@ -981,20 +1028,7 @@ input::placeholder {
   gap: var(--spacing-sm);
 }
 
-@media (max-width: 400px) {
-  .program-selector {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--gap-grid);
-  }
-}
-
-#current-program-name,
-#suggested-day {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-label);
-}
+/* h2#current-program-name and h3#suggested-day use base styles + overrides in .program-display/.day-selector */
 
 /* =============================================================================
    PROGRAMS
@@ -1038,32 +1072,46 @@ input::placeholder {
   gap: var(--spacing-lg);
 }
 
-.program-card .expand-icon {
+.program-card .program-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.program-card > .program-header .expand-icon {
   color: var(--color-text-muted);
   font-size: 12px;
   transition: transform var(--transition-normal);
 }
 
-.program-card.expanded .expand-icon {
+.program-card.expanded > .program-header .expand-icon {
   transform: rotate(90deg);
 }
 
 .program-card .program-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-text);
+  margin: 0;
 }
 
-.program-card.active .program-name {
-  color: var(--color-secondary);
-}
-
-.program-card .program-days {
+.program-card .active-badge {
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--color-secondary);
   background: var(--color-bg);
   padding: 4px 8px;
   border-radius: var(--radius-sm);
+}
+
+.program-card .edit-btn {
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.program-card .edit-btn:hover {
+  opacity: 1;
 }
 
 .program-card .program-details {
@@ -1073,23 +1121,6 @@ input::placeholder {
 
 .program-card.expanded .program-details {
   display: block;
-}
-
-.program-actions {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-top: 12px;
-}
-
-.program-actions button {
-  flex: 1;
-}
-
-#create-program h3 {
-  margin-bottom: var(--spacing-xl);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-secondary);
 }
 
 #create-program .form-group {
@@ -1186,9 +1217,33 @@ input::placeholder {
 .program-day-exercises {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
   min-height: 22px;
+}
+
+.program-day-exercises .exercise-picker-item {
+  margin-bottom: 0;
+}
+
+/* Swap/remove buttons in exercise items (shared across views) */
+.exercise-picker-item .swap-exercise-btn {
+  margin-left: auto;
+}
+
+.exercise-picker-item .swap-exercise-btn,
+.exercise-picker-item .remove-exercise-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.7;
+}
+
+.exercise-picker-item .swap-exercise-btn:hover,
+.exercise-picker-item .remove-exercise-btn:hover {
+  opacity: 1;
 }
 
 .exercise-tag {
@@ -1284,23 +1339,47 @@ input::placeholder {
 .program-day-preview {
   background: var(--color-bg);
   border-radius: var(--radius);
-  padding: 10px 12px;
+  padding: var(--spacing-lg);
+}
+
+.day-heading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--spacing-lg);
+  margin: 0;
+  cursor: pointer;
 }
 
-.program-day-preview strong {
-  color: var(--color-secondary);
-  font-weight: 600;
-  font-size: 13px;
-  flex-shrink: 0;
+.program-day-preview > .day-heading .expand-icon {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  transition: transform var(--transition-normal);
 }
 
-.program-day-preview .exercises {
-  color: var(--color-text);
+.program-day-preview.expanded > .day-heading .expand-icon {
+  transform: rotate(90deg);
+}
+
+.program-day-preview .exercise-count {
+  margin-left: auto;
   font-size: 13px;
-  line-height: 1.4;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.program-day-preview .day-exercises {
+  display: none !important;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.program-day-preview.expanded .day-exercises {
+  display: flex !important;
+}
+
+.program-day-preview .exercise-preview {
+  margin-bottom: 0;
 }
 
 /* =============================================================================
@@ -1499,14 +1578,8 @@ input::placeholder {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   margin-bottom: var(--spacing-md);
-  cursor: pointer;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
-.exercise-picker-item:hover {
-  border-color: var(--color-secondary);
-  background: var(--color-secondary-light);
-}
 
 .exercise-picker-item:last-child {
   margin-bottom: 0;
@@ -1527,8 +1600,16 @@ input::placeholder {
 
 .exercise-picker-meta {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   flex-wrap: wrap;
+  flex: 1;
+}
+
+.exercise-picker-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  width: 100%;
 }
 
 .exercise-picker-tag {
@@ -1987,14 +2068,13 @@ input::placeholder {
 [data-term],
 .exercise-link {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 2px;
 }
 
 [data-term]:hover,
 .exercise-link:hover {
   color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 
 .exercise-tag.tappable span {
@@ -2298,10 +2378,6 @@ input::placeholder {
   margin-bottom: var(--spacing-md);
 }
 
-.date-selector label {
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
 
 .date-selector input[type="date"] {
   flex: 1;
@@ -2320,10 +2396,6 @@ input::placeholder {
   gap: var(--spacing-sm);
 }
 
-.notes-row label {
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
 
 .notes-row textarea {
   width: 100%;
@@ -2356,10 +2428,23 @@ input::placeholder {
   border-bottom: none;
 }
 
-.profile-section h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 var(--spacing-lg) 0;
+.profile-section h1 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-header h1 {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .profile-section h4 {
@@ -2384,7 +2469,7 @@ input::placeholder {
 
 .profile-details dt {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: var(--spacing-xs);
   color: var(--color-text-muted);
   font-size: 14px;
@@ -2396,37 +2481,51 @@ input::placeholder {
 }
 
 .profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.profile-form .form-row {
   display: grid;
-  grid-template-columns: auto 1fr auto 1fr;
-  gap: var(--spacing-sm) var(--spacing-lg);
-  align-items: center;
-}
-
-.profile-form > label {
-  text-align: start;
-}
-
-.profile-form > label[for="profile-name"] {
-  grid-column: 1;
-}
-
-.profile-form > input[name="name"] {
-  grid-column: 2 / -1;
-}
-
-.profile-form > button {
-  grid-column: 1 / -1;
-  margin-top: var(--spacing-sm);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm) var(--spacing-md);
 }
 
 @media (max-width: 480px) {
-  .profile-form {
-    grid-template-columns: auto 1fr;
+  .profile-form .form-row {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .profile-form > input[name="name"] {
-    grid-column: 2;
+@media (max-width: 320px) {
+  .profile-form .form-row {
+    grid-template-columns: 1fr;
   }
+}
+
+.profile-form .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+}
+
+.profile-form .form-group label {
+  text-align: center;
+}
+
+.profile-form .form-group label span[id$="-unit"] {
+  display: block;
+  font-size: 12px;
+}
+
+.profile-form .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.profile-form > button {
+  margin-top: var(--spacing-sm);
 }
 
 .input-with-unit {
@@ -2503,11 +2602,6 @@ input::placeholder {
 /* Adjust goals styling within profile */
 #profile .goals-list {
   padding: 0;
-}
-
-#profile .completed-goals {
-  padding: var(--spacing-md) 0 0 0;
-  border-top: none;
 }
 
 #profile .add-goal-form {
@@ -2640,13 +2734,6 @@ input::placeholder {
   font-size: 12px;
 }
 
-.completed-goals {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--color-border);
-}
-
-
 .add-goal-form {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
@@ -2660,9 +2747,6 @@ input::placeholder {
   grid-column: 1 / -1;
 }
 
-.add-goal-form > label {
-  text-align: start;
-}
 
 .add-goal-form > label[for="goal-metric"] {
   grid-column: 1;
@@ -3025,12 +3109,7 @@ input::placeholder {
    ABOUT PAGE
    ============================================================================= */
 
-#about h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: var(--spacing-lg);
-  color: var(--color-text);
-}
+/* #about h1 inherits base h1 styles (20px, 700, amber, border) */
 
 .about-intro {
   font-size: 16px;
@@ -3047,12 +3126,7 @@ input::placeholder {
   margin-bottom: 0;
 }
 
-.about-section h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-secondary);
-  margin-bottom: var(--spacing-md);
-}
+/* .about-section h2 inherits base h2 styles (16px, 600, purple) */
 
 .about-section p {
   font-size: 14px;
