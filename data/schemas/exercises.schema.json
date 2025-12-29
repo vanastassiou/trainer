@@ -30,95 +30,188 @@
       "description": "Map of exercise ID to exercise definition",
       "additionalProperties": {
         "type": "object",
-        "required": ["name", "muscle_group", "equipment", "difficulty"],
+        "required": ["name", "muscles", "movement", "equipment", "difficulty"],
         "properties": {
           "name": {
             "type": "string",
             "description": "Display name of the exercise"
           },
-          "muscle_group": {
-            "type": "string",
-            "description": "Primary muscle group targeted (colloquial name)",
-            "enum": [
-              "chest",
-              "back",
-              "shoulders",
-              "biceps",
-              "triceps",
-              "quadriceps",
-              "hamstrings",
-              "glutes",
-              "calves",
-              "core"
-            ]
+          "muscles": {
+            "type": "object",
+            "description": "Muscle involvement classification",
+            "required": ["target", "primary", "synergists", "stabilizers"],
+            "properties": {
+              "target": {
+                "type": "string",
+                "description": "Primary muscle group for UI filtering (colloquial name)",
+                "enum": [
+                  "chest",
+                  "back",
+                  "shoulders",
+                  "biceps",
+                  "triceps",
+                  "quadriceps",
+                  "hamstrings",
+                  "glutes",
+                  "calves",
+                  "core"
+                ]
+              },
+              "primary": {
+                "type": "array",
+                "description": "Prime movers (agonists) using anatomical terminology",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "pectoralis major",
+                    "latissimus dorsi",
+                    "trapezius",
+                    "rhomboideus",
+                    "erector spinae",
+                    "deltoideus",
+                    "deltoideus anterior",
+                    "deltoideus lateralis",
+                    "deltoideus posterior",
+                    "biceps brachii",
+                    "brachialis",
+                    "triceps brachii",
+                    "quadriceps femoris",
+                    "biceps femoris",
+                    "semitendinosus",
+                    "semimembranosus",
+                    "gluteus maximus",
+                    "gluteus medius",
+                    "gastrocnemius",
+                    "soleus",
+                    "rectus abdominis",
+                    "obliquus externus abdominis",
+                    "transversus abdominis"
+                  ]
+                }
+              },
+              "synergists": {
+                "type": "array",
+                "description": "Assisting muscles that help the prime movers",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "pectoralis major",
+                    "pectoralis minor",
+                    "latissimus dorsi",
+                    "trapezius",
+                    "rhomboideus",
+                    "erector spinae",
+                    "deltoideus",
+                    "deltoideus anterior",
+                    "deltoideus lateralis",
+                    "deltoideus posterior",
+                    "biceps brachii",
+                    "brachialis",
+                    "brachioradialis",
+                    "triceps brachii",
+                    "quadriceps femoris",
+                    "biceps femoris",
+                    "semitendinosus",
+                    "semimembranosus",
+                    "gluteus maximus",
+                    "gluteus medius",
+                    "tensor fasciae latae",
+                    "gastrocnemius",
+                    "soleus",
+                    "rectus abdominis",
+                    "obliquus externus abdominis",
+                    "transversus abdominis",
+                    "iliopsoas",
+                    "adductor magnus",
+                    "serratus anterior",
+                    "teres major",
+                    "teres minor",
+                    "infraspinatus",
+                    "supraspinatus",
+                    "subscapularis"
+                  ]
+                }
+              },
+              "stabilizers": {
+                "type": "array",
+                "description": "Muscles contracting isometrically to stabilize joints",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "core",
+                    "rotator cuff",
+                    "scapular stabilizers",
+                    "erector spinae",
+                    "rectus abdominis",
+                    "obliquus externus abdominis",
+                    "transversus abdominis",
+                    "gluteus medius",
+                    "hip stabilizers",
+                    "quadriceps femoris",
+                    "hamstrings",
+                    "deltoideus",
+                    "trapezius",
+                    "rhomboideus",
+                    "serratus anterior",
+                    "forearm flexors",
+                    "forearm extensors",
+                    "gastrocnemius",
+                    "soleus",
+                    "tibialis anterior"
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false
           },
-          "primary_muscles": {
-            "type": "array",
-            "description": "Primary muscles worked using anatomical terminology",
-            "items": {
-              "type": "string",
-              "enum": [
-                "pectoralis major",
-                "latissimus dorsi",
-                "trapezius",
-                "rhomboideus",
-                "erector spinae",
-                "deltoideus",
-                "deltoideus anterior",
-                "deltoideus lateralis",
-                "deltoideus posterior",
-                "biceps brachii",
-                "brachialis",
-                "triceps brachii",
-                "quadriceps femoris",
-                "biceps femoris",
-                "semitendinosus",
-                "semimembranosus",
-                "gluteus maximus",
-                "gluteus medius",
-                "gastrocnemius",
-                "soleus",
-                "rectus abdominis",
-                "obliquus externus abdominis",
-                "transversus abdominis"
-              ]
-            }
-          },
-          "secondary_muscles": {
-            "type": "array",
-            "description": "Secondary muscles engaged during the exercise (anatomical terminology)",
-            "items": {
-              "type": "string",
-              "enum": [
-                "pectoralis major",
-                "latissimus dorsi",
-                "trapezius",
-                "rhomboideus",
-                "erector spinae",
-                "deltoideus",
-                "deltoideus anterior",
-                "deltoideus lateralis",
-                "deltoideus posterior",
-                "biceps brachii",
-                "brachialis",
-                "brachioradialis",
-                "triceps brachii",
-                "quadriceps femoris",
-                "biceps femoris",
-                "semitendinosus",
-                "semimembranosus",
-                "gluteus maximus",
-                "gluteus medius",
-                "tensor fasciae latae",
-                "gastrocnemius",
-                "soleus",
-                "rectus abdominis",
-                "obliquus externus abdominis",
-                "transversus abdominis",
-                "iliopsoas",
-                "adductor magnus"
-              ]
-            }
+          "movement": {
+            "type": "object",
+            "description": "Movement classification for programming",
+            "required": ["pattern", "joint_type", "kinetic_chain", "laterality", "contraction", "arm_position"],
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "Fundamental movement pattern with direction",
+                "enum": [
+                  "horizontal_push",
+                  "vertical_push",
+                  "horizontal_pull",
+                  "vertical_pull",
+                  "hinge",
+                  "squat",
+                  "lunge",
+                  "carry",
+                  "rotation",
+                  "isolation"
+                ]
+              },
+              "joint_type": {
+                "type": "string",
+                "description": "Joint involvement: compound (multi-joint) or isolation (single-joint)",
+                "enum": ["compound", "isolation"]
+              },
+              "kinetic_chain": {
+                "type": "string",
+                "description": "Kinetic chain type: closed (distal segment fixed) or open (distal segment free)",
+                "enum": ["closed", "open"]
+              },
+              "laterality": {
+                "type": "string",
+                "description": "Limb involvement: bilateral (both limbs) or unilateral (single limb)",
+                "enum": ["bilateral", "unilateral"]
+              },
+              "contraction": {
+                "type": "string",
+                "description": "Primary contraction type: dynamic (concentric/eccentric) or isometric (static hold)",
+                "enum": ["dynamic", "isometric"]
+              },
+              "arm_position": {
+                "type": "string",
+                "description": "Arm position for calisthenics: straight-arm vs bent-arm strength, n/a for lower body",
+                "enum": ["bent", "straight", "n/a"]
+              }
+            },
+            "additionalProperties": false
           },
           "equipment": {
             "type": "string",
@@ -136,46 +229,29 @@
             "description": "Skill level required",
             "enum": ["beginner", "intermediate", "advanced"]
           },
-          "movement_pattern": {
-            "type": "string",
-            "description": "Fundamental movement classification",
-            "enum": ["push", "pull", "hinge", "squat", "lunge", "carry", "rotation"]
-          },
-          "joint_type": {
-            "type": "string",
-            "description": "Joint involvement: compound (multi-joint) or isolation (single-joint)",
-            "enum": ["compound", "isolation"]
-          },
-          "direction": {
-            "type": "string",
-            "description": "Movement direction for push/pull patterns",
-            "enum": ["horizontal", "vertical"]
-          },
-          "kinetic_chain": {
-            "type": "string",
-            "description": "Kinetic chain type: closed (distal segment fixed) or open (distal segment free)",
-            "enum": ["closed", "open"]
-          },
-          "laterality": {
-            "type": "string",
-            "description": "Limb involvement: bilateral (both limbs) or unilateral (single limb)",
-            "enum": ["bilateral", "unilateral"]
-          },
-          "role": {
-            "type": "string",
-            "description": "Exercise role: basic (primary strength builder) or auxiliary (supporting exercise)",
-            "enum": ["basic", "auxiliary"]
-          },
           "description": {
             "type": "string",
             "description": "Brief overview of the exercise"
           },
           "instructions": {
-            "type": "array",
-            "description": "Step-by-step execution instructions",
-            "items": {
-              "type": "string"
-            }
+            "type": "object",
+            "description": "Three-part instructions for exercise execution",
+            "required": ["starting_position", "movement", "return"],
+            "properties": {
+              "starting_position": {
+                "type": "string",
+                "description": "Setup and body positioning before the movement"
+              },
+              "movement": {
+                "type": "string",
+                "description": "Execution of the exercise with proper form cues"
+              },
+              "return": {
+                "type": "string",
+                "description": "Controlled return to starting position"
+              }
+            },
+            "additionalProperties": false
           },
           "tips": {
             "type": "array",
@@ -186,9 +262,17 @@
           },
           "avoid": {
             "type": "array",
-            "description": "Common errors to avoid",
+            "description": "Common mistakes and form errors to avoid",
             "items": {
               "type": "string"
+            }
+          },
+          "prerequisites": {
+            "type": "array",
+            "description": "Exercise IDs to master before attempting this exercise",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
             }
           },
           "image_url": {
