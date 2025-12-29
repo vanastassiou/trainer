@@ -442,16 +442,6 @@
           </div>
         </div>
       </div>
-
-      <div class="profile-section">
-        <h1>Data</h1>
-        <p class="section-desc">Back up or restore your health data.</p>
-        <div class="data-actions">
-          <button type="button" id="export-btn" class="btn">Export data</button>
-          <button type="button" id="import-btn" class="btn">Import data</button>
-          <input type="file" id="import-file" accept=".json" class="hidden">
-        </div>
-      </div>
     </section>
 
     <section id="about" class="page">
@@ -470,7 +460,7 @@
 
       <div class="about-section">
         <h2>Privacy</h2>
-        <p>All your data stays on your device. Nothing is sent to any server. You can export your data anytime from the Profile tab.</p>
+        <p>All your data stays on your device. Nothing is sent to any server. You can back up your data anytime using the footer below.</p>
       </div>
 
       <div class="about-section">
@@ -479,6 +469,23 @@
       </div>
     </section>
   </main>
+
+  <div class="data-footer">
+    <div class="data-footer-content">
+      <div class="data-footer-info">
+        <span class="data-footer-label">Your data</span>
+        <span class="data-footer-status" id="backup-status">Never backed up</span>
+      </div>
+      <div class="data-footer-actions">
+        <button type="button" id="export-btn" class="btn data-footer-btn">
+          Backup
+          <span class="backup-badge hidden" id="backup-badge" aria-label="Backup overdue"></span>
+        </button>
+        <button type="button" id="import-btn" class="btn data-footer-btn">Restore</button>
+        <input type="file" id="import-file" accept=".json" class="hidden">
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <nav class="footer-nav">
@@ -651,6 +658,27 @@
         </div>
         <button type="submit" class="btn accent full">Add goal</button>
       </form>
+    </div>
+  </dialog>
+
+  <!-- Import Mode Dialog -->
+  <dialog id="import-mode-modal" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Restore data</h3>
+        <button type="button" class="modal-close">&times;</button>
+      </div>
+      <p class="import-mode-intro">How would you like to restore this backup?</p>
+      <div class="import-mode-actions">
+        <button type="button" class="btn import-merge-btn">Merge</button>
+        <p class="import-mode-desc">Keep existing data, add new records</p>
+        <button type="button" class="btn import-replace-btn">Replace</button>
+        <p class="import-mode-desc">Delete all existing data first</p>
+        <button type="button" class="btn ghost import-cancel-btn">Cancel</button>
+      </div>
+      <p class="import-warning hidden" id="import-replace-warning">
+        <strong>Warning:</strong> This will permanently delete all your existing data.
+      </p>
     </div>
   </dialog>
 

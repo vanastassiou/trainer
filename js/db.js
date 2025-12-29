@@ -649,3 +649,67 @@ export async function importData(data) {
     throw err;
   }
 }
+
+/**
+ * Import data with merge strategy.
+ * Existing records are kept, new records are added, matching keys are updated.
+ * @param {Object} data - Backup data object
+ */
+export async function mergeData(data) {
+  if (!data.version || !data.programs || !data.journals) {
+    throw new Error('Invalid backup file');
+  }
+
+  if (data.version < 2) {
+    throw new Error('This backup file is from an older version and cannot be imported.');
+  }
+
+  try {
+    const db = await openDB();
+    const tx = db.transaction(['programs', 'journals', 'goals', 'profile'], 'readwrite');
+
+    const programStore = tx.objectStore('programs');
+    const journalStore = tx.objectStore('journals');
+    const goalStore = tx.objectStore('goals');
+    const profileStore = tx.objectStore('profile');
+
+    // Merge programs by ID (put will update or insert)
+    for (const program of data.programs) {
+      programStore.put(program);
+    }
+
+    // Merge journals by date (put will update or insert)
+    for (const journal of data.journals) {
+      journalStore.put(journal);
+    }
+
+    // Merge goals by ID
+    if (data.goals) {
+      for (const goal of data.goals) {
+        goalStore.put(goal);
+      }
+    }
+
+    // Only update profile if backup has one and it's newer
+    if (data.profile) {
+      const existingReq = profileStore.get('user');
+      existingReq.onsuccess = () => {
+        const existing = existingReq.result;
+        if (!existing ||
+            !existing.updatedAt ||
+            (data.profile.updatedAt && data.profile.updatedAt > existing.updatedAt)) {
+          profileStore.put(data.profile);
+        }
+      };
+    }
+
+    // Wait for transaction to complete
+    await new Promise((resolve, reject) => {
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch (err) {
+    console.error('Failed to merge data:', err);
+    throw err;
+  }
+}
