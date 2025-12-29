@@ -414,9 +414,16 @@ form {
 }
 
 label {
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+label:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 
 input[type="number"],
@@ -1309,16 +1316,16 @@ input::placeholder {
   padding: var(--spacing-lg);
 }
 
-.program-day-preview strong {
+.program-day-preview > .exercise-picker-name {
   display: block;
-  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
   font-weight: 600;
   font-size: 15px;
-  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
   cursor: pointer;
 }
 
-.program-day-preview strong:hover {
+.program-day-preview > .exercise-picker-name:hover {
   color: var(--color-primary);
   text-decoration: underline;
   text-decoration-style: dotted;
@@ -2026,14 +2033,13 @@ input::placeholder {
 [data-term],
 .exercise-link {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 2px;
 }
 
 [data-term]:hover,
 .exercise-link:hover {
   color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 
 .exercise-tag.tappable span {

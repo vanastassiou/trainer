@@ -987,7 +987,7 @@ export async function renderProgramsList(refreshProgramUI) {
               </div>
             `;
           }).filter(Boolean).join('');
-          return `<div class="program-day-preview"><strong>Day ${i + 1}</strong><div class="exercises">${exerciseItems}</div></div>`;
+          return `<div class="program-day-preview"><span class="exercise-picker-name">Day ${i + 1}</span><div class="exercises">${exerciseItems}</div></div>`;
         }).join('')
       : '';
 
