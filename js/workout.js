@@ -4,7 +4,8 @@
 // Handles workout logging, exercise cards, and exercise picker.
 
 import { state } from './state.js';
-import { fetchJSON, formatLabel, renderListItems, swapVisibility, toImperial } from './utils.js';
+import { WORKOUT } from './config.js';
+import { fetchJSON, formatLabel, renderListItems, swapVisibility, toImperial, buildExerciseTagsHTML } from './utils.js';
 import { createModalController, showConfirmDialog, showToast } from './ui.js';
 import { filterExercises, getExerciseFilterValues, resetExerciseFilters, getUniqueValues } from './filters.js';
 import { hasUnsavedWorkoutData, collectWorkoutData } from './validation.js';
@@ -246,19 +247,7 @@ export function initWorkoutForm(callbacks) {
         card.dataset.exerciseId = id;
         // Update tags
         const newExercise = state.exercisesById.get(id);
-        const tags = [];
-        if (newExercise?.muscle_group) {
-          tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(newExercise.muscle_group)}</span>`);
-        }
-        if (newExercise?.movement_pattern) {
-          tags.push(`<span class="exercise-picker-tag movement">${formatLabel(newExercise.movement_pattern)}</span>`);
-        }
-        if (newExercise?.equipment) {
-          tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(newExercise.equipment)}</span>`);
-        }
-        if (newExercise?.difficulty) {
-          tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(newExercise.difficulty)}</span>`);
-        }
+        const tags = buildExerciseTagsHTML(newExercise);
         const metaEl = card.querySelector('.exercise-picker-meta');
         if (metaEl) {
           metaEl.innerHTML = tags.join('');
@@ -428,6 +417,26 @@ export function getCurrentDayNumber() {
 // EXERCISE CARDS
 // =============================================================================
 
+function generateSetRowsHTML(getPlaceholder) {
+  return Array.from({ length: WORKOUT.maxSetsPerExercise }, (_, i) => {
+    const setNum = i + 1;
+    const isFirst = i === 0;
+    return `
+      <div class="set-row ${isFirst ? 'editing' : 'hidden'}" data-set="${i}">
+        <span class="set-label">Set ${setNum}</span>
+        <input type="number" class="reps-input" placeholder="${getPlaceholder(i, 'reps')}" inputmode="numeric" min="0">
+        <input type="number" class="weight-input" placeholder="${getPlaceholder(i, 'weight')}" inputmode="decimal" step="0.1" min="0">
+        <input type="number" class="rir-input" placeholder="${getPlaceholder(i, 'rir')}" inputmode="numeric" min="0" max="5">
+        <span class="set-actions">
+          <button type="button" class="icon-btn notes-btn" aria-label="Add notes for set ${setNum}">🗒️</button>
+          <button type="button" class="icon-btn save-set-btn" aria-label="Save set ${setNum}">💾</button>
+          <button type="button" class="icon-btn edit-set-btn" aria-label="Edit set ${setNum}">✏️</button>
+        </span>
+      </div>
+    `;
+  }).join('');
+}
+
 export function addExerciseCard(container, existingData = null, options = {}) {
   const { fromProgram = false, placeholderData = null } = options;
   const card = document.createElement('div');
@@ -458,32 +467,20 @@ export function addExerciseCard(container, existingData = null, options = {}) {
   // Build tags from exercise data
   const exerciseId = existingData?.id;
   const exerciseData = exerciseId ? state.exercisesById.get(exerciseId) : null;
-  const tags = [];
-  if (exerciseData?.muscle_group) {
-    tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
-  }
-  if (exerciseData?.movement_pattern) {
-    tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
-  }
-  if (exerciseData?.equipment) {
-    tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
-  }
-  if (exerciseData?.difficulty) {
-    tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
-  }
+  const tags = buildExerciseTagsHTML(exerciseData);
   const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
 
   card.innerHTML = `
     <div class="exercise-header">
-      <button type="button" class="collapse-toggle" aria-label="Toggle exercise details">
+      <button type="button" class="icon-btn collapse-toggle" aria-label="Toggle exercise details">
         <span class="collapse-icon"></span>
       </button>
       <div class="exercise-picker-item">
         <span class="exercise-picker-name">${existingData?.name || ''}</span>
-        <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
+        <button type="button" class="icon-btn swap-exercise-btn" aria-label="Swap exercise">🔄</button>
         <div class="exercise-picker-row">
           ${metaHtml}
-          <button type="button" class="remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
+          <button type="button" class="icon-btn remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
         </div>
       </div>
     </div>
@@ -495,39 +492,7 @@ export function addExerciseCard(container, existingData = null, options = {}) {
         <span class="col-label col-label-rir" data-term="reps in reserve">RIR</span>
         <span class="col-label col-label-actions"></span>
       </div>
-      <div class="set-row editing" data-set="0">
-        <span class="set-label">Set 1</span>
-        <input type="number" class="reps-input" placeholder="${getPlaceholder(0, 'reps')}" inputmode="numeric" min="0">
-        <input type="number" class="weight-input" placeholder="${getPlaceholder(0, 'weight')}" inputmode="decimal" step="0.1" min="0">
-        <input type="number" class="rir-input" placeholder="${getPlaceholder(0, 'rir')}" inputmode="numeric" min="0" max="5">
-        <span class="set-actions">
-          <button type="button" class="notes-btn" aria-label="Add notes for set 1">🗒️</button>
-          <button type="button" class="save-set-btn" aria-label="Save set 1">💾</button>
-          <button type="button" class="edit-set-btn" aria-label="Edit set 1">✏️</button>
-        </span>
-      </div>
-      <div class="set-row hidden" data-set="1">
-        <span class="set-label">Set 2</span>
-        <input type="number" class="reps-input" placeholder="${getPlaceholder(1, 'reps')}" inputmode="numeric" min="0">
-        <input type="number" class="weight-input" placeholder="${getPlaceholder(1, 'weight')}" inputmode="decimal" step="0.1" min="0">
-        <input type="number" class="rir-input" placeholder="${getPlaceholder(1, 'rir')}" inputmode="numeric" min="0" max="5">
-        <span class="set-actions">
-          <button type="button" class="notes-btn" aria-label="Add notes for set 2">🗒️</button>
-          <button type="button" class="save-set-btn" aria-label="Save set 2">💾</button>
-          <button type="button" class="edit-set-btn" aria-label="Edit set 2">✏️</button>
-        </span>
-      </div>
-      <div class="set-row hidden" data-set="2">
-        <span class="set-label">Set 3</span>
-        <input type="number" class="reps-input" placeholder="${getPlaceholder(2, 'reps')}" inputmode="numeric" min="0">
-        <input type="number" class="weight-input" placeholder="${getPlaceholder(2, 'weight')}" inputmode="decimal" step="0.1" min="0">
-        <input type="number" class="rir-input" placeholder="${getPlaceholder(2, 'rir')}" inputmode="numeric" min="0" max="5">
-        <span class="set-actions">
-          <button type="button" class="notes-btn" aria-label="Add notes for set 3">🗒️</button>
-          <button type="button" class="save-set-btn" aria-label="Save set 3">💾</button>
-          <button type="button" class="edit-set-btn" aria-label="Edit set 3">✏️</button>
-        </span>
-      </div>
+      ${generateSetRowsHTML(getPlaceholder)}
     </div>
   `;
 

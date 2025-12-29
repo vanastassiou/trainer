@@ -164,8 +164,8 @@ function renderArticles(articles) {
   emptyMessage.classList.add('hidden');
   container.innerHTML = articles.map(article => `
     <div class="learn-card learn-card--collapsible">
-      <div class="learn-card-header">
-        <span class="expand-icon">▶</span>
+      <div class="learn-card-header" role="button" tabindex="0" aria-expanded="false">
+        <span class="expand-icon" aria-hidden="true">▶</span>
         <div class="learn-card-header-content">
           <div class="learn-card-title">${article.question || article.title}</div>
         </div>
@@ -231,8 +231,8 @@ function renderGlossaryList(terms) {
   emptyMessage.classList.add('hidden');
   container.innerHTML = terms.map(term => `
     <div class="learn-card learn-card--collapsible">
-      <div class="learn-card-header">
-        <span class="expand-icon">▶</span>
+      <div class="learn-card-header" role="button" tabindex="0" aria-expanded="false">
+        <span class="expand-icon" aria-hidden="true">▶</span>
         <div class="learn-card-header-content">
           <div class="learn-card-title">${escapeHtml(term.term)}</div>
           <div class="learn-card-meta">${escapeHtml(categories[term.category] || term.category)}</div>
@@ -344,8 +344,18 @@ export async function initLearnPage() {
     if (e.target.closest('a')) return;
     const card = header.closest('.learn-card--collapsible');
     if (card) {
-      card.classList.toggle('expanded');
+      const isExpanded = card.classList.toggle('expanded');
+      header.setAttribute('aria-expanded', isExpanded);
     }
+  });
+
+  // Keyboard support for collapsible cards
+  learnTab.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const header = e.target.closest('.learn-card-header');
+    if (!header) return;
+    e.preventDefault();
+    header.click();
   });
 }
 
