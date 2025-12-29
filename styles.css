@@ -679,7 +679,7 @@ input::placeholder {
    MEASUREMENTS
    ============================================================================= */
 
-#daily-fields-container {
+.daily-fields-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
@@ -738,7 +738,7 @@ input::placeholder {
   container-type: inline-size;
 }
 
-#measurement-fields-container {
+.measurement-fields-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-sm) var(--spacing-md);
@@ -746,33 +746,33 @@ input::placeholder {
 }
 
 @container (max-width: 400px) {
-  #measurement-fields-container {
+  .measurement-fields-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @container (max-width: 250px) {
-  #measurement-fields-container {
+  .measurement-fields-container {
     grid-template-columns: 1fr;
   }
 }
 
-#measurement-fields-container .data-row {
+.measurement-fields-container .data-row {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
 }
 
-#measurement-fields-container .data-row label {
+.measurement-fields-container .data-row label {
   text-align: center;
 }
 
-#measurement-fields-container .data-row label .label-unit {
+.measurement-fields-container .data-row label .label-unit {
   display: block;
   font-size: var(--font-size-2xs);
 }
 
-#measurement-fields-container .data-row input {
+.measurement-fields-container .data-row input {
   width: 100%;
 }
 
@@ -1028,13 +1028,13 @@ input::placeholder {
   align-self: flex-end;
 }
 
-#exercises-container {
+.exercises-container {
   display: flex;
   flex-direction: column;
   gap: var(--gap-grid);
 }
 
-#exercises-container:empty {
+.exercises-container:empty {
   display: none;
 }
 
@@ -1088,14 +1088,14 @@ input::placeholder {
    PROGRAMS
    ============================================================================= */
 
-#programs-list {
+.programs-list {
   display: flex;
   flex-direction: column;
   gap: var(--gap-grid);
   margin-bottom: 24px;
 }
 
-#programs-list:empty {
+.programs-list:empty {
   display: none;
 }
 
@@ -1230,14 +1230,14 @@ input::placeholder {
   margin-bottom: var(--spacing-lg);
 }
 
-#program-days-container {
+.program-days-container {
   display: flex;
   flex-direction: column;
   gap: var(--gap-grid);
   margin-bottom: var(--spacing-lg);
 }
 
-#program-days-container:empty {
+.program-days-container:empty {
   display: none;
 }
 
