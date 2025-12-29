@@ -135,6 +135,8 @@ function initTabs() {
       if (tabId === 'metrics') {
         updateDailyChart();
         updateMeasurementsChart();
+      } else if (tabId === 'workouts') {
+        updateWorkoutsChart();
       }
     }
   });
