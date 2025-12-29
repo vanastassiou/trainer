@@ -24,7 +24,8 @@ and reading fitness research. It runs entirely client-side with no build step.
 │   ├── ui.js               # UI patterns (tabs, modals, toasts)
 │   ├── filters.js          # Exercise filtering logic
 │   ├── validation.js       # Form validation functions
-│   └── charts.js           # Chart rendering functions
+│   ├── charts.js           # Chart rendering functions
+│   └── config.js           # Centralized constants (workout, chart, program)
 ├── data/
 │   ├── exercises.json      # Exercise definitions (reference data)
 │   ├── articles.json       # Research article summaries (reference data)
@@ -168,7 +169,8 @@ index.html
             ├── js/ui.js            (tabs, modals, toasts)
             ├── js/filters.js       (exercise filtering)
             ├── js/validation.js    (form validation)
-            └── js/charts.js        (chart rendering)
+            ├── js/charts.js        (chart rendering)
+            └── js/config.js        (centralized constants)
 ```
 
 ### Module responsibilities
@@ -243,6 +245,10 @@ export async function getJournalForDate(date) {
 - `swapVisibility(showEl, hideEl)` - Toggle element visibility
 - `escapeHtml(str)` - Escape HTML special characters for XSS prevention
 - `handleError(err, context, fallback)` - Standardized error logging
+- `CONVERTIBLE_FIELDS` - Fields requiring unit conversion (weight, circumferences)
+- `convertForDisplay(value, field)` - Convert metric to imperial for display
+- `convertForStorage(value, field)` - Convert imperial to metric for storage
+- `updateExerciseTagsInElement(el, data)` - Update exercise meta tags in DOM
 
 **ui.js** - UI patterns:
 - `createTabController()` - Tab navigation with localStorage persistence
@@ -267,6 +273,11 @@ export async function getJournalForDate(date) {
 - `renderLineChart(canvas, data)` - Line chart rendering
 - `renderBarChart(canvas, data)` - Bar chart rendering
 - `getChartSummary(data)` - Min/max/average statistics
+
+**config.js** - Centralized constants:
+- `WORKOUT` - Set counts, exercise limits (3-6 per day)
+- `CHART` - Margins, tick counts, label limits
+- `PROGRAM` - Exercise count constraints per day
 
 ## UI structure
 

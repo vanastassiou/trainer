@@ -4,7 +4,7 @@
 // Handles program creation, editing, and listing.
 
 import { state } from './state.js';
-import { swapVisibility, formatLabel } from './utils.js';
+import { swapVisibility, formatLabel, buildExerciseTagsHTML } from './utils.js';
 import { createModalController, showToast } from './ui.js';
 import { validateProgram, validateProgramExercises, hasUnsavedWorkoutData, collectProgramDays } from './validation.js';
 import {
@@ -483,27 +483,15 @@ function addProgramDayCard(container, existingExercises = null) {
     exerciseTag.className = 'exercise-picker-item';
     exerciseTag.dataset.exerciseId = exerciseId;
 
-    const tags = [];
-    if (exerciseData?.muscle_group) {
-      tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
-    }
-    if (exerciseData?.movement_pattern) {
-      tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
-    }
-    if (exerciseData?.equipment) {
-      tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
-    }
-    if (exerciseData?.difficulty) {
-      tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
-    }
+    const tags = buildExerciseTagsHTML(exerciseData);
     const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
 
     exerciseTag.innerHTML = `
       <span class="exercise-picker-name">${exerciseName}</span>
-      <button type="button" class="swap-exercise-btn" aria-label="Swap exercise">🔄</button>
+      <button type="button" class="icon-btn swap-exercise-btn" aria-label="Swap exercise">🔄</button>
       <div class="exercise-picker-row">
         ${metaHtml}
-        <button type="button" class="remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
+        <button type="button" class="icon-btn remove-exercise-btn" aria-label="Remove exercise">🗑️</button>
       </div>
     `;
 
@@ -529,19 +517,7 @@ function addProgramDayCard(container, existingExercises = null) {
         const newData = state.exercisesById.get(id) || null;
         nameSpan.textContent = name;
         // Update tags
-        const newTags = [];
-        if (newData?.muscle_group) {
-          newTags.push(`<span class="exercise-picker-tag muscle">${formatLabel(newData.muscle_group)}</span>`);
-        }
-        if (newData?.movement_pattern) {
-          newTags.push(`<span class="exercise-picker-tag movement">${formatLabel(newData.movement_pattern)}</span>`);
-        }
-        if (newData?.equipment) {
-          newTags.push(`<span class="exercise-picker-tag equipment">${formatLabel(newData.equipment)}</span>`);
-        }
-        if (newData?.difficulty) {
-          newTags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(newData.difficulty)}</span>`);
-        }
+        const newTags = buildExerciseTagsHTML(newData);
         const metaEl = exerciseTag.querySelector('.exercise-picker-meta');
         if (metaEl) {
           metaEl.innerHTML = newTags.join('');
@@ -689,19 +665,7 @@ export async function renderProgramsList(refreshProgramUI) {
             const exerciseData = state.exercisesById.get(id);
             const displayName = exerciseData?.name || id;
 
-            const tags = [];
-            if (exerciseData?.muscle_group) {
-              tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
-            }
-            if (exerciseData?.movement_pattern) {
-              tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
-            }
-            if (exerciseData?.equipment) {
-              tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
-            }
-            if (exerciseData?.difficulty) {
-              tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
-            }
+            const tags = buildExerciseTagsHTML(exerciseData);
             const metaHtml = tags.length ? `<div class="exercise-picker-meta">${tags.join('')}</div>` : '';
 
             return `
@@ -715,7 +679,7 @@ export async function renderProgramsList(refreshProgramUI) {
           }).filter(Boolean).join('');
           const exerciseCount = (day.exercises || []).length;
           return `<div class="program-day-preview">
-            <h3 class="day-heading"><span class="expand-icon">▶</span>Day ${i + 1}<span class="exercise-count">${exerciseCount}</span></h3>
+            <h3 class="day-heading" role="button" tabindex="0" aria-expanded="false"><span class="expand-icon" aria-hidden="true">▶</span>Day ${i + 1}<span class="exercise-count">${exerciseCount}</span></h3>
             <div class="day-exercises">${exerciseItems}</div>
           </div>`;
         }).join('')
@@ -728,14 +692,14 @@ export async function renderProgramsList(refreshProgramUI) {
 
     return `
       <div class="program-card card ${isActive ? 'card--active expanded' : ''}" data-id="${program.id}">
-        <div class="program-header">
+        <div class="program-header" role="button" tabindex="0" aria-expanded="${isActive}">
           <div class="program-header-left">
-            <span class="expand-icon">▶</span>
+            <span class="expand-icon" aria-hidden="true">▶</span>
             <h2 class="program-name">${program.name}</h2>
           </div>
           <div class="program-header-right">
             ${activeStatus}
-            <button class="edit-btn" aria-label="Edit program">✏️</button>
+            <button class="icon-btn edit-btn" aria-label="Edit program">✏️</button>
           </div>
         </div>
         <div class="program-details">
@@ -764,9 +728,11 @@ export async function renderProgramsList(refreshProgramUI) {
       // Day heading click - toggle day expanded
       if (e.target.closest('.day-heading')) {
         const dayPreview = e.target.closest('.program-day-preview');
-        if (dayPreview) {
+        const dayHeading = e.target.closest('.day-heading');
+        if (dayPreview && dayHeading) {
           e.stopPropagation();
-          dayPreview.classList.toggle('expanded');
+          const isExpanded = dayPreview.classList.toggle('expanded');
+          dayHeading.setAttribute('aria-expanded', isExpanded);
           return;
         }
       }
@@ -810,8 +776,10 @@ export async function renderProgramsList(refreshProgramUI) {
       }
 
       // Header click - toggle expand
-      if (e.target.closest('.program-header')) {
-        card.classList.toggle('expanded');
+      const header = e.target.closest('.program-header');
+      if (header) {
+        const isExpanded = card.classList.toggle('expanded');
+        header.setAttribute('aria-expanded', isExpanded);
         return;
       }
     });

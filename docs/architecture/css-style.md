@@ -66,6 +66,8 @@ Each color has `-hover` and `-light` variants for interactive states.
 | `--spacing-xl`   | `16px` | Card padding, larger gaps       |
 | `--spacing-2xl`  | `24px` | Major section separation        |
 | `--gap-grid`     | `12px` | Grid column gaps                |
+| `--gap-tight`    | `2px`  | Tight gaps (tag lists)          |
+| `--input-padding`| `10px 12px` | Standard input padding     |
 
 ### Border radius
 
@@ -92,6 +94,20 @@ Each color has `-hover` and `-light` variants for interactive states.
 | `--transition-fast`    | `0.15s ease`    | Hover states               |
 | `--transition-normal`  | `0.2s ease-out` | Larger transitions         |
 | `--transition-slow`    | `0.3s ease`     | Progress bars, animations  |
+
+### Font sizes
+
+| Variable           | Value  | Usage                          |
+| ------------------ | ------ | ------------------------------ |
+| `--font-size-lg`   | `16px` | Larger body text               |
+| `--font-size-xl`   | `18px` | Section headers                |
+| `--font-size-2xl`  | `24px` | Page titles                    |
+
+### Opacity
+
+| Variable              | Value | Usage                         |
+| --------------------- | ----- | ----------------------------- |
+| `--opacity-inactive`  | `0.4` | Inactive icons, muted states  |
 
 ### Focus ring
 
@@ -334,6 +350,8 @@ Reusable layout utilities defined in `@layer utilities`:
 | `.row--gap-lg` | Row with `--spacing-lg` gap                   |
 | `.data-row`    | Form field row with `gap: var(--spacing-md)`  |
 | `.label-muted` | Muted uppercase text styling                  |
+| `.icon-btn`    | Transparent button with hover opacity         |
+| `.modal-body`  | Modal content with padding and scroll         |
 
 ### Color classes
 

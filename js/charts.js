@@ -2,7 +2,7 @@
 // CHART RENDERING (Native Canvas)
 // =============================================================================
 
-import { getTodayDate, toImperial, getDisplayUnit } from './utils.js';
+import { getTodayDate, toImperial, getDisplayUnit, CIRCUMFERENCE_FIELDS, CONVERTIBLE_FIELDS, getMetricValue } from './utils.js';
 import { state } from './state.js';
 import { getRecentJournals } from './db.js';
 
@@ -29,41 +29,6 @@ function subtractDays(dateStr, days) {
   const date = new Date(dateStr + 'T00:00:00');
   date.setDate(date.getDate() - days);
   return date.toISOString().split('T')[0];
-}
-
-// Circumference fields that live under body.circumferences
-const CIRCUMFERENCE_FIELDS = [
-  'neck', 'chest', 'waist', 'hips',
-  'leftBiceps', 'rightBiceps',
-  'leftQuadriceps', 'rightQuadriceps',
-  'leftCalf', 'rightCalf'
-];
-
-// Fields that moved from body to daily (check both for backwards compatibility)
-const MIGRATED_TO_DAILY = ['weight', 'restingHR'];
-
-/**
- * Get metric value from journal based on category and metric name
- * Handles nested structure for body.circumferences and backwards compatibility
- */
-function getMetricValue(journal, category, metric) {
-  if (category === 'body') {
-    // Check if it's a circumference field
-    if (CIRCUMFERENCE_FIELDS.includes(metric)) {
-      return journal.body?.circumferences?.[metric];
-    }
-    return journal.body?.[metric];
-  }
-  if (category === 'daily') {
-    // Check daily first, fall back to body for migrated fields
-    const dailyValue = journal.daily?.[metric];
-    if (dailyValue != null) return dailyValue;
-    if (MIGRATED_TO_DAILY.includes(metric)) {
-      return journal.body?.[metric];
-    }
-    return dailyValue;
-  }
-  return journal[category]?.[metric];
 }
 
 /**
@@ -435,15 +400,6 @@ export function getChartSummary(data) {
 
   return { start, end, change, changePercent };
 }
-
-// Fields that need unit conversion
-const CONVERTIBLE_FIELDS = [
-  'weight', 'water',
-  'neck', 'chest', 'waist', 'hips',
-  'leftBiceps', 'rightBiceps',
-  'leftQuadriceps', 'rightQuadriceps',
-  'leftCalf', 'rightCalf'
-];
 
 /**
  * Format a chart summary as HTML

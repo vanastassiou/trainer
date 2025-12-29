@@ -123,7 +123,7 @@
         </div>
 
         <form id="daily-form" class="daily-form">
-          <div id="daily-fields-container"></div>
+          <div id="daily-fields-container" class="daily-fields-container"></div>
 
           <div class="notes-row">
             <h2 class="field-group-label">Notes</h2>
@@ -169,7 +169,7 @@
         </div>
 
         <form id="measurements-form" class="measurements-form">
-          <div id="measurement-fields-container"></div>
+          <div id="measurement-fields-container" class="measurement-fields-container"></div>
           <button type="submit" class="btn accent">Save measurements</button>
         </form>
       </div>
@@ -210,7 +210,7 @@
         <div class="form-group" id="program-selector-group">
           <div class="program-display">
             <h2>Program: <span id="current-program-name">-</span></h2>
-            <button type="button" id="change-program-btn" class="swap-btn hidden" aria-label="Change program">🔄</button>
+            <button type="button" id="change-program-btn" class="icon-btn swap-btn hidden" aria-label="Change program">🔄</button>
           </div>
           <select id="current-program" class="hidden">
           </select>
@@ -218,14 +218,14 @@
         <div class="form-group" id="day-selector-group">
           <div class="day-selector">
             <h3>Day: <span id="suggested-day" data-day="">-</span></h3>
-            <button type="button" id="change-day-btn" class="swap-btn hidden" aria-label="Change day">🔄</button>
+            <button type="button" id="change-day-btn" class="icon-btn swap-btn hidden" aria-label="Change day">🔄</button>
           </div>
           <select id="current-day" class="hidden"></select>
         </div>
       </div>
 
       <form id="workout-form">
-        <div id="exercises-container"></div>
+        <div id="exercises-container" class="exercises-container"></div>
 
         <button type="submit" class="btn accent full">Save workout</button>
       </form>
@@ -362,7 +362,7 @@
           <button type="button" id="create-program-btn" class="btn outline-accent">+ Create new</button>
         </div>
 
-        <div id="programs-list"></div>
+        <div id="programs-list" class="programs-list"></div>
 
         <div id="create-program" class="sub-page">
           <h4>Generate program</h4>
@@ -501,7 +501,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 id="exercise-info-name">Exercise Name</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <div id="exercise-info-content" class="exercise-info-content"></div>
     </div>
@@ -512,7 +512,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 id="exercise-edit-name">Edit Exercise</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <div class="action-sheet-actions">
         <button type="button" class="action-sheet-btn" id="exercise-swap-btn">
@@ -534,7 +534,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 id="glossary-term-name">Term</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <div id="glossary-term-content" class="glossary-content"></div>
     </div>
@@ -545,7 +545,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3>Edit program</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <div class="edit-program-form">
         <div class="form-group">
@@ -554,7 +554,7 @@
         </div>
         <div class="program-days-builder">
           <label>Days</label>
-          <div id="edit-program-days-container"></div>
+          <div id="edit-program-days-container" class="program-days-container"></div>
           <button type="button" id="edit-add-day-btn" class="btn outline-accent full">+ Add day</button>
         </div>
         <div class="form-buttons">
@@ -586,7 +586,7 @@
     <div class="set-notes-card">
       <div class="set-notes-header">
         <h3 id="set-notes-title">Set notes</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <textarea id="set-notes-input" rows="4" placeholder="Add notes for this set..."></textarea>
       <button type="button" id="set-notes-save-btn" class="btn accent">Save</button>
@@ -598,7 +598,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 id="exercise-picker-title">Select exercise</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <div class="modal-filters">
         <select id="filter-muscle-group">
@@ -642,7 +642,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3>Add goal</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <form id="add-goal-form" class="add-goal-form">
         <div class="form-group">
@@ -666,7 +666,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3>Restore data</h3>
-        <button type="button" class="modal-close">&times;</button>
+        <button type="button" class="icon-btn modal-close">&times;</button>
       </div>
       <p class="import-mode-intro">How would you like to restore this backup?</p>
       <div class="import-mode-actions">

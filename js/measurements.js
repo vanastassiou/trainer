@@ -4,7 +4,20 @@
 // Handles body measurements and daily tracking forms.
 
 import { state } from './state.js';
-import { parseInputValue, toImperial, toMetric, getDisplayUnit } from './utils.js';
+import {
+  parseInputValue,
+  toImperial,
+  toMetric,
+  getDisplayUnit,
+  convertForDisplay,
+  convertForStorage,
+  CIRCUMFERENCE_FIELDS,
+  CONVERTIBLE_FIELDS,
+  MIGRATED_TO_DAILY
+} from './utils.js';
+
+// Re-export for consumers that import from measurements.js
+export { CIRCUMFERENCE_FIELDS, CONVERTIBLE_FIELDS, MIGRATED_TO_DAILY };
 import {
   getJournalForDate,
   saveJournalForDate,
@@ -18,14 +31,6 @@ import { getChartData, renderLineChart, getChartSummary, formatSummaryHTML } fro
 
 // Body measurement fields (top-level in body object)
 export const BODY_FIELDS = ['bodyFat'];
-
-// Circumference fields (nested in body.circumferences)
-export const CIRCUMFERENCE_FIELDS = [
-  'neck', 'chest', 'waist', 'hips',
-  'leftBiceps', 'rightBiceps',
-  'leftQuadriceps', 'rightQuadriceps',
-  'leftCalf', 'rightCalf'
-];
 
 // All body-related fields for display/labels
 export const BODY_LABELS = {
@@ -119,9 +124,6 @@ export const METRIC_UNITS = {
   rightCalf: 'cm'
 };
 
-// Fields that need unit conversion (weight, water, circumferences)
-const CONVERTIBLE_FIELDS = ['weight', 'water', ...CIRCUMFERENCE_FIELDS];
-
 // Get unit for a metric based on current preference
 export function getUnitForDisplay(metric) {
   return getDisplayUnit(metric, state.unitPreference) || METRIC_UNITS[metric] || '';
@@ -161,17 +163,9 @@ export function loadFieldsToForm(fields, data, getter = (d, f) => d?.[f]) {
   fields.forEach(field => {
     const input = document.getElementById(field);
     if (input) {
-      let value = getter(data, field);
-
-      // Convert for display if imperial and convertible
-      if (value != null && unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(field)) {
-        value = toImperial(value, field);
-        if (typeof value === 'number') {
-          value = value.toFixed(1);
-        }
-      }
-
-      input.value = value ?? '';
+      const value = getter(data, field);
+      const displayValue = convertForDisplay(value, field, unitPreference);
+      input.value = displayValue ?? '';
     }
   });
 }
@@ -186,14 +180,8 @@ export function collectFieldsFromForm(fields, transform = parseFloat) {
     const input = document.getElementById(field);
     const value = input?.value;
     if (value !== '' && value !== null && value !== undefined) {
-      let numValue = transform(value);
-
-      // Convert to metric for storage if imperial
-      if (unitPreference === 'imperial' && CONVERTIBLE_FIELDS.includes(field)) {
-        numValue = toMetric(numValue, field);
-      }
-
-      data[field] = numValue;
+      const numValue = transform(value);
+      data[field] = convertForStorage(numValue, field, unitPreference);
     }
   });
   return data;
@@ -344,9 +332,6 @@ export function loadMeasurementsData(journal) {
   loadFieldsToForm(BODY_FIELDS, journal.body);
   loadFieldsToForm(CIRCUMFERENCE_FIELDS, journal.body, (d, f) => d?.circumferences?.[f]);
 }
-
-// Fields that moved from body to daily (for backwards compatibility)
-const MIGRATED_TO_DAILY = ['weight', 'restingHR'];
 
 export function loadDailyData(journal) {
   // Load daily fields, with fallback to body for migrated fields

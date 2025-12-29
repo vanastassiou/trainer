@@ -123,12 +123,55 @@ const CONVERSION_FACTORS = {
   L_to_floz: 33.814
 };
 
-const CIRCUMFERENCE_FIELDS = [
+export const CIRCUMFERENCE_FIELDS = [
   'neck', 'chest', 'waist', 'hips',
   'leftBiceps', 'rightBiceps',
   'leftQuadriceps', 'rightQuadriceps',
   'leftCalf', 'rightCalf'
 ];
+
+// Fields that need unit conversion (weight, water, circumferences)
+export const CONVERTIBLE_FIELDS = ['weight', 'water', ...CIRCUMFERENCE_FIELDS];
+
+// Fields that moved from body to daily (for backwards compatibility)
+export const MIGRATED_TO_DAILY = ['weight', 'restingHR'];
+
+/**
+ * Get metric value from journal based on category and metric name.
+ * Handles nested structure for body.circumferences and backwards compatibility.
+ * @param {object} journal - Journal object
+ * @param {string} category - 'body', 'daily', or other
+ * @param {string} metric - Metric field name
+ * @returns {*} Metric value or undefined
+ */
+export function getMetricValue(journal, category, metric) {
+  if (category === 'body') {
+    if (CIRCUMFERENCE_FIELDS.includes(metric)) {
+      return journal.body?.circumferences?.[metric];
+    }
+    return journal.body?.[metric];
+  }
+  if (category === 'daily') {
+    const dailyValue = journal.daily?.[metric];
+    if (dailyValue != null) return dailyValue;
+    if (MIGRATED_TO_DAILY.includes(metric)) {
+      return journal.body?.[metric];
+    }
+    return dailyValue;
+  }
+  return journal[category]?.[metric];
+}
+
+/**
+ * Calculate average of numeric values, ignoring nulls.
+ * @param {number[]} values - Array of numbers (may contain nulls)
+ * @returns {number|null} Average or null if no valid values
+ */
+export function calculateAverage(values) {
+  const valid = values.filter(v => v != null);
+  if (valid.length === 0) return null;
+  return valid.reduce((sum, v) => sum + v, 0) / valid.length;
+}
 
 /**
  * Convert metric value to imperial for display.
@@ -191,6 +234,42 @@ export function toMetric(value, metric) {
   }
 
   return value;
+}
+
+/**
+ * Convert a value for display based on unit preference.
+ * Handles the common pattern of checking if conversion is needed.
+ * @param {number} value - Value to convert
+ * @param {string} field - Field name
+ * @param {string} unitPreference - 'metric' or 'imperial'
+ * @param {number} precision - Decimal places for formatting (default: 1)
+ * @returns {string|number|null} Converted value (formatted string if precision specified)
+ */
+export function convertForDisplay(value, field, unitPreference, precision = 1) {
+  if (value == null) return null;
+  if (unitPreference !== 'imperial' || !CONVERTIBLE_FIELDS.includes(field)) {
+    return value;
+  }
+  const converted = toImperial(value, field);
+  if (typeof converted === 'number' && precision != null) {
+    return converted.toFixed(precision);
+  }
+  return converted;
+}
+
+/**
+ * Convert a value for storage (imperial to metric).
+ * @param {number} value - Value to convert
+ * @param {string} field - Field name
+ * @param {string} unitPreference - 'metric' or 'imperial'
+ * @returns {number|null} Metric value for storage
+ */
+export function convertForStorage(value, field, unitPreference) {
+  if (value == null) return null;
+  if (unitPreference !== 'imperial' || !CONVERTIBLE_FIELDS.includes(field)) {
+    return value;
+  }
+  return toMetric(value, field);
 }
 
 /**
@@ -264,6 +343,40 @@ export function getAgeFromBirthDate(birthDate) {
   }
 
   return age;
+}
+
+/**
+ * Build HTML tags for exercise metadata display.
+ * @param {object} exerciseData - Exercise object with muscle_group, movement_pattern, etc.
+ * @returns {string[]} Array of HTML span strings
+ */
+export function buildExerciseTagsHTML(exerciseData) {
+  const tags = [];
+  if (exerciseData?.muscle_group) {
+    tags.push(`<span class="exercise-picker-tag muscle">${formatLabel(exerciseData.muscle_group)}</span>`);
+  }
+  if (exerciseData?.movement_pattern) {
+    tags.push(`<span class="exercise-picker-tag movement">${formatLabel(exerciseData.movement_pattern)}</span>`);
+  }
+  if (exerciseData?.equipment) {
+    tags.push(`<span class="exercise-picker-tag equipment">${formatLabel(exerciseData.equipment)}</span>`);
+  }
+  if (exerciseData?.difficulty) {
+    tags.push(`<span class="exercise-picker-tag difficulty">${formatLabel(exerciseData.difficulty)}</span>`);
+  }
+  return tags;
+}
+
+/**
+ * Update exercise metadata tags in a container element.
+ * @param {HTMLElement} container - Element containing .exercise-picker-meta
+ * @param {object} exerciseData - Exercise object with metadata
+ */
+export function updateExerciseTagsInElement(container, exerciseData) {
+  const metaEl = container.querySelector('.exercise-picker-meta');
+  if (metaEl) {
+    metaEl.innerHTML = buildExerciseTagsHTML(exerciseData).join('');
+  }
 }
 
 /**
