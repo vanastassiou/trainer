@@ -688,7 +688,7 @@ export async function renderProgramsList(refreshProgramUI) {
     const isActive = activeProgram?.id === program.id;
     const activeStatus = isActive
       ? '<span class="active-badge">Active</span>'
-      : '<button class="btn outline-accent sm activate-btn">Set active</button>';
+      : '<button class="btn primary sm activate-btn">Set active</button>';
 
     return `
       <div class="program-card card ${isActive ? 'card--active expanded' : ''}" data-id="${program.id}">

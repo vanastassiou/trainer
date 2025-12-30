@@ -474,6 +474,19 @@ button {
     }
   }
 
+  /* Primary variant - bright purple for key actions */
+  &.primary {
+    background: var(--color-primary);
+    color: var(--color-bg);
+    border-color: var(--color-primary);
+    font-weight: 600;
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-primary) 85%, white);
+      border-color: color-mix(in srgb, var(--color-primary) 85%, white);
+    }
+  }
+
   /* Danger variant */
   &.danger {
     background: transparent;
